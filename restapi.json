@@ -1,0 +1,4371 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Volumez",
+        "description": "Volumez orchestrator API",
+        "version": "1.0.0"
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "schemes": [
+        "http"
+    ],
+    "host": "api.volumez.com",
+    "basePath": "/api/v1",
+    "tags": [
+        {
+            "name": "Volumes",
+            "description": ""
+        },
+        {
+            "name": "Nodes",
+            "description": ""
+        },
+        {
+            "name": "Policies",
+            "description": "Policies allow you to declare the desired characteristics of volumes you will later create. Policies are expressed in terms of outcomes (such as desired performance and resiliency). When you later ask Volumez to create volumes using a policy, it will automatically allocate and configure whatever is necessary to match these desired outcomes."
+        },
+        {
+            "name": "Networks",
+            "description": ""
+        },
+        {
+            "name": "Jobs",
+            "description": ""
+        },
+        {
+            "name": "Snapshots",
+            "description": ""
+        },
+        {
+            "name": "Attachments",
+            "description": ""
+        },
+        {
+            "name": "Media",
+            "description": ""
+        },
+        {
+            "name": "Connectivities",
+            "description": ""
+        },
+        {
+            "name": "Credentials",
+            "description": ""
+        },
+        {
+            "name": "Controllers",
+            "description": ""
+        }
+    ],
+    "paths": {
+        "/volumes": {
+            "get": {
+                "summary": "Get a list of volumes",
+                "tags": [
+                    "Volumes"
+                ],
+                "operationId": "VolumesList",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "capacity",
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of volumes",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Volume"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of volumes",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new volume",
+                "tags": [
+                    "Volumes"
+                ],
+                "operationId": "VolumeCreate",
+                "parameters": [                   
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Volume object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Volume"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                      }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Volume has been created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "409" : {
+                        "description" : "409 response",
+                        "schema" : {
+                          "$ref" : "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "202" : {
+                        "description" : "202 response",
+                        "schema" : {
+                          "$ref" : "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new volume",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+            
+                }
+            }
+        },
+        "/volumes/{volume}": {
+            "get": {
+                "summary": "Get the properties of a volume",
+                "tags": [
+                    "Volumes"
+                ],
+                "operationId": "VolumeGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                      }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a volume",
+                        "schema": {
+                            "$ref": "#/definitions/Volume"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of a volume",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a volume",
+                "tags": [
+                    "Volumes"
+                ],
+                "operationId": "VolumeDelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name":"force",
+                        "in":"query",
+                        "required":false,
+                        "type":"boolean",
+                        "default":false,
+                        "allowEmptyValue":true,
+                        "x-nullable": false
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A volume was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error deleting a volume",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modify a volume",
+                "tags": [
+                    "Volumes"
+                ],
+                "operationId": "VolumeModify",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Volume object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Volume"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A volume was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error updating a volume",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },        
+        "/tenant/{tenantID}/tenanthosts/{tenantHost}": {
+            "delete": {
+                "summary": "Delete a tenant host",
+                "tags": [
+                    "Tenant Hosts"
+                ],
+                "operationId": "tenanthostdelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "tenantID",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "tenantHost",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tenant Host was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/TenantHostDeleteResponse" 
+                        }
+                    },
+                    "500": {
+                        "description": "Error deleting Tenant's Host",
+                        "schema": {
+                            "$ref": "#/definitions/TenantHostDeleteResponse" 
+                        }
+                    }
+                }
+            }
+        },  
+        "/tenant/tenanthost/credentials": {
+            "get": {
+                "summary": "Given the tenant's host token (Refresh Token), get the ID Token for this machine",
+                "tags": [
+                    "Tenant Host Credentials"
+                ],
+                "operationId": "TenanthostAccessCredentials",
+                "parameters": [
+                    {
+                    "name": "refreshtoken",
+                    "in": "header",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                 "responses":
+                 {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                        "$ref": "#/definitions/RefreshTokenResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting ID Token from Tenant's Host Token (Refresh Token)",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    }
+                }
+            }
+        },             
+        "/tenant/tenanthost": {
+            "get": {
+                "summary": "Get a tenant host",
+                "tags": [
+                    "Tenant Host"
+                ],
+                "operationId": "tenanthostget",
+                "parameters": [                   
+                    {
+                        "name": "tenanthosttoken",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Got Tenant's Host successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantHostResponse" 
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting Tenant's Host",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantHostResponse" 
+                        }
+                    }
+                }
+            }
+        },                    
+        "/tenant/tenantid": {
+            "get": {
+                "summary": "Get a Tenant ID from Tenant's Token",
+                "tags": [
+                    "Tenant ID From Tenant Token"
+                ],
+                "operationId": "tenantIDget",
+                "parameters": [                   
+                    {
+                        "name": "tenanttoken",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Got Tenant's ID successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantIDResponse" 
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting Tenant's ID",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantIDResponse" 
+                        }
+                    }
+                }
+            }
+        },       
+        "/nodes": {
+            "get": {
+                "summary": "Get a list of nodes",
+                "tags": [
+                    "Nodes"
+                ],
+                "operationId": "NodesList",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "List of nodes",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Node"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of nodes",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/nodes/{node}": {
+            "get": {
+                "summary": "Get the properties of a node",
+                "tags": [
+                    "Nodes"
+                ],
+                "operationId": "NodeGet",
+                "parameters": [
+                    {
+                        "name": "node",
+                        "in": "path",
+                        "description": "Name of node to return",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a node",
+                        "schema": {
+                            "$ref": "#/definitions/Node"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid node name supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Node not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of a node",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+        ,
+        "/tenant/refreshtoken": {
+            "post": {
+                "summary": "Get the tenant's Refresh Token",
+                "tags": [
+                    "TenantRefreshToken"
+                ],
+                "operationId": "TenantRefreshToken",
+                "parameters": [                  
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Tenant's Refresh Token",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantRefreshTokenRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Refresh Token",
+                        "schema": {
+                            "$ref": "#/definitions/RefreshToken"
+                        }
+                    },                    
+                    "500": {
+                        "description": "Error getting Tenant's Refresh Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting Tenant's Refresh Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+        ,
+        "/policies": {
+            "get": {
+                "summary": "Get a list of policies",
+                "tags": [
+                    "Policies"
+                ],
+                "operationId": "PoliciesList",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "List of policies",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Policy"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of policies",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new policy",
+                "tags": [
+                    "Policies"
+                ],
+                "operationId": "PolicyCreate",
+                "parameters": [                    
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Policy object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Policy"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New policy was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new policy",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/policies/{policy}": {
+            "get": {
+                "summary": "Get the properties of a policy",
+                "tags": [
+                    "Policies"
+                ],
+                "operationId": "PolicyGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "policy",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a policy",
+                        "schema": {
+                            "$ref": "#/definitions/Policy"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of a policy",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a policy",
+                "tags": [
+                    "Policies"
+                ],
+                "operationId": "PolicyDelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "policy",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A policy was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error deleting a policy",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modify a policy",
+                "tags": [
+                    "Policies"
+                ],
+                "operationId": "PolicyModify",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "policy",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Policy object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Policy"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A policy was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error updating a policy",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+            
+        },
+        "/policies/{policy}/size/{size}/zone/{zone}": {
+            "get": {
+                "summary": "Show policy volume create plan",
+                "tags": [
+                    "Policies"
+                ],
+                "operationId": "PolicyPlan",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "policy",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "size",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "zone",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Policy volume group plan",
+                        "schema": {
+                            "$ref": "#/definitions/Plan"
+                        }
+                    },
+                    "404": {
+                        "description": "Plan failed",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting policy volume group plan",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/signup": {           
+            "post": {
+                "summary": "Create Tenant's first user",
+                "tags": [
+                    "users"
+                ],
+                "operationId": "UserCreate",
+                "parameters": [                    
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A user object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TenantCreateAdminUserRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully Signed up",
+                        "schema": {
+                            "$ref": "#/definitions/SignUpResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error signing up",
+                        "schema": {
+                            "$ref": "#/definitions/SignUpResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/signout": {           
+            "post": {
+                "summary": "Signs out user from all devices",
+                "tags": [
+                    "users"
+                ],
+                "operationId": "Signout",
+                "parameters": [                    
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Access Token",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignoutRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sign out was successful",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error signing out",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/apiaccess/credentials/refresh": {
+            "get": {
+                "summary": "Given the Tenant's API Access Refresh Token, return new Access Token, Identity Token and a newer Refresh Token",
+                "tags": [
+                    "Tenant API Access Refresh Token"
+                ],
+                "operationId": "TenantAPIAccessRefreshToken",
+                "parameters": [
+                    {
+                    "name": "refreshtoken",
+                    "in": "header",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                 "responses":
+                 {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                        "$ref": "#/definitions/RefreshTokenResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    },
+                    "500": {
+                        "description": "Error refreshing user Tenant's API Acces Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/token": {
+            "get": {
+                "summary": "Get the Tenant's Token",
+                "tags": [
+                    "tenant token"
+                ],
+                "operationId": "TenantToken",
+                "parameters": [                    
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tenant's Token retrieval was successful",
+                        "schema": {
+                            "$ref": "#/definitions/TenantTokenResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting Tenant's Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user": {   
+            "get": {
+                "summary": "Get tenant user",
+                "tags": [
+                    "Tenant User"
+                ],
+                "operationId": "tenantuserget",                
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Got Tenant's User successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenanUserResponse" 
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting Tenant's User",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenanUserResponse" 
+                        }
+                    }
+                }
+            },        
+            "post": {
+                "summary": "Create Tenant's additional user",
+                "tags": [
+                    "users"
+                ],
+                "operationId": "TenantUserCreate",
+                "parameters": [                    
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A user object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TenantCreateUserRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },        
+        "/tenant/user/confirmation": {           
+            "get": {
+                "summary": "Confirm user signup",
+                "tags": [
+                    "UserConfirm"
+                ],
+                "operationId": "UserConfirm",
+                "parameters": [                    
+                    {
+                        "in": "query",
+                        "name": "client_id",
+                        "type": "string",
+                        "description": "Cognito Client ID"
+                    },
+                    {
+                        "in": "query",
+                        "name": "user_name",
+                        "type": "string",
+                        "description": "Cognito User Name"
+                    },
+                    {
+                        "in": "query",
+                        "name": "confirmation_code",
+                        "type": "string",
+                        "description": "Cognito Signup Confirmation Code"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User has successfully confirmed",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },                                  
+                    "500": {
+                        "description": "Error confirming user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "User confirmation error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/requestchangepassword": {    
+            "post": {
+                "summary": "Request Change clients password",
+                "tags": [
+                    "Request-user-password"
+                ],
+                "operationId": "RequestChangePassword",
+                "parameters": [                   
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "new user password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestChangePasswordRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request for password change done successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error request changing password",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/changepassword": {    
+            "post": {
+                "summary": "Change clients password",
+                "tags": [
+                    "User-password"
+                ],
+                "operationId": "ChangePassword",
+                "parameters": [                   
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "new user password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePasswordRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New password changed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error changing password",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/signin": {           
+            "post": {
+                "summary": "SIO Sign In",
+                "tags": [
+                    "signin"
+                ],
+                "operationId": "SignIn",
+                "parameters": [                    
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A signin object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignIn"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sign in was successful",
+                        "schema": {
+                            "$ref": "#/definitions/SignInResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error signing in",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/networks": {
+            "get": {
+                "summary": "Get a list of networks",
+                "tags": [
+                    "Networks"
+                ],
+                "operationId": "NetworksList",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "List of networks",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Network"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of networks",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new network",
+                "tags": [
+                    "Networks"
+                ],
+                "operationId": "NetworkCreate",
+                "parameters": [                   
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Network object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Network"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New network was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new network",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/networks/{network}": {
+            "get": {
+                "summary": "Get the properties of a network",
+                "tags": [
+                    "Networks"
+                ],
+                "operationId": "NetworkGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "network",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a network",
+                        "schema": {
+                            "$ref": "#/definitions/Network"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of a network",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a network",
+                "tags": [
+                    "Networks"
+                ],
+                "operationId": "NetworkDelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "network",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A network was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error deleting a network",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modify a network",
+                "tags": [
+                    "Networks"
+                ],
+                "operationId": "NetworkModify",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "network",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Network object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Network"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A network was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error updating a network",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/jobs": {
+            "get": {
+                "summary": "Get a list of jobs",
+                "tags": [
+                    "Jobs"
+                ],
+                "operationId": "JobsList",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "internal",
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of jobs",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Job"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of jobs",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/jobs/{job}": {
+            "get": {
+                "summary": "Get the properties of a job",
+                "tags": [
+                    "Jobs"
+                ],
+                "operationId": "JobGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "job",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                      }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a job",
+                        "schema": {
+                            "$ref": "#/definitions/Job"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of a job",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a job",
+                "tags": [
+                    "Jobs"
+                ],
+                "operationId": "JobDelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "job",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A job was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error deleting a job",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/snapshots": {
+            "get": {
+                "summary": "Get a list of all snapshots",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotsListAll",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "capacity",
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of all snapshots",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Snapshot"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of all snapshots",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/recover": {    
+            "post": {
+                "summary": "Initiate recover on volume",
+                "tags": [
+                    "Volumes"
+                ],
+                "operationId": "VolumeRecoverInitiate",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",                        
+                        "type": "string",
+                        "required": true
+                    },                   
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Volume recovery was initiated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error initiating recovery on volume",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots": {
+            "get": {
+                "summary": "Get a list of snapshots",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotsList",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of snapshots",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Snapshot"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of snapshots",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotCreate",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Snapshot object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Snapshot"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New snapshot was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots/{snapshot}": {
+            "get": {
+                "summary": "Get the properties of a snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/Snapshot"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of a snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotDelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name":"force",
+                        "in":"query",
+                        "required":false,
+                        "type":"boolean",
+                        "default":false,
+                        "allowEmptyValue":true,
+                        "x-nullable": false
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A snapshot was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error deleting a snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modify a snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotModify",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Snapshot object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Snapshot"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A snapshot was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error updating a snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots/{snapshot}/rollback": {
+            "patch": {
+                "summary": "Roll back to snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotRollback",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rollback successful",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error during rollback",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/attachments": {
+            "get": {
+                "summary": "Get a list of all attachments",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentsListAll",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "List of all attachments",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Attachment"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of all attachments",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots/{snapshot}/attachments": {
+            "get": {
+                "summary": "Get a list of attachments",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentsList",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of attachments",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Attachment"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of attachments",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new attachment",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentCreate",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                      },
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "An Attachment object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Attachment"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New attachment was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new attachment",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots/{snapshot}/attachments/{node}": {
+            "get": {
+                "summary": "Get the properties of an attachment",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "node",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of an attachment",
+                        "schema": {
+                            "$ref": "#/definitions/Attachment"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of an attachment",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete an attachment",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentDelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "node",
+                        "type": "string",
+                        "required": true
+                    },                    
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name":"force",
+                        "in":"query",
+                        "required":false,
+                        "type":"boolean",
+                        "default":false,
+                        "allowEmptyValue":true,
+                        "x-nullable": false
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An attachment was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error deleting an attachment",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modify an attachment",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentModify",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "node",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "An Attachment object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Attachment"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An attachment was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error updating an attachment",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/media": {
+            "get": {
+                "summary": "Get a list of media",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaList",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "List of media",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Media"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of media",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/{media}": {
+            "get": {
+                "summary": "Get the properties of a media",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "media",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a media",
+                        "schema": {
+                            "$ref": "#/definitions/Media"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of a media",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/{media}/ledon": {
+            "get": {
+                "summary": "Turn the media LED on",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaLedOn",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "media",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation completed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error completing the operation",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/{media}/ledoff": {
+            "get": {
+                "summary": "Turn the media LED off",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaLedOff",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "media",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation completed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error completing the operation",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/{media}/offline": {
+            "get": {
+                "summary": "Put the media offline",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaOffline",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "media",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation completed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error completing the operation",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/{media}/online": {
+            "get": {
+                "summary": "Put the media online",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaOnline",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "media",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation completed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error completing the operation",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/{media}/assign": {
+            "get": {
+                "summary": "Assign media",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaAssign",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "media",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation completed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error completing the operation",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/{media}/unassign": {
+            "get": {
+                "summary": "Unassign media",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaUnassign",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "media",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation completed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error completing the operation",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/media/{media}/profile": {
+            "get": {
+                "summary": "ProfileMedia",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaProfile",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "media",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation completed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error completing the operation",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modify a media profile",
+                "tags": [
+                    "Media"
+                ],
+                "operationId": "MediaProfileModify",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "media",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Media Profile object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/MediaProfile"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A media profile was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error updating a media profile",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/connectivities": {
+            "get": {
+                "summary": "Get a list of connectivities",
+                "tags": [
+                    "Connectivities"
+                ],
+                "operationId": "ConnectivitiesList",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "List of connectivities",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Connectivity"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of connectivities",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new connectivity",
+                "tags": [
+                    "Connectivities"
+                ],
+                "operationId": "ConnectivityCreate",
+                "parameters": [
+                    
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Connectivity object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Connectivity"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New connectivity was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new connectivity",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/connectivities/{connectivity}": {
+            "get": {
+                "summary": "Get the properties of a connectivity",
+                "tags": [
+                    "Connectivities"
+                ],
+                "operationId": "ConnectivityGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "connectivity",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a connectivity",
+                        "schema": {
+                            "$ref": "#/definitions/Connectivity"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of a connectivity",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a connectivity",
+                "tags": [
+                    "Connectivities"
+                ],
+                "operationId": "ConnectivityDelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "connectivity",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A connectivity was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error deleting a connectivity",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modify a connectivity",
+                "tags": [
+                    "Connectivities"
+                ],
+                "operationId": "ConnectivityModify",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "connectivity",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Connectivity object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Connectivity"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A connectivity was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error updating a connectivity",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/version": {
+            "get": {
+                "summary": "Get version of sio",
+                "tags": [
+                    "Version"
+                ],
+                "operationId": "versionGet",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Version of sio",
+                        "schema": {
+                            "$ref": "#/definitions/VersionResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting version of sio",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+
+
+       "/healthcheck": {
+            "get": {
+                "summary": "Check SIO's health",
+                "tags": [
+                    "Health"
+                ],
+                "operationId": "health",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "SIO is running",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "DateTime": {
+            "type": "string",
+            "format": "date-time",
+            "x-go-type": {
+                "type": "Time",
+                "import": {
+                    "package": "time"
+                },
+                "embedded": true
+            }
+        },
+        "Volume": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "x-go-name": "Name",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Volume name",
+                    "example": "vol1"
+                },
+                "volumeid": {
+                    "x-go-name": "VolumeID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Volume ID",
+                    "readOnly": true
+                },
+                "type": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "enum": [
+                        "file",
+                        "block"
+                    ]
+                },
+                "contentvolume": {
+                    "x-go-name": "ContentVolume",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "contentsnapshot": {
+                    "x-go-name": "ContentSnapshot",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "size": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 65536,
+                    "title": "Size, GiB",
+                    "example": 10
+                },
+                "maxsize": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "x-go-name": "MaxSize",
+                    "type": "integer",
+                    "readOnly": true,
+                    "title": "Upper limit size, GiB",
+                    "example": 100
+                },
+                "policy": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1
+                },
+                "consistencygroup": {
+                    "x-go-name": "ConsistencyGroup",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "node": {
+                    "x-isnullable": true,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "zone": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength":1,
+                    "example": "eu-west-2"
+                },
+                "zonereplica": {
+                    "x-isnullable": true,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "volumegroupname": {
+                    "x-go-name": "VolumeGroupName",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Volume Group name",
+                    "example": "vg_1"
+                },
+                "volumegroupid": {
+                    "x-go-name": "VolumeGroupID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Volume ID",
+                    "readOnly": true
+                },
+                "replicationnode": {
+                    "x-go-name": "ReplicationNode",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "replicationvolumegroupname": {
+                    "x-go-name": "ReplicationVolumeGroupName",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Replication Volume Group name",
+                    "example": "vg_1"
+                },
+                "replicationvolumegroupid": {
+                    "x-go-name": "ReplicationVolumeGroupID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Replication Volume ID",
+                    "readOnly": true
+                },
+                "volumerecoveryjob": {
+                    "x-go-name": "VolumeRecoveryJob",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Volume Recovery Job ID",
+                    "readOnly": true
+                },
+                "state": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "status": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "progress": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "readOnly": true
+                }
+            },
+            "required": [
+                "name",
+                "type",
+                "size",
+                "policy"
+                
+            ]
+        },
+        "Node": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "example": "rv1"
+                },
+                "os": {
+                    "x-go-name": "OS",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "example": "rhel"
+                },
+                "controladdress": {
+                    "x-go-name": "ControlAddress",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "credential": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "zone": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "example": "z1"
+                },
+                "offlinetime": {
+                    "x-go-name": "OfflineTime",
+                    "x-go-type": {
+                        "type": "DateTime"
+                    },
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "state": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "status": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "progress": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "connectorversion": {
+                    "x-go-name": "ConnectorVersion",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "label": {
+                    "x-isnullable": true,
+                    "x-omitempty": true,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "os"
+            ]
+        },        
+        "RefreshToken": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"                    
+                }            
+            }
+        },
+        "GetTenantRefreshTokenRequest": {
+            "type": "object",
+            "properties": {
+                "accesstoken": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"                    
+                },
+                "hostname": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }              
+            },
+            "required": [
+                "accesstoken",
+                "hostname"
+            ]
+        },        
+        "Policy": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "A name for the policy. The name can be any non-empty string that does not contain a white space."
+                },
+                "iopswrite": {
+                    "x-go-name": "IOPSWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Enter the maximum write IOPS that a volume is expected to sustain (assuming 8K writes). Write IOPS should be a positive integer number. Volumez will guarantee to provide this performance, regardless of the volume size or other volumes.",
+                    "example": 1000
+                },
+                "iopsread": {
+                    "x-go-name": "IOPSRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Enter the maximum read IOPS that a volume is expected to sustain (assuming 8K reads). Read IOPS should be a positive integer number. Volumez will guarantee to provide this performance, regardless of the volume size or other volumes.",
+                    "example": 1000
+                },
+                "bandwidthwrite": {
+                    "x-go-name": "BandwidthWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Enter the maximum write bandwidth that a volume is expected to sustain. Write Bandwidth should be a positive integer number. Volumez will guarantee to provide this performance, regardless of the volume size or other volumes."
+                },
+                "bandwidthread": {
+                    "x-go-name": "BandwidthRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Enter the maximum read bandwidth that a volume is expected to sustain. Read Bandwidth should be a positive integer number. Volumez will guarantee to provide this performance, regardless of the volume size or other volumes."
+                },
+                "latencywrite": {
+                    "x-go-name": "LatencyWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Enter the maximum latency that a volume is expected to sustain. Write latency should be a positive integer number. Volumez will guarantee to provide this performance, regardless of the volume size or other volumes."
+                },
+                "latencyread": {
+                    "x-go-name": "LatencyRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Enter the maximum read IOPS that a volume is expected to sustain. Read latency should be a positive integer number. Volumez will guarantee to provide this performance, regardless of the volume size or other volumes."
+                },
+                "latencyreadcold": {
+                    "x-go-name": "LatencyReadCold",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": " If not all the reads are hot (i.e., Percentage of Cold Reads is >0) – Enter the more relaxed constraints for read latencies of cold data.  Valid values: non-negative integer number, that is larger than “Read Latency”.",
+                    "readOnly": true
+                },
+                "colddata": {
+                    "x-go-name": "ColdData",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "readOnly": true,
+                    "default" : 0 ,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100,
+                    "description": "Enter the percentage of the volume’s capacity that is expected to be “cold” (i.e. expected to only have infrequent reads). Default is 0%. Values that are greater than 0 give Volumez the option to use more economic media with more relaxed read performance requirements. Valid values: Integers in the range of 0..100."
+                },
+                "localzoneread": {
+                    "x-go-name": "LocalZoneRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "boolean",
+                    "description": "Setting this value to “Yes” directs Volumez to prefer volume configurations where reads are usually happening from disks that are in the same zone as the application. This saves east-west network traffic across zones, however more media per zone will be required to achieve read-IOPs requirements. Set this value to “Yes” if you have network constraints (bandwidth or cost) across your zones; otherwise set it to “No”."
+                },
+                "failureperformance": {
+                    "x-go-name": "FailurePerformance",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "boolean",
+                    "description": "Setting this value to “Yes” directs Volumez to over-provision volumes in a way that even after having a failure, the volumes will have the desired performance. Setting this value to “No” directs Volumez to provision volumes according to the desired performance, however in a case of failure – performance may be impacted. The default value is “No”."
+                },
+                "capacityoptimization": {
+                    "x-go-name": "CapacityOptimization",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "enum": [
+                        "capacity",
+                        "balanced",
+                        "performance"
+                    ],
+                    "description": "Choosing “Capacity” directs Volumez to prefer using capacity-saving methods (such as compression, deduplication, erasure coding and thin provisioning) where relevant, in order to consume the minimum amount of raw media. Using such methods might take some CPU cycles, and might reduce the performance of your volumes (it will still be within the range you specified). Choosing “Balanced” directs Volumez to prefer using some capacity-saving methods where relevant, in order to use less raw media, while consuming a small amount of CPU cycles. “Performance Optimized” directs Volumez to avoid using capacity-saving any methods (such as compression and deduplication) that reduce media consumption. This way applications can get the optimal performance from their media, however more raw media might be consumed to provision Performance-Optimized volumes."
+                },
+                "capacityreservation": {
+                    "x-go-name": "CapacityReservation",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 500,
+                    "description": "Enter how much logical capacity is reserved up-front for the applications to use. If more capacity is needed for the volume, it will be allocated based on availability of media. Capacities that are reserved can be used for the volume itself and for its snapshots. For example – Use 0% for thin-provisioned volumes, 130% for thick-provisioned volumes with estimated 30% of space for snapshots. Valid values are 0%-500%, default is 20%.",
+                    "example": 20
+                },
+                "resiliencymedia": {
+                    "x-go-name": "ResiliencyMedia",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "description": " Enter how many media failures (e.g. disk, memory card) the system is required to sustain, and still serve volumes of this policy. A value of “0” means any disk failure will result data unavailability and loss. Valid values are 0..3, default value is 2.",
+                    "example": 2
+                },
+                "resiliencynode": {
+                    "x-go-name": "ResiliencyNode",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2,
+                    "description": "Enter how many Volumez node (e.g. EC2 instance, server) failures the system is required to sustain, and still serve volumes of this policy. This is different than “Media failures” because sometimes multiple media copies may end on a single node. A value of “0” means any node failure will result data unavailability and loss. Valid values are 0..3, default value is 1.",
+                    "example": 1
+                },
+                "resiliencyzone": {
+                    "x-go-name": "ResiliencyZone",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Enter how many zones (e.g. AWS availability zones, DataCenters Buildings) failures the system is required to sustain, and still serve volumes of this policy. Note: zones are assumed to be within the same metro distance, and resiliency to zone failures means cross-zone network traffic. Valid values are 0..2, default value is 1.",
+                    "example": 1
+                },
+                "resiliencyregion": {
+                    "x-go-name": "ResiliencyRegion",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Enter how many regions (e.g. AWS regions zones, DataCenters across continents) failures the system is required to sustain, and still serve volumes of this policy. Note: regions are assumed to reside across WAN distance, with some bandwidth limitations. Valid values are 0 and 1, default value is 0.",
+                    "example": 1
+                },
+                "replicationrpo": {
+                    "x-go-name": "ReplicationRPO",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 3600,
+                    "description": "Enter how many seconds are allowed for the replica to stay behind the primary storage. 0 means synchronous replication. Valid values are 0..3600, default value is 0. Max value: 3600. (1 hour)."
+                },
+                "replicationbandwidth": {
+                    "x-go-name": "ReplicationBandwidth",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "description": "Specifies the maximum bandwidth that Volumez is allowed to consume for replication of this volume (MB/s). 0 means no bandwidth limitation."
+                },
+                "encryption": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "boolean",
+                    "description": "Enter “YES” to encrypt the data in server where the application is running. Note: No change is needed in the applications themselves, however encryption will consume some CPU cycles on the application server. Default value NO."
+                },
+                "sed": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "boolean",
+                    "description": "Enter “YES” to direct Volumez to only use media with disk encryption capabilities. Note that specifying “NO” can still use such media, however it is not a must to use it. Default value: NO."
+                },
+                "integrity": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "boolean",
+                    "description": "Enter “YES” to direct Volumez to activate the “Device Mapper integrity” protection for the volume. This capability provides strong integrity checking. Note: No change is needed in the applications themselves, however Data Integrity will consume non-negligible CPU cycles on the application server. Default value: NO."
+                },
+                "snapshotkeep": {
+                    "x-go-name": "SnapshotKeep",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "snapshotfrequency": {
+                    "x-go-name": "SnapshotFrequency",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "snapshotday": {
+                    "x-go-name": "SnapshotDay",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "snapshothour": {
+                    "x-go-name": "SnapshotHour",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "snapshotminute": {
+                    "x-go-name": "SnapshotMinute",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "createdbyuserName": {
+                    "x-go-name": "CreatedByUserName",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "createdbyuseremail": {
+                    "x-go-name": "CreatedByUserEmail",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "createdtime": {
+                    "x-go-name": "CreatedTime",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "x-go-type": {
+                        "type": "DateTime"
+                    }
+                },
+                "updatebyusername": {
+                    "x-go-name": "UpdateByUserName",
+                    "x-isnullable": false,
+                    "x-omitempty": true,
+                    "type": "string"
+                },
+                "updatebyUseremail": {
+                    "x-go-name": "UpdateByUserEmail",
+                    "x-isnullable": false,
+                    "x-omitempty": true,
+                    "type": "string"
+                },
+                "updatetime": {
+                    "x-go-name": "UpdateTime",
+                    "x-isnullable": false,
+                    "x-omitempty": true,
+                    "type": "string",
+                    "x-go-type": {
+                        "type": "DateTime"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "capacityoptimization"
+            ]
+        },
+        "VolumeGroup": {
+            "type": "object",
+            "properties": {
+                "Volumegroupname":{
+                    "x-go-name": "VolumeGroupName",
+                    "type":"string",
+                    "readOnly": true
+                },
+                "encryption": {
+                    "x-go-name": "Encryption",
+                    "type": "boolean"
+                },
+                "Integrity": {
+                    "x-go-name": "integrity",
+                    "type": "boolean"
+                },
+                "allocation": {
+                    "x-go-name": "Allocation",
+                    "type": "string"
+                },
+                "compression": {
+                    "x-go-name": "Compression",
+                    "type": "boolean"
+                },
+                "deduplication": {
+                    "x-go-name": "Deduplication",
+                    "type": "boolean"
+                },
+                "writecache": {
+                    "x-go-name": "WriteCache",
+                    "type": "boolean"
+                },
+                "redundancy": {
+                    "x-go-name": "Redundancy",
+                    "type": "integer"
+                },
+                "size": {
+                    "x-go-name": "Size",
+                    "type": "integer"
+                },
+                "targetsecret": {
+                    "x-go-name": "TargetSecret",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Target connect secret"
+                },
+                "allocatedsize": {
+                    "x-go-name": "AllocatedSize",
+                    "type": "integer"
+                },
+                "resiliency": {
+                    "x-go-name": "Resiliency",
+                    "type": "string"
+                },
+                "raidcolumns": {
+                    "x-go-name": "RaidColumns",
+                    "type": "integer"
+                },
+                "mediasize": {
+                    "x-go-name": "MediaSize",
+                    "type": "integer"
+                },
+                "mediabandwidthwrite": {
+                    "x-go-name": "MediaBandwidthWrite",
+                    "type": "integer"
+                },
+                "mediabandwidthread": {
+                    "x-go-name": "MediaBandwidthRead",
+                    "type": "integer"
+                },
+                "mediaiopswrite": {
+                    "x-go-name": "MediaIOPSWrite",
+                    "type": "integer"
+                },
+                "mediaiopsread": {
+                    "x-go-name": "MediaIOPSRead",
+                    "type": "integer"
+                },
+                "media": {
+                    "x-go-name": "Media",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "cachesize": {
+                    "x-go-name": "CacheSize",
+                    "type": "integer"
+                },
+                "cacheresiliency": {
+                    "x-go-name": "CacheResiliency",
+                    "type": "string"
+                },
+                "cacheredundancy": {
+                    "x-go-name": "CacheRedundancy",
+                    "type": "integer"
+                },
+                "cacheraidcolumns": {
+                    "x-go-name": "CacheRaidColumns",
+                    "type": "integer"
+                },
+                "cachemediasize": {
+                    "x-go-name": "CacheMediaSize",
+                    "type": "integer"
+                },
+                "cachemediabandwidthwrite": {
+                    "x-go-name": "CacheMediaBandwidthWrite",
+                    "type": "integer"
+                },
+                "cachemediabandwidthread": {
+                    "x-go-name": "CacheMediaBandwidthRead",
+                    "type": "integer"
+                },
+                "cachemediaiopswrite": {
+                    "x-go-name": "CacheMediaIOPSWrite",
+                    "type": "integer"
+                },
+                "cachemediaiopsread": {
+                    "x-go-name": "CacheMediaIOPSRead",
+                    "type": "integer"
+                },
+                "cachemedia": {
+                    "x-go-name": "CacheMedia",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "TenantCreateAdminUserRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1
+                },
+                "password": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 8
+                },
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 50
+                }
+            },
+            "required": [
+                "email",
+                "password",
+                "name"
+            ]
+        },
+        "TenantCreateUserRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1
+                },
+                "password": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 8
+                },
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 50
+                }
+            },
+            "required": [
+                "email",
+                "password",
+                "name"
+            ]
+        },
+        "SignIn": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1
+                },
+                "password": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 8
+                }
+            },
+            "required": [
+                "email",
+                "password"
+            ]
+        },        
+        "SignoutRequest": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "required": [
+                "AccessToken"
+            ]
+        },
+        "SignInResponse": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "IdToken": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "RefreshToken": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "ExpiresIn": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "TokenType": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "AccessToken",
+                "IdToken",
+                "RefreshToken",
+                "ExpiresIn",
+                "TokenType"
+            ]
+          
+            
+        }, 
+        
+        "ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
+
+        "RegularResponse": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
+
+
+        "ChangePasswordRequest": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "guid": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
+        "RequestChangePasswordRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
+
+
+        
+
+        
+        "VersionResponse": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "componentName": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
+
+        "SignUpResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "message": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status",
+                "message"
+            ]
+        },
+        "TenantTokenResponse": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "TokenType": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "ExpiresIn": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "AccessToken",
+                "TokenType",
+                "ExpiresIn"
+            ]
+        },
+        "RefreshTokenResponse": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "IdToken": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "AccessTokenExpiration": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "IdTokenExpiration": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "TokenType": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
+        "TenantHostDeleteResponse": {
+            "type": "object",
+            "properties": {
+                "StatusCode": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "Message": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "StatusCode"            ]
+        },
+        "Network": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1
+                },
+                "zone": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1
+                },
+                "type": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "enum": [
+                        "management",
+                        "storage"
+                    ]
+                },
+                "ipstart": {
+                    "x-go-name": "IPStart",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "pattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})|(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$"
+                },
+                "ipend": {
+                    "x-go-name": "IPEnd",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "pattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})|(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$"
+                }
+            },
+            "required": [
+                "name",
+                "type",
+                "ipstart",
+                "ipend"
+            ]
+        },
+        "Job": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "x-go-name": "ID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "type": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "object": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "args": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "state": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "status": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "progress": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "starttime": {
+                    "x-go-name": "StartTime",
+                    "x-go-type": {
+                        "type": "DateTime"
+                    },
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "endtime": {
+                    "x-go-name": "EndTime",
+                    "x-go-type": {
+                        "type": "DateTime"
+                    },
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "username": {
+                    "x-go-name": "UserName",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "useremail": {
+                    "x-go-name": "UserEmail",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
+        "Snapshot": {
+            "type": "object",
+            "properties": {
+                "volumename": {
+                    "x-go-name": "VolumeName",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "title": "Volume name",
+                    "example": "vol1"
+                },
+                "volumeid": {
+                    "x-go-name": "VolumeID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Volume ID",
+                    "readOnly": true
+                },
+                "volumesize": {
+                    "x-go-name": "VolumeSize",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "name": {
+                    "x-go-name": "SnapName",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Snapshot name"
+                },
+                "snapshotid": {
+                    "x-go-name": "SnapshotID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Snapshot ID",
+                    "readOnly": true
+                },
+                "targetsecret": {
+                    "x-go-name": "TargetSecret",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Target connect secret"
+                },
+                "consistency": {
+                    "x-go-name": "Consistency",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "enum": [
+                        "crash",
+                        "application"
+                    ]
+                },
+                "time": {
+                    "x-go-name": "Time",
+                    "x-go-type": {
+                        "type": "DateTime"
+                    },
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "policy": {
+                    "x-go-name": "Policy",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "boolean"
+                },
+                "consistencygroup": {
+                    "x-go-name": "ConsistencyGroup",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "boolean"
+                },
+                "used": {
+                    "x-go-name": "Used",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "state": {
+                    "x-go-name": "State",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "status": {
+                    "x-go-name": "Status",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "progress": {
+                    "x-go-name": "Progress",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "readOnly": true
+                }
+            },
+            "required": [
+                "name",
+                "consistency"
+            ]
+        },
+        "Attachment": {
+            "type": "object",
+            "properties": {
+                "volumename": {
+                    "x-go-name": "VolumeName",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "title": "Volume name",
+                    "example": "vol1"
+                },
+                "volumeid": {
+                    "x-go-name": "VolumeID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "title": "Volume ID",
+                    "readOnly": true
+                },
+                "snapshotname": {
+                    "x-go-name": "SnapshotName",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "title": "Snapshot Name"
+                },
+                "snapshotid": {
+                    "x-go-name": "SnapshotID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "title": "Snapshot ID",
+                    "readOnly": true
+                },
+                "node": {
+                    "x-go-name": "Node",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "state": {
+                    "x-go-name": "State",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "status": {
+                    "x-go-name": "Status",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "progress": {
+                    "x-go-name": "Progress",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "readOnly": true
+                },
+                "mountpoint": {
+                    "x-go-name": "MountPoint",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "title": "Mount point"
+                },
+                "readonly": {
+                    "x-go-name": "ReadOnly",
+                    "x-isnullable": true,
+                    "x-omitempty": false,
+                    "type": "boolean",
+                    "title": "Read Only"
+                }
+            },
+            "required": [
+                "node"
+            ]
+        },
+        "Media": {
+            "type": "object",
+            "properties": {
+                "mediaid": {
+                    "x-go-name": "MediaID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "size": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "model": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "media": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "bus": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "location": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "sed": {
+                    "x-go-name": "SED",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "boolean"
+                },
+                "node": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "zone": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "firmware": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "sectorsize": {
+                    "x-go-name": "SectorSize",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "iopsread": {
+                    "x-go-name": "IOPSRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "iopswrite": {
+                    "x-go-name": "IOPSWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "bandwidthread": {
+                    "x-go-name": "BandwidthRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "bandwidthwrite": {
+                    "x-go-name": "BandwidthWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "latencyread": {
+                    "x-go-name": "LatencyRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "latencywrite": {
+                    "x-go-name": "LatencyWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "offlinetime": {
+                    "x-go-name": "OfflineTime",
+                    "x-go-type": {
+                        "type": "DateTime"
+                    },
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "freesize": {
+                    "x-go-name": "FreeSize",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "freeiopsread": {
+                    "x-go-name": "FreeIOPSRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "freeiopswrite": {
+                    "x-go-name": "FreeIOPSWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "freebandwidthread": {
+                    "x-go-name": "FreeBandwidthRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "freebandwidthwrite": {
+                    "x-go-name": "FreeBandwidthWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "assignment": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "state": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "status": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "progress": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "readOnly": true
+                }
+            }
+        },
+        "Credential": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "os": {
+                    "x-go-name": "OS",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "domain": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "dc": {
+                    "x-go-name": "DC",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "username": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "password": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "privatekey": {
+                    "x-go-name": "PrivateKey",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "os",
+                "username"
+            ]
+        },
+        "Controller": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "primarynode": {
+                    "x-go-name": "PrimaryNode",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "backupnode": {
+                    "x-go-name": "BackupNode",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "activenode": {
+                    "x-go-name": "ActiveNode",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "protocol": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "state": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "status": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "readOnly": true
+                },
+                "progress": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "readOnly": true
+                }
+            },
+            "required": [
+                "name",
+                "primarynode",
+                "backupnode",
+                "protocol"
+            ]
+        },
+        "Plan": {
+            "type": "object",
+            "properties": {
+                "volumegroup": {
+                    "$ref": "#/definitions/VolumeGroup"
+                },
+                "replicationvolumegroup": {
+                    "$ref": "#/definitions/VolumeGroup"
+                }
+            }
+        },
+        "Connectivity": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "zones1": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "systemtypes1": {
+                    "x-go-name": "SystemTypes1",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "pattern": "^(?:(?:rhel|sles|amzn|ubuntu)[, ])*(?:rhel|sles|amzn|ubuntu)$"
+                },
+                "zones2": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "systemtypes2": {
+                    "x-go-name": "SystemTypes2",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "pattern": "^(?:(?:rhel|sles|amzn|ubuntu)[, ])*(?:rhel|sles|amzn|ubuntu)$"
+                },
+                "mediaprotocol": {
+                    "x-go-name": "MediaProtocol",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "replicationprotocol": {
+                    "x-go-name": "ReplicationProtocol",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "replicationbandwidth": {
+                    "x-go-name": "ReplicationBandwidth",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 0
+                }
+            },
+            "required": [
+                "name",
+                "zones1",
+                "systemtypes1",
+                "zones2",
+                "systemtypes2",
+                "mediaprotocol",
+                "replicationprotocol"
+            ]
+        },
+		"MediaProfile" : {
+			"type": "object",
+            "properties": {
+                "iopsread": {
+                    "x-go-name": "IOPSRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "iopswrite": {
+                    "x-go-name": "IOPSWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "bandwidthread": {
+                    "x-go-name": "BandwidthRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "bandwidthwrite": {
+                    "x-go-name": "BandwidthWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "latencyread": {
+                    "x-go-name": "LatencyRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "latencywrite": {
+                    "x-go-name": "LatencyWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "freeiopsread": {
+                    "x-go-name": "FreeIOPSRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "freeiopswrite": {
+                    "x-go-name": "FreeIOPSWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "freebandwidthread": {
+                    "x-go-name": "FreeBandwidthRead",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "freebandwidthwrite": {
+                    "x-go-name": "FreeBandwidthWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                }
+			}
+		},
+        "Location" : {
+            "type": "object",
+            "properties": {
+                "region": {
+                    "x-go-name": "Region",
+                    "x-isnullable": true,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "zone": {
+                    "x-go-name": "Zone",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
+        "GetTenantIDResponse":{
+            "type": "object",
+            "properties": {
+                "StatusCode": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "Message": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "TenantID": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "StatusCode"            ]
+        },
+        "GetTenantHostResponse": {
+            "type": "object",
+            "properties": {
+                "StatusCode": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "Message": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "TenantHost": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "TenantID": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "StatusCode"            ]
+        },
+        "GetTenanUserResponse":{
+            "type": "object",
+            "properties": {
+                "StatusCode": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "Message": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "Email": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "Name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "TenantID": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        }
+
+    }
+}
