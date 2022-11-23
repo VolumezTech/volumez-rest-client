@@ -60,8 +60,14 @@ func NewJobsListParamsWithHTTPClient(client *http.Client) *JobsListParams {
 */
 type JobsListParams struct {
 
+	// Count.
+	Count *int64
+
 	// Internal.
 	Internal *bool
+
+	// Page.
+	Page *int64
 
 	timeout    time.Duration
 	Context    context.Context
@@ -116,6 +122,17 @@ func (o *JobsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithCount adds the count to the jobs list params
+func (o *JobsListParams) WithCount(count *int64) *JobsListParams {
+	o.SetCount(count)
+	return o
+}
+
+// SetCount adds the count to the jobs list params
+func (o *JobsListParams) SetCount(count *int64) {
+	o.Count = count
+}
+
 // WithInternal adds the internal to the jobs list params
 func (o *JobsListParams) WithInternal(internal *bool) *JobsListParams {
 	o.SetInternal(internal)
@@ -127,6 +144,17 @@ func (o *JobsListParams) SetInternal(internal *bool) {
 	o.Internal = internal
 }
 
+// WithPage adds the page to the jobs list params
+func (o *JobsListParams) WithPage(page *int64) *JobsListParams {
+	o.SetPage(page)
+	return o
+}
+
+// SetPage adds the page to the jobs list params
+func (o *JobsListParams) SetPage(page *int64) {
+	o.Page = page
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *JobsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -134,6 +162,23 @@ func (o *JobsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 	var res []error
+
+	if o.Count != nil {
+
+		// query param count
+		var qrCount int64
+
+		if o.Count != nil {
+			qrCount = *o.Count
+		}
+		qCount := swag.FormatInt64(qrCount)
+		if qCount != "" {
+
+			if err := r.SetQueryParam("count", qCount); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.Internal != nil {
 
@@ -147,6 +192,23 @@ func (o *JobsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		if qInternal != "" {
 
 			if err := r.SetQueryParam("internal", qInternal); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Page != nil {
+
+		// query param page
+		var qrPage int64
+
+		if o.Page != nil {
+			qrPage = *o.Page
+		}
+		qPage := swag.FormatInt64(qrPage)
+		if qPage != "" {
+
+			if err := r.SetQueryParam("page", qPage); err != nil {
 				return err
 			}
 		}

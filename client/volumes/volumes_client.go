@@ -32,6 +32,8 @@ type ClientService interface {
 
 	VolumeDelete(params *VolumeDeleteParams, opts ...ClientOption) (*VolumeDeleteOK, error)
 
+	VolumeDescribe(params *VolumeDescribeParams, opts ...ClientOption) (*VolumeDescribeOK, error)
+
 	VolumeGet(params *VolumeGetParams, opts ...ClientOption) (*VolumeGetOK, error)
 
 	VolumeModify(params *VolumeModifyParams, opts ...ClientOption) (*VolumeModifyOK, error)
@@ -116,6 +118,43 @@ func (a *Client) VolumeDelete(params *VolumeDeleteParams, opts ...ClientOption) 
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*VolumeDeleteDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  VolumeDescribe describes existing volume
+*/
+func (a *Client) VolumeDescribe(params *VolumeDescribeParams, opts ...ClientOption) (*VolumeDescribeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVolumeDescribeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "VolumeDescribe",
+		Method:             "GET",
+		PathPattern:        "/volumes/{volume}/describe",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &VolumeDescribeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*VolumeDescribeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*VolumeDescribeDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
