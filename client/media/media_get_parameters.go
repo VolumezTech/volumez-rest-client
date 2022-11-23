@@ -59,6 +59,9 @@ func NewMediaGetParamsWithHTTPClient(client *http.Client) *MediaGetParams {
 */
 type MediaGetParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Media.
 	Media string
 
@@ -115,6 +118,17 @@ func (o *MediaGetParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the media get params
+func (o *MediaGetParams) WithAuthorization(authorization *string) *MediaGetParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the media get params
+func (o *MediaGetParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithMedia adds the media to the media get params
 func (o *MediaGetParams) WithMedia(media string) *MediaGetParams {
 	o.SetMedia(media)
@@ -133,6 +147,14 @@ func (o *MediaGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param media
 	if err := r.SetPathParam("media", o.Media); err != nil {

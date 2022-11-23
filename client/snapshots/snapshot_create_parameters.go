@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"bitbucket.org/volumez/volumez/test/restapi/models"
+	"github.com/VolumezTech/volumez-rest-client/restapi/models"
 )
 
 // NewSnapshotCreateParams creates a new SnapshotCreateParams object,

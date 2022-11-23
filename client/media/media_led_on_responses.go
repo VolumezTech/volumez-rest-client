@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"bitbucket.org/volumez/volumez/test/restapi/models"
+	"github.com/VolumezTech/volumez-rest-client/restapi/models"
 )
 
 // MediaLedOnReader is a Reader for the MediaLedOn structure.

@@ -116,7 +116,7 @@
                         "in": "header",
                         "required": false,
                         "type": "string"
-                      }
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -148,6 +148,14 @@
             }
         },
         "/volumes/{volume}": {
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "volume",
+                    "type": "string",
+                    "required": true
+                }
+            ],
             "get": {
                 "summary": "Get the properties of a volume",
                 "tags": [
@@ -155,12 +163,6 @@
                 ],
                 "operationId": "VolumeGet",
                 "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
                     {
                         "name": "authorization",
                         "in": "header",
@@ -190,12 +192,6 @@
                 ],
                 "operationId": "VolumeDelete",
                 "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
                     {
                         "name": "authorization",
                         "in": "header",
@@ -277,7 +273,44 @@
                     }
                 }
             }
-        },        
+        },
+        "/volumes/{volume}/describe":{
+            "get":{
+                "summary":"describe existing volume ",
+                "tags":[
+                    "Volumes"
+                ],
+                "operationId":"VolumeDescribe",
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "volume",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "required": false,
+                    "type": "string"
+                  }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "the Volume information ",
+                        "schema": {
+                            "$ref": "#/definitions/VolumeGroup"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Getting volume plan",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/tenant/{tenantID}/tenanthosts/{tenantHost}": {
             "delete": {
                 "summary": "Delete a tenant host",
@@ -498,6 +531,95 @@
                     },
                     "default": {
                         "description": "Error getting properties of a node",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "summary":"Delete a node",
+                "tags":[
+                    "Nodes"
+                ],
+                "operationId":"NodeDelete",
+                "parameters":[
+                    {
+                        "name":"node",
+                        "in":"path",
+                        "description":" node to delete",
+                        "required":true,
+                        "type":"string"
+                    },
+                    {
+                        "name":"force",
+                        "in":"query",
+                        "required":false,
+                        "type":"boolean",
+                        "default":false,
+                        "allowEmptyValue":false,
+                        "x-nullable": false
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "A node delete job was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default":{
+                        "description": "Error deleting a node",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/nodes/cleanup/{node}": {
+            "post": {
+                "summary": "performing node cleanup",
+                "tags": [
+                    "Nodes"
+                ],
+                "operationId": "NodeCleanUp",
+                "parameters": [
+                    {
+                        "name": "node",
+                        "in": "path",
+                        "description": "Name of node to return",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Node cleanup started successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid node name supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Node not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error trying to cleanup node",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -1312,6 +1434,18 @@
                         "in": "query",
                         "name": "internal",
                         "type": "boolean"
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "count",
+                        "required": false,
+                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -2045,6 +2179,20 @@
             }
         },
         "/media/{media}": {
+            "parameters":[
+                {
+                    "in": "path",
+                    "name": "media",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "name": "authorization",
+                    "in": "header",
+                    "required": false,
+                    "type": "string"
+                }
+            ],
             "get": {
                 "summary": "Get the properties of a media",
                 "tags": [
@@ -2052,12 +2200,6 @@
                 ],
                 "operationId": "MediaGet",
                 "parameters": [
-                    {
-                        "in": "path",
-                        "name": "media",
-                        "type": "string",
-                        "required": true
-                    }
                 ],
                 "responses": {
                     "200": {
@@ -2068,6 +2210,71 @@
                     },
                     "default": {
                         "description": "Error getting properties of a media",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "summary":"Delete a media",
+                "tags":[
+                    "Media"
+                ],
+                "operationId":"MediaDelete",
+                "parameters":[
+                    {
+                        "name":"force",
+                        "in":"query",
+                        "required":false,
+                        "type":"boolean",
+                        "default":false,
+                        "allowEmptyValue":false,
+                        "x-nullable": false
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "A node delete job was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default":{
+                        "description": "Error deleting a node",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "modify a media properties",
+                "tags": [
+                    "Media",
+                    "DevAPI"
+                ],
+                "operationId": "MediaModify",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Media Modify Object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/MediaModify"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a media to patch",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error patching properties of a media",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -2089,9 +2296,6 @@
                         "type": "string",
                         "required": true
                     }
-                ],
-                "produces": [
-                    "text/plain"
                 ],
                 "responses": {
                     "200": {
@@ -2124,77 +2328,6 @@
                         "required": true
                     }
                 ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Operation completed successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error completing the operation",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/media/{media}/offline": {
-            "get": {
-                "summary": "Put the media offline",
-                "tags": [
-                    "Media"
-                ],
-                "operationId": "MediaOffline",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "media",
-                        "type": "string",
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Operation completed successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error completing the operation",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/media/{media}/online": {
-            "get": {
-                "summary": "Put the media online",
-                "tags": [
-                    "Media"
-                ],
-                "operationId": "MediaOnline",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "media",
-                        "type": "string",
-                        "required": true
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
                 "responses": {
                     "200": {
                         "description": "Operation completed successfully",
@@ -2225,9 +2358,6 @@
                         "type": "string",
                         "required": true
                     }
-                ],
-                "produces": [
-                    "text/plain"
                 ],
                 "responses": {
                     "200": {
@@ -2260,9 +2390,6 @@
                         "required": true
                     }
                 ],
-                "produces": [
-                    "text/plain"
-                ],
                 "responses": {
                     "200": {
                         "description": "Operation completed successfully",
@@ -2281,9 +2408,10 @@
         },
         "/media/{media}/profile": {
             "get": {
-                "summary": "ProfileMedia",
+                "summary": "profile a media - deprecated",
                 "tags": [
-                    "Media"
+                    "Media",
+                    "deprecated"
                 ],
                 "operationId": "MediaProfile",
                 "parameters": [
@@ -2293,9 +2421,6 @@
                         "type": "string",
                         "required": true
                     }
-                ],
-                "produces": [
-                    "text/plain"
                 ],
                 "responses": {
                     "200": {
@@ -2334,9 +2459,6 @@
                             "$ref": "#/definitions/MediaProfile"
                         }
                     }
-                ],
-                "produces": [
-                    "text/plain"
                 ],
                 "responses": {
                     "200": {
@@ -4204,6 +4326,20 @@
                 "mediaprotocol",
                 "replicationprotocol"
             ]
+        },
+        "MediaModify":{
+            "type": "object",
+            "properties": {
+                "offlinetime": {
+                    "x-go-name": "OfflineTime",
+                    "x-isnullable": true,
+                    "x-omitempty": true,
+                    "type": "string",
+                    "x-go-type":{
+                        "type":"DateTime"
+                    }
+                }
+            }
         },
 		"MediaProfile" : {
 			"type": "object",
