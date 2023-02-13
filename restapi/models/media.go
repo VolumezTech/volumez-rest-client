@@ -64,6 +64,10 @@ type Media struct {
 	// sector size
 	SectorSize int64 `json:"sectorsize"`
 
+	// count of how many volumes are using the media
+	// Read Only: true
+	VolumesCount int64 `json:"volumescount"`
+
 	// assignment
 	// Read Only: true
 	Assignment string `json:"assignment"`
@@ -138,6 +142,10 @@ func (m *Media) validateOfflineTime(formats strfmt.Registry) error {
 func (m *Media) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateVolumesCount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAssignment(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -157,6 +165,15 @@ func (m *Media) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Media) contextValidateVolumesCount(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "volumescount", "body", int64(m.VolumesCount)); err != nil {
+		return err
+	}
+
 	return nil
 }
 

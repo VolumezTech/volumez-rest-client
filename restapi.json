@@ -1182,6 +1182,49 @@
                 }
             }
         },
+        "/tenant/user/changepasswordloggedin": {    
+            "post": {
+                "summary": "Change clients password when user is logged in",
+                "tags": [
+                    "User-password-logged-in"
+                ],
+                "operationId": "ChangePasswordLoggedIn",
+                "parameters": [                   
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "new user password when logged in",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePasswordRequestLoggedIn"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New password changed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error changing password",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/tenant/user/changepassword": {    
             "post": {
                 "summary": "Change clients password",
@@ -2939,6 +2982,12 @@
                     "x-isnullable": true,
                     "x-omitempty": true,
                     "type": "string"
+                },
+                "cloudprovider": {                    
+                    "x-go-name": "CloudProvider",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
                 }
             },
             "required": [
@@ -3550,6 +3599,26 @@
                 }
             }
         },
+        "ChangePasswordRequestLoggedIn": {
+            "type": "object",
+            "properties": {
+                "oldpassword": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                },
+                "newpassword": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
         "RequestChangePasswordRequest": {
             "type": "object",
             "properties": {
@@ -4121,6 +4190,14 @@
                     "x-go-name": "FreeBandwidthWrite",
                     "x-isnullable": false,
                     "x-omitempty": false,
+                    "type": "integer"
+                },
+                "volumescount":{
+                    "x-go-name": "VolumesCount",
+                    "description":"count of how many volumes are using the media",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "readOnly":true,
                     "type": "integer"
                 },
                 "assignment": {

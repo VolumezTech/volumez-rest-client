@@ -31,6 +31,7 @@ import (
 	"github.com/VolumezTech/volumez-rest-client/client/tenant_user"
 	"github.com/VolumezTech/volumez-rest-client/client/user_confirm"
 	"github.com/VolumezTech/volumez-rest-client/client/user_password"
+	"github.com/VolumezTech/volumez-rest-client/client/user_password_logged_in"
 	"github.com/VolumezTech/volumez-rest-client/client/users"
 	"github.com/VolumezTech/volumez-rest-client/client/version"
 	"github.com/VolumezTech/volumez-rest-client/client/volumes"
@@ -99,6 +100,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Volumez {
 	cli.TenantUser = tenant_user.New(transport, formats)
 	cli.UserConfirm = user_confirm.New(transport, formats)
 	cli.UserPassword = user_password.New(transport, formats)
+	cli.UserPasswordLoggedIn = user_password_logged_in.New(transport, formats)
 	cli.Users = users.New(transport, formats)
 	cli.Version = version.New(transport, formats)
 	cli.Volumes = volumes.New(transport, formats)
@@ -188,6 +190,8 @@ type Volumez struct {
 
 	UserPassword user_password.ClientService
 
+	UserPasswordLoggedIn user_password_logged_in.ClientService
+
 	Users users.ClientService
 
 	Version version.ClientService
@@ -221,6 +225,7 @@ func (c *Volumez) SetTransport(transport runtime.ClientTransport) {
 	c.TenantUser.SetTransport(transport)
 	c.UserConfirm.SetTransport(transport)
 	c.UserPassword.SetTransport(transport)
+	c.UserPasswordLoggedIn.SetTransport(transport)
 	c.Users.SetTransport(transport)
 	c.Version.SetTransport(transport)
 	c.Volumes.SetTransport(transport)

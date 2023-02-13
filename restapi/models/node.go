@@ -19,6 +19,9 @@ import (
 // swagger:model Node
 type Node struct {
 
+	// cloud provider
+	CloudProvider string `json:"cloudprovider"`
+
 	// connector version
 	// Read Only: true
 	ConnectorVersion string `json:"connectorversion"`
