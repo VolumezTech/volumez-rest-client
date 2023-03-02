@@ -17,8 +17,8 @@ import (
 // swagger:model ChangePasswordRequestLoggedIn
 type ChangePasswordRequestLoggedIn struct {
 
-	// name
-	Name string `json:"name"`
+	// email
+	Email string `json:"email"`
 
 	// newpassword
 	Newpassword string `json:"newpassword"`

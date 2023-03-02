@@ -3607,7 +3607,7 @@
                     "x-omitempty": false,
                     "type": "string"
                 },
-                "name": {
+                "email": {
                     "x-isnullable": false,
                     "x-omitempty": false,
                     "type": "string"
