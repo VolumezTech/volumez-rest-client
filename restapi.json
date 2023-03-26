@@ -3969,6 +3969,13 @@
                     "x-omitempty": false,
                     "type": "integer",
                     "readOnly": true
+                },
+                "numberofattachments": {
+                    "x-go-name": "NumberOfAttachments",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "readOnly": true
                 }
             },
             "required": [
@@ -4137,6 +4144,12 @@
                 },
                 "bandwidthwrite": {
                     "x-go-name": "BandwidthWrite",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer"
+                },
+                "BandwidthReserved": {
+                    "x-go-name": "BandwidthReserved",
                     "x-isnullable": false,
                     "x-omitempty": false,
                     "type": "integer"

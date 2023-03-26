@@ -22,6 +22,9 @@ type Media struct {
 	// bandwidth read
 	BandwidthRead int64 `json:"bandwidthread"`
 
+	// bandwidth reserved
+	BandwidthReserved int64 `json:"BandwidthReserved"`
+
 	// bandwidth write
 	BandwidthWrite int64 `json:"bandwidthwrite"`
 

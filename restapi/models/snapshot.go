@@ -28,6 +28,10 @@ type Snapshot struct {
 	// consistency group
 	ConsistencyGroup bool `json:"consistencygroup"`
 
+	// number of attachments
+	// Read Only: true
+	NumberOfAttachments int64 `json:"numberofattachments"`
+
 	// policy
 	Policy bool `json:"policy"`
 
@@ -222,6 +226,10 @@ func (m *Snapshot) validateVolumeID(formats strfmt.Registry) error {
 func (m *Snapshot) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateNumberOfAttachments(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateProgress(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -249,6 +257,15 @@ func (m *Snapshot) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Snapshot) contextValidateNumberOfAttachments(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numberofattachments", "body", int64(m.NumberOfAttachments)); err != nil {
+		return err
+	}
+
 	return nil
 }
 
