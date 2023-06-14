@@ -1579,6 +1579,44 @@
                 }
             }
         },
+        "/jobs/{job}/resume_suspend/{state}": {
+            "patch": {
+                "summary": "Resume or Suspend a job",
+                "tags": [
+                    "Jobs",
+                    "DevAPI"
+                ],
+                "operationId": "JobResumeSuspend",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "job",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "state",
+                        "type": "integer",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation completed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error resuming or suspending job",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/snapshots": {
             "get": {
                 "summary": "Get a list of all snapshots",
@@ -2816,8 +2854,9 @@
                     "type": "string"
                 },
                 "node": {
-                    "x-isnullable": true,
-                    "x-omitempty": false,
+                    "x-isnullable": false,
+                    "x-omitempty": true,
+                    "readOnly":true,
                     "type": "string"
                 },
                 "zone": {
@@ -4047,7 +4086,7 @@
                 "mountpoint": {
                     "x-go-name": "MountPoint",
                     "x-isnullable": false,
-                    "x-omitempty": false,
+                    "x-omitempty": true,
                     "type": "string",
                     "title": "Mount point"
                 },

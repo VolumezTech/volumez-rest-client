@@ -74,7 +74,8 @@ type Volume struct {
 	VolumeRecoveryJob string `json:"volumerecoveryjob"`
 
 	// node
-	Node *string `json:"node"`
+	// Read Only: true
+	Node string `json:"node,omitempty"`
 
 	// policy
 	// Required: true
@@ -362,6 +363,10 @@ func (m *Volume) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateNode(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateProgress(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -419,6 +424,15 @@ func (m *Volume) contextValidateVolumeID(ctx context.Context, formats strfmt.Reg
 func (m *Volume) contextValidateVolumeRecoveryJob(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "volumerecoveryjob", "body", string(m.VolumeRecoveryJob)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Volume) contextValidateNode(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "node", "body", string(m.Node)); err != nil {
 		return err
 	}
 

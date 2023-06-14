@@ -32,6 +32,8 @@ type ClientService interface {
 
 	JobGet(params *JobGetParams, opts ...ClientOption) (*JobGetOK, error)
 
+	JobResumeSuspend(params *JobResumeSuspendParams, opts ...ClientOption) (*JobResumeSuspendOK, error)
+
 	JobsList(params *JobsListParams, opts ...ClientOption) (*JobsListOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -108,6 +110,43 @@ func (a *Client) JobGet(params *JobGetParams, opts ...ClientOption) (*JobGetOK, 
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*JobGetDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+  JobResumeSuspend resumes or suspend a job
+*/
+func (a *Client) JobResumeSuspend(params *JobResumeSuspendParams, opts ...ClientOption) (*JobResumeSuspendOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewJobResumeSuspendParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "JobResumeSuspend",
+		Method:             "PATCH",
+		PathPattern:        "/jobs/{job}/resume_suspend/{state}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &JobResumeSuspendReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*JobResumeSuspendOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*JobResumeSuspendDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

@@ -20,7 +20,7 @@ import (
 type Attachment struct {
 
 	// Mount point
-	MountPoint string `json:"mountpoint"`
+	MountPoint string `json:"mountpoint,omitempty"`
 
 	// node
 	// Required: true
