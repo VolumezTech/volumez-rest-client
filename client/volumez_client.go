@@ -10,7 +10,10 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
+	"github.com/VolumezTech/volumez-rest-client/client/amp"
 	"github.com/VolumezTech/volumez-rest-client/client/attachments"
+	"github.com/VolumezTech/volumez-rest-client/client/auto_provision_volumes"
+	"github.com/VolumezTech/volumez-rest-client/client/capacity_groups"
 	"github.com/VolumezTech/volumez-rest-client/client/connectivities"
 	"github.com/VolumezTech/volumez-rest-client/client/health"
 	"github.com/VolumezTech/volumez-rest-client/client/jobs"
@@ -79,7 +82,10 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Volumez {
 
 	cli := new(Volumez)
 	cli.Transport = transport
+	cli.Amp = amp.New(transport, formats)
 	cli.Attachments = attachments.New(transport, formats)
+	cli.AutoProvisionVolumes = auto_provision_volumes.New(transport, formats)
+	cli.CapacityGroups = capacity_groups.New(transport, formats)
 	cli.Connectivities = connectivities.New(transport, formats)
 	cli.Health = health.New(transport, formats)
 	cli.Jobs = jobs.New(transport, formats)
@@ -148,7 +154,13 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // Volumez is a client for volumez
 type Volumez struct {
+	Amp amp.ClientService
+
 	Attachments attachments.ClientService
+
+	AutoProvisionVolumes auto_provision_volumes.ClientService
+
+	CapacityGroups capacity_groups.ClientService
 
 	Connectivities connectivities.ClientService
 
@@ -204,7 +216,10 @@ type Volumez struct {
 // SetTransport changes the transport on the client and all its subresources
 func (c *Volumez) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
+	c.Amp.SetTransport(transport)
 	c.Attachments.SetTransport(transport)
+	c.AutoProvisionVolumes.SetTransport(transport)
+	c.CapacityGroups.SetTransport(transport)
 	c.Connectivities.SetTransport(transport)
 	c.Health.SetTransport(transport)
 	c.Jobs.SetTransport(transport)

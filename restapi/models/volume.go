@@ -20,6 +20,10 @@ import (
 // swagger:model Volume
 type Volume struct {
 
+	// Capacity group from which the volume is allocated
+	// Min Length: 1
+	CapacityGroup *string `json:"capacitygroup,omitempty"`
+
 	// consistency group
 	ConsistencyGroup string `json:"consistencygroup"`
 
@@ -119,6 +123,10 @@ type Volume struct {
 func (m *Volume) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCapacityGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -166,6 +174,18 @@ func (m *Volume) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Volume) validateCapacityGroup(formats strfmt.Registry) error {
+	if swag.IsZero(m.CapacityGroup) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("capacitygroup", "body", *m.CapacityGroup, 1); err != nil {
+		return err
+	}
+
 	return nil
 }
 

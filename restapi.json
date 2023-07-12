@@ -22,6 +22,10 @@
             "description": ""
         },
         {
+            "name": "AutoProvisionVolumes",
+            "description": ""
+        },
+        {
             "name": "Nodes",
             "description": ""
         },
@@ -59,6 +63,10 @@
         },
         {
             "name": "Controllers",
+            "description": ""
+        },
+        {
+            "name": "CapacityGroups",
             "description": ""
         }
     ],
@@ -101,7 +109,7 @@
                     "Volumes"
                 ],
                 "operationId": "VolumeCreate",
-                "parameters": [                   
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -143,7 +151,60 @@
                             "$ref": "#/definitions/ErrorResponse"
                         }
                     }
-            
+
+                }
+            }
+        },
+        "/autoprovisionvolumes": {
+            "post": {
+                "summary": "Create a new auto provisioned volume",
+                "tags": [
+                    "AutoProvisionVolumes"
+                ],
+                "operationId": "AutoProvisionVolumes",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Auto Provision Volume object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AutoProvisionVolume"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Auto provision volume has been created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "409" : {
+                        "description" : "409 response",
+                        "schema" : {
+                            "$ref" : "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "202" : {
+                        "description" : "202 response",
+                        "schema" : {
+                            "$ref" : "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new volume",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+
                 }
             }
         },
@@ -345,18 +406,18 @@
                     "200": {
                         "description": "Tenant Host was deleted successfully",
                         "schema": {
-                            "$ref": "#/definitions/TenantHostDeleteResponse" 
+                            "$ref": "#/definitions/TenantHostDeleteResponse"
                         }
                     },
                     "500": {
                         "description": "Error deleting Tenant's Host",
                         "schema": {
-                            "$ref": "#/definitions/TenantHostDeleteResponse" 
+                            "$ref": "#/definitions/TenantHostDeleteResponse"
                         }
                     }
                 }
             }
-        },  
+        },
         "/tenant/tenanthost/credentials": {
             "get": {
                 "summary": "Given the tenant's host token (Refresh Token), get the ID Token for this machine",
@@ -398,7 +459,7 @@
                     }
                 }
             }
-        },             
+        },
         "/tenant/tenanthost": {
             "get": {
                 "summary": "Get a tenant host",
@@ -406,7 +467,7 @@
                     "Tenant Host"
                 ],
                 "operationId": "tenanthostget",
-                "parameters": [                   
+                "parameters": [
                     {
                         "name": "tenanthosttoken",
                         "in": "header",
@@ -421,18 +482,18 @@
                     "200": {
                         "description": "Got Tenant's Host successfully",
                         "schema": {
-                            "$ref": "#/definitions/GetTenantHostResponse" 
+                            "$ref": "#/definitions/GetTenantHostResponse"
                         }
                     },
                     "500": {
                         "description": "Error getting Tenant's Host",
                         "schema": {
-                            "$ref": "#/definitions/GetTenantHostResponse" 
+                            "$ref": "#/definitions/GetTenantHostResponse"
                         }
                     }
                 }
             }
-        },                    
+        },
         "/tenant/tenantid": {
             "get": {
                 "summary": "Get a Tenant ID from Tenant's Token",
@@ -440,7 +501,7 @@
                     "Tenant ID From Tenant Token"
                 ],
                 "operationId": "tenantIDget",
-                "parameters": [                   
+                "parameters": [
                     {
                         "name": "tenanttoken",
                         "in": "header",
@@ -455,18 +516,18 @@
                     "200": {
                         "description": "Got Tenant's ID successfully",
                         "schema": {
-                            "$ref": "#/definitions/GetTenantIDResponse" 
+                            "$ref": "#/definitions/GetTenantIDResponse"
                         }
                     },
                     "500": {
                         "description": "Error getting Tenant's ID",
                         "schema": {
-                            "$ref": "#/definitions/GetTenantIDResponse" 
+                            "$ref": "#/definitions/GetTenantIDResponse"
                         }
                     }
                 }
             }
-        },       
+        },
         "/nodes": {
             "get": {
                 "summary": "Get a list of nodes",
@@ -635,7 +696,7 @@
                     "TenantRefreshToken"
                 ],
                 "operationId": "TenantRefreshToken",
-                "parameters": [                  
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -652,7 +713,7 @@
                         "schema": {
                             "$ref": "#/definitions/RefreshToken"
                         }
-                    },                    
+                    },
                     "500": {
                         "description": "Error getting Tenant's Refresh Token",
                         "schema": {
@@ -669,6 +730,45 @@
             }
         }
         ,
+
+        "/azuremarketplace/subscription":{
+            "get":{
+                "summary":"get subscription",
+                "tags":[
+                    "Amp"
+                ],
+                "operationId":"GetSubscription",
+                "parameters": [
+
+                    {
+                        "in": "query",
+                        "name": "token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "confirmation of subscription registered",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Subscrition not available",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Getting volume plan",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/policies": {
             "get": {
                 "summary": "Get a list of policies",
@@ -701,7 +801,7 @@
                     "Policies"
                 ],
                 "operationId": "PolicyCreate",
-                "parameters": [                    
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -834,7 +934,7 @@
                     }
                 }
             }
-            
+
         },
         "/policies/{policy}/size/{size}/zone/{zone}": {
             "get": {
@@ -861,6 +961,12 @@
                         "name": "zone",
                         "type": "string",
                         "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "capacity_group",
+                        "type": "string",
+                        "required": false
                     }
                 ],
                 "responses": {
@@ -885,14 +991,14 @@
                 }
             }
         },
-        "/signup": {           
+        "/signup": {
             "post": {
                 "summary": "Create Tenant's first user",
                 "tags": [
                     "users"
                 ],
                 "operationId": "UserCreate",
-                "parameters": [                    
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -922,14 +1028,14 @@
                 }
             }
         },
-        "/signout": {           
+        "/signout": {
             "post": {
                 "summary": "Signs out user from all devices",
                 "tags": [
                     "users"
                 ],
                 "operationId": "Signout",
-                "parameters": [                    
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -1008,7 +1114,7 @@
                     "tenant token"
                 ],
                 "operationId": "TenantToken",
-                "parameters": [                    
+                "parameters": [
                     {
                         "name": "authorization",
                         "in": "header",
@@ -1032,13 +1138,13 @@
                 }
             }
         },
-        "/tenant/user": {   
+        "/tenant/user": {
             "get": {
                 "summary": "Get tenant user",
                 "tags": [
                     "Tenant User"
                 ],
-                "operationId": "tenantuserget",                
+                "operationId": "tenantuserget",
                 "produces": [
                     "text/plain"
                 ],
@@ -1046,24 +1152,24 @@
                     "200": {
                         "description": "Got Tenant's User successfully",
                         "schema": {
-                            "$ref": "#/definitions/GetTenanUserResponse" 
+                            "$ref": "#/definitions/GetTenanUserResponse"
                         }
                     },
                     "500": {
                         "description": "Error getting Tenant's User",
                         "schema": {
-                            "$ref": "#/definitions/GetTenanUserResponse" 
+                            "$ref": "#/definitions/GetTenanUserResponse"
                         }
                     }
                 }
-            },        
+            },
             "post": {
                 "summary": "Create Tenant's additional user",
                 "tags": [
                     "users"
                 ],
                 "operationId": "TenantUserCreate",
-                "parameters": [                    
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -1092,15 +1198,15 @@
                     }
                 }
             }
-        },        
-        "/tenant/user/confirmation": {           
+        },
+        "/tenant/user/confirmation": {
             "get": {
                 "summary": "Confirm user signup",
                 "tags": [
                     "UserConfirm"
                 ],
                 "operationId": "UserConfirm",
-                "parameters": [                    
+                "parameters": [
                     {
                         "in": "query",
                         "name": "client_id",
@@ -1129,7 +1235,7 @@
                         "schema": {
                             "$ref": "#/definitions/RegularResponse"
                         }
-                    },                                  
+                    },
                     "500": {
                         "description": "Error confirming user",
                         "schema": {
@@ -1145,14 +1251,14 @@
                 }
             }
         },
-        "/tenant/user/requestchangepassword": {    
+        "/tenant/user/requestchangepassword": {
             "post": {
                 "summary": "Request Change clients password",
                 "tags": [
                     "Request-user-password"
                 ],
                 "operationId": "RequestChangePassword",
-                "parameters": [                   
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -1182,14 +1288,14 @@
                 }
             }
         },
-        "/tenant/user/changepasswordloggedin": {    
+        "/tenant/user/changepasswordloggedin": {
             "post": {
                 "summary": "Change clients password when user is logged in",
                 "tags": [
                     "User-password-logged-in"
                 ],
                 "operationId": "ChangePasswordLoggedIn",
-                "parameters": [                   
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -1225,14 +1331,14 @@
                 }
             }
         },
-        "/tenant/user/changepassword": {    
+        "/tenant/user/changepassword": {
             "post": {
                 "summary": "Change clients password",
                 "tags": [
                     "User-password"
                 ],
                 "operationId": "ChangePassword",
-                "parameters": [                   
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -1262,14 +1368,14 @@
                 }
             }
         },
-        "/signin": {           
+        "/signin": {
             "post": {
                 "summary": "SIO Sign In",
                 "tags": [
                     "signin"
                 ],
                 "operationId": "SignIn",
-                "parameters": [                    
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -1331,7 +1437,7 @@
                     "Networks"
                 ],
                 "operationId": "NetworkCreate",
-                "parameters": [                   
+                "parameters": [
                     {
                         "in": "body",
                         "name": "body",
@@ -1650,7 +1756,7 @@
                 }
             }
         },
-        "/volumes/{volume}/recover": {    
+        "/volumes/{volume}/recover": {
             "post": {
                 "summary": "Initiate recover on volume",
                 "tags": [
@@ -1660,10 +1766,10 @@
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "volume",                        
+                        "name": "volume",
                         "type": "string",
                         "required": true
-                    },                   
+                    },
                     {
                         "name": "authorization",
                         "in": "header",
@@ -2143,7 +2249,7 @@
                         "name": "node",
                         "type": "string",
                         "required": true
-                    },                    
+                    },
                     {
                         "name": "authorization",
                         "in": "header",
@@ -2438,6 +2544,12 @@
                         "name": "media",
                         "type": "string",
                         "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "capacity_group",
+                        "type": "string",
+                        "required": false
                     }
                 ],
                 "responses": {
@@ -2590,7 +2702,7 @@
                 ],
                 "operationId": "ConnectivityCreate",
                 "parameters": [
-                    
+
                     {
                         "in": "body",
                         "name": "body",
@@ -2724,6 +2836,36 @@
                 }
             }
         },
+        "/capacitygroups": {
+            "get": {
+                "summary": "Get available capacity groups",
+                "tags": [
+                    "CapacityGroups"
+                ],
+                "operationId": "capacityGroupGet",
+                "parameters": [],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "capacity groups",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/CapacityGroup"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting capacity groups",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/version": {
             "get": {
                 "summary": "Get version of sio",
@@ -2781,6 +2923,158 @@
                 "embedded": true
             }
         },
+
+        "AutoProvisionVolume": {
+            "type": "object",
+            "properties": {
+                "volume": {
+                  "$ref":"#/definitions/Volume"
+                },
+                "infraPlan": {
+                    "$ref": "#/definitions/AutoProvisionInfraPlan"
+                },
+                "cloudProvider": {
+                      "x-go-name": "CloudProvider",
+                      "x-isnullable": false,
+                      "x-omitempty": false,
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "cloud provider name",
+                      "example": "Aws"
+                },
+                "accountId": {
+                    "x-go-name": "providerAccountID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "the customers provider account id"
+                },
+                "sshKeyName": {
+                    "x-go-name": "SshKeyName",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "ssh key name"
+                },
+                "imageId": {
+                    "x-go-name": "ImageId",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "os image id"
+                },
+                "region": {
+                    "x-go-name": "Region",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Region to create teh volume in",
+                    "example": "us-east-1"
+                },
+                "availabilityZones": {
+                      "x-go-name": "AvailabilityZones",
+                      "x-isnullable": false,
+                      "x-omitempty": false,
+                      "type": "array",
+                      "minLength":1,
+                      "items": {
+                          "type": "string"
+                      }
+                },
+                "subnets": {
+                      "x-go-name": "Subnets",
+                      "x-isnullable": false,
+                      "x-omitempty": false,
+                      "type": "array",
+                      "minLength":1,
+                      "items": {
+                        "type": "string"
+                      }
+                },
+                "osType": {
+                    "x-go-name": "OsType",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "enum": [
+                      "Linux",
+                      "Rhel"
+                    ]
+                }
+            },
+            "required": [
+                "volume",
+                "cloudProvider",
+                "accountId",
+                "region",
+                "subnets",
+                "availabilityZones",
+                "sshKeyName",
+                "osType"
+            ]
+        },
+
+
+
+        "AutoProvisionInfraPlan": {
+            "type": "object",
+            "properties": {
+                "instanceType": {
+                    "x-go-name": "InstanceType",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "instance type",
+                    "example": "c6gd.2xlarge"
+                },
+                "instanceCount": {
+                    "x-go-name": "InstanceCount",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "minimum": 1,
+                    "title": "Number of instance to provision",
+                    "example": 10
+                },
+                "availabilityZones": {
+                    "x-go-name": "Subnets",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "array",
+                    "minLength":1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "osType": {
+                    "x-go-name": "OsType",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "enum": [
+                        "Linux",
+                        "Rhel",
+                        "Ubuntu"
+                    ]
+                },
+                "price": {
+                    "x-go-name": "Price",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "integer",
+                    "format": "float",
+                    "minimum": 1,
+                    "title": "Number of instance to provision",
+                    "example": 10
+                }
+            }
+        },
+
         "Volume": {
             "type": "object",
             "properties": {
@@ -2939,6 +3233,15 @@
                     "x-omitempty": false,
                     "type": "integer",
                     "readOnly": true
+                },
+                "capacitygroup": {
+                    "x-go-name": "CapacityGroup",
+                    "x-isnullable": true,
+                    "x-omitempty": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Capacity group from which the volume is allocated",
+                    "readOnly": false
                 }
             },
             "required": [
@@ -2946,7 +3249,7 @@
                 "type",
                 "size",
                 "policy"
-                
+
             ]
         },
         "Node": {
@@ -3022,7 +3325,7 @@
                     "x-omitempty": true,
                     "type": "string"
                 },
-                "cloudprovider": {                    
+                "cloudprovider": {
                     "x-go-name": "CloudProvider",
                     "x-isnullable": false,
                     "x-omitempty": false,
@@ -3033,15 +3336,15 @@
                 "name",
                 "os"
             ]
-        },        
+        },
         "RefreshToken": {
             "type": "object",
             "properties": {
                 "token": {
                     "x-isnullable": false,
                     "x-omitempty": false,
-                    "type": "string"                    
-                }            
+                    "type": "string"
+                }
             }
         },
         "GetTenantRefreshTokenRequest": {
@@ -3050,19 +3353,19 @@
                 "accesstoken": {
                     "x-isnullable": false,
                     "x-omitempty": false,
-                    "type": "string"                    
+                    "type": "string"
                 },
                 "hostname": {
                     "x-isnullable": false,
                     "x-omitempty": false,
                     "type": "string"
-                }              
+                }
             },
             "required": [
                 "accesstoken",
                 "hostname"
             ]
-        },        
+        },
         "Policy": {
             "type": "object",
             "properties": {
@@ -3483,6 +3786,18 @@
                     "type": "string",
                     "minLength": 1,
                     "maxLength": 50
+                },
+                "cloudprovider": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1
+                },
+                "markettoken": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1
                 }
             },
             "required": [
@@ -3540,7 +3855,7 @@
                 "email",
                 "password"
             ]
-        },        
+        },
         "SignoutRequest": {
             "type": "object",
             "properties": {
@@ -3591,10 +3906,10 @@
                 "ExpiresIn",
                 "TokenType"
             ]
-          
-            
-        }, 
-        
+
+
+        },
+
         "ErrorResponse": {
             "type": "object",
             "properties": {
@@ -3668,11 +3983,16 @@
                 }
             }
         },
-
-
-        
-
-        
+        "CapacityGroup": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string"
+                }
+            }
+        },
         "VersionResponse": {
             "type": "object",
             "properties": {
@@ -4275,6 +4595,14 @@
                     "x-omitempty": false,
                     "type": "integer",
                     "readOnly": true
+                },
+                "capacitygroup" : {
+                    "x-go-name": "CapacityGroup",
+                    "description":"the capacity group this media belongs to",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "readOnly": true,
+                    "type": "string"
                 }
             }
         },

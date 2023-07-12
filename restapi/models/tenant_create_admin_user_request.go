@@ -19,10 +19,18 @@ import (
 // swagger:model TenantCreateAdminUserRequest
 type TenantCreateAdminUserRequest struct {
 
+	// cloudprovider
+	// Min Length: 1
+	Cloudprovider string `json:"cloudprovider"`
+
 	// email
 	// Required: true
 	// Min Length: 1
 	Email string `json:"email"`
+
+	// markettoken
+	// Min Length: 1
+	Markettoken string `json:"markettoken"`
 
 	// name
 	// Required: true
@@ -40,7 +48,15 @@ type TenantCreateAdminUserRequest struct {
 func (m *TenantCreateAdminUserRequest) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCloudprovider(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateEmail(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMarkettoken(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -58,6 +74,18 @@ func (m *TenantCreateAdminUserRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *TenantCreateAdminUserRequest) validateCloudprovider(formats strfmt.Registry) error {
+	if swag.IsZero(m.Cloudprovider) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("cloudprovider", "body", m.Cloudprovider, 1); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *TenantCreateAdminUserRequest) validateEmail(formats strfmt.Registry) error {
 
 	if err := validate.RequiredString("email", "body", m.Email); err != nil {
@@ -65,6 +93,18 @@ func (m *TenantCreateAdminUserRequest) validateEmail(formats strfmt.Registry) er
 	}
 
 	if err := validate.MinLength("email", "body", m.Email, 1); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TenantCreateAdminUserRequest) validateMarkettoken(formats strfmt.Registry) error {
+	if swag.IsZero(m.Markettoken) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("markettoken", "body", m.Markettoken, 1); err != nil {
 		return err
 	}
 

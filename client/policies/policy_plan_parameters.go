@@ -60,6 +60,9 @@ func NewPolicyPlanParamsWithHTTPClient(client *http.Client) *PolicyPlanParams {
 */
 type PolicyPlanParams struct {
 
+	// CapacityGroup.
+	CapacityGroup *string
+
 	// Policy.
 	Policy string
 
@@ -122,6 +125,17 @@ func (o *PolicyPlanParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithCapacityGroup adds the capacityGroup to the policy plan params
+func (o *PolicyPlanParams) WithCapacityGroup(capacityGroup *string) *PolicyPlanParams {
+	o.SetCapacityGroup(capacityGroup)
+	return o
+}
+
+// SetCapacityGroup adds the capacityGroup to the policy plan params
+func (o *PolicyPlanParams) SetCapacityGroup(capacityGroup *string) {
+	o.CapacityGroup = capacityGroup
+}
+
 // WithPolicy adds the policy to the policy plan params
 func (o *PolicyPlanParams) WithPolicy(policy string) *PolicyPlanParams {
 	o.SetPolicy(policy)
@@ -162,6 +176,23 @@ func (o *PolicyPlanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.CapacityGroup != nil {
+
+		// query param capacity_group
+		var qrCapacityGroup string
+
+		if o.CapacityGroup != nil {
+			qrCapacityGroup = *o.CapacityGroup
+		}
+		qCapacityGroup := qrCapacityGroup
+		if qCapacityGroup != "" {
+
+			if err := r.SetQueryParam("capacity_group", qCapacityGroup); err != nil {
+				return err
+			}
+		}
+	}
 
 	// path param policy
 	if err := r.SetPathParam("policy", o.Policy); err != nil {

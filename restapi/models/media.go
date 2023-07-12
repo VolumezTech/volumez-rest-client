@@ -28,6 +28,10 @@ type Media struct {
 	// bandwidth write
 	BandwidthWrite int64 `json:"bandwidthwrite"`
 
+	// the capacity group this media belongs to
+	// Read Only: true
+	CapacityGroup string `json:"capacitygroup"`
+
 	// free bandwidth read
 	FreeBandwidthRead int64 `json:"freebandwidthread"`
 
@@ -145,6 +149,10 @@ func (m *Media) validateOfflineTime(formats strfmt.Registry) error {
 func (m *Media) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateCapacityGroup(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVolumesCount(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -168,6 +176,15 @@ func (m *Media) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Media) contextValidateCapacityGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "capacitygroup", "body", string(m.CapacityGroup)); err != nil {
+		return err
+	}
+
 	return nil
 }
 

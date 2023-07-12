@@ -59,6 +59,9 @@ func NewMediaAssignParamsWithHTTPClient(client *http.Client) *MediaAssignParams 
 */
 type MediaAssignParams struct {
 
+	// CapacityGroup.
+	CapacityGroup *string
+
 	// Media.
 	Media string
 
@@ -115,6 +118,17 @@ func (o *MediaAssignParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithCapacityGroup adds the capacityGroup to the media assign params
+func (o *MediaAssignParams) WithCapacityGroup(capacityGroup *string) *MediaAssignParams {
+	o.SetCapacityGroup(capacityGroup)
+	return o
+}
+
+// SetCapacityGroup adds the capacityGroup to the media assign params
+func (o *MediaAssignParams) SetCapacityGroup(capacityGroup *string) {
+	o.CapacityGroup = capacityGroup
+}
+
 // WithMedia adds the media to the media assign params
 func (o *MediaAssignParams) WithMedia(media string) *MediaAssignParams {
 	o.SetMedia(media)
@@ -133,6 +147,23 @@ func (o *MediaAssignParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
+
+	if o.CapacityGroup != nil {
+
+		// query param capacity_group
+		var qrCapacityGroup string
+
+		if o.CapacityGroup != nil {
+			qrCapacityGroup = *o.CapacityGroup
+		}
+		qCapacityGroup := qrCapacityGroup
+		if qCapacityGroup != "" {
+
+			if err := r.SetQueryParam("capacity_group", qCapacityGroup); err != nil {
+				return err
+			}
+		}
+	}
 
 	// path param media
 	if err := r.SetPathParam("media", o.Media); err != nil {
