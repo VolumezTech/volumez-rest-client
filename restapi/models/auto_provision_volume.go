@@ -36,7 +36,7 @@ type AutoProvisionVolume struct {
 
 	// os type
 	// Required: true
-	// Enum: [Linux Rhel]
+	// Enum: [Linux Rhel Ubuntu]
 	OsType string `json:"osType"`
 
 	// Region to create teh volume in
@@ -46,7 +46,6 @@ type AutoProvisionVolume struct {
 	Region string `json:"region"`
 
 	// ssh key name
-	// Required: true
 	// Min Length: 1
 	SSHKeyName string `json:"sshKeyName"`
 
@@ -155,7 +154,7 @@ var autoProvisionVolumeTypeOsTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["Linux","Rhel"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Linux","Rhel","Ubuntu"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -170,6 +169,9 @@ const (
 
 	// AutoProvisionVolumeOsTypeRhel captures enum value "Rhel"
 	AutoProvisionVolumeOsTypeRhel string = "Rhel"
+
+	// AutoProvisionVolumeOsTypeUbuntu captures enum value "Ubuntu"
+	AutoProvisionVolumeOsTypeUbuntu string = "Ubuntu"
 )
 
 // prop value enum
@@ -208,9 +210,8 @@ func (m *AutoProvisionVolume) validateRegion(formats strfmt.Registry) error {
 }
 
 func (m *AutoProvisionVolume) validateSSHKeyName(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("sshKeyName", "body", m.SSHKeyName); err != nil {
-		return err
+	if swag.IsZero(m.SSHKeyName) { // not required
+		return nil
 	}
 
 	if err := validate.MinLength("sshKeyName", "body", m.SSHKeyName, 1); err != nil {

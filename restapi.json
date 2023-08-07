@@ -3002,7 +3002,8 @@
                     "type": "string",
                     "enum": [
                       "Linux",
-                      "Rhel"
+                      "Rhel",
+                      "Ubuntu"
                     ]
                 }
             },
@@ -3013,7 +3014,6 @@
                 "region",
                 "subnets",
                 "availabilityZones",
-                "sshKeyName",
                 "osType"
             ]
         },
