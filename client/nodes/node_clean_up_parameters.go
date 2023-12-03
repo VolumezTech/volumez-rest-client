@@ -52,15 +52,17 @@ func NewNodeCleanUpParamsWithHTTPClient(client *http.Client) *NodeCleanUpParams 
 	}
 }
 
-/* NodeCleanUpParams contains all the parameters to send to the API endpoint
-   for the node clean up operation.
+/*
+NodeCleanUpParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the node clean up operation.
+
+	Typically these are written to a http.Request.
 */
 type NodeCleanUpParams struct {
 
 	// Authorization.
-	Authorization string
+	Authorization *string
 
 	/* Node.
 
@@ -122,13 +124,13 @@ func (o *NodeCleanUpParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAuthorization adds the authorization to the node clean up params
-func (o *NodeCleanUpParams) WithAuthorization(authorization string) *NodeCleanUpParams {
+func (o *NodeCleanUpParams) WithAuthorization(authorization *string) *NodeCleanUpParams {
 	o.SetAuthorization(authorization)
 	return o
 }
 
 // SetAuthorization adds the authorization to the node clean up params
-func (o *NodeCleanUpParams) SetAuthorization(authorization string) {
+func (o *NodeCleanUpParams) SetAuthorization(authorization *string) {
 	o.Authorization = authorization
 }
 
@@ -151,9 +153,12 @@ func (o *NodeCleanUpParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	}
 	var res []error
 
-	// header param authorization
-	if err := r.SetHeaderParam("authorization", o.Authorization); err != nil {
-		return err
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
 	}
 
 	// path param node

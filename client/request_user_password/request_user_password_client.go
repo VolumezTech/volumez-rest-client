@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-  RequestChangePassword requests change clients password
+RequestChangePassword requests change clients password
 */
 func (a *Client) RequestChangePassword(params *RequestChangePasswordParams, opts ...ClientOption) (*RequestChangePasswordOK, error) {
 	// TODO: Validate the params before sending

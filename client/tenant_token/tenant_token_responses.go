@@ -46,7 +46,8 @@ func NewTenantTokenOK() *TenantTokenOK {
 	return &TenantTokenOK{}
 }
 
-/* TenantTokenOK describes a response with status code 200, with default header values.
+/*
+TenantTokenOK describes a response with status code 200, with default header values.
 
 Tenant's Token retrieval was successful
 */
@@ -54,9 +55,44 @@ type TenantTokenOK struct {
 	Payload *models.TenantTokenResponse
 }
 
+// IsSuccess returns true when this tenant token o k response has a 2xx status code
+func (o *TenantTokenOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this tenant token o k response has a 3xx status code
+func (o *TenantTokenOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this tenant token o k response has a 4xx status code
+func (o *TenantTokenOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this tenant token o k response has a 5xx status code
+func (o *TenantTokenOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this tenant token o k response a status code equal to that given
+func (o *TenantTokenOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the tenant token o k response
+func (o *TenantTokenOK) Code() int {
+	return 200
+}
+
 func (o *TenantTokenOK) Error() string {
 	return fmt.Sprintf("[GET /tenant/token][%d] tenantTokenOK  %+v", 200, o.Payload)
 }
+
+func (o *TenantTokenOK) String() string {
+	return fmt.Sprintf("[GET /tenant/token][%d] tenantTokenOK  %+v", 200, o.Payload)
+}
+
 func (o *TenantTokenOK) GetPayload() *models.TenantTokenResponse {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewTenantTokenDefault(code int) *TenantTokenDefault {
 	}
 }
 
-/* TenantTokenDefault describes a response with status code -1, with default header values.
+/*
+TenantTokenDefault describes a response with status code -1, with default header values.
 
 Error getting Tenant's Token
 */
@@ -88,6 +125,31 @@ type TenantTokenDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this tenant token default response has a 2xx status code
+func (o *TenantTokenDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this tenant token default response has a 3xx status code
+func (o *TenantTokenDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this tenant token default response has a 4xx status code
+func (o *TenantTokenDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this tenant token default response has a 5xx status code
+func (o *TenantTokenDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this tenant token default response a status code equal to that given
+func (o *TenantTokenDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the tenant token default response
@@ -98,6 +160,11 @@ func (o *TenantTokenDefault) Code() int {
 func (o *TenantTokenDefault) Error() string {
 	return fmt.Sprintf("[GET /tenant/token][%d] TenantToken default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *TenantTokenDefault) String() string {
+	return fmt.Sprintf("[GET /tenant/token][%d] TenantToken default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *TenantTokenDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

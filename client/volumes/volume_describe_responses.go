@@ -46,7 +46,8 @@ func NewVolumeDescribeOK() *VolumeDescribeOK {
 	return &VolumeDescribeOK{}
 }
 
-/* VolumeDescribeOK describes a response with status code 200, with default header values.
+/*
+VolumeDescribeOK describes a response with status code 200, with default header values.
 
 the Volume information
 */
@@ -54,9 +55,44 @@ type VolumeDescribeOK struct {
 	Payload *models.VolumeGroup
 }
 
+// IsSuccess returns true when this volume describe o k response has a 2xx status code
+func (o *VolumeDescribeOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this volume describe o k response has a 3xx status code
+func (o *VolumeDescribeOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this volume describe o k response has a 4xx status code
+func (o *VolumeDescribeOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this volume describe o k response has a 5xx status code
+func (o *VolumeDescribeOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this volume describe o k response a status code equal to that given
+func (o *VolumeDescribeOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the volume describe o k response
+func (o *VolumeDescribeOK) Code() int {
+	return 200
+}
+
 func (o *VolumeDescribeOK) Error() string {
 	return fmt.Sprintf("[GET /volumes/{volume}/describe][%d] volumeDescribeOK  %+v", 200, o.Payload)
 }
+
+func (o *VolumeDescribeOK) String() string {
+	return fmt.Sprintf("[GET /volumes/{volume}/describe][%d] volumeDescribeOK  %+v", 200, o.Payload)
+}
+
 func (o *VolumeDescribeOK) GetPayload() *models.VolumeGroup {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewVolumeDescribeDefault(code int) *VolumeDescribeDefault {
 	}
 }
 
-/* VolumeDescribeDefault describes a response with status code -1, with default header values.
+/*
+VolumeDescribeDefault describes a response with status code -1, with default header values.
 
 Error Getting volume plan
 */
@@ -88,6 +125,31 @@ type VolumeDescribeDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this volume describe default response has a 2xx status code
+func (o *VolumeDescribeDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this volume describe default response has a 3xx status code
+func (o *VolumeDescribeDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this volume describe default response has a 4xx status code
+func (o *VolumeDescribeDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this volume describe default response has a 5xx status code
+func (o *VolumeDescribeDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this volume describe default response a status code equal to that given
+func (o *VolumeDescribeDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the volume describe default response
@@ -98,6 +160,11 @@ func (o *VolumeDescribeDefault) Code() int {
 func (o *VolumeDescribeDefault) Error() string {
 	return fmt.Sprintf("[GET /volumes/{volume}/describe][%d] VolumeDescribe default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *VolumeDescribeDefault) String() string {
+	return fmt.Sprintf("[GET /volumes/{volume}/describe][%d] VolumeDescribe default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *VolumeDescribeDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

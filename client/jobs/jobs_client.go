@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-  JobDelete deletes a job
+JobDelete deletes a job
 */
 func (a *Client) JobDelete(params *JobDeleteParams, opts ...ClientOption) (*JobDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) JobDelete(params *JobDeleteParams, opts ...ClientOption) (*JobD
 }
 
 /*
-  JobGet gets the properties of a job
+JobGet gets the properties of a job
 */
 func (a *Client) JobGet(params *JobGetParams, opts ...ClientOption) (*JobGetOK, error) {
 	// TODO: Validate the params before sending
@@ -114,7 +114,7 @@ func (a *Client) JobGet(params *JobGetParams, opts ...ClientOption) (*JobGetOK, 
 }
 
 /*
-  JobResumeSuspend resumes or suspend a job
+JobResumeSuspend resumes or suspend a job
 */
 func (a *Client) JobResumeSuspend(params *JobResumeSuspendParams, opts ...ClientOption) (*JobResumeSuspendOK, error) {
 	// TODO: Validate the params before sending
@@ -151,7 +151,7 @@ func (a *Client) JobResumeSuspend(params *JobResumeSuspendParams, opts ...Client
 }
 
 /*
-  JobsList gets a list of jobs
+JobsList gets a list of jobs
 */
 func (a *Client) JobsList(params *JobsListParams, opts ...ClientOption) (*JobsListOK, error) {
 	// TODO: Validate the params before sending

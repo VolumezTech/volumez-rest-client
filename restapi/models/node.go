@@ -22,6 +22,9 @@ type Node struct {
 	// cloud provider
 	CloudProvider string `json:"cloudprovider"`
 
+	// cluster
+	Cluster string `json:"nodecluster,omitempty"`
+
 	// connector version
 	// Read Only: true
 	ConnectorVersion string `json:"connectorversion"`
@@ -52,6 +55,10 @@ type Node struct {
 	// progress
 	// Read Only: true
 	Progress int64 `json:"progress"`
+
+	// region
+	// Example: us-east-1
+	Region string `json:"region"`
 
 	// state
 	// Read Only: true
@@ -105,6 +112,8 @@ func (m *Node) validateOfflineTime(formats strfmt.Registry) error {
 	if err := m.OfflineTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("offlinetime")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("offlinetime")
 		}
 		return err
 	}

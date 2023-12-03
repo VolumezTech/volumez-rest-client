@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-  TenantRefreshToken gets the tenant s refresh token
+TenantRefreshToken gets the tenant s refresh token
 */
 func (a *Client) TenantRefreshToken(params *TenantRefreshTokenParams, opts ...ClientOption) (*TenantRefreshTokenOK, error) {
 	// TODO: Validate the params before sending

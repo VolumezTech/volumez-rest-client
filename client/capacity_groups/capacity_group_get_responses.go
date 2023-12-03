@@ -46,7 +46,8 @@ func NewCapacityGroupGetOK() *CapacityGroupGetOK {
 	return &CapacityGroupGetOK{}
 }
 
-/* CapacityGroupGetOK describes a response with status code 200, with default header values.
+/*
+CapacityGroupGetOK describes a response with status code 200, with default header values.
 
 capacity groups
 */
@@ -54,9 +55,44 @@ type CapacityGroupGetOK struct {
 	Payload []*models.CapacityGroup
 }
 
+// IsSuccess returns true when this capacity group get o k response has a 2xx status code
+func (o *CapacityGroupGetOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this capacity group get o k response has a 3xx status code
+func (o *CapacityGroupGetOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this capacity group get o k response has a 4xx status code
+func (o *CapacityGroupGetOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this capacity group get o k response has a 5xx status code
+func (o *CapacityGroupGetOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this capacity group get o k response a status code equal to that given
+func (o *CapacityGroupGetOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the capacity group get o k response
+func (o *CapacityGroupGetOK) Code() int {
+	return 200
+}
+
 func (o *CapacityGroupGetOK) Error() string {
 	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGetOK  %+v", 200, o.Payload)
 }
+
+func (o *CapacityGroupGetOK) String() string {
+	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGetOK  %+v", 200, o.Payload)
+}
+
 func (o *CapacityGroupGetOK) GetPayload() []*models.CapacityGroup {
 	return o.Payload
 }
@@ -78,7 +114,8 @@ func NewCapacityGroupGetDefault(code int) *CapacityGroupGetDefault {
 	}
 }
 
-/* CapacityGroupGetDefault describes a response with status code -1, with default header values.
+/*
+CapacityGroupGetDefault describes a response with status code -1, with default header values.
 
 Error getting capacity groups
 */
@@ -86,6 +123,31 @@ type CapacityGroupGetDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this capacity group get default response has a 2xx status code
+func (o *CapacityGroupGetDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this capacity group get default response has a 3xx status code
+func (o *CapacityGroupGetDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this capacity group get default response has a 4xx status code
+func (o *CapacityGroupGetDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this capacity group get default response has a 5xx status code
+func (o *CapacityGroupGetDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this capacity group get default response a status code equal to that given
+func (o *CapacityGroupGetDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the capacity group get default response
@@ -96,6 +158,11 @@ func (o *CapacityGroupGetDefault) Code() int {
 func (o *CapacityGroupGetDefault) Error() string {
 	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGet default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *CapacityGroupGetDefault) String() string {
+	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGet default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *CapacityGroupGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

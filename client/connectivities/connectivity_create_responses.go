@@ -46,7 +46,8 @@ func NewConnectivityCreateOK() *ConnectivityCreateOK {
 	return &ConnectivityCreateOK{}
 }
 
-/* ConnectivityCreateOK describes a response with status code 200, with default header values.
+/*
+ConnectivityCreateOK describes a response with status code 200, with default header values.
 
 New connectivity was created successfully
 */
@@ -54,9 +55,44 @@ type ConnectivityCreateOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this connectivity create o k response has a 2xx status code
+func (o *ConnectivityCreateOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this connectivity create o k response has a 3xx status code
+func (o *ConnectivityCreateOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this connectivity create o k response has a 4xx status code
+func (o *ConnectivityCreateOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this connectivity create o k response has a 5xx status code
+func (o *ConnectivityCreateOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this connectivity create o k response a status code equal to that given
+func (o *ConnectivityCreateOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the connectivity create o k response
+func (o *ConnectivityCreateOK) Code() int {
+	return 200
+}
+
 func (o *ConnectivityCreateOK) Error() string {
 	return fmt.Sprintf("[POST /connectivities][%d] connectivityCreateOK  %+v", 200, o.Payload)
 }
+
+func (o *ConnectivityCreateOK) String() string {
+	return fmt.Sprintf("[POST /connectivities][%d] connectivityCreateOK  %+v", 200, o.Payload)
+}
+
 func (o *ConnectivityCreateOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewConnectivityCreateDefault(code int) *ConnectivityCreateDefault {
 	}
 }
 
-/* ConnectivityCreateDefault describes a response with status code -1, with default header values.
+/*
+ConnectivityCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new connectivity
 */
@@ -88,6 +125,31 @@ type ConnectivityCreateDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this connectivity create default response has a 2xx status code
+func (o *ConnectivityCreateDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this connectivity create default response has a 3xx status code
+func (o *ConnectivityCreateDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this connectivity create default response has a 4xx status code
+func (o *ConnectivityCreateDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this connectivity create default response has a 5xx status code
+func (o *ConnectivityCreateDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this connectivity create default response a status code equal to that given
+func (o *ConnectivityCreateDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the connectivity create default response
@@ -98,6 +160,11 @@ func (o *ConnectivityCreateDefault) Code() int {
 func (o *ConnectivityCreateDefault) Error() string {
 	return fmt.Sprintf("[POST /connectivities][%d] ConnectivityCreate default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *ConnectivityCreateDefault) String() string {
+	return fmt.Sprintf("[POST /connectivities][%d] ConnectivityCreate default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *ConnectivityCreateDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

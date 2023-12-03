@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-  NodeCleanUp performings node cleanup
+NodeCleanUp performings node cleanup
 */
 func (a *Client) NodeCleanUp(params *NodeCleanUpParams, opts ...ClientOption) (*NodeCleanUpOK, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) NodeCleanUp(params *NodeCleanUpParams, opts ...ClientOption) (*
 }
 
 /*
-  NodeDelete deletes a node
+NodeDelete deletes a node
 */
 func (a *Client) NodeDelete(params *NodeDeleteParams, opts ...ClientOption) (*NodeDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -114,7 +114,7 @@ func (a *Client) NodeDelete(params *NodeDeleteParams, opts ...ClientOption) (*No
 }
 
 /*
-  NodeGet gets the properties of a node
+NodeGet gets the properties of a node
 */
 func (a *Client) NodeGet(params *NodeGetParams, opts ...ClientOption) (*NodeGetOK, error) {
 	// TODO: Validate the params before sending
@@ -151,7 +151,7 @@ func (a *Client) NodeGet(params *NodeGetParams, opts ...ClientOption) (*NodeGetO
 }
 
 /*
-  NodesList gets a list of nodes
+NodesList gets a list of nodes
 */
 func (a *Client) NodesList(params *NodesListParams, opts ...ClientOption) (*NodesListOK, error) {
 	// TODO: Validate the params before sending

@@ -52,10 +52,12 @@ func NewAttachmentsListAllParamsWithHTTPClient(client *http.Client) *Attachments
 	}
 }
 
-/* AttachmentsListAllParams contains all the parameters to send to the API endpoint
-   for the attachments list all operation.
+/*
+AttachmentsListAllParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the attachments list all operation.
+
+	Typically these are written to a http.Request.
 */
 type AttachmentsListAllParams struct {
 	timeout    time.Duration

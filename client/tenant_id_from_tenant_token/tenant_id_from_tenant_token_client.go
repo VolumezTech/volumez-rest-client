@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-  TenantIDget gets a tenant ID from tenant s token
+TenantIDget gets a tenant ID from tenant s token
 */
 func (a *Client) TenantIDget(params *TenantIDgetParams, opts ...ClientOption) (*TenantIDgetOK, error) {
 	// TODO: Validate the params before sending

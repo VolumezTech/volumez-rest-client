@@ -52,10 +52,12 @@ func NewMediaListParamsWithHTTPClient(client *http.Client) *MediaListParams {
 	}
 }
 
-/* MediaListParams contains all the parameters to send to the API endpoint
-   for the media list operation.
+/*
+MediaListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the media list operation.
+
+	Typically these are written to a http.Request.
 */
 type MediaListParams struct {
 	timeout    time.Duration

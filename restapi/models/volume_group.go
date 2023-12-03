@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -24,6 +25,9 @@ type VolumeGroup struct {
 
 	// allocation
 	Allocation string `json:"allocation,omitempty"`
+
+	// attachments
+	Attachments []*Attachment `json:"attachments"`
 
 	// cache media
 	CacheMedia []string `json:"cachemedia"`
@@ -113,6 +117,10 @@ type VolumeGroup struct {
 func (m *VolumeGroup) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAttachments(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTargetSecret(formats); err != nil {
 		res = append(res, err)
 	}
@@ -120,6 +128,32 @@ func (m *VolumeGroup) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *VolumeGroup) validateAttachments(formats strfmt.Registry) error {
+	if swag.IsZero(m.Attachments) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Attachments); i++ {
+		if swag.IsZero(m.Attachments[i]) { // not required
+			continue
+		}
+
+		if m.Attachments[i] != nil {
+			if err := m.Attachments[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("attachments" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("attachments" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -139,6 +173,10 @@ func (m *VolumeGroup) validateTargetSecret(formats strfmt.Registry) error {
 func (m *VolumeGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAttachments(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateVolumeGroupName(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -146,6 +184,31 @@ func (m *VolumeGroup) ContextValidate(ctx context.Context, formats strfmt.Regist
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *VolumeGroup) contextValidateAttachments(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Attachments); i++ {
+
+		if m.Attachments[i] != nil {
+
+			if swag.IsZero(m.Attachments[i]) { // not required
+				return nil
+			}
+
+			if err := m.Attachments[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("attachments" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("attachments" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

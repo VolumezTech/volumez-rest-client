@@ -46,7 +46,8 @@ func NewAttachmentsListAllOK() *AttachmentsListAllOK {
 	return &AttachmentsListAllOK{}
 }
 
-/* AttachmentsListAllOK describes a response with status code 200, with default header values.
+/*
+AttachmentsListAllOK describes a response with status code 200, with default header values.
 
 List of all attachments
 */
@@ -54,9 +55,44 @@ type AttachmentsListAllOK struct {
 	Payload []*models.Attachment
 }
 
+// IsSuccess returns true when this attachments list all o k response has a 2xx status code
+func (o *AttachmentsListAllOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this attachments list all o k response has a 3xx status code
+func (o *AttachmentsListAllOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this attachments list all o k response has a 4xx status code
+func (o *AttachmentsListAllOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this attachments list all o k response has a 5xx status code
+func (o *AttachmentsListAllOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this attachments list all o k response a status code equal to that given
+func (o *AttachmentsListAllOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the attachments list all o k response
+func (o *AttachmentsListAllOK) Code() int {
+	return 200
+}
+
 func (o *AttachmentsListAllOK) Error() string {
 	return fmt.Sprintf("[GET /attachments][%d] attachmentsListAllOK  %+v", 200, o.Payload)
 }
+
+func (o *AttachmentsListAllOK) String() string {
+	return fmt.Sprintf("[GET /attachments][%d] attachmentsListAllOK  %+v", 200, o.Payload)
+}
+
 func (o *AttachmentsListAllOK) GetPayload() []*models.Attachment {
 	return o.Payload
 }
@@ -78,7 +114,8 @@ func NewAttachmentsListAllDefault(code int) *AttachmentsListAllDefault {
 	}
 }
 
-/* AttachmentsListAllDefault describes a response with status code -1, with default header values.
+/*
+AttachmentsListAllDefault describes a response with status code -1, with default header values.
 
 Error getting a list of all attachments
 */
@@ -86,6 +123,31 @@ type AttachmentsListAllDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this attachments list all default response has a 2xx status code
+func (o *AttachmentsListAllDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this attachments list all default response has a 3xx status code
+func (o *AttachmentsListAllDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this attachments list all default response has a 4xx status code
+func (o *AttachmentsListAllDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this attachments list all default response has a 5xx status code
+func (o *AttachmentsListAllDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this attachments list all default response a status code equal to that given
+func (o *AttachmentsListAllDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the attachments list all default response
@@ -96,6 +158,11 @@ func (o *AttachmentsListAllDefault) Code() int {
 func (o *AttachmentsListAllDefault) Error() string {
 	return fmt.Sprintf("[GET /attachments][%d] AttachmentsListAll default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *AttachmentsListAllDefault) String() string {
+	return fmt.Sprintf("[GET /attachments][%d] AttachmentsListAll default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *AttachmentsListAllDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

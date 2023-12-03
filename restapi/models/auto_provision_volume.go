@@ -239,6 +239,8 @@ func (m *AutoProvisionVolume) validateInfraPlan(formats strfmt.Registry) error {
 		if err := m.InfraPlan.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("infraPlan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("infraPlan")
 			}
 			return err
 		}
@@ -270,6 +272,8 @@ func (m *AutoProvisionVolume) validateVolume(formats strfmt.Registry) error {
 		if err := m.Volume.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("volume")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("volume")
 			}
 			return err
 		}
@@ -299,9 +303,16 @@ func (m *AutoProvisionVolume) ContextValidate(ctx context.Context, formats strfm
 func (m *AutoProvisionVolume) contextValidateInfraPlan(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InfraPlan != nil {
+
+		if swag.IsZero(m.InfraPlan) { // not required
+			return nil
+		}
+
 		if err := m.InfraPlan.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("infraPlan")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("infraPlan")
 			}
 			return err
 		}
@@ -313,9 +324,12 @@ func (m *AutoProvisionVolume) contextValidateInfraPlan(ctx context.Context, form
 func (m *AutoProvisionVolume) contextValidateVolume(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Volume != nil {
+
 		if err := m.Volume.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("volume")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("volume")
 			}
 			return err
 		}

@@ -52,10 +52,12 @@ func NewMediaLedOffParamsWithHTTPClient(client *http.Client) *MediaLedOffParams 
 	}
 }
 
-/* MediaLedOffParams contains all the parameters to send to the API endpoint
-   for the media led off operation.
+/*
+MediaLedOffParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the media led off operation.
+
+	Typically these are written to a http.Request.
 */
 type MediaLedOffParams struct {
 

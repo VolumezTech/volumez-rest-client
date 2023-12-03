@@ -54,10 +54,12 @@ func NewAttachmentModifyParamsWithHTTPClient(client *http.Client) *AttachmentMod
 	}
 }
 
-/* AttachmentModifyParams contains all the parameters to send to the API endpoint
-   for the attachment modify operation.
+/*
+AttachmentModifyParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the attachment modify operation.
+
+	Typically these are written to a http.Request.
 */
 type AttachmentModifyParams struct {
 

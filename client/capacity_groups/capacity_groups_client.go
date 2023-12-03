@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-  CapacityGroupGet gets available capacity groups
+CapacityGroupGet gets available capacity groups
 */
 func (a *Client) CapacityGroupGet(params *CapacityGroupGetParams, opts ...ClientOption) (*CapacityGroupGetOK, error) {
 	// TODO: Validate the params before sending

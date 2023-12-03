@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-  AutoProvisionVolumes creates a new auto provisioned volume
+AutoProvisionVolumes creates a new auto provisioned volume
 */
 func (a *Client) AutoProvisionVolumes(params *AutoProvisionVolumesParams, opts ...ClientOption) (*AutoProvisionVolumesOK, *AutoProvisionVolumesAccepted, error) {
 	// TODO: Validate the params before sending

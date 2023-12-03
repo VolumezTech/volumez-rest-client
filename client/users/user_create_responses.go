@@ -36,7 +36,7 @@ func (o *UserCreateReader) ReadResponse(response runtime.ClientResponse, consume
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
+		return nil, runtime.NewAPIError("[POST /signup] UserCreate", response, response.Code())
 	}
 }
 
@@ -45,7 +45,8 @@ func NewUserCreateOK() *UserCreateOK {
 	return &UserCreateOK{}
 }
 
-/* UserCreateOK describes a response with status code 200, with default header values.
+/*
+UserCreateOK describes a response with status code 200, with default header values.
 
 Successfully Signed up
 */
@@ -53,9 +54,44 @@ type UserCreateOK struct {
 	Payload *models.SignUpResponse
 }
 
+// IsSuccess returns true when this user create o k response has a 2xx status code
+func (o *UserCreateOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this user create o k response has a 3xx status code
+func (o *UserCreateOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this user create o k response has a 4xx status code
+func (o *UserCreateOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this user create o k response has a 5xx status code
+func (o *UserCreateOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this user create o k response a status code equal to that given
+func (o *UserCreateOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the user create o k response
+func (o *UserCreateOK) Code() int {
+	return 200
+}
+
 func (o *UserCreateOK) Error() string {
 	return fmt.Sprintf("[POST /signup][%d] userCreateOK  %+v", 200, o.Payload)
 }
+
+func (o *UserCreateOK) String() string {
+	return fmt.Sprintf("[POST /signup][%d] userCreateOK  %+v", 200, o.Payload)
+}
+
 func (o *UserCreateOK) GetPayload() *models.SignUpResponse {
 	return o.Payload
 }
@@ -77,7 +113,8 @@ func NewUserCreateInternalServerError() *UserCreateInternalServerError {
 	return &UserCreateInternalServerError{}
 }
 
-/* UserCreateInternalServerError describes a response with status code 500, with default header values.
+/*
+UserCreateInternalServerError describes a response with status code 500, with default header values.
 
 Error signing up
 */
@@ -85,9 +122,44 @@ type UserCreateInternalServerError struct {
 	Payload *models.SignUpResponse
 }
 
+// IsSuccess returns true when this user create internal server error response has a 2xx status code
+func (o *UserCreateInternalServerError) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this user create internal server error response has a 3xx status code
+func (o *UserCreateInternalServerError) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this user create internal server error response has a 4xx status code
+func (o *UserCreateInternalServerError) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this user create internal server error response has a 5xx status code
+func (o *UserCreateInternalServerError) IsServerError() bool {
+	return true
+}
+
+// IsCode returns true when this user create internal server error response a status code equal to that given
+func (o *UserCreateInternalServerError) IsCode(code int) bool {
+	return code == 500
+}
+
+// Code gets the status code for the user create internal server error response
+func (o *UserCreateInternalServerError) Code() int {
+	return 500
+}
+
 func (o *UserCreateInternalServerError) Error() string {
 	return fmt.Sprintf("[POST /signup][%d] userCreateInternalServerError  %+v", 500, o.Payload)
 }
+
+func (o *UserCreateInternalServerError) String() string {
+	return fmt.Sprintf("[POST /signup][%d] userCreateInternalServerError  %+v", 500, o.Payload)
+}
+
 func (o *UserCreateInternalServerError) GetPayload() *models.SignUpResponse {
 	return o.Payload
 }

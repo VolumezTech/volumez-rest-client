@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-  Tenanthostget gets a tenant host
+Tenanthostget gets a tenant host
 */
 func (a *Client) Tenanthostget(params *TenanthostgetParams, opts ...ClientOption) (*TenanthostgetOK, error) {
 	// TODO: Validate the params before sending

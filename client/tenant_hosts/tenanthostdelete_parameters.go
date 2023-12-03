@@ -52,10 +52,12 @@ func NewTenanthostdeleteParamsWithHTTPClient(client *http.Client) *Tenanthostdel
 	}
 }
 
-/* TenanthostdeleteParams contains all the parameters to send to the API endpoint
-   for the tenanthostdelete operation.
+/*
+TenanthostdeleteParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the tenanthostdelete operation.
+
+	Typically these are written to a http.Request.
 */
 type TenanthostdeleteParams struct {
 

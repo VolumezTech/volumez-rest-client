@@ -19,6 +19,9 @@ import (
 // swagger:model Attachment
 type Attachment struct {
 
+	// Allocated performance resources
+	AllocatedResources *string `json:"allocated_resources,omitempty"`
+
 	// Mount point
 	MountPoint string `json:"mountpoint,omitempty"`
 

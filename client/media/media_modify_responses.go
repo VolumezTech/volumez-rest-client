@@ -46,7 +46,8 @@ func NewMediaModifyOK() *MediaModifyOK {
 	return &MediaModifyOK{}
 }
 
-/* MediaModifyOK describes a response with status code 200, with default header values.
+/*
+MediaModifyOK describes a response with status code 200, with default header values.
 
 Properties of a media to patch
 */
@@ -54,9 +55,44 @@ type MediaModifyOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this media modify o k response has a 2xx status code
+func (o *MediaModifyOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this media modify o k response has a 3xx status code
+func (o *MediaModifyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this media modify o k response has a 4xx status code
+func (o *MediaModifyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this media modify o k response has a 5xx status code
+func (o *MediaModifyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this media modify o k response a status code equal to that given
+func (o *MediaModifyOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the media modify o k response
+func (o *MediaModifyOK) Code() int {
+	return 200
+}
+
 func (o *MediaModifyOK) Error() string {
 	return fmt.Sprintf("[PATCH /media/{media}][%d] mediaModifyOK  %+v", 200, o.Payload)
 }
+
+func (o *MediaModifyOK) String() string {
+	return fmt.Sprintf("[PATCH /media/{media}][%d] mediaModifyOK  %+v", 200, o.Payload)
+}
+
 func (o *MediaModifyOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewMediaModifyDefault(code int) *MediaModifyDefault {
 	}
 }
 
-/* MediaModifyDefault describes a response with status code -1, with default header values.
+/*
+MediaModifyDefault describes a response with status code -1, with default header values.
 
 Error patching properties of a media
 */
@@ -88,6 +125,31 @@ type MediaModifyDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this media modify default response has a 2xx status code
+func (o *MediaModifyDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this media modify default response has a 3xx status code
+func (o *MediaModifyDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this media modify default response has a 4xx status code
+func (o *MediaModifyDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this media modify default response has a 5xx status code
+func (o *MediaModifyDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this media modify default response a status code equal to that given
+func (o *MediaModifyDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the media modify default response
@@ -98,6 +160,11 @@ func (o *MediaModifyDefault) Code() int {
 func (o *MediaModifyDefault) Error() string {
 	return fmt.Sprintf("[PATCH /media/{media}][%d] MediaModify default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *MediaModifyDefault) String() string {
+	return fmt.Sprintf("[PATCH /media/{media}][%d] MediaModify default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *MediaModifyDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

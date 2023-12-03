@@ -54,10 +54,12 @@ func NewAttachmentCreateParamsWithHTTPClient(client *http.Client) *AttachmentCre
 	}
 }
 
-/* AttachmentCreateParams contains all the parameters to send to the API endpoint
-   for the attachment create operation.
+/*
+AttachmentCreateParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the attachment create operation.
+
+	Typically these are written to a http.Request.
 */
 type AttachmentCreateParams struct {
 

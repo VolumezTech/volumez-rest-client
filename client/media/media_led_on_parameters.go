@@ -52,10 +52,12 @@ func NewMediaLedOnParamsWithHTTPClient(client *http.Client) *MediaLedOnParams {
 	}
 }
 
-/* MediaLedOnParams contains all the parameters to send to the API endpoint
-   for the media led on operation.
+/*
+MediaLedOnParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the media led on operation.
+
+	Typically these are written to a http.Request.
 */
 type MediaLedOnParams struct {
 

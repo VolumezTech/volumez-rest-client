@@ -46,7 +46,8 @@ func NewMediaLedOnOK() *MediaLedOnOK {
 	return &MediaLedOnOK{}
 }
 
-/* MediaLedOnOK describes a response with status code 200, with default header values.
+/*
+MediaLedOnOK describes a response with status code 200, with default header values.
 
 Operation completed successfully
 */
@@ -54,9 +55,44 @@ type MediaLedOnOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this media led on o k response has a 2xx status code
+func (o *MediaLedOnOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this media led on o k response has a 3xx status code
+func (o *MediaLedOnOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this media led on o k response has a 4xx status code
+func (o *MediaLedOnOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this media led on o k response has a 5xx status code
+func (o *MediaLedOnOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this media led on o k response a status code equal to that given
+func (o *MediaLedOnOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the media led on o k response
+func (o *MediaLedOnOK) Code() int {
+	return 200
+}
+
 func (o *MediaLedOnOK) Error() string {
 	return fmt.Sprintf("[GET /media/{media}/ledon][%d] mediaLedOnOK  %+v", 200, o.Payload)
 }
+
+func (o *MediaLedOnOK) String() string {
+	return fmt.Sprintf("[GET /media/{media}/ledon][%d] mediaLedOnOK  %+v", 200, o.Payload)
+}
+
 func (o *MediaLedOnOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewMediaLedOnDefault(code int) *MediaLedOnDefault {
 	}
 }
 
-/* MediaLedOnDefault describes a response with status code -1, with default header values.
+/*
+MediaLedOnDefault describes a response with status code -1, with default header values.
 
 Error completing the operation
 */
@@ -88,6 +125,31 @@ type MediaLedOnDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this media led on default response has a 2xx status code
+func (o *MediaLedOnDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this media led on default response has a 3xx status code
+func (o *MediaLedOnDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this media led on default response has a 4xx status code
+func (o *MediaLedOnDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this media led on default response has a 5xx status code
+func (o *MediaLedOnDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this media led on default response a status code equal to that given
+func (o *MediaLedOnDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the media led on default response
@@ -98,6 +160,11 @@ func (o *MediaLedOnDefault) Code() int {
 func (o *MediaLedOnDefault) Error() string {
 	return fmt.Sprintf("[GET /media/{media}/ledon][%d] MediaLedOn default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *MediaLedOnDefault) String() string {
+	return fmt.Sprintf("[GET /media/{media}/ledon][%d] MediaLedOn default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *MediaLedOnDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

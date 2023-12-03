@@ -122,7 +122,6 @@
                     {
                         "name": "authorization",
                         "in": "header",
-                        "required": false,
                         "type": "string"
                     }
                 ],
@@ -155,56 +154,70 @@
                 }
             }
         },
-        "/autoprovisionvolumes": {
+        "/volumes/snapshot": {
             "post": {
-                "summary": "Create a new auto provisioned volume",
+                "summary": "Create a new snapshot",
                 "tags": [
-                    "AutoProvisionVolumes"
+                    "Snapshots"
                 ],
-                "operationId": "AutoProvisionVolumes",
+                "operationId": "ConsistencyGroupSnapshotCreate",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Auto Provision Volume object",
+                        "description": "A Snapshot object",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AutoProvisionVolume"
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "x-isnullable": false,
+                                    "x-omitempty": false
+                                },
+                                "consistency" : {
+                                    "x-go-name": "Consistency",
+                                    "x-isnullable": true,
+                                    "x-omitempty": true,
+                                    "type": "string",
+                                    "enum": [
+                                        "crash",
+                                        "application"
+                                    ]
+                                },
+                                "group_name": {
+                                    "type": "string",
+                                    "x-isnullable": false,
+                                    "x-omitempty": false
+                                },
+                                "volumes": {
+                                    "x-isnullable": false,
+                                    "x-omitempty": false,
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
                         }
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
                     }
+                ],
+                "produces": [
+                    "text/plain"
                 ],
                 "responses": {
                     "200": {
-                        "description": "Auto provision volume has been created successfully",
+                        "description": "New snapshot was created successfully",
                         "schema": {
                             "$ref": "#/definitions/RegularResponse"
                         }
                     },
-                    "409" : {
-                        "description" : "409 response",
-                        "schema" : {
-                            "$ref" : "#/definitions/ErrorResponse"
-                        }
-                    },
-                    "202" : {
-                        "description" : "202 response",
-                        "schema" : {
-                            "$ref" : "#/definitions/ErrorResponse"
-                        }
-                    },
                     "default": {
-                        "description": "Error creating new volume",
+                        "description": "Error creating new snapshot",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
                     }
-
                 }
             }
         },
@@ -227,9 +240,8 @@
                     {
                         "name": "authorization",
                         "in": "header",
-                        "required": false,
                         "type": "string"
-                      }
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -254,12 +266,6 @@
                 "operationId": "VolumeDelete",
                 "parameters": [
                     {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
                         "name":"force",
                         "in":"query",
                         "required":false,
@@ -267,6 +273,11 @@
                         "default":false,
                         "allowEmptyValue":true,
                         "x-nullable": false
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
                     }
                 ],
                 "produces": [
@@ -312,9 +323,8 @@
                     {
                         "name": "authorization",
                         "in": "header",
-                        "required": false,
                         "type": "string"
-                      }
+                    }
                 ],
                 "produces": [
                     "text/plain"
@@ -352,7 +362,6 @@
                 {
                     "name": "authorization",
                     "in": "header",
-                    "required": false,
                     "type": "string"
                   }
                 ],
@@ -365,6 +374,667 @@
                     },
                     "default": {
                         "description": "Error Getting volume plan",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/recover": {
+            "post": {
+                "summary": "Initiate recover on volume",
+                "tags": [
+                    "Volumes"
+                ],
+                "operationId": "VolumeRecoverInitiate",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Volume recovery was initiated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error initiating recovery on volume",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots": {
+            "get": {
+                "summary": "Get a list of snapshots",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotsList",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of snapshots",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Snapshot"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of snapshots",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotCreate",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Snapshot object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Snapshot"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New snapshot was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots/{snapshot}": {
+            "get": {
+                "summary": "Get the properties of a snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of a snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/Snapshot"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of a snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotDelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name":"force",
+                        "in":"query",
+                        "required":false,
+                        "type":"boolean",
+                        "default":false,
+                        "allowEmptyValue":true,
+                        "x-nullable": false
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A snapshot was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error deleting a snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modify a snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotModify",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A Snapshot object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Snapshot"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A snapshot was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error updating a snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots/{snapshot}/rollback": {
+            "patch": {
+                "summary": "Roll back to snapshot",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotRollback",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rollback successful",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error during rollback",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autoprovisionvolumes": {
+            "post": {
+                "summary": "Create a new auto provisioned volume",
+                "tags": [
+                    "AutoProvisionVolumes"
+                ],
+                "operationId": "AutoProvisionVolumes",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Auto Provision Volume object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AutoProvisionVolume"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Auto provision volume has been created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "409" : {
+                        "description" : "409 response",
+                        "schema" : {
+                            "$ref" : "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "202" : {
+                        "description" : "202 response",
+                        "schema" : {
+                            "$ref" : "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new volume",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+
+                }
+            }
+        },
+        "/snapshots": {
+            "get": {
+                "summary": "Get a list of all snapshots",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "SnapshotsListAll",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "capacity",
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of all snapshots",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Snapshot"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of all snapshots",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/attachments": {
+            "get": {
+                "summary": "Get a list of all attachments",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentsListAll",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "List of all attachments",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Attachment"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of all attachments",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots/{snapshot}/attachments": {
+            "get": {
+                "summary": "Get a list of attachments",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentsList",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of attachments",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Attachment"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of attachments",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new attachment",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentCreate",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "An Attachment object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Attachment"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New attachment was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new attachment",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/{volume}/snapshots/{snapshot}/attachments/{node}": {
+            "get": {
+                "summary": "Get the properties of an attachment",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentGet",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "node",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Properties of an attachment",
+                        "schema": {
+                            "$ref": "#/definitions/Attachment"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting properties of an attachment",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete an attachment",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentDelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "node",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name":"force",
+                        "in":"query",
+                        "required":false,
+                        "type":"boolean",
+                        "default":false,
+                        "allowEmptyValue":true,
+                        "x-nullable": false
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An attachment was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error deleting an attachment",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modify an attachment",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentModify",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "snapshot",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "node",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "An Attachment object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Attachment"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An attachment was updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error updating an attachment",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -395,9 +1065,8 @@
                     {
                         "name": "authorization",
                         "in": "header",
-                        "required": false,
                         "type": "string"
-                      }
+                    }
                 ],
                 "produces": [
                     "text/plain"
@@ -523,6 +1192,347 @@
                         "description": "Error getting Tenant's ID",
                         "schema": {
                             "$ref": "#/definitions/GetTenantIDResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/refreshtoken": {
+            "post": {
+                "summary": "Get the tenant's Refresh Token",
+                "tags": [
+                    "TenantRefreshToken"
+                ],
+                "operationId": "TenantRefreshToken",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Tenant's Refresh Token",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantRefreshTokenRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Refresh Token",
+                        "schema": {
+                            "$ref": "#/definitions/RefreshToken"
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting Tenant's Refresh Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting Tenant's Refresh Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/apiaccess/credentials/refresh": {
+            "get": {
+                "summary": "Given the Tenant's API Access Refresh Token, return new Access Token, Identity Token and a newer Refresh Token",
+                "tags": [
+                    "Tenant API Access Refresh Token"
+                ],
+                "operationId": "TenantAPIAccessRefreshToken",
+                "parameters": [
+                    {
+                    "name": "refreshtoken",
+                    "in": "header",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                 "responses":
+                 {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                        "$ref": "#/definitions/RefreshTokenResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    },
+                    "500": {
+                        "description": "Error refreshing user Tenant's API Acces Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/token": {
+            "get": {
+                "summary": "Get the Tenant's Token",
+                "tags": [
+                    "tenant token"
+                ],
+                "operationId": "TenantToken",
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tenant's Token retrieval was successful",
+                        "schema": {
+                            "$ref": "#/definitions/TenantTokenResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting Tenant's Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user": {
+            "get": {
+                "summary": "Get tenant user",
+                "tags": [
+                    "Tenant User"
+                ],
+                "operationId": "tenantuserget",
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Got Tenant's User successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenanUserResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting Tenant's User",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenanUserResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Tenant's additional user",
+                "tags": [
+                    "users"
+                ],
+                "operationId": "TenantUserCreate",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A user object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TenantCreateUserRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/confirmation": {
+            "get": {
+                "summary": "Confirm user signup",
+                "tags": [
+                    "UserConfirm"
+                ],
+                "operationId": "UserConfirm",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "client_id",
+                        "type": "string",
+                        "description": "Cognito Client ID"
+                    },
+                    {
+                        "in": "query",
+                        "name": "user_name",
+                        "type": "string",
+                        "description": "Cognito User Name"
+                    },
+                    {
+                        "in": "query",
+                        "name": "confirmation_code",
+                        "type": "string",
+                        "description": "Cognito Signup Confirmation Code"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User has successfully confirmed",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error confirming user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "User confirmation error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/requestchangepassword": {
+            "post": {
+                "summary": "Request Change clients password",
+                "tags": [
+                    "Request-user-password"
+                ],
+                "operationId": "RequestChangePassword",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "new user password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestChangePasswordRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request for password change done successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error request changing password",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/changepasswordloggedin": {
+            "post": {
+                "summary": "Change clients password when user is logged in",
+                "tags": [
+                    "User-password-logged-in"
+                ],
+                "operationId": "ChangePasswordLoggedIn",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "new user password when logged in",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePasswordRequestLoggedIn"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New password changed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error changing password",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/changepassword": {
+            "post": {
+                "summary": "Change clients password",
+                "tags": [
+                    "User-password"
+                ],
+                "operationId": "ChangePassword",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "new user password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePasswordRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New password changed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error changing password",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
                         }
                     }
                 }
@@ -656,7 +1666,6 @@
                     {
                         "name": "authorization",
                         "in": "header",
-                        "required": true,
                         "type": "string"
                     }
                 ],
@@ -687,50 +1696,7 @@
                     }
                 }
             }
-        }
-        ,
-        "/tenant/refreshtoken": {
-            "post": {
-                "summary": "Get the tenant's Refresh Token",
-                "tags": [
-                    "TenantRefreshToken"
-                ],
-                "operationId": "TenantRefreshToken",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Tenant's Refresh Token",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/GetTenantRefreshTokenRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Refresh Token",
-                        "schema": {
-                            "$ref": "#/definitions/RefreshToken"
-                        }
-                    },
-                    "500": {
-                        "description": "Error getting Tenant's Refresh Token",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting Tenant's Refresh Token",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        }
-        ,
-
+        },
         "/azuremarketplace/subscription":{
             "get":{
                 "summary":"get subscription",
@@ -1065,309 +2031,6 @@
                 }
             }
         },
-        "/tenant/apiaccess/credentials/refresh": {
-            "get": {
-                "summary": "Given the Tenant's API Access Refresh Token, return new Access Token, Identity Token and a newer Refresh Token",
-                "tags": [
-                    "Tenant API Access Refresh Token"
-                ],
-                "operationId": "TenantAPIAccessRefreshToken",
-                "parameters": [
-                    {
-                    "name": "refreshtoken",
-                    "in": "header",
-                    "required": true,
-                    "type": "string"
-                  }
-                ],
-                 "responses":
-                 {
-                    "200": {
-                        "description": "200 response",
-                        "schema": {
-                        "$ref": "#/definitions/RefreshTokenResponse"
-                        },
-                        "headers": {
-                        "Access-Control-Allow-Origin": {
-                            "type": "string"
-                        }
-                        }
-                    },
-                    "500": {
-                        "description": "Error refreshing user Tenant's API Acces Token",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        },
-                        "headers": {
-                        "Access-Control-Allow-Origin": {
-                            "type": "string"
-                        }
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/token": {
-            "get": {
-                "summary": "Get the Tenant's Token",
-                "tags": [
-                    "tenant token"
-                ],
-                "operationId": "TenantToken",
-                "parameters": [
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Tenant's Token retrieval was successful",
-                        "schema": {
-                            "$ref": "#/definitions/TenantTokenResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting Tenant's Token",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user": {
-            "get": {
-                "summary": "Get tenant user",
-                "tags": [
-                    "Tenant User"
-                ],
-                "operationId": "tenantuserget",
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Got Tenant's User successfully",
-                        "schema": {
-                            "$ref": "#/definitions/GetTenanUserResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Error getting Tenant's User",
-                        "schema": {
-                            "$ref": "#/definitions/GetTenanUserResponse"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create Tenant's additional user",
-                "tags": [
-                    "users"
-                ],
-                "operationId": "TenantUserCreate",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "A user object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/TenantCreateUserRequest"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New user was created successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error creating new user",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user/confirmation": {
-            "get": {
-                "summary": "Confirm user signup",
-                "tags": [
-                    "UserConfirm"
-                ],
-                "operationId": "UserConfirm",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "client_id",
-                        "type": "string",
-                        "description": "Cognito Client ID"
-                    },
-                    {
-                        "in": "query",
-                        "name": "user_name",
-                        "type": "string",
-                        "description": "Cognito User Name"
-                    },
-                    {
-                        "in": "query",
-                        "name": "confirmation_code",
-                        "type": "string",
-                        "description": "Cognito Signup Confirmation Code"
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User has successfully confirmed",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Error confirming user",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "User confirmation error",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user/requestchangepassword": {
-            "post": {
-                "summary": "Request Change clients password",
-                "tags": [
-                    "Request-user-password"
-                ],
-                "operationId": "RequestChangePassword",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "new user password",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestChangePasswordRequest"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request for password change done successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error request changing password",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user/changepasswordloggedin": {
-            "post": {
-                "summary": "Change clients password when user is logged in",
-                "tags": [
-                    "User-password-logged-in"
-                ],
-                "operationId": "ChangePasswordLoggedIn",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "new user password when logged in",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ChangePasswordRequestLoggedIn"
-                        }
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New password changed successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error changing password",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user/changepassword": {
-            "post": {
-                "summary": "Change clients password",
-                "tags": [
-                    "User-password"
-                ],
-                "operationId": "ChangePassword",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "new user password",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ChangePasswordRequest"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New password changed successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error changing password",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
         "/signin": {
             "post": {
                 "summary": "SIO Sign In",
@@ -1633,9 +2296,8 @@
                     {
                         "name": "authorization",
                         "in": "header",
-                        "required": false,
                         "type": "string"
-                      }
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1723,621 +2385,6 @@
                 }
             }
         },
-        "/snapshots": {
-            "get": {
-                "summary": "Get a list of all snapshots",
-                "tags": [
-                    "Snapshots"
-                ],
-                "operationId": "SnapshotsListAll",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "capacity",
-                        "type": "boolean"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of all snapshots",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Snapshot"
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting a list of all snapshots",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/volumes/{volume}/recover": {
-            "post": {
-                "summary": "Initiate recover on volume",
-                "tags": [
-                    "Volumes"
-                ],
-                "operationId": "VolumeRecoverInitiate",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                      }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Volume recovery was initiated successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error initiating recovery on volume",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/volumes/{volume}/snapshots": {
-            "get": {
-                "summary": "Get a list of snapshots",
-                "tags": [
-                    "Snapshots"
-                ],
-                "operationId": "SnapshotsList",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of snapshots",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Snapshot"
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting a list of snapshots",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a new snapshot",
-                "tags": [
-                    "Snapshots"
-                ],
-                "operationId": "SnapshotCreate",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "A Snapshot object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Snapshot"
-                        }
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                      }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New snapshot was created successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error creating new snapshot",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/volumes/{volume}/snapshots/{snapshot}": {
-            "get": {
-                "summary": "Get the properties of a snapshot",
-                "tags": [
-                    "Snapshots"
-                ],
-                "operationId": "SnapshotGet",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "snapshot",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Properties of a snapshot",
-                        "schema": {
-                            "$ref": "#/definitions/Snapshot"
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting properties of a snapshot",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Delete a snapshot",
-                "tags": [
-                    "Snapshots"
-                ],
-                "operationId": "SnapshotDelete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "snapshot",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name":"force",
-                        "in":"query",
-                        "required":false,
-                        "type":"boolean",
-                        "default":false,
-                        "allowEmptyValue":true,
-                        "x-nullable": false
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A snapshot was deleted successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error deleting a snapshot",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "patch": {
-                "summary": "Modify a snapshot",
-                "tags": [
-                    "Snapshots"
-                ],
-                "operationId": "SnapshotModify",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "snapshot",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "A Snapshot object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Snapshot"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A snapshot was updated successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error updating a snapshot",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/volumes/{volume}/snapshots/{snapshot}/rollback": {
-            "patch": {
-                "summary": "Roll back to snapshot",
-                "tags": [
-                    "Snapshots"
-                ],
-                "operationId": "SnapshotRollback",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "snapshot",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Rollback successful",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error during rollback",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/attachments": {
-            "get": {
-                "summary": "Get a list of all attachments",
-                "tags": [
-                    "Attachments"
-                ],
-                "operationId": "AttachmentsListAll",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "List of all attachments",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Attachment"
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting a list of all attachments",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/volumes/{volume}/snapshots/{snapshot}/attachments": {
-            "get": {
-                "summary": "Get a list of attachments",
-                "tags": [
-                    "Attachments"
-                ],
-                "operationId": "AttachmentsList",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "snapshot",
-                        "type": "string",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of attachments",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Attachment"
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting a list of attachments",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a new attachment",
-                "tags": [
-                    "Attachments"
-                ],
-                "operationId": "AttachmentCreate",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "snapshot",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                      },
-                      {
-                        "in": "body",
-                        "name": "body",
-                        "description": "An Attachment object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Attachment"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New attachment was created successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error creating new attachment",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/volumes/{volume}/snapshots/{snapshot}/attachments/{node}": {
-            "get": {
-                "summary": "Get the properties of an attachment",
-                "tags": [
-                    "Attachments"
-                ],
-                "operationId": "AttachmentGet",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "snapshot",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "node",
-                        "type": "string",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Properties of an attachment",
-                        "schema": {
-                            "$ref": "#/definitions/Attachment"
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting properties of an attachment",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Delete an attachment",
-                "tags": [
-                    "Attachments"
-                ],
-                "operationId": "AttachmentDelete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "snapshot",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "node",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name":"force",
-                        "in":"query",
-                        "required":false,
-                        "type":"boolean",
-                        "default":false,
-                        "allowEmptyValue":true,
-                        "x-nullable": false
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "An attachment was deleted successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error deleting an attachment",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            },
-            "patch": {
-                "summary": "Modify an attachment",
-                "tags": [
-                    "Attachments"
-                ],
-                "operationId": "AttachmentModify",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "volume",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "snapshot",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "node",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "An Attachment object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Attachment"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "An attachment was updated successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error updating an attachment",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
         "/media": {
             "get": {
                 "summary": "Get a list of media",
@@ -2376,7 +2423,6 @@
                 {
                     "name": "authorization",
                     "in": "header",
-                    "required": false,
                     "type": "string"
                 }
             ],
@@ -2550,6 +2596,13 @@
                         "name": "capacity_group",
                         "type": "string",
                         "required": false
+                    },
+                    {
+                        "name": "reprofile",
+                        "in": "query",
+                        "type": "boolean",
+                        "required": false,
+                        "default":false
                     }
                 ],
                 "responses": {
@@ -2890,9 +2943,7 @@
                 }
             }
         },
-
-
-       "/healthcheck": {
+        "/healthcheck": {
             "get": {
                 "summary": "Check SIO's health",
                 "tags": [
@@ -3280,6 +3331,12 @@
                     "x-omitempty": false,
                     "type": "string"
                 },
+                "region": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "example": "us-east-1"
+                },
                 "zone": {
                     "x-isnullable": false,
                     "x-omitempty": false,
@@ -3329,6 +3386,12 @@
                     "x-go-name": "CloudProvider",
                     "x-isnullable": false,
                     "x-omitempty": false,
+                    "type": "string"
+                },
+                "nodecluster": {
+                    "x-go-name": "Cluster",
+                    "x-isnullable": false,
+                    "x-omitempty": true,
                     "type": "string"
                 }
             },
@@ -3761,6 +3824,14 @@
                     "type": "array",
                     "items": {
                         "type": "string"
+                    }
+                },
+                "attachments": {
+                    "x-go-name": "Attachments",
+                    "x-isnullable": true,
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Attachment"
                     }
                 }
             }
@@ -4416,6 +4487,13 @@
                     "x-omitempty": false,
                     "type": "boolean",
                     "title": "Read Only"
+                },
+                "allocated_resources": {
+                    "x-go-name": "AllocatedResources",
+                    "x-isnullable": true,
+                    "x-omitempty": true,
+                    "type": "string",
+                    "title": "Allocated performance resources"
                 }
             },
             "required": [

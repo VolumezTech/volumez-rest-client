@@ -46,7 +46,8 @@ func NewSnapshotRollbackOK() *SnapshotRollbackOK {
 	return &SnapshotRollbackOK{}
 }
 
-/* SnapshotRollbackOK describes a response with status code 200, with default header values.
+/*
+SnapshotRollbackOK describes a response with status code 200, with default header values.
 
 Rollback successful
 */
@@ -54,9 +55,44 @@ type SnapshotRollbackOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this snapshot rollback o k response has a 2xx status code
+func (o *SnapshotRollbackOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this snapshot rollback o k response has a 3xx status code
+func (o *SnapshotRollbackOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this snapshot rollback o k response has a 4xx status code
+func (o *SnapshotRollbackOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this snapshot rollback o k response has a 5xx status code
+func (o *SnapshotRollbackOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this snapshot rollback o k response a status code equal to that given
+func (o *SnapshotRollbackOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the snapshot rollback o k response
+func (o *SnapshotRollbackOK) Code() int {
+	return 200
+}
+
 func (o *SnapshotRollbackOK) Error() string {
 	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] snapshotRollbackOK  %+v", 200, o.Payload)
 }
+
+func (o *SnapshotRollbackOK) String() string {
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] snapshotRollbackOK  %+v", 200, o.Payload)
+}
+
 func (o *SnapshotRollbackOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewSnapshotRollbackDefault(code int) *SnapshotRollbackDefault {
 	}
 }
 
-/* SnapshotRollbackDefault describes a response with status code -1, with default header values.
+/*
+SnapshotRollbackDefault describes a response with status code -1, with default header values.
 
 Error during rollback
 */
@@ -88,6 +125,31 @@ type SnapshotRollbackDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this snapshot rollback default response has a 2xx status code
+func (o *SnapshotRollbackDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this snapshot rollback default response has a 3xx status code
+func (o *SnapshotRollbackDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this snapshot rollback default response has a 4xx status code
+func (o *SnapshotRollbackDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this snapshot rollback default response has a 5xx status code
+func (o *SnapshotRollbackDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this snapshot rollback default response a status code equal to that given
+func (o *SnapshotRollbackDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the snapshot rollback default response
@@ -98,6 +160,11 @@ func (o *SnapshotRollbackDefault) Code() int {
 func (o *SnapshotRollbackDefault) Error() string {
 	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] SnapshotRollback default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *SnapshotRollbackDefault) String() string {
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] SnapshotRollback default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *SnapshotRollbackDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -52,10 +52,12 @@ func NewTenantAPIAccessRefreshTokenParamsWithHTTPClient(client *http.Client) *Te
 	}
 }
 
-/* TenantAPIAccessRefreshTokenParams contains all the parameters to send to the API endpoint
-   for the tenant API access refresh token operation.
+/*
+TenantAPIAccessRefreshTokenParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the tenant API access refresh token operation.
+
+	Typically these are written to a http.Request.
 */
 type TenantAPIAccessRefreshTokenParams struct {
 

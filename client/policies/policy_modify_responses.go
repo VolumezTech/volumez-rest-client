@@ -46,7 +46,8 @@ func NewPolicyModifyOK() *PolicyModifyOK {
 	return &PolicyModifyOK{}
 }
 
-/* PolicyModifyOK describes a response with status code 200, with default header values.
+/*
+PolicyModifyOK describes a response with status code 200, with default header values.
 
 A policy was updated successfully
 */
@@ -54,9 +55,44 @@ type PolicyModifyOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this policy modify o k response has a 2xx status code
+func (o *PolicyModifyOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this policy modify o k response has a 3xx status code
+func (o *PolicyModifyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this policy modify o k response has a 4xx status code
+func (o *PolicyModifyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this policy modify o k response has a 5xx status code
+func (o *PolicyModifyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this policy modify o k response a status code equal to that given
+func (o *PolicyModifyOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the policy modify o k response
+func (o *PolicyModifyOK) Code() int {
+	return 200
+}
+
 func (o *PolicyModifyOK) Error() string {
 	return fmt.Sprintf("[PATCH /policies/{policy}][%d] policyModifyOK  %+v", 200, o.Payload)
 }
+
+func (o *PolicyModifyOK) String() string {
+	return fmt.Sprintf("[PATCH /policies/{policy}][%d] policyModifyOK  %+v", 200, o.Payload)
+}
+
 func (o *PolicyModifyOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewPolicyModifyDefault(code int) *PolicyModifyDefault {
 	}
 }
 
-/* PolicyModifyDefault describes a response with status code -1, with default header values.
+/*
+PolicyModifyDefault describes a response with status code -1, with default header values.
 
 Error updating a policy
 */
@@ -88,6 +125,31 @@ type PolicyModifyDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this policy modify default response has a 2xx status code
+func (o *PolicyModifyDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this policy modify default response has a 3xx status code
+func (o *PolicyModifyDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this policy modify default response has a 4xx status code
+func (o *PolicyModifyDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this policy modify default response has a 5xx status code
+func (o *PolicyModifyDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this policy modify default response a status code equal to that given
+func (o *PolicyModifyDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the policy modify default response
@@ -98,6 +160,11 @@ func (o *PolicyModifyDefault) Code() int {
 func (o *PolicyModifyDefault) Error() string {
 	return fmt.Sprintf("[PATCH /policies/{policy}][%d] PolicyModify default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *PolicyModifyDefault) String() string {
+	return fmt.Sprintf("[PATCH /policies/{policy}][%d] PolicyModify default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *PolicyModifyDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

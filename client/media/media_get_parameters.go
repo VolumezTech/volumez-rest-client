@@ -52,10 +52,12 @@ func NewMediaGetParamsWithHTTPClient(client *http.Client) *MediaGetParams {
 	}
 }
 
-/* MediaGetParams contains all the parameters to send to the API endpoint
-   for the media get operation.
+/*
+MediaGetParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the media get operation.
+
+	Typically these are written to a http.Request.
 */
 type MediaGetParams struct {
 

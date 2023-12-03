@@ -58,7 +58,8 @@ func NewVolumeCreateOK() *VolumeCreateOK {
 	return &VolumeCreateOK{}
 }
 
-/* VolumeCreateOK describes a response with status code 200, with default header values.
+/*
+VolumeCreateOK describes a response with status code 200, with default header values.
 
 Volume has been created successfully
 */
@@ -66,9 +67,44 @@ type VolumeCreateOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this volume create o k response has a 2xx status code
+func (o *VolumeCreateOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this volume create o k response has a 3xx status code
+func (o *VolumeCreateOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this volume create o k response has a 4xx status code
+func (o *VolumeCreateOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this volume create o k response has a 5xx status code
+func (o *VolumeCreateOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this volume create o k response a status code equal to that given
+func (o *VolumeCreateOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the volume create o k response
+func (o *VolumeCreateOK) Code() int {
+	return 200
+}
+
 func (o *VolumeCreateOK) Error() string {
 	return fmt.Sprintf("[POST /volumes][%d] volumeCreateOK  %+v", 200, o.Payload)
 }
+
+func (o *VolumeCreateOK) String() string {
+	return fmt.Sprintf("[POST /volumes][%d] volumeCreateOK  %+v", 200, o.Payload)
+}
+
 func (o *VolumeCreateOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -90,7 +126,8 @@ func NewVolumeCreateAccepted() *VolumeCreateAccepted {
 	return &VolumeCreateAccepted{}
 }
 
-/* VolumeCreateAccepted describes a response with status code 202, with default header values.
+/*
+VolumeCreateAccepted describes a response with status code 202, with default header values.
 
 202 response
 */
@@ -98,9 +135,44 @@ type VolumeCreateAccepted struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this volume create accepted response has a 2xx status code
+func (o *VolumeCreateAccepted) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this volume create accepted response has a 3xx status code
+func (o *VolumeCreateAccepted) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this volume create accepted response has a 4xx status code
+func (o *VolumeCreateAccepted) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this volume create accepted response has a 5xx status code
+func (o *VolumeCreateAccepted) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this volume create accepted response a status code equal to that given
+func (o *VolumeCreateAccepted) IsCode(code int) bool {
+	return code == 202
+}
+
+// Code gets the status code for the volume create accepted response
+func (o *VolumeCreateAccepted) Code() int {
+	return 202
+}
+
 func (o *VolumeCreateAccepted) Error() string {
 	return fmt.Sprintf("[POST /volumes][%d] volumeCreateAccepted  %+v", 202, o.Payload)
 }
+
+func (o *VolumeCreateAccepted) String() string {
+	return fmt.Sprintf("[POST /volumes][%d] volumeCreateAccepted  %+v", 202, o.Payload)
+}
+
 func (o *VolumeCreateAccepted) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -122,7 +194,8 @@ func NewVolumeCreateConflict() *VolumeCreateConflict {
 	return &VolumeCreateConflict{}
 }
 
-/* VolumeCreateConflict describes a response with status code 409, with default header values.
+/*
+VolumeCreateConflict describes a response with status code 409, with default header values.
 
 409 response
 */
@@ -130,9 +203,44 @@ type VolumeCreateConflict struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this volume create conflict response has a 2xx status code
+func (o *VolumeCreateConflict) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this volume create conflict response has a 3xx status code
+func (o *VolumeCreateConflict) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this volume create conflict response has a 4xx status code
+func (o *VolumeCreateConflict) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this volume create conflict response has a 5xx status code
+func (o *VolumeCreateConflict) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this volume create conflict response a status code equal to that given
+func (o *VolumeCreateConflict) IsCode(code int) bool {
+	return code == 409
+}
+
+// Code gets the status code for the volume create conflict response
+func (o *VolumeCreateConflict) Code() int {
+	return 409
+}
+
 func (o *VolumeCreateConflict) Error() string {
 	return fmt.Sprintf("[POST /volumes][%d] volumeCreateConflict  %+v", 409, o.Payload)
 }
+
+func (o *VolumeCreateConflict) String() string {
+	return fmt.Sprintf("[POST /volumes][%d] volumeCreateConflict  %+v", 409, o.Payload)
+}
+
 func (o *VolumeCreateConflict) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -156,7 +264,8 @@ func NewVolumeCreateDefault(code int) *VolumeCreateDefault {
 	}
 }
 
-/* VolumeCreateDefault describes a response with status code -1, with default header values.
+/*
+VolumeCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new volume
 */
@@ -164,6 +273,31 @@ type VolumeCreateDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this volume create default response has a 2xx status code
+func (o *VolumeCreateDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this volume create default response has a 3xx status code
+func (o *VolumeCreateDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this volume create default response has a 4xx status code
+func (o *VolumeCreateDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this volume create default response has a 5xx status code
+func (o *VolumeCreateDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this volume create default response a status code equal to that given
+func (o *VolumeCreateDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the volume create default response
@@ -174,6 +308,11 @@ func (o *VolumeCreateDefault) Code() int {
 func (o *VolumeCreateDefault) Error() string {
 	return fmt.Sprintf("[POST /volumes][%d] VolumeCreate default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *VolumeCreateDefault) String() string {
+	return fmt.Sprintf("[POST /volumes][%d] VolumeCreate default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *VolumeCreateDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

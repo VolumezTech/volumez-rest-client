@@ -52,10 +52,12 @@ func NewTenanthostgetParamsWithHTTPClient(client *http.Client) *TenanthostgetPar
 	}
 }
 
-/* TenanthostgetParams contains all the parameters to send to the API endpoint
-   for the tenanthostget operation.
+/*
+TenanthostgetParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the tenanthostget operation.
+
+	Typically these are written to a http.Request.
 */
 type TenanthostgetParams struct {
 

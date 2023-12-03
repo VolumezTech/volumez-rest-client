@@ -46,7 +46,8 @@ func NewConnectivityGetOK() *ConnectivityGetOK {
 	return &ConnectivityGetOK{}
 }
 
-/* ConnectivityGetOK describes a response with status code 200, with default header values.
+/*
+ConnectivityGetOK describes a response with status code 200, with default header values.
 
 Properties of a connectivity
 */
@@ -54,9 +55,44 @@ type ConnectivityGetOK struct {
 	Payload *models.Connectivity
 }
 
+// IsSuccess returns true when this connectivity get o k response has a 2xx status code
+func (o *ConnectivityGetOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this connectivity get o k response has a 3xx status code
+func (o *ConnectivityGetOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this connectivity get o k response has a 4xx status code
+func (o *ConnectivityGetOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this connectivity get o k response has a 5xx status code
+func (o *ConnectivityGetOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this connectivity get o k response a status code equal to that given
+func (o *ConnectivityGetOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the connectivity get o k response
+func (o *ConnectivityGetOK) Code() int {
+	return 200
+}
+
 func (o *ConnectivityGetOK) Error() string {
 	return fmt.Sprintf("[GET /connectivities/{connectivity}][%d] connectivityGetOK  %+v", 200, o.Payload)
 }
+
+func (o *ConnectivityGetOK) String() string {
+	return fmt.Sprintf("[GET /connectivities/{connectivity}][%d] connectivityGetOK  %+v", 200, o.Payload)
+}
+
 func (o *ConnectivityGetOK) GetPayload() *models.Connectivity {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewConnectivityGetDefault(code int) *ConnectivityGetDefault {
 	}
 }
 
-/* ConnectivityGetDefault describes a response with status code -1, with default header values.
+/*
+ConnectivityGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a connectivity
 */
@@ -88,6 +125,31 @@ type ConnectivityGetDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this connectivity get default response has a 2xx status code
+func (o *ConnectivityGetDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this connectivity get default response has a 3xx status code
+func (o *ConnectivityGetDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this connectivity get default response has a 4xx status code
+func (o *ConnectivityGetDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this connectivity get default response has a 5xx status code
+func (o *ConnectivityGetDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this connectivity get default response a status code equal to that given
+func (o *ConnectivityGetDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the connectivity get default response
@@ -98,6 +160,11 @@ func (o *ConnectivityGetDefault) Code() int {
 func (o *ConnectivityGetDefault) Error() string {
 	return fmt.Sprintf("[GET /connectivities/{connectivity}][%d] ConnectivityGet default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *ConnectivityGetDefault) String() string {
+	return fmt.Sprintf("[GET /connectivities/{connectivity}][%d] ConnectivityGet default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *ConnectivityGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

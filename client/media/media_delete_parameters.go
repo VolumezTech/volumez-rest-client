@@ -53,10 +53,12 @@ func NewMediaDeleteParamsWithHTTPClient(client *http.Client) *MediaDeleteParams 
 	}
 }
 
-/* MediaDeleteParams contains all the parameters to send to the API endpoint
-   for the media delete operation.
+/*
+MediaDeleteParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the media delete operation.
+
+	Typically these are written to a http.Request.
 */
 type MediaDeleteParams struct {
 

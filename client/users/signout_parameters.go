@@ -54,10 +54,12 @@ func NewSignoutParamsWithHTTPClient(client *http.Client) *SignoutParams {
 	}
 }
 
-/* SignoutParams contains all the parameters to send to the API endpoint
-   for the signout operation.
+/*
+SignoutParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the signout operation.
+
+	Typically these are written to a http.Request.
 */
 type SignoutParams struct {
 

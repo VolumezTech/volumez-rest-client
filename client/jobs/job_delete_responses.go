@@ -46,7 +46,8 @@ func NewJobDeleteOK() *JobDeleteOK {
 	return &JobDeleteOK{}
 }
 
-/* JobDeleteOK describes a response with status code 200, with default header values.
+/*
+JobDeleteOK describes a response with status code 200, with default header values.
 
 A job was deleted successfully
 */
@@ -54,9 +55,44 @@ type JobDeleteOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this job delete o k response has a 2xx status code
+func (o *JobDeleteOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this job delete o k response has a 3xx status code
+func (o *JobDeleteOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this job delete o k response has a 4xx status code
+func (o *JobDeleteOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this job delete o k response has a 5xx status code
+func (o *JobDeleteOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this job delete o k response a status code equal to that given
+func (o *JobDeleteOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the job delete o k response
+func (o *JobDeleteOK) Code() int {
+	return 200
+}
+
 func (o *JobDeleteOK) Error() string {
 	return fmt.Sprintf("[DELETE /jobs/{job}][%d] jobDeleteOK  %+v", 200, o.Payload)
 }
+
+func (o *JobDeleteOK) String() string {
+	return fmt.Sprintf("[DELETE /jobs/{job}][%d] jobDeleteOK  %+v", 200, o.Payload)
+}
+
 func (o *JobDeleteOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewJobDeleteDefault(code int) *JobDeleteDefault {
 	}
 }
 
-/* JobDeleteDefault describes a response with status code -1, with default header values.
+/*
+JobDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a job
 */
@@ -88,6 +125,31 @@ type JobDeleteDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this job delete default response has a 2xx status code
+func (o *JobDeleteDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this job delete default response has a 3xx status code
+func (o *JobDeleteDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this job delete default response has a 4xx status code
+func (o *JobDeleteDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this job delete default response has a 5xx status code
+func (o *JobDeleteDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this job delete default response a status code equal to that given
+func (o *JobDeleteDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the job delete default response
@@ -98,6 +160,11 @@ func (o *JobDeleteDefault) Code() int {
 func (o *JobDeleteDefault) Error() string {
 	return fmt.Sprintf("[DELETE /jobs/{job}][%d] JobDelete default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *JobDeleteDefault) String() string {
+	return fmt.Sprintf("[DELETE /jobs/{job}][%d] JobDelete default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *JobDeleteDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

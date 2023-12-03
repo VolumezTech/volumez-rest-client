@@ -46,7 +46,8 @@ func NewAttachmentModifyOK() *AttachmentModifyOK {
 	return &AttachmentModifyOK{}
 }
 
-/* AttachmentModifyOK describes a response with status code 200, with default header values.
+/*
+AttachmentModifyOK describes a response with status code 200, with default header values.
 
 An attachment was updated successfully
 */
@@ -54,9 +55,44 @@ type AttachmentModifyOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this attachment modify o k response has a 2xx status code
+func (o *AttachmentModifyOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this attachment modify o k response has a 3xx status code
+func (o *AttachmentModifyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this attachment modify o k response has a 4xx status code
+func (o *AttachmentModifyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this attachment modify o k response has a 5xx status code
+func (o *AttachmentModifyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this attachment modify o k response a status code equal to that given
+func (o *AttachmentModifyOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the attachment modify o k response
+func (o *AttachmentModifyOK) Code() int {
+	return 200
+}
+
 func (o *AttachmentModifyOK) Error() string {
 	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] attachmentModifyOK  %+v", 200, o.Payload)
 }
+
+func (o *AttachmentModifyOK) String() string {
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] attachmentModifyOK  %+v", 200, o.Payload)
+}
+
 func (o *AttachmentModifyOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewAttachmentModifyDefault(code int) *AttachmentModifyDefault {
 	}
 }
 
-/* AttachmentModifyDefault describes a response with status code -1, with default header values.
+/*
+AttachmentModifyDefault describes a response with status code -1, with default header values.
 
 Error updating an attachment
 */
@@ -88,6 +125,31 @@ type AttachmentModifyDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this attachment modify default response has a 2xx status code
+func (o *AttachmentModifyDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this attachment modify default response has a 3xx status code
+func (o *AttachmentModifyDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this attachment modify default response has a 4xx status code
+func (o *AttachmentModifyDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this attachment modify default response has a 5xx status code
+func (o *AttachmentModifyDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this attachment modify default response a status code equal to that given
+func (o *AttachmentModifyDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the attachment modify default response
@@ -98,6 +160,11 @@ func (o *AttachmentModifyDefault) Code() int {
 func (o *AttachmentModifyDefault) Error() string {
 	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] AttachmentModify default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *AttachmentModifyDefault) String() string {
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] AttachmentModify default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *AttachmentModifyDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

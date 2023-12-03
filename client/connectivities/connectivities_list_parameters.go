@@ -52,10 +52,12 @@ func NewConnectivitiesListParamsWithHTTPClient(client *http.Client) *Connectivit
 	}
 }
 
-/* ConnectivitiesListParams contains all the parameters to send to the API endpoint
-   for the connectivities list operation.
+/*
+ConnectivitiesListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the connectivities list operation.
+
+	Typically these are written to a http.Request.
 */
 type ConnectivitiesListParams struct {
 	timeout    time.Duration

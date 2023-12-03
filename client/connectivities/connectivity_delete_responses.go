@@ -46,7 +46,8 @@ func NewConnectivityDeleteOK() *ConnectivityDeleteOK {
 	return &ConnectivityDeleteOK{}
 }
 
-/* ConnectivityDeleteOK describes a response with status code 200, with default header values.
+/*
+ConnectivityDeleteOK describes a response with status code 200, with default header values.
 
 A connectivity was deleted successfully
 */
@@ -54,9 +55,44 @@ type ConnectivityDeleteOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this connectivity delete o k response has a 2xx status code
+func (o *ConnectivityDeleteOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this connectivity delete o k response has a 3xx status code
+func (o *ConnectivityDeleteOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this connectivity delete o k response has a 4xx status code
+func (o *ConnectivityDeleteOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this connectivity delete o k response has a 5xx status code
+func (o *ConnectivityDeleteOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this connectivity delete o k response a status code equal to that given
+func (o *ConnectivityDeleteOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the connectivity delete o k response
+func (o *ConnectivityDeleteOK) Code() int {
+	return 200
+}
+
 func (o *ConnectivityDeleteOK) Error() string {
 	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] connectivityDeleteOK  %+v", 200, o.Payload)
 }
+
+func (o *ConnectivityDeleteOK) String() string {
+	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] connectivityDeleteOK  %+v", 200, o.Payload)
+}
+
 func (o *ConnectivityDeleteOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewConnectivityDeleteDefault(code int) *ConnectivityDeleteDefault {
 	}
 }
 
-/* ConnectivityDeleteDefault describes a response with status code -1, with default header values.
+/*
+ConnectivityDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a connectivity
 */
@@ -88,6 +125,31 @@ type ConnectivityDeleteDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this connectivity delete default response has a 2xx status code
+func (o *ConnectivityDeleteDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this connectivity delete default response has a 3xx status code
+func (o *ConnectivityDeleteDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this connectivity delete default response has a 4xx status code
+func (o *ConnectivityDeleteDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this connectivity delete default response has a 5xx status code
+func (o *ConnectivityDeleteDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this connectivity delete default response a status code equal to that given
+func (o *ConnectivityDeleteDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the connectivity delete default response
@@ -98,6 +160,11 @@ func (o *ConnectivityDeleteDefault) Code() int {
 func (o *ConnectivityDeleteDefault) Error() string {
 	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] ConnectivityDelete default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *ConnectivityDeleteDefault) String() string {
+	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] ConnectivityDelete default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *ConnectivityDeleteDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

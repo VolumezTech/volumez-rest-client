@@ -52,10 +52,12 @@ func NewTenantusergetParamsWithHTTPClient(client *http.Client) *TenantusergetPar
 	}
 }
 
-/* TenantusergetParams contains all the parameters to send to the API endpoint
-   for the tenantuserget operation.
+/*
+TenantusergetParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the tenantuserget operation.
+
+	Typically these are written to a http.Request.
 */
 type TenantusergetParams struct {
 	timeout    time.Duration

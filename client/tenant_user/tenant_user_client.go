@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-  Tenantuserget gets tenant user
+Tenantuserget gets tenant user
 */
 func (a *Client) Tenantuserget(params *TenantusergetParams, opts ...ClientOption) (*TenantusergetOK, error) {
 	// TODO: Validate the params before sending

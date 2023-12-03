@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-  SignIn s i o sign in
+SignIn s i o sign in
 */
 func (a *Client) SignIn(params *SignInParams, opts ...ClientOption) (*SignInOK, error) {
 	// TODO: Validate the params before sending

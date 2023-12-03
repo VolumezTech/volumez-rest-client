@@ -53,10 +53,12 @@ func NewPolicyPlanParamsWithHTTPClient(client *http.Client) *PolicyPlanParams {
 	}
 }
 
-/* PolicyPlanParams contains all the parameters to send to the API endpoint
-   for the policy plan operation.
+/*
+PolicyPlanParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the policy plan operation.
+
+	Typically these are written to a http.Request.
 */
 type PolicyPlanParams struct {
 

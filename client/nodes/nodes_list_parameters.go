@@ -52,10 +52,12 @@ func NewNodesListParamsWithHTTPClient(client *http.Client) *NodesListParams {
 	}
 }
 
-/* NodesListParams contains all the parameters to send to the API endpoint
-   for the nodes list operation.
+/*
+NodesListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the nodes list operation.
+
+	Typically these are written to a http.Request.
 */
 type NodesListParams struct {
 	timeout    time.Duration

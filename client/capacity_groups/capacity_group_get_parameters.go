@@ -52,10 +52,12 @@ func NewCapacityGroupGetParamsWithHTTPClient(client *http.Client) *CapacityGroup
 	}
 }
 
-/* CapacityGroupGetParams contains all the parameters to send to the API endpoint
-   for the capacity group get operation.
+/*
+CapacityGroupGetParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the capacity group get operation.
+
+	Typically these are written to a http.Request.
 */
 type CapacityGroupGetParams struct {
 	timeout    time.Duration

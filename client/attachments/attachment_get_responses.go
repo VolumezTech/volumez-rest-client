@@ -46,7 +46,8 @@ func NewAttachmentGetOK() *AttachmentGetOK {
 	return &AttachmentGetOK{}
 }
 
-/* AttachmentGetOK describes a response with status code 200, with default header values.
+/*
+AttachmentGetOK describes a response with status code 200, with default header values.
 
 Properties of an attachment
 */
@@ -54,9 +55,44 @@ type AttachmentGetOK struct {
 	Payload *models.Attachment
 }
 
+// IsSuccess returns true when this attachment get o k response has a 2xx status code
+func (o *AttachmentGetOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this attachment get o k response has a 3xx status code
+func (o *AttachmentGetOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this attachment get o k response has a 4xx status code
+func (o *AttachmentGetOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this attachment get o k response has a 5xx status code
+func (o *AttachmentGetOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this attachment get o k response a status code equal to that given
+func (o *AttachmentGetOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the attachment get o k response
+func (o *AttachmentGetOK) Code() int {
+	return 200
+}
+
 func (o *AttachmentGetOK) Error() string {
 	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] attachmentGetOK  %+v", 200, o.Payload)
 }
+
+func (o *AttachmentGetOK) String() string {
+	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] attachmentGetOK  %+v", 200, o.Payload)
+}
+
 func (o *AttachmentGetOK) GetPayload() *models.Attachment {
 	return o.Payload
 }
@@ -80,7 +116,8 @@ func NewAttachmentGetDefault(code int) *AttachmentGetDefault {
 	}
 }
 
-/* AttachmentGetDefault describes a response with status code -1, with default header values.
+/*
+AttachmentGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of an attachment
 */
@@ -88,6 +125,31 @@ type AttachmentGetDefault struct {
 	_statusCode int
 
 	Payload *models.ErrorResponse
+}
+
+// IsSuccess returns true when this attachment get default response has a 2xx status code
+func (o *AttachmentGetDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this attachment get default response has a 3xx status code
+func (o *AttachmentGetDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this attachment get default response has a 4xx status code
+func (o *AttachmentGetDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this attachment get default response has a 5xx status code
+func (o *AttachmentGetDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this attachment get default response a status code equal to that given
+func (o *AttachmentGetDefault) IsCode(code int) bool {
+	return o._statusCode == code
 }
 
 // Code gets the status code for the attachment get default response
@@ -98,6 +160,11 @@ func (o *AttachmentGetDefault) Code() int {
 func (o *AttachmentGetDefault) Error() string {
 	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] AttachmentGet default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *AttachmentGetDefault) String() string {
+	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] AttachmentGet default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *AttachmentGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

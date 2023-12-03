@@ -28,6 +28,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	ConsistencyGroupSnapshotCreate(params *ConsistencyGroupSnapshotCreateParams, opts ...ClientOption) (*ConsistencyGroupSnapshotCreateOK, error)
+
 	SnapshotCreate(params *SnapshotCreateParams, opts ...ClientOption) (*SnapshotCreateOK, error)
 
 	SnapshotDelete(params *SnapshotDeleteParams, opts ...ClientOption) (*SnapshotDeleteOK, error)
@@ -46,7 +48,44 @@ type ClientService interface {
 }
 
 /*
-  SnapshotCreate creates a new snapshot
+ConsistencyGroupSnapshotCreate creates a new snapshot
+*/
+func (a *Client) ConsistencyGroupSnapshotCreate(params *ConsistencyGroupSnapshotCreateParams, opts ...ClientOption) (*ConsistencyGroupSnapshotCreateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewConsistencyGroupSnapshotCreateParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "ConsistencyGroupSnapshotCreate",
+		Method:             "POST",
+		PathPattern:        "/volumes/snapshot",
+		ProducesMediaTypes: []string{"text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ConsistencyGroupSnapshotCreateReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ConsistencyGroupSnapshotCreateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ConsistencyGroupSnapshotCreateDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+SnapshotCreate creates a new snapshot
 */
 func (a *Client) SnapshotCreate(params *SnapshotCreateParams, opts ...ClientOption) (*SnapshotCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -83,7 +122,7 @@ func (a *Client) SnapshotCreate(params *SnapshotCreateParams, opts ...ClientOpti
 }
 
 /*
-  SnapshotDelete deletes a snapshot
+SnapshotDelete deletes a snapshot
 */
 func (a *Client) SnapshotDelete(params *SnapshotDeleteParams, opts ...ClientOption) (*SnapshotDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -120,7 +159,7 @@ func (a *Client) SnapshotDelete(params *SnapshotDeleteParams, opts ...ClientOpti
 }
 
 /*
-  SnapshotGet gets the properties of a snapshot
+SnapshotGet gets the properties of a snapshot
 */
 func (a *Client) SnapshotGet(params *SnapshotGetParams, opts ...ClientOption) (*SnapshotGetOK, error) {
 	// TODO: Validate the params before sending
@@ -157,7 +196,7 @@ func (a *Client) SnapshotGet(params *SnapshotGetParams, opts ...ClientOption) (*
 }
 
 /*
-  SnapshotModify modifies a snapshot
+SnapshotModify modifies a snapshot
 */
 func (a *Client) SnapshotModify(params *SnapshotModifyParams, opts ...ClientOption) (*SnapshotModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -194,7 +233,7 @@ func (a *Client) SnapshotModify(params *SnapshotModifyParams, opts ...ClientOpti
 }
 
 /*
-  SnapshotRollback rolls back to snapshot
+SnapshotRollback rolls back to snapshot
 */
 func (a *Client) SnapshotRollback(params *SnapshotRollbackParams, opts ...ClientOption) (*SnapshotRollbackOK, error) {
 	// TODO: Validate the params before sending
@@ -231,7 +270,7 @@ func (a *Client) SnapshotRollback(params *SnapshotRollbackParams, opts ...Client
 }
 
 /*
-  SnapshotsList gets a list of snapshots
+SnapshotsList gets a list of snapshots
 */
 func (a *Client) SnapshotsList(params *SnapshotsListParams, opts ...ClientOption) (*SnapshotsListOK, error) {
 	// TODO: Validate the params before sending
@@ -268,7 +307,7 @@ func (a *Client) SnapshotsList(params *SnapshotsListParams, opts ...ClientOption
 }
 
 /*
-  SnapshotsListAll gets a list of all snapshots
+SnapshotsListAll gets a list of all snapshots
 */
 func (a *Client) SnapshotsListAll(params *SnapshotsListAllParams, opts ...ClientOption) (*SnapshotsListAllOK, error) {
 	// TODO: Validate the params before sending

@@ -52,7 +52,7 @@ type ClientService interface {
 }
 
 /*
-  MediaAssign assigns media
+MediaAssign assigns media
 */
 func (a *Client) MediaAssign(params *MediaAssignParams, opts ...ClientOption) (*MediaAssignOK, error) {
 	// TODO: Validate the params before sending
@@ -89,7 +89,7 @@ func (a *Client) MediaAssign(params *MediaAssignParams, opts ...ClientOption) (*
 }
 
 /*
-  MediaDelete deletes a media
+MediaDelete deletes a media
 */
 func (a *Client) MediaDelete(params *MediaDeleteParams, opts ...ClientOption) (*MediaDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -126,7 +126,7 @@ func (a *Client) MediaDelete(params *MediaDeleteParams, opts ...ClientOption) (*
 }
 
 /*
-  MediaGet gets the properties of a media
+MediaGet gets the properties of a media
 */
 func (a *Client) MediaGet(params *MediaGetParams, opts ...ClientOption) (*MediaGetOK, error) {
 	// TODO: Validate the params before sending
@@ -163,7 +163,7 @@ func (a *Client) MediaGet(params *MediaGetParams, opts ...ClientOption) (*MediaG
 }
 
 /*
-  MediaLedOff turns the media l e d off
+MediaLedOff turns the media l e d off
 */
 func (a *Client) MediaLedOff(params *MediaLedOffParams, opts ...ClientOption) (*MediaLedOffOK, error) {
 	// TODO: Validate the params before sending
@@ -200,7 +200,7 @@ func (a *Client) MediaLedOff(params *MediaLedOffParams, opts ...ClientOption) (*
 }
 
 /*
-  MediaLedOn turns the media l e d on
+MediaLedOn turns the media l e d on
 */
 func (a *Client) MediaLedOn(params *MediaLedOnParams, opts ...ClientOption) (*MediaLedOnOK, error) {
 	// TODO: Validate the params before sending
@@ -237,7 +237,7 @@ func (a *Client) MediaLedOn(params *MediaLedOnParams, opts ...ClientOption) (*Me
 }
 
 /*
-  MediaList gets a list of media
+MediaList gets a list of media
 */
 func (a *Client) MediaList(params *MediaListParams, opts ...ClientOption) (*MediaListOK, error) {
 	// TODO: Validate the params before sending
@@ -274,7 +274,7 @@ func (a *Client) MediaList(params *MediaListParams, opts ...ClientOption) (*Medi
 }
 
 /*
-  MediaModify modifies a media properties
+MediaModify modifies a media properties
 */
 func (a *Client) MediaModify(params *MediaModifyParams, opts ...ClientOption) (*MediaModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -311,7 +311,7 @@ func (a *Client) MediaModify(params *MediaModifyParams, opts ...ClientOption) (*
 }
 
 /*
-  MediaProfile profiles a media deprecated
+MediaProfile profiles a media deprecated
 */
 func (a *Client) MediaProfile(params *MediaProfileParams, opts ...ClientOption) (*MediaProfileOK, error) {
 	// TODO: Validate the params before sending
@@ -348,7 +348,7 @@ func (a *Client) MediaProfile(params *MediaProfileParams, opts ...ClientOption) 
 }
 
 /*
-  MediaProfileModify modifies a media profile
+MediaProfileModify modifies a media profile
 */
 func (a *Client) MediaProfileModify(params *MediaProfileModifyParams, opts ...ClientOption) (*MediaProfileModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -385,7 +385,7 @@ func (a *Client) MediaProfileModify(params *MediaProfileModifyParams, opts ...Cl
 }
 
 /*
-  MediaUnassign unassigns media
+MediaUnassign unassigns media
 */
 func (a *Client) MediaUnassign(params *MediaUnassignParams, opts ...ClientOption) (*MediaUnassignOK, error) {
 	// TODO: Validate the params before sending

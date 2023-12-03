@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-  VersionGet gets version of sio
+VersionGet gets version of sio
 */
 func (a *Client) VersionGet(params *VersionGetParams, opts ...ClientOption) (*VersionGetOK, error) {
 	// TODO: Validate the params before sending

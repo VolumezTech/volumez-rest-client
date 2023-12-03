@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-  UserConfirm confirms user signup
+UserConfirm confirms user signup
 */
 func (a *Client) UserConfirm(params *UserConfirmParams, opts ...ClientOption) (*UserConfirmOK, error) {
 	// TODO: Validate the params before sending

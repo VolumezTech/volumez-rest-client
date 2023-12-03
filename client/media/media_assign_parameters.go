@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 )
 
 // NewMediaAssignParams creates a new MediaAssignParams object,
@@ -52,10 +53,12 @@ func NewMediaAssignParamsWithHTTPClient(client *http.Client) *MediaAssignParams 
 	}
 }
 
-/* MediaAssignParams contains all the parameters to send to the API endpoint
-   for the media assign operation.
+/*
+MediaAssignParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the media assign operation.
+
+	Typically these are written to a http.Request.
 */
 type MediaAssignParams struct {
 
@@ -64,6 +67,9 @@ type MediaAssignParams struct {
 
 	// Media.
 	Media string
+
+	// Reprofile.
+	Reprofile *bool
 
 	timeout    time.Duration
 	Context    context.Context
@@ -82,7 +88,18 @@ func (o *MediaAssignParams) WithDefaults() *MediaAssignParams {
 //
 // All values with no default are reset to their zero value.
 func (o *MediaAssignParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		reprofileDefault = bool(false)
+	)
+
+	val := MediaAssignParams{
+		Reprofile: &reprofileDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the media assign params
@@ -140,6 +157,17 @@ func (o *MediaAssignParams) SetMedia(media string) {
 	o.Media = media
 }
 
+// WithReprofile adds the reprofile to the media assign params
+func (o *MediaAssignParams) WithReprofile(reprofile *bool) *MediaAssignParams {
+	o.SetReprofile(reprofile)
+	return o
+}
+
+// SetReprofile adds the reprofile to the media assign params
+func (o *MediaAssignParams) SetReprofile(reprofile *bool) {
+	o.Reprofile = reprofile
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *MediaAssignParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -168,6 +196,23 @@ func (o *MediaAssignParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	// path param media
 	if err := r.SetPathParam("media", o.Media); err != nil {
 		return err
+	}
+
+	if o.Reprofile != nil {
+
+		// query param reprofile
+		var qrReprofile bool
+
+		if o.Reprofile != nil {
+			qrReprofile = *o.Reprofile
+		}
+		qReprofile := swag.FormatBool(qrReprofile)
+		if qReprofile != "" {
+
+			if err := r.SetQueryParam("reprofile", qReprofile); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {
