@@ -203,6 +203,8 @@ func (m *Snapshot) validateTime(formats strfmt.Registry) error {
 	if err := m.Time.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("time")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("time")
 		}
 		return err
 	}

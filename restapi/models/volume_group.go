@@ -145,6 +145,8 @@ func (m *VolumeGroup) validateAttachments(formats strfmt.Registry) error {
 			if err := m.Attachments[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("attachments" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("attachments" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -190,9 +192,16 @@ func (m *VolumeGroup) contextValidateAttachments(ctx context.Context, formats st
 	for i := 0; i < len(m.Attachments); i++ {
 
 		if m.Attachments[i] != nil {
+
+			if swag.IsZero(m.Attachments[i]) { // not required
+				return nil
+			}
+
 			if err := m.Attachments[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("attachments" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("attachments" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

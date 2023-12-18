@@ -55,9 +55,44 @@ type NetworkGetOK struct {
 	Payload *models.Network
 }
 
+// IsSuccess returns true when this network get o k response has a 2xx status code
+func (o *NetworkGetOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this network get o k response has a 3xx status code
+func (o *NetworkGetOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this network get o k response has a 4xx status code
+func (o *NetworkGetOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this network get o k response has a 5xx status code
+func (o *NetworkGetOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this network get o k response a status code equal to that given
+func (o *NetworkGetOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the network get o k response
+func (o *NetworkGetOK) Code() int {
+	return 200
+}
+
 func (o *NetworkGetOK) Error() string {
 	return fmt.Sprintf("[GET /networks/{network}][%d] networkGetOK  %+v", 200, o.Payload)
 }
+
+func (o *NetworkGetOK) String() string {
+	return fmt.Sprintf("[GET /networks/{network}][%d] networkGetOK  %+v", 200, o.Payload)
+}
+
 func (o *NetworkGetOK) GetPayload() *models.Network {
 	return o.Payload
 }
@@ -92,6 +127,31 @@ type NetworkGetDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this network get default response has a 2xx status code
+func (o *NetworkGetDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this network get default response has a 3xx status code
+func (o *NetworkGetDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this network get default response has a 4xx status code
+func (o *NetworkGetDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this network get default response has a 5xx status code
+func (o *NetworkGetDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this network get default response a status code equal to that given
+func (o *NetworkGetDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the network get default response
 func (o *NetworkGetDefault) Code() int {
 	return o._statusCode
@@ -100,6 +160,11 @@ func (o *NetworkGetDefault) Code() int {
 func (o *NetworkGetDefault) Error() string {
 	return fmt.Sprintf("[GET /networks/{network}][%d] NetworkGet default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *NetworkGetDefault) String() string {
+	return fmt.Sprintf("[GET /networks/{network}][%d] NetworkGet default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *NetworkGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

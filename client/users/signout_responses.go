@@ -55,9 +55,44 @@ type SignoutOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this signout o k response has a 2xx status code
+func (o *SignoutOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this signout o k response has a 3xx status code
+func (o *SignoutOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this signout o k response has a 4xx status code
+func (o *SignoutOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this signout o k response has a 5xx status code
+func (o *SignoutOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this signout o k response a status code equal to that given
+func (o *SignoutOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the signout o k response
+func (o *SignoutOK) Code() int {
+	return 200
+}
+
 func (o *SignoutOK) Error() string {
 	return fmt.Sprintf("[POST /signout][%d] signoutOK  %+v", 200, o.Payload)
 }
+
+func (o *SignoutOK) String() string {
+	return fmt.Sprintf("[POST /signout][%d] signoutOK  %+v", 200, o.Payload)
+}
+
 func (o *SignoutOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -92,6 +127,31 @@ type SignoutDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this signout default response has a 2xx status code
+func (o *SignoutDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this signout default response has a 3xx status code
+func (o *SignoutDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this signout default response has a 4xx status code
+func (o *SignoutDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this signout default response has a 5xx status code
+func (o *SignoutDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this signout default response a status code equal to that given
+func (o *SignoutDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the signout default response
 func (o *SignoutDefault) Code() int {
 	return o._statusCode
@@ -100,6 +160,11 @@ func (o *SignoutDefault) Code() int {
 func (o *SignoutDefault) Error() string {
 	return fmt.Sprintf("[POST /signout][%d] Signout default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *SignoutDefault) String() string {
+	return fmt.Sprintf("[POST /signout][%d] Signout default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *SignoutDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

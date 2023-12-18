@@ -55,9 +55,44 @@ type ConnectivityModifyOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this connectivity modify o k response has a 2xx status code
+func (o *ConnectivityModifyOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this connectivity modify o k response has a 3xx status code
+func (o *ConnectivityModifyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this connectivity modify o k response has a 4xx status code
+func (o *ConnectivityModifyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this connectivity modify o k response has a 5xx status code
+func (o *ConnectivityModifyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this connectivity modify o k response a status code equal to that given
+func (o *ConnectivityModifyOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the connectivity modify o k response
+func (o *ConnectivityModifyOK) Code() int {
+	return 200
+}
+
 func (o *ConnectivityModifyOK) Error() string {
 	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] connectivityModifyOK  %+v", 200, o.Payload)
 }
+
+func (o *ConnectivityModifyOK) String() string {
+	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] connectivityModifyOK  %+v", 200, o.Payload)
+}
+
 func (o *ConnectivityModifyOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -92,6 +127,31 @@ type ConnectivityModifyDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this connectivity modify default response has a 2xx status code
+func (o *ConnectivityModifyDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this connectivity modify default response has a 3xx status code
+func (o *ConnectivityModifyDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this connectivity modify default response has a 4xx status code
+func (o *ConnectivityModifyDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this connectivity modify default response has a 5xx status code
+func (o *ConnectivityModifyDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this connectivity modify default response a status code equal to that given
+func (o *ConnectivityModifyDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the connectivity modify default response
 func (o *ConnectivityModifyDefault) Code() int {
 	return o._statusCode
@@ -100,6 +160,11 @@ func (o *ConnectivityModifyDefault) Code() int {
 func (o *ConnectivityModifyDefault) Error() string {
 	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] ConnectivityModify default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *ConnectivityModifyDefault) String() string {
+	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] ConnectivityModify default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *ConnectivityModifyDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

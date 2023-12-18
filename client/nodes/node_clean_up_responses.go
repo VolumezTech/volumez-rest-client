@@ -67,9 +67,44 @@ type NodeCleanUpOK struct {
 	Payload *models.RegularResponse
 }
 
+// IsSuccess returns true when this node clean up o k response has a 2xx status code
+func (o *NodeCleanUpOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this node clean up o k response has a 3xx status code
+func (o *NodeCleanUpOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this node clean up o k response has a 4xx status code
+func (o *NodeCleanUpOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this node clean up o k response has a 5xx status code
+func (o *NodeCleanUpOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this node clean up o k response a status code equal to that given
+func (o *NodeCleanUpOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the node clean up o k response
+func (o *NodeCleanUpOK) Code() int {
+	return 200
+}
+
 func (o *NodeCleanUpOK) Error() string {
 	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpOK  %+v", 200, o.Payload)
 }
+
+func (o *NodeCleanUpOK) String() string {
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpOK  %+v", 200, o.Payload)
+}
+
 func (o *NodeCleanUpOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -100,9 +135,44 @@ type NodeCleanUpBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this node clean up bad request response has a 2xx status code
+func (o *NodeCleanUpBadRequest) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this node clean up bad request response has a 3xx status code
+func (o *NodeCleanUpBadRequest) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this node clean up bad request response has a 4xx status code
+func (o *NodeCleanUpBadRequest) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this node clean up bad request response has a 5xx status code
+func (o *NodeCleanUpBadRequest) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this node clean up bad request response a status code equal to that given
+func (o *NodeCleanUpBadRequest) IsCode(code int) bool {
+	return code == 400
+}
+
+// Code gets the status code for the node clean up bad request response
+func (o *NodeCleanUpBadRequest) Code() int {
+	return 400
+}
+
 func (o *NodeCleanUpBadRequest) Error() string {
 	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpBadRequest  %+v", 400, o.Payload)
 }
+
+func (o *NodeCleanUpBadRequest) String() string {
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpBadRequest  %+v", 400, o.Payload)
+}
+
 func (o *NodeCleanUpBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -133,9 +203,44 @@ type NodeCleanUpNotFound struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this node clean up not found response has a 2xx status code
+func (o *NodeCleanUpNotFound) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this node clean up not found response has a 3xx status code
+func (o *NodeCleanUpNotFound) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this node clean up not found response has a 4xx status code
+func (o *NodeCleanUpNotFound) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this node clean up not found response has a 5xx status code
+func (o *NodeCleanUpNotFound) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this node clean up not found response a status code equal to that given
+func (o *NodeCleanUpNotFound) IsCode(code int) bool {
+	return code == 404
+}
+
+// Code gets the status code for the node clean up not found response
+func (o *NodeCleanUpNotFound) Code() int {
+	return 404
+}
+
 func (o *NodeCleanUpNotFound) Error() string {
 	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpNotFound  %+v", 404, o.Payload)
 }
+
+func (o *NodeCleanUpNotFound) String() string {
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpNotFound  %+v", 404, o.Payload)
+}
+
 func (o *NodeCleanUpNotFound) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -170,6 +275,31 @@ type NodeCleanUpDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this node clean up default response has a 2xx status code
+func (o *NodeCleanUpDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this node clean up default response has a 3xx status code
+func (o *NodeCleanUpDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this node clean up default response has a 4xx status code
+func (o *NodeCleanUpDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this node clean up default response has a 5xx status code
+func (o *NodeCleanUpDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this node clean up default response a status code equal to that given
+func (o *NodeCleanUpDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the node clean up default response
 func (o *NodeCleanUpDefault) Code() int {
 	return o._statusCode
@@ -178,6 +308,11 @@ func (o *NodeCleanUpDefault) Code() int {
 func (o *NodeCleanUpDefault) Error() string {
 	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] NodeCleanUp default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *NodeCleanUpDefault) String() string {
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] NodeCleanUp default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *NodeCleanUpDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

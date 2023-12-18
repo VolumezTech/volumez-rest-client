@@ -55,9 +55,44 @@ type PolicyGetOK struct {
 	Payload *models.Policy
 }
 
+// IsSuccess returns true when this policy get o k response has a 2xx status code
+func (o *PolicyGetOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this policy get o k response has a 3xx status code
+func (o *PolicyGetOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this policy get o k response has a 4xx status code
+func (o *PolicyGetOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this policy get o k response has a 5xx status code
+func (o *PolicyGetOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this policy get o k response a status code equal to that given
+func (o *PolicyGetOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the policy get o k response
+func (o *PolicyGetOK) Code() int {
+	return 200
+}
+
 func (o *PolicyGetOK) Error() string {
 	return fmt.Sprintf("[GET /policies/{policy}][%d] policyGetOK  %+v", 200, o.Payload)
 }
+
+func (o *PolicyGetOK) String() string {
+	return fmt.Sprintf("[GET /policies/{policy}][%d] policyGetOK  %+v", 200, o.Payload)
+}
+
 func (o *PolicyGetOK) GetPayload() *models.Policy {
 	return o.Payload
 }
@@ -92,6 +127,31 @@ type PolicyGetDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this policy get default response has a 2xx status code
+func (o *PolicyGetDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this policy get default response has a 3xx status code
+func (o *PolicyGetDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this policy get default response has a 4xx status code
+func (o *PolicyGetDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this policy get default response has a 5xx status code
+func (o *PolicyGetDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this policy get default response a status code equal to that given
+func (o *PolicyGetDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the policy get default response
 func (o *PolicyGetDefault) Code() int {
 	return o._statusCode
@@ -100,6 +160,11 @@ func (o *PolicyGetDefault) Code() int {
 func (o *PolicyGetDefault) Error() string {
 	return fmt.Sprintf("[GET /policies/{policy}][%d] PolicyGet default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *PolicyGetDefault) String() string {
+	return fmt.Sprintf("[GET /policies/{policy}][%d] PolicyGet default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *PolicyGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

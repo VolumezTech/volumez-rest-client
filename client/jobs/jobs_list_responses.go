@@ -55,9 +55,44 @@ type JobsListOK struct {
 	Payload []*models.Job
 }
 
+// IsSuccess returns true when this jobs list o k response has a 2xx status code
+func (o *JobsListOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this jobs list o k response has a 3xx status code
+func (o *JobsListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this jobs list o k response has a 4xx status code
+func (o *JobsListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this jobs list o k response has a 5xx status code
+func (o *JobsListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this jobs list o k response a status code equal to that given
+func (o *JobsListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the jobs list o k response
+func (o *JobsListOK) Code() int {
+	return 200
+}
+
 func (o *JobsListOK) Error() string {
 	return fmt.Sprintf("[GET /jobs][%d] jobsListOK  %+v", 200, o.Payload)
 }
+
+func (o *JobsListOK) String() string {
+	return fmt.Sprintf("[GET /jobs][%d] jobsListOK  %+v", 200, o.Payload)
+}
+
 func (o *JobsListOK) GetPayload() []*models.Job {
 	return o.Payload
 }
@@ -90,6 +125,31 @@ type JobsListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this jobs list default response has a 2xx status code
+func (o *JobsListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this jobs list default response has a 3xx status code
+func (o *JobsListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this jobs list default response has a 4xx status code
+func (o *JobsListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this jobs list default response has a 5xx status code
+func (o *JobsListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this jobs list default response a status code equal to that given
+func (o *JobsListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the jobs list default response
 func (o *JobsListDefault) Code() int {
 	return o._statusCode
@@ -98,6 +158,11 @@ func (o *JobsListDefault) Code() int {
 func (o *JobsListDefault) Error() string {
 	return fmt.Sprintf("[GET /jobs][%d] JobsList default  %+v", o._statusCode, o.Payload)
 }
+
+func (o *JobsListDefault) String() string {
+	return fmt.Sprintf("[GET /jobs][%d] JobsList default  %+v", o._statusCode, o.Payload)
+}
+
 func (o *JobsListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

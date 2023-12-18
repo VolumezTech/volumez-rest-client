@@ -112,6 +112,8 @@ func (m *Node) validateOfflineTime(formats strfmt.Registry) error {
 	if err := m.OfflineTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("offlinetime")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("offlinetime")
 		}
 		return err
 	}
