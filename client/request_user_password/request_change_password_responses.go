@@ -55,44 +55,9 @@ type RequestChangePasswordOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this request change password o k response has a 2xx status code
-func (o *RequestChangePasswordOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this request change password o k response has a 3xx status code
-func (o *RequestChangePasswordOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this request change password o k response has a 4xx status code
-func (o *RequestChangePasswordOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this request change password o k response has a 5xx status code
-func (o *RequestChangePasswordOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this request change password o k response a status code equal to that given
-func (o *RequestChangePasswordOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the request change password o k response
-func (o *RequestChangePasswordOK) Code() int {
-	return 200
-}
-
 func (o *RequestChangePasswordOK) Error() string {
 	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] requestChangePasswordOK  %+v", 200, o.Payload)
 }
-
-func (o *RequestChangePasswordOK) String() string {
-	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] requestChangePasswordOK  %+v", 200, o.Payload)
-}
-
 func (o *RequestChangePasswordOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -127,31 +92,6 @@ type RequestChangePasswordDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this request change password default response has a 2xx status code
-func (o *RequestChangePasswordDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this request change password default response has a 3xx status code
-func (o *RequestChangePasswordDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this request change password default response has a 4xx status code
-func (o *RequestChangePasswordDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this request change password default response has a 5xx status code
-func (o *RequestChangePasswordDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this request change password default response a status code equal to that given
-func (o *RequestChangePasswordDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the request change password default response
 func (o *RequestChangePasswordDefault) Code() int {
 	return o._statusCode
@@ -160,11 +100,6 @@ func (o *RequestChangePasswordDefault) Code() int {
 func (o *RequestChangePasswordDefault) Error() string {
 	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] RequestChangePassword default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *RequestChangePasswordDefault) String() string {
-	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] RequestChangePassword default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *RequestChangePasswordDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -55,44 +55,9 @@ type MediaAssignOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this media assign o k response has a 2xx status code
-func (o *MediaAssignOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this media assign o k response has a 3xx status code
-func (o *MediaAssignOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this media assign o k response has a 4xx status code
-func (o *MediaAssignOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this media assign o k response has a 5xx status code
-func (o *MediaAssignOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this media assign o k response a status code equal to that given
-func (o *MediaAssignOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the media assign o k response
-func (o *MediaAssignOK) Code() int {
-	return 200
-}
-
 func (o *MediaAssignOK) Error() string {
 	return fmt.Sprintf("[GET /media/{media}/assign][%d] mediaAssignOK  %+v", 200, o.Payload)
 }
-
-func (o *MediaAssignOK) String() string {
-	return fmt.Sprintf("[GET /media/{media}/assign][%d] mediaAssignOK  %+v", 200, o.Payload)
-}
-
 func (o *MediaAssignOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -127,31 +92,6 @@ type MediaAssignDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this media assign default response has a 2xx status code
-func (o *MediaAssignDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this media assign default response has a 3xx status code
-func (o *MediaAssignDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this media assign default response has a 4xx status code
-func (o *MediaAssignDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this media assign default response has a 5xx status code
-func (o *MediaAssignDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this media assign default response a status code equal to that given
-func (o *MediaAssignDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the media assign default response
 func (o *MediaAssignDefault) Code() int {
 	return o._statusCode
@@ -160,11 +100,6 @@ func (o *MediaAssignDefault) Code() int {
 func (o *MediaAssignDefault) Error() string {
 	return fmt.Sprintf("[GET /media/{media}/assign][%d] MediaAssign default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *MediaAssignDefault) String() string {
-	return fmt.Sprintf("[GET /media/{media}/assign][%d] MediaAssign default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *MediaAssignDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

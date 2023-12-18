@@ -55,44 +55,9 @@ type SnapshotGetOK struct {
 	Payload *models.Snapshot
 }
 
-// IsSuccess returns true when this snapshot get o k response has a 2xx status code
-func (o *SnapshotGetOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this snapshot get o k response has a 3xx status code
-func (o *SnapshotGetOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this snapshot get o k response has a 4xx status code
-func (o *SnapshotGetOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this snapshot get o k response has a 5xx status code
-func (o *SnapshotGetOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this snapshot get o k response a status code equal to that given
-func (o *SnapshotGetOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the snapshot get o k response
-func (o *SnapshotGetOK) Code() int {
-	return 200
-}
-
 func (o *SnapshotGetOK) Error() string {
 	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}][%d] snapshotGetOK  %+v", 200, o.Payload)
 }
-
-func (o *SnapshotGetOK) String() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}][%d] snapshotGetOK  %+v", 200, o.Payload)
-}
-
 func (o *SnapshotGetOK) GetPayload() *models.Snapshot {
 	return o.Payload
 }
@@ -127,31 +92,6 @@ type SnapshotGetDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this snapshot get default response has a 2xx status code
-func (o *SnapshotGetDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this snapshot get default response has a 3xx status code
-func (o *SnapshotGetDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this snapshot get default response has a 4xx status code
-func (o *SnapshotGetDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this snapshot get default response has a 5xx status code
-func (o *SnapshotGetDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this snapshot get default response a status code equal to that given
-func (o *SnapshotGetDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the snapshot get default response
 func (o *SnapshotGetDefault) Code() int {
 	return o._statusCode
@@ -160,11 +100,6 @@ func (o *SnapshotGetDefault) Code() int {
 func (o *SnapshotGetDefault) Error() string {
 	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotGet default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *SnapshotGetDefault) String() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotGet default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *SnapshotGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

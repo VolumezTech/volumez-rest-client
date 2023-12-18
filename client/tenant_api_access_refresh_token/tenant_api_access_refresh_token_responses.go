@@ -36,7 +36,7 @@ func (o *TenantAPIAccessRefreshTokenReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /tenant/apiaccess/credentials/refresh] TenantAPIAccessRefreshToken", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -56,44 +56,9 @@ type TenantAPIAccessRefreshTokenOK struct {
 	Payload *models.RefreshTokenResponse
 }
 
-// IsSuccess returns true when this tenant Api access refresh token o k response has a 2xx status code
-func (o *TenantAPIAccessRefreshTokenOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this tenant Api access refresh token o k response has a 3xx status code
-func (o *TenantAPIAccessRefreshTokenOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenant Api access refresh token o k response has a 4xx status code
-func (o *TenantAPIAccessRefreshTokenOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenant Api access refresh token o k response has a 5xx status code
-func (o *TenantAPIAccessRefreshTokenOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this tenant Api access refresh token o k response a status code equal to that given
-func (o *TenantAPIAccessRefreshTokenOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the tenant Api access refresh token o k response
-func (o *TenantAPIAccessRefreshTokenOK) Code() int {
-	return 200
-}
-
 func (o *TenantAPIAccessRefreshTokenOK) Error() string {
 	return fmt.Sprintf("[GET /tenant/apiaccess/credentials/refresh][%d] tenantApiAccessRefreshTokenOK  %+v", 200, o.Payload)
 }
-
-func (o *TenantAPIAccessRefreshTokenOK) String() string {
-	return fmt.Sprintf("[GET /tenant/apiaccess/credentials/refresh][%d] tenantApiAccessRefreshTokenOK  %+v", 200, o.Payload)
-}
-
 func (o *TenantAPIAccessRefreshTokenOK) GetPayload() *models.RefreshTokenResponse {
 	return o.Payload
 }
@@ -133,44 +98,9 @@ type TenantAPIAccessRefreshTokenInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this tenant Api access refresh token internal server error response has a 2xx status code
-func (o *TenantAPIAccessRefreshTokenInternalServerError) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this tenant Api access refresh token internal server error response has a 3xx status code
-func (o *TenantAPIAccessRefreshTokenInternalServerError) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenant Api access refresh token internal server error response has a 4xx status code
-func (o *TenantAPIAccessRefreshTokenInternalServerError) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenant Api access refresh token internal server error response has a 5xx status code
-func (o *TenantAPIAccessRefreshTokenInternalServerError) IsServerError() bool {
-	return true
-}
-
-// IsCode returns true when this tenant Api access refresh token internal server error response a status code equal to that given
-func (o *TenantAPIAccessRefreshTokenInternalServerError) IsCode(code int) bool {
-	return code == 500
-}
-
-// Code gets the status code for the tenant Api access refresh token internal server error response
-func (o *TenantAPIAccessRefreshTokenInternalServerError) Code() int {
-	return 500
-}
-
 func (o *TenantAPIAccessRefreshTokenInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /tenant/apiaccess/credentials/refresh][%d] tenantApiAccessRefreshTokenInternalServerError  %+v", 500, o.Payload)
 }
-
-func (o *TenantAPIAccessRefreshTokenInternalServerError) String() string {
-	return fmt.Sprintf("[GET /tenant/apiaccess/credentials/refresh][%d] tenantApiAccessRefreshTokenInternalServerError  %+v", 500, o.Payload)
-}
-
 func (o *TenantAPIAccessRefreshTokenInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

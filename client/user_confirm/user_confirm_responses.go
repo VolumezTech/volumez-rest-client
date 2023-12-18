@@ -61,44 +61,9 @@ type UserConfirmOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this user confirm o k response has a 2xx status code
-func (o *UserConfirmOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this user confirm o k response has a 3xx status code
-func (o *UserConfirmOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this user confirm o k response has a 4xx status code
-func (o *UserConfirmOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this user confirm o k response has a 5xx status code
-func (o *UserConfirmOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this user confirm o k response a status code equal to that given
-func (o *UserConfirmOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the user confirm o k response
-func (o *UserConfirmOK) Code() int {
-	return 200
-}
-
 func (o *UserConfirmOK) Error() string {
 	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmOK  %+v", 200, o.Payload)
 }
-
-func (o *UserConfirmOK) String() string {
-	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmOK  %+v", 200, o.Payload)
-}
-
 func (o *UserConfirmOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -129,44 +94,9 @@ type UserConfirmInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this user confirm internal server error response has a 2xx status code
-func (o *UserConfirmInternalServerError) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this user confirm internal server error response has a 3xx status code
-func (o *UserConfirmInternalServerError) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this user confirm internal server error response has a 4xx status code
-func (o *UserConfirmInternalServerError) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this user confirm internal server error response has a 5xx status code
-func (o *UserConfirmInternalServerError) IsServerError() bool {
-	return true
-}
-
-// IsCode returns true when this user confirm internal server error response a status code equal to that given
-func (o *UserConfirmInternalServerError) IsCode(code int) bool {
-	return code == 500
-}
-
-// Code gets the status code for the user confirm internal server error response
-func (o *UserConfirmInternalServerError) Code() int {
-	return 500
-}
-
 func (o *UserConfirmInternalServerError) Error() string {
 	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmInternalServerError  %+v", 500, o.Payload)
 }
-
-func (o *UserConfirmInternalServerError) String() string {
-	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmInternalServerError  %+v", 500, o.Payload)
-}
-
 func (o *UserConfirmInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -201,31 +131,6 @@ type UserConfirmDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this user confirm default response has a 2xx status code
-func (o *UserConfirmDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this user confirm default response has a 3xx status code
-func (o *UserConfirmDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this user confirm default response has a 4xx status code
-func (o *UserConfirmDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this user confirm default response has a 5xx status code
-func (o *UserConfirmDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this user confirm default response a status code equal to that given
-func (o *UserConfirmDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the user confirm default response
 func (o *UserConfirmDefault) Code() int {
 	return o._statusCode
@@ -234,11 +139,6 @@ func (o *UserConfirmDefault) Code() int {
 func (o *UserConfirmDefault) Error() string {
 	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] UserConfirm default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *UserConfirmDefault) String() string {
-	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] UserConfirm default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *UserConfirmDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

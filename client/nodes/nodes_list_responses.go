@@ -55,44 +55,9 @@ type NodesListOK struct {
 	Payload []*models.Node
 }
 
-// IsSuccess returns true when this nodes list o k response has a 2xx status code
-func (o *NodesListOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this nodes list o k response has a 3xx status code
-func (o *NodesListOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this nodes list o k response has a 4xx status code
-func (o *NodesListOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this nodes list o k response has a 5xx status code
-func (o *NodesListOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this nodes list o k response a status code equal to that given
-func (o *NodesListOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the nodes list o k response
-func (o *NodesListOK) Code() int {
-	return 200
-}
-
 func (o *NodesListOK) Error() string {
 	return fmt.Sprintf("[GET /nodes][%d] nodesListOK  %+v", 200, o.Payload)
 }
-
-func (o *NodesListOK) String() string {
-	return fmt.Sprintf("[GET /nodes][%d] nodesListOK  %+v", 200, o.Payload)
-}
-
 func (o *NodesListOK) GetPayload() []*models.Node {
 	return o.Payload
 }
@@ -125,31 +90,6 @@ type NodesListDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this nodes list default response has a 2xx status code
-func (o *NodesListDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this nodes list default response has a 3xx status code
-func (o *NodesListDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this nodes list default response has a 4xx status code
-func (o *NodesListDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this nodes list default response has a 5xx status code
-func (o *NodesListDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this nodes list default response a status code equal to that given
-func (o *NodesListDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the nodes list default response
 func (o *NodesListDefault) Code() int {
 	return o._statusCode
@@ -158,11 +98,6 @@ func (o *NodesListDefault) Code() int {
 func (o *NodesListDefault) Error() string {
 	return fmt.Sprintf("[GET /nodes][%d] NodesList default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *NodesListDefault) String() string {
-	return fmt.Sprintf("[GET /nodes][%d] NodesList default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *NodesListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

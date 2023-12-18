@@ -61,44 +61,9 @@ type GetSubscriptionOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this get subscription o k response has a 2xx status code
-func (o *GetSubscriptionOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this get subscription o k response has a 3xx status code
-func (o *GetSubscriptionOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this get subscription o k response has a 4xx status code
-func (o *GetSubscriptionOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this get subscription o k response has a 5xx status code
-func (o *GetSubscriptionOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this get subscription o k response a status code equal to that given
-func (o *GetSubscriptionOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the get subscription o k response
-func (o *GetSubscriptionOK) Code() int {
-	return 200
-}
-
 func (o *GetSubscriptionOK) Error() string {
 	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionOK  %+v", 200, o.Payload)
 }
-
-func (o *GetSubscriptionOK) String() string {
-	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionOK  %+v", 200, o.Payload)
-}
-
 func (o *GetSubscriptionOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -129,44 +94,9 @@ type GetSubscriptionNotFound struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this get subscription not found response has a 2xx status code
-func (o *GetSubscriptionNotFound) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this get subscription not found response has a 3xx status code
-func (o *GetSubscriptionNotFound) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this get subscription not found response has a 4xx status code
-func (o *GetSubscriptionNotFound) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this get subscription not found response has a 5xx status code
-func (o *GetSubscriptionNotFound) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this get subscription not found response a status code equal to that given
-func (o *GetSubscriptionNotFound) IsCode(code int) bool {
-	return code == 404
-}
-
-// Code gets the status code for the get subscription not found response
-func (o *GetSubscriptionNotFound) Code() int {
-	return 404
-}
-
 func (o *GetSubscriptionNotFound) Error() string {
 	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionNotFound  %+v", 404, o.Payload)
 }
-
-func (o *GetSubscriptionNotFound) String() string {
-	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionNotFound  %+v", 404, o.Payload)
-}
-
 func (o *GetSubscriptionNotFound) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -201,31 +131,6 @@ type GetSubscriptionDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this get subscription default response has a 2xx status code
-func (o *GetSubscriptionDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this get subscription default response has a 3xx status code
-func (o *GetSubscriptionDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this get subscription default response has a 4xx status code
-func (o *GetSubscriptionDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this get subscription default response has a 5xx status code
-func (o *GetSubscriptionDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this get subscription default response a status code equal to that given
-func (o *GetSubscriptionDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the get subscription default response
 func (o *GetSubscriptionDefault) Code() int {
 	return o._statusCode
@@ -234,11 +139,6 @@ func (o *GetSubscriptionDefault) Code() int {
 func (o *GetSubscriptionDefault) Error() string {
 	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] GetSubscription default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *GetSubscriptionDefault) String() string {
-	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] GetSubscription default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *GetSubscriptionDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

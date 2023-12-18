@@ -345,8 +345,6 @@ func (m *Policy) validateCreatedTime(formats strfmt.Registry) error {
 	if err := m.CreatedTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("createdtime")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("createdtime")
 		}
 		return err
 	}
@@ -498,8 +496,6 @@ func (m *Policy) validateUpdateTime(formats strfmt.Registry) error {
 	if err := m.UpdateTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("updatetime")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("updatetime")
 		}
 		return err
 	}

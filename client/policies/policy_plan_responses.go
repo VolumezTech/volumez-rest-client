@@ -61,44 +61,9 @@ type PolicyPlanOK struct {
 	Payload *models.Plan
 }
 
-// IsSuccess returns true when this policy plan o k response has a 2xx status code
-func (o *PolicyPlanOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this policy plan o k response has a 3xx status code
-func (o *PolicyPlanOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this policy plan o k response has a 4xx status code
-func (o *PolicyPlanOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this policy plan o k response has a 5xx status code
-func (o *PolicyPlanOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this policy plan o k response a status code equal to that given
-func (o *PolicyPlanOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the policy plan o k response
-func (o *PolicyPlanOK) Code() int {
-	return 200
-}
-
 func (o *PolicyPlanOK) Error() string {
 	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanOK  %+v", 200, o.Payload)
 }
-
-func (o *PolicyPlanOK) String() string {
-	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanOK  %+v", 200, o.Payload)
-}
-
 func (o *PolicyPlanOK) GetPayload() *models.Plan {
 	return o.Payload
 }
@@ -129,44 +94,9 @@ type PolicyPlanNotFound struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this policy plan not found response has a 2xx status code
-func (o *PolicyPlanNotFound) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this policy plan not found response has a 3xx status code
-func (o *PolicyPlanNotFound) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this policy plan not found response has a 4xx status code
-func (o *PolicyPlanNotFound) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this policy plan not found response has a 5xx status code
-func (o *PolicyPlanNotFound) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this policy plan not found response a status code equal to that given
-func (o *PolicyPlanNotFound) IsCode(code int) bool {
-	return code == 404
-}
-
-// Code gets the status code for the policy plan not found response
-func (o *PolicyPlanNotFound) Code() int {
-	return 404
-}
-
 func (o *PolicyPlanNotFound) Error() string {
 	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanNotFound  %+v", 404, o.Payload)
 }
-
-func (o *PolicyPlanNotFound) String() string {
-	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanNotFound  %+v", 404, o.Payload)
-}
-
 func (o *PolicyPlanNotFound) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -201,31 +131,6 @@ type PolicyPlanDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this policy plan default response has a 2xx status code
-func (o *PolicyPlanDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this policy plan default response has a 3xx status code
-func (o *PolicyPlanDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this policy plan default response has a 4xx status code
-func (o *PolicyPlanDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this policy plan default response has a 5xx status code
-func (o *PolicyPlanDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this policy plan default response a status code equal to that given
-func (o *PolicyPlanDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the policy plan default response
 func (o *PolicyPlanDefault) Code() int {
 	return o._statusCode
@@ -234,11 +139,6 @@ func (o *PolicyPlanDefault) Code() int {
 func (o *PolicyPlanDefault) Error() string {
 	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] PolicyPlan default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *PolicyPlanDefault) String() string {
-	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] PolicyPlan default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *PolicyPlanDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

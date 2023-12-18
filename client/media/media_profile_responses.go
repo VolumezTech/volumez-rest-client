@@ -55,44 +55,9 @@ type MediaProfileOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this media profile o k response has a 2xx status code
-func (o *MediaProfileOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this media profile o k response has a 3xx status code
-func (o *MediaProfileOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this media profile o k response has a 4xx status code
-func (o *MediaProfileOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this media profile o k response has a 5xx status code
-func (o *MediaProfileOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this media profile o k response a status code equal to that given
-func (o *MediaProfileOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the media profile o k response
-func (o *MediaProfileOK) Code() int {
-	return 200
-}
-
 func (o *MediaProfileOK) Error() string {
 	return fmt.Sprintf("[GET /media/{media}/profile][%d] mediaProfileOK  %+v", 200, o.Payload)
 }
-
-func (o *MediaProfileOK) String() string {
-	return fmt.Sprintf("[GET /media/{media}/profile][%d] mediaProfileOK  %+v", 200, o.Payload)
-}
-
 func (o *MediaProfileOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -127,31 +92,6 @@ type MediaProfileDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this media profile default response has a 2xx status code
-func (o *MediaProfileDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this media profile default response has a 3xx status code
-func (o *MediaProfileDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this media profile default response has a 4xx status code
-func (o *MediaProfileDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this media profile default response has a 5xx status code
-func (o *MediaProfileDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this media profile default response a status code equal to that given
-func (o *MediaProfileDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the media profile default response
 func (o *MediaProfileDefault) Code() int {
 	return o._statusCode
@@ -160,11 +100,6 @@ func (o *MediaProfileDefault) Code() int {
 func (o *MediaProfileDefault) Error() string {
 	return fmt.Sprintf("[GET /media/{media}/profile][%d] MediaProfile default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *MediaProfileDefault) String() string {
-	return fmt.Sprintf("[GET /media/{media}/profile][%d] MediaProfile default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *MediaProfileDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

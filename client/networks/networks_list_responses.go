@@ -55,44 +55,9 @@ type NetworksListOK struct {
 	Payload []*models.Network
 }
 
-// IsSuccess returns true when this networks list o k response has a 2xx status code
-func (o *NetworksListOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this networks list o k response has a 3xx status code
-func (o *NetworksListOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this networks list o k response has a 4xx status code
-func (o *NetworksListOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this networks list o k response has a 5xx status code
-func (o *NetworksListOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this networks list o k response a status code equal to that given
-func (o *NetworksListOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the networks list o k response
-func (o *NetworksListOK) Code() int {
-	return 200
-}
-
 func (o *NetworksListOK) Error() string {
 	return fmt.Sprintf("[GET /networks][%d] networksListOK  %+v", 200, o.Payload)
 }
-
-func (o *NetworksListOK) String() string {
-	return fmt.Sprintf("[GET /networks][%d] networksListOK  %+v", 200, o.Payload)
-}
-
 func (o *NetworksListOK) GetPayload() []*models.Network {
 	return o.Payload
 }
@@ -125,31 +90,6 @@ type NetworksListDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this networks list default response has a 2xx status code
-func (o *NetworksListDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this networks list default response has a 3xx status code
-func (o *NetworksListDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this networks list default response has a 4xx status code
-func (o *NetworksListDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this networks list default response has a 5xx status code
-func (o *NetworksListDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this networks list default response a status code equal to that given
-func (o *NetworksListDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the networks list default response
 func (o *NetworksListDefault) Code() int {
 	return o._statusCode
@@ -158,11 +98,6 @@ func (o *NetworksListDefault) Code() int {
 func (o *NetworksListDefault) Error() string {
 	return fmt.Sprintf("[GET /networks][%d] NetworksList default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *NetworksListDefault) String() string {
-	return fmt.Sprintf("[GET /networks][%d] NetworksList default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *NetworksListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

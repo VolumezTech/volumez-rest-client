@@ -67,44 +67,9 @@ type AutoProvisionVolumesOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this auto provision volumes o k response has a 2xx status code
-func (o *AutoProvisionVolumesOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this auto provision volumes o k response has a 3xx status code
-func (o *AutoProvisionVolumesOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this auto provision volumes o k response has a 4xx status code
-func (o *AutoProvisionVolumesOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this auto provision volumes o k response has a 5xx status code
-func (o *AutoProvisionVolumesOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this auto provision volumes o k response a status code equal to that given
-func (o *AutoProvisionVolumesOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the auto provision volumes o k response
-func (o *AutoProvisionVolumesOK) Code() int {
-	return 200
-}
-
 func (o *AutoProvisionVolumesOK) Error() string {
 	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesOK  %+v", 200, o.Payload)
 }
-
-func (o *AutoProvisionVolumesOK) String() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesOK  %+v", 200, o.Payload)
-}
-
 func (o *AutoProvisionVolumesOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -135,44 +100,9 @@ type AutoProvisionVolumesAccepted struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this auto provision volumes accepted response has a 2xx status code
-func (o *AutoProvisionVolumesAccepted) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this auto provision volumes accepted response has a 3xx status code
-func (o *AutoProvisionVolumesAccepted) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this auto provision volumes accepted response has a 4xx status code
-func (o *AutoProvisionVolumesAccepted) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this auto provision volumes accepted response has a 5xx status code
-func (o *AutoProvisionVolumesAccepted) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this auto provision volumes accepted response a status code equal to that given
-func (o *AutoProvisionVolumesAccepted) IsCode(code int) bool {
-	return code == 202
-}
-
-// Code gets the status code for the auto provision volumes accepted response
-func (o *AutoProvisionVolumesAccepted) Code() int {
-	return 202
-}
-
 func (o *AutoProvisionVolumesAccepted) Error() string {
 	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesAccepted  %+v", 202, o.Payload)
 }
-
-func (o *AutoProvisionVolumesAccepted) String() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesAccepted  %+v", 202, o.Payload)
-}
-
 func (o *AutoProvisionVolumesAccepted) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -203,44 +133,9 @@ type AutoProvisionVolumesConflict struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this auto provision volumes conflict response has a 2xx status code
-func (o *AutoProvisionVolumesConflict) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this auto provision volumes conflict response has a 3xx status code
-func (o *AutoProvisionVolumesConflict) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this auto provision volumes conflict response has a 4xx status code
-func (o *AutoProvisionVolumesConflict) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this auto provision volumes conflict response has a 5xx status code
-func (o *AutoProvisionVolumesConflict) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this auto provision volumes conflict response a status code equal to that given
-func (o *AutoProvisionVolumesConflict) IsCode(code int) bool {
-	return code == 409
-}
-
-// Code gets the status code for the auto provision volumes conflict response
-func (o *AutoProvisionVolumesConflict) Code() int {
-	return 409
-}
-
 func (o *AutoProvisionVolumesConflict) Error() string {
 	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesConflict  %+v", 409, o.Payload)
 }
-
-func (o *AutoProvisionVolumesConflict) String() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesConflict  %+v", 409, o.Payload)
-}
-
 func (o *AutoProvisionVolumesConflict) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -275,31 +170,6 @@ type AutoProvisionVolumesDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this auto provision volumes default response has a 2xx status code
-func (o *AutoProvisionVolumesDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this auto provision volumes default response has a 3xx status code
-func (o *AutoProvisionVolumesDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this auto provision volumes default response has a 4xx status code
-func (o *AutoProvisionVolumesDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this auto provision volumes default response has a 5xx status code
-func (o *AutoProvisionVolumesDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this auto provision volumes default response a status code equal to that given
-func (o *AutoProvisionVolumesDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the auto provision volumes default response
 func (o *AutoProvisionVolumesDefault) Code() int {
 	return o._statusCode
@@ -308,11 +178,6 @@ func (o *AutoProvisionVolumesDefault) Code() int {
 func (o *AutoProvisionVolumesDefault) Error() string {
 	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] AutoProvisionVolumes default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *AutoProvisionVolumesDefault) String() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] AutoProvisionVolumes default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *AutoProvisionVolumesDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

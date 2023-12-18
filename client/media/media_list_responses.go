@@ -55,44 +55,9 @@ type MediaListOK struct {
 	Payload []*models.Media
 }
 
-// IsSuccess returns true when this media list o k response has a 2xx status code
-func (o *MediaListOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this media list o k response has a 3xx status code
-func (o *MediaListOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this media list o k response has a 4xx status code
-func (o *MediaListOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this media list o k response has a 5xx status code
-func (o *MediaListOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this media list o k response a status code equal to that given
-func (o *MediaListOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the media list o k response
-func (o *MediaListOK) Code() int {
-	return 200
-}
-
 func (o *MediaListOK) Error() string {
 	return fmt.Sprintf("[GET /media][%d] mediaListOK  %+v", 200, o.Payload)
 }
-
-func (o *MediaListOK) String() string {
-	return fmt.Sprintf("[GET /media][%d] mediaListOK  %+v", 200, o.Payload)
-}
-
 func (o *MediaListOK) GetPayload() []*models.Media {
 	return o.Payload
 }
@@ -125,31 +90,6 @@ type MediaListDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this media list default response has a 2xx status code
-func (o *MediaListDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this media list default response has a 3xx status code
-func (o *MediaListDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this media list default response has a 4xx status code
-func (o *MediaListDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this media list default response has a 5xx status code
-func (o *MediaListDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this media list default response a status code equal to that given
-func (o *MediaListDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the media list default response
 func (o *MediaListDefault) Code() int {
 	return o._statusCode
@@ -158,11 +98,6 @@ func (o *MediaListDefault) Code() int {
 func (o *MediaListDefault) Error() string {
 	return fmt.Sprintf("[GET /media][%d] MediaList default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *MediaListDefault) String() string {
-	return fmt.Sprintf("[GET /media][%d] MediaList default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *MediaListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

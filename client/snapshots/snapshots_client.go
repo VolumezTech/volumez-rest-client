@@ -28,6 +28,8 @@ type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
+	ConsistencyGroupGet(params *ConsistencyGroupGetParams, opts ...ClientOption) (*ConsistencyGroupGetOK, error)
+
 	ConsistencyGroupSnapshotCreate(params *ConsistencyGroupSnapshotCreateParams, opts ...ClientOption) (*ConsistencyGroupSnapshotCreateOK, error)
 
 	SnapshotCreate(params *SnapshotCreateParams, opts ...ClientOption) (*SnapshotCreateOK, error)
@@ -45,6 +47,43 @@ type ClientService interface {
 	SnapshotsListAll(params *SnapshotsListAllParams, opts ...ClientOption) (*SnapshotsListAllOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
+}
+
+/*
+ConsistencyGroupGet lists of snapshots group
+*/
+func (a *Client) ConsistencyGroupGet(params *ConsistencyGroupGetParams, opts ...ClientOption) (*ConsistencyGroupGetOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewConsistencyGroupGetParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "ConsistencyGroupGet",
+		Method:             "GET",
+		PathPattern:        "/volumes/snapshot/{snapshot_group_name}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ConsistencyGroupGetReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ConsistencyGroupGetOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*ConsistencyGroupGetDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*

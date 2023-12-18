@@ -55,44 +55,9 @@ type ConnectivitiesListOK struct {
 	Payload []*models.Connectivity
 }
 
-// IsSuccess returns true when this connectivities list o k response has a 2xx status code
-func (o *ConnectivitiesListOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this connectivities list o k response has a 3xx status code
-func (o *ConnectivitiesListOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this connectivities list o k response has a 4xx status code
-func (o *ConnectivitiesListOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this connectivities list o k response has a 5xx status code
-func (o *ConnectivitiesListOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this connectivities list o k response a status code equal to that given
-func (o *ConnectivitiesListOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the connectivities list o k response
-func (o *ConnectivitiesListOK) Code() int {
-	return 200
-}
-
 func (o *ConnectivitiesListOK) Error() string {
 	return fmt.Sprintf("[GET /connectivities][%d] connectivitiesListOK  %+v", 200, o.Payload)
 }
-
-func (o *ConnectivitiesListOK) String() string {
-	return fmt.Sprintf("[GET /connectivities][%d] connectivitiesListOK  %+v", 200, o.Payload)
-}
-
 func (o *ConnectivitiesListOK) GetPayload() []*models.Connectivity {
 	return o.Payload
 }
@@ -125,31 +90,6 @@ type ConnectivitiesListDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this connectivities list default response has a 2xx status code
-func (o *ConnectivitiesListDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this connectivities list default response has a 3xx status code
-func (o *ConnectivitiesListDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this connectivities list default response has a 4xx status code
-func (o *ConnectivitiesListDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this connectivities list default response has a 5xx status code
-func (o *ConnectivitiesListDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this connectivities list default response a status code equal to that given
-func (o *ConnectivitiesListDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the connectivities list default response
 func (o *ConnectivitiesListDefault) Code() int {
 	return o._statusCode
@@ -158,11 +98,6 @@ func (o *ConnectivitiesListDefault) Code() int {
 func (o *ConnectivitiesListDefault) Error() string {
 	return fmt.Sprintf("[GET /connectivities][%d] ConnectivitiesList default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *ConnectivitiesListDefault) String() string {
-	return fmt.Sprintf("[GET /connectivities][%d] ConnectivitiesList default  %+v", o._statusCode, o.Payload)
-}
-
 func (o *ConnectivitiesListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
