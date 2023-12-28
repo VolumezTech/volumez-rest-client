@@ -200,7 +200,7 @@ type ConsistencyGroupSnapshotCreateBody struct {
 	GroupName string `json:"group_name"`
 
 	// name
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// volumes
 	Volumes []string `json:"volumes"`

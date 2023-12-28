@@ -28,6 +28,9 @@ type Snapshot struct {
 	// consistency group
 	ConsistencyGroup bool `json:"consistencygroup"`
 
+	// consistency group name
+	ConsistencyGroupName *string `json:"consistencygroupname,omitempty"`
+
 	// number of attachments
 	// Read Only: true
 	NumberOfAttachments int64 `json:"numberofattachments"`

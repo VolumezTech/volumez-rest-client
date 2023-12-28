@@ -68,6 +68,10 @@
         {
             "name": "CapacityGroups",
             "description": ""
+        },
+        {
+            "name": "Alerts",
+            "description": ""
         }
     ],
     "paths": {
@@ -172,8 +176,8 @@
                             "properties": {
                                 "name": {
                                     "type": "string",
-                                    "x-isnullable": false,
-                                    "x-omitempty": false
+                                    "x-isnullable": true,
+                                    "x-omitempty": true
                                 },
                                 "consistency" : {
                                     "x-go-name": "Consistency",
@@ -214,6 +218,41 @@
                     },
                     "default": {
                         "description": "Error creating new snapshot",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/volumes/snapshot/{snapshot_group_name}": {
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "snapshot_group_name",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "get": {
+                "summary": "List of snapshots group",
+                "tags": [
+                    "Snapshots"
+                ],
+                "operationId": "ConsistencyGroupGet",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "List of snapshots",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Snapshot"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of snapshots",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -768,7 +807,6 @@
                 }
             }
         },
-
         "/attachments": {
             "get": {
                 "summary": "Get a list of all attachments",
@@ -1042,502 +1080,6 @@
                 }
             }
         },
-        "/tenant/{tenantID}/tenanthosts/{tenantHost}": {
-            "delete": {
-                "summary": "Delete a tenant host",
-                "tags": [
-                    "Tenant Hosts"
-                ],
-                "operationId": "tenanthostdelete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "tenantID",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "in": "path",
-                        "name": "tenantHost",
-                        "type": "string",
-                        "required": true
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "type": "string"
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Tenant Host was deleted successfully",
-                        "schema": {
-                            "$ref": "#/definitions/TenantHostDeleteResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Error deleting Tenant's Host",
-                        "schema": {
-                            "$ref": "#/definitions/TenantHostDeleteResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/tenanthost/credentials": {
-            "get": {
-                "summary": "Given the tenant's host token (Refresh Token), get the ID Token for this machine",
-                "tags": [
-                    "Tenant Host Credentials"
-                ],
-                "operationId": "TenanthostAccessCredentials",
-                "parameters": [
-                    {
-                    "name": "refreshtoken",
-                    "in": "header",
-                    "required": true,
-                    "type": "string"
-                  }
-                ],
-                 "responses":
-                 {
-                    "200": {
-                        "description": "200 response",
-                        "schema": {
-                        "$ref": "#/definitions/RefreshTokenResponse"
-                        },
-                        "headers": {
-                        "Access-Control-Allow-Origin": {
-                            "type": "string"
-                        }
-                        }
-                    },
-                    "500": {
-                        "description": "Error getting ID Token from Tenant's Host Token (Refresh Token)",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        },
-                        "headers": {
-                        "Access-Control-Allow-Origin": {
-                            "type": "string"
-                        }
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/tenanthost": {
-            "get": {
-                "summary": "Get a tenant host",
-                "tags": [
-                    "Tenant Host"
-                ],
-                "operationId": "tenanthostget",
-                "parameters": [
-                    {
-                        "name": "tenanthosttoken",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                      }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Got Tenant's Host successfully",
-                        "schema": {
-                            "$ref": "#/definitions/GetTenantHostResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Error getting Tenant's Host",
-                        "schema": {
-                            "$ref": "#/definitions/GetTenantHostResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/tenantid": {
-            "get": {
-                "summary": "Get a Tenant ID from Tenant's Token",
-                "tags": [
-                    "Tenant ID From Tenant Token"
-                ],
-                "operationId": "tenantIDget",
-                "parameters": [
-                    {
-                        "name": "tenanttoken",
-                        "in": "header",
-                        "required": true,
-                        "type": "string"
-                      }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Got Tenant's ID successfully",
-                        "schema": {
-                            "$ref": "#/definitions/GetTenantIDResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Error getting Tenant's ID",
-                        "schema": {
-                            "$ref": "#/definitions/GetTenantIDResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/refreshtoken": {
-            "post": {
-                "summary": "Get the tenant's Refresh Token",
-                "tags": [
-                    "TenantRefreshToken"
-                ],
-                "operationId": "TenantRefreshToken",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Tenant's Refresh Token",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/GetTenantRefreshTokenRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Refresh Token",
-                        "schema": {
-                            "$ref": "#/definitions/RefreshToken"
-                        }
-                    },
-                    "500": {
-                        "description": "Error getting Tenant's Refresh Token",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting Tenant's Refresh Token",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/apiaccess/credentials/refresh": {
-            "get": {
-                "summary": "Given the Tenant's API Access Refresh Token, return new Access Token, Identity Token and a newer Refresh Token",
-                "tags": [
-                    "Tenant API Access Refresh Token"
-                ],
-                "operationId": "TenantAPIAccessRefreshToken",
-                "parameters": [
-                    {
-                    "name": "refreshtoken",
-                    "in": "header",
-                    "required": true,
-                    "type": "string"
-                  }
-                ],
-                 "responses":
-                 {
-                    "200": {
-                        "description": "200 response",
-                        "schema": {
-                        "$ref": "#/definitions/RefreshTokenResponse"
-                        },
-                        "headers": {
-                        "Access-Control-Allow-Origin": {
-                            "type": "string"
-                        }
-                        }
-                    },
-                    "500": {
-                        "description": "Error refreshing user Tenant's API Acces Token",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        },
-                        "headers": {
-                        "Access-Control-Allow-Origin": {
-                            "type": "string"
-                        }
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/token": {
-            "get": {
-                "summary": "Get the Tenant's Token",
-                "tags": [
-                    "tenant token"
-                ],
-                "operationId": "TenantToken",
-                "parameters": [
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Tenant's Token retrieval was successful",
-                        "schema": {
-                            "$ref": "#/definitions/TenantTokenResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error getting Tenant's Token",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user": {
-            "get": {
-                "summary": "Get tenant user",
-                "tags": [
-                    "Tenant User"
-                ],
-                "operationId": "tenantuserget",
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Got Tenant's User successfully",
-                        "schema": {
-                            "$ref": "#/definitions/GetTenanUserResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Error getting Tenant's User",
-                        "schema": {
-                            "$ref": "#/definitions/GetTenanUserResponse"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create Tenant's additional user",
-                "tags": [
-                    "users"
-                ],
-                "operationId": "TenantUserCreate",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "A user object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/TenantCreateUserRequest"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New user was created successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error creating new user",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user/confirmation": {
-            "get": {
-                "summary": "Confirm user signup",
-                "tags": [
-                    "UserConfirm"
-                ],
-                "operationId": "UserConfirm",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "client_id",
-                        "type": "string",
-                        "description": "Cognito Client ID"
-                    },
-                    {
-                        "in": "query",
-                        "name": "user_name",
-                        "type": "string",
-                        "description": "Cognito User Name"
-                    },
-                    {
-                        "in": "query",
-                        "name": "confirmation_code",
-                        "type": "string",
-                        "description": "Cognito Signup Confirmation Code"
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User has successfully confirmed",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Error confirming user",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "User confirmation error",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user/requestchangepassword": {
-            "post": {
-                "summary": "Request Change clients password",
-                "tags": [
-                    "Request-user-password"
-                ],
-                "operationId": "RequestChangePassword",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "new user password",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/RequestChangePasswordRequest"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Request for password change done successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error request changing password",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user/changepasswordloggedin": {
-            "post": {
-                "summary": "Change clients password when user is logged in",
-                "tags": [
-                    "User-password-logged-in"
-                ],
-                "operationId": "ChangePasswordLoggedIn",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "new user password when logged in",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ChangePasswordRequestLoggedIn"
-                        }
-                    },
-                    {
-                        "name": "authorization",
-                        "in": "header",
-                        "type": "string"
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New password changed successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error changing password",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/tenant/user/changepassword": {
-            "post": {
-                "summary": "Change clients password",
-                "tags": [
-                    "User-password"
-                ],
-                "operationId": "ChangePassword",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "new user password",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ChangePasswordRequest"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "New password changed successfully",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error changing password",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
         "/nodes": {
             "get": {
                 "summary": "Get a list of nodes",
@@ -1690,44 +1232,6 @@
                     },
                     "default": {
                         "description": "Error trying to cleanup node",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/azuremarketplace/subscription":{
-            "get":{
-                "summary":"get subscription",
-                "tags":[
-                    "Amp"
-                ],
-                "operationId":"GetSubscription",
-                "parameters": [
-
-                    {
-                        "in": "query",
-                        "name": "token",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "confirmation of subscription registered",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "404": {
-                        "description": "Subscrition not available",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error Getting volume plan",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -1950,117 +1454,6 @@
                     },
                     "default": {
                         "description": "Error getting policy volume group plan",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/signup": {
-            "post": {
-                "summary": "Create Tenant's first user",
-                "tags": [
-                    "users"
-                ],
-                "operationId": "UserCreate",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "A user object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/TenantCreateAdminUserRequest"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully Signed up",
-                        "schema": {
-                            "$ref": "#/definitions/SignUpResponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Error signing up",
-                        "schema": {
-                            "$ref": "#/definitions/SignUpResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/signout": {
-            "post": {
-                "summary": "Signs out user from all devices",
-                "tags": [
-                    "users"
-                ],
-                "operationId": "Signout",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Access Token",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/SignoutRequest"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sign out was successful",
-                        "schema": {
-                            "$ref": "#/definitions/RegularResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error signing out",
-                        "schema": {
-                            "$ref": "#/definitions/ErrorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/signin": {
-            "post": {
-                "summary": "SIO Sign In",
-                "tags": [
-                    "signin"
-                ],
-                "operationId": "SignIn",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "A signin object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/SignIn"
-                        }
-                    }
-                ],
-                "produces": [
-                    "text/plain"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sign in was successful",
-                        "schema": {
-                            "$ref": "#/definitions/SignInResponse"
-                        }
-                    },
-                    "default": {
-                        "description": "Error signing in",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -2919,6 +2312,613 @@
                 }
             }
         },
+        "/signup": {
+            "post": {
+                "summary": "Create Tenant's first user",
+                "tags": [
+                    "users"
+                ],
+                "operationId": "UserCreate",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A user object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TenantCreateAdminUserRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully Signed up",
+                        "schema": {
+                            "$ref": "#/definitions/SignUpResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error signing up",
+                        "schema": {
+                            "$ref": "#/definitions/SignUpResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/signout": {
+            "post": {
+                "summary": "Signs out user from all devices",
+                "tags": [
+                    "users"
+                ],
+                "operationId": "Signout",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Access Token",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignoutRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sign out was successful",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error signing out",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/signin": {
+            "post": {
+                "summary": "SIO Sign In",
+                "tags": [
+                    "signin"
+                ],
+                "operationId": "SignIn",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A signin object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SignIn"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sign in was successful",
+                        "schema": {
+                            "$ref": "#/definitions/SignInResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error signing in",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/{tenantID}/tenanthosts/{tenantHost}": {
+            "delete": {
+                "summary": "Delete a tenant host",
+                "tags": [
+                    "Tenant Hosts"
+                ],
+                "operationId": "tenanthostdelete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "tenantID",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "tenantHost",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tenant Host was deleted successfully",
+                        "schema": {
+                            "$ref": "#/definitions/TenantHostDeleteResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error deleting Tenant's Host",
+                        "schema": {
+                            "$ref": "#/definitions/TenantHostDeleteResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/tenanthost/credentials": {
+            "get": {
+                "summary": "Given the tenant's host token (Refresh Token), get the ID Token for this machine",
+                "tags": [
+                    "Tenant Host Credentials"
+                ],
+                "operationId": "TenanthostAccessCredentials",
+                "parameters": [
+                    {
+                    "name": "refreshtoken",
+                    "in": "header",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                 "responses":
+                 {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                        "$ref": "#/definitions/RefreshTokenResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting ID Token from Tenant's Host Token (Refresh Token)",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/tenanthost": {
+            "get": {
+                "summary": "Get a tenant host",
+                "tags": [
+                    "Tenant Host"
+                ],
+                "operationId": "tenanthostget",
+                "parameters": [
+                    {
+                        "name": "tenanthosttoken",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Got Tenant's Host successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantHostResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting Tenant's Host",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantHostResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/tenantid": {
+            "get": {
+                "summary": "Get a Tenant ID from Tenant's Token",
+                "tags": [
+                    "Tenant ID From Tenant Token"
+                ],
+                "operationId": "tenantIDget",
+                "parameters": [
+                    {
+                        "name": "tenanttoken",
+                        "in": "header",
+                        "required": true,
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Got Tenant's ID successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantIDResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting Tenant's ID",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantIDResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/refreshtoken": {
+            "post": {
+                "summary": "Get the tenant's Refresh Token",
+                "tags": [
+                    "TenantRefreshToken"
+                ],
+                "operationId": "TenantRefreshToken",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Tenant's Refresh Token",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GetTenantRefreshTokenRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Refresh Token",
+                        "schema": {
+                            "$ref": "#/definitions/RefreshToken"
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting Tenant's Refresh Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting Tenant's Refresh Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/apiaccess/credentials/refresh": {
+            "get": {
+                "summary": "Given the Tenant's API Access Refresh Token, return new Access Token, Identity Token and a newer Refresh Token",
+                "tags": [
+                    "Tenant API Access Refresh Token"
+                ],
+                "operationId": "TenantAPIAccessRefreshToken",
+                "parameters": [
+                    {
+                    "name": "refreshtoken",
+                    "in": "header",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                 "responses":
+                 {
+                    "200": {
+                        "description": "200 response",
+                        "schema": {
+                        "$ref": "#/definitions/RefreshTokenResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    },
+                    "500": {
+                        "description": "Error refreshing user Tenant's API Acces Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "headers": {
+                        "Access-Control-Allow-Origin": {
+                            "type": "string"
+                        }
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/token": {
+            "get": {
+                "summary": "Get the Tenant's Token",
+                "tags": [
+                    "tenant token"
+                ],
+                "operationId": "TenantToken",
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tenant's Token retrieval was successful",
+                        "schema": {
+                            "$ref": "#/definitions/TenantTokenResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting Tenant's Token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user": {
+            "get": {
+                "summary": "Get tenant user",
+                "tags": [
+                    "Tenant User"
+                ],
+                "operationId": "tenantuserget",
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Got Tenant's User successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenanUserResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error getting Tenant's User",
+                        "schema": {
+                            "$ref": "#/definitions/GetTenanUserResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Tenant's additional user",
+                "tags": [
+                    "users"
+                ],
+                "operationId": "TenantUserCreate",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "A user object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TenantCreateUserRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New user was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error creating new user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/confirmation": {
+            "get": {
+                "summary": "Confirm user signup",
+                "tags": [
+                    "UserConfirm"
+                ],
+                "operationId": "UserConfirm",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "client_id",
+                        "type": "string",
+                        "description": "Cognito Client ID"
+                    },
+                    {
+                        "in": "query",
+                        "name": "user_name",
+                        "type": "string",
+                        "description": "Cognito User Name"
+                    },
+                    {
+                        "in": "query",
+                        "name": "confirmation_code",
+                        "type": "string",
+                        "description": "Cognito Signup Confirmation Code"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User has successfully confirmed",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error confirming user",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "User confirmation error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/requestchangepassword": {
+            "post": {
+                "summary": "Request Change clients password",
+                "tags": [
+                    "Request-user-password"
+                ],
+                "operationId": "RequestChangePassword",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "new user password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestChangePasswordRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Request for password change done successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error request changing password",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/changepasswordloggedin": {
+            "post": {
+                "summary": "Change clients password when user is logged in",
+                "tags": [
+                    "User-password-logged-in"
+                ],
+                "operationId": "ChangePasswordLoggedIn",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "new user password when logged in",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePasswordRequestLoggedIn"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New password changed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error changing password",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/tenant/user/changepassword": {
+            "post": {
+                "summary": "Change clients password",
+                "tags": [
+                    "User-password"
+                ],
+                "operationId": "ChangePassword",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "new user password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePasswordRequest"
+                        }
+                    }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New password changed successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error changing password",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/version": {
             "get": {
                 "summary": "Get version of sio",
@@ -2956,6 +2956,116 @@
                         "description": "SIO is running",
                         "schema": {
                             "$ref": "#/definitions/RegularResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/azuremarketplace/subscription":{
+            "get":{
+                "summary":"get subscription",
+                "tags":[
+                    "Amp"
+                ],
+                "operationId":"GetSubscription",
+                "parameters": [
+
+                    {
+                        "in": "query",
+                        "name": "token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "confirmation of subscription registered",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Subscrition not available",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Getting volume plan",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/alerts": {
+            "get": {
+                "summary": "Get a list of alerts",
+                "tags": [
+                    "Alerts"
+                ],
+                "operationId": "AlertsList",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "capacity",
+                        "type": "boolean"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of alerts",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Alert"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of alerts",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/alerts/{alert}/acknowledge": {
+            "post": {
+                "summary": "Acknowledge a pending alert",
+                "tags": [
+                    "Alerts"
+                ],
+                "operationId": "AlertAcknowledge",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "alert",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "type": "string"
+                      }
+                ],
+                "produces": [
+                    "text/plain"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Alert was successfully acknowledged",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error acknowledging alert",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
                         }
                     }
                 }
@@ -4373,6 +4483,12 @@
                     "x-omitempty": false,
                     "type": "boolean"
                 },
+                "consistencygroupname": {
+                    "x-go-name": "ConsistencyGroupName",
+                    "x-isnullable": true,
+                    "x-omitempty": true,
+                    "type": "string"
+                },
                 "used": {
                     "x-go-name": "Used",
                     "x-isnullable": false,
@@ -4958,6 +5074,135 @@
                 }
             }
         },
+        "Alert": {
+            "type": "object",
+            "properties": {
+                "alertid": {
+                    "x-go-name": "AlertID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert ID",
+                    "readOnly": true
+                },
+                "type": {
+                    "x-go-name": "AlertType",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "readOnly": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert Type",
+                    "enum": [
+                        "StateChange",
+                        "ProcessFailed",
+                        "ThresholdReached"
+                    ]
+                },
+                "state": {
+                    "x-go-name": "AlertState",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "readOnly": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert State",
+                    "enum": [
+                        "Active",
+                        "Acknowledged",
+                        "Cleared"
+                    ]
+                },
+                "severity": {
+                    "x-go-name": "AlertSeverity",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "readOnly": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert Severity",
+                    "enum": [
+                        "Info",
+                        "Warning",
+                        "Critical",
+                        "Fatal"
+                    ]
+                },
+                "objecttype": {
+                    "x-go-name": "UnderlyingObjectType",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "readOnly": true,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert Underlying Object Type",
+                    "enum": [
+                        "Media",
+                        "Node",
+                        "Volume",
+                        "Snapshot",
+                        "Attachment"
+                    ]
+                },
+                "objectid": {
+                    "x-go-name": "UnderlyingObjectID",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert Underlying Object ID",
+                    "readOnly": true
+                },
+                "creationtime": {
+                    "x-go-name": "CreationTime",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert Creation Time",
+                    "readOnly": true
+                },
+                "lastsendtime": {
+                    "x-go-name": "LastSendTime",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert Last Send Time",
+                    "readOnly": true
+                },
+                "cleartime": {
+                    "x-go-name": "ClearTime",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert Clear Time",
+                    "readOnly": true
+                },
+                "details": {
+                    "x-go-name": "AlertDetails",
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "minLength": 1,
+                    "title": "Alert Details (according to alert type)",
+                    "readOnly": true
+                }
+            },
+            "required": [
+                "alertid",
+                "type",
+                "state",
+                "severity",
+                "objecttype",
+                "objectid",
+                "creationtime",
+                "details"
+            ]
+        },
+
         "GetTenantIDResponse":{
             "type": "object",
             "properties": {
