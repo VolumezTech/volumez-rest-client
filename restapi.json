@@ -3084,7 +3084,6 @@
                 "embedded": true
             }
         },
-
         "AutoProvisionVolume": {
             "type": "object",
             "properties": {
@@ -3441,6 +3440,11 @@
                     "x-omitempty": false,
                     "type": "string"
                 },
+                "accountID":{
+                    "x-isnullable": false,
+                    "x-omitempty": true,
+                    "type": "string"  
+                },
                 "region": {
                     "x-isnullable": false,
                     "x-omitempty": false,
@@ -3452,6 +3456,31 @@
                     "x-omitempty": false,
                     "type": "string",
                     "example": "z1"
+                },
+                "ResourceNamespace":{
+                    "x-isnullable":false,
+                    "x-omitempty":true,
+                    "type":"string",
+                    "description": "global namespace for resources in account empty if not aviliable/supported on cloud provider/node"
+
+                },
+                "PhysicalProximityGroup":{
+                    "x-isnullable":false,
+                    "x-omitempty":true,
+                    "type":"string",
+                    "description":"identifier of the physical location of the node empty if not aviliable/supported on on cloud provider/node"
+                },
+                "ResiliencyDomain":{
+                    "x-isnullable":false,
+                    "x-omitempty":true,
+                    "type":"string",
+                    "description":"virtual domain for the node fault domains if aviliable/supported on on cloud provider/node"
+                },
+                "FaultDomain":{
+                    "x-isnullable":false,
+                    "x-omitempty":true,
+                    "type":"string",
+                    "description":"identifier for node in FaultDomain"
                 },
                 "offlinetime": {
                     "x-go-name": "OfflineTime",
@@ -3503,6 +3532,13 @@
                     "x-isnullable": false,
                     "x-omitempty": true,
                     "type": "string"
+                },
+                "autoprovisionInfraUUID": {
+                    "x-go-name": "AutoProvisionInfraUUID",
+                    "x-isnullable": false,
+                    "x-omitempty": true,
+                    "type": "string",
+                    "readOnly":true
                 }
             },
             "required": [
@@ -4661,10 +4697,46 @@
                     "x-omitempty": false,
                     "type": "string"
                 },
+                "accountID":{
+                    "x-isnullable": false,
+                    "x-omitempty": true,
+                    "type": "string",
+                    "description": "the media node ResourceNamespace"
+                },
+                "region": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "example": "us-east-1"
+                },
                 "zone": {
                     "x-isnullable": false,
                     "x-omitempty": false,
                     "type": "string"
+                },
+                "ResourceNamespace":{
+                    "x-isnullable":false,
+                    "x-omitempty":true,
+                    "type":"string",
+                    "description": "the media node ResourceNamespace"
+                },
+                "PhysicalProximityGroup":{
+                    "x-isnullable":false,
+                    "x-omitempty":true,
+                    "type":"string",
+                    "description": "the media node PhysicalProximityGroup"
+                },
+                "ResiliencyDomain":{
+                    "x-isnullable":false,
+                    "x-omitempty":true,
+                    "type":"string",
+                    "description": "the media node ResiliencyDomain"
+                },
+                "FaultDomain":{
+                    "x-isnullable":false,
+                    "x-omitempty":true,
+                    "type":"string",
+                    "description": "the media node FaultDomain"
                 },
                 "firmware": {
                     "x-isnullable": false,

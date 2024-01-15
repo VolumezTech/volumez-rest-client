@@ -19,6 +19,10 @@ import (
 // swagger:model Node
 type Node struct {
 
+	// auto provision infra UUID
+	// Read Only: true
+	AutoProvisionInfraUUID string `json:"autoprovisionInfraUUID,omitempty"`
+
 	// cloud provider
 	CloudProvider string `json:"cloudprovider"`
 
@@ -32,6 +36,9 @@ type Node struct {
 	// control address
 	ControlAddress string `json:"controladdress"`
 
+	// identifier for node in FaultDomain
+	FaultDomain string `json:"FaultDomain,omitempty"`
+
 	// o s
 	// Example: rhel
 	// Required: true
@@ -39,6 +46,18 @@ type Node struct {
 
 	// offline time
 	OfflineTime DateTime `json:"offlinetime"`
+
+	// identifier of the physical location of the node empty if not aviliable/supported on on cloud provider/node
+	PhysicalProximityGroup string `json:"PhysicalProximityGroup,omitempty"`
+
+	// virtual domain for the node fault domains if aviliable/supported on on cloud provider/node
+	ResiliencyDomain string `json:"ResiliencyDomain,omitempty"`
+
+	// global namespace for resources in account empty if not aviliable/supported on cloud provider/node
+	ResourceNamespace string `json:"ResourceNamespace,omitempty"`
+
+	// account ID
+	AccountID string `json:"accountID,omitempty"`
 
 	// credential
 	Credential string `json:"credential"`
@@ -138,6 +157,10 @@ func (m *Node) validateName(formats strfmt.Registry) error {
 func (m *Node) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAutoProvisionInfraUUID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateConnectorVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -157,6 +180,15 @@ func (m *Node) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Node) contextValidateAutoProvisionInfraUUID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "autoprovisionInfraUUID", "body", string(m.AutoProvisionInfraUUID)); err != nil {
+		return err
+	}
+
 	return nil
 }
 

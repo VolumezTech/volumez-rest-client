@@ -32,6 +32,9 @@ type Media struct {
 	// Read Only: true
 	CapacityGroup string `json:"capacitygroup"`
 
+	// the media node FaultDomain
+	FaultDomain string `json:"FaultDomain,omitempty"`
+
 	// free bandwidth read
 	FreeBandwidthRead int64 `json:"freebandwidthread"`
 
@@ -65,6 +68,15 @@ type Media struct {
 	// offline time
 	OfflineTime DateTime `json:"offlinetime"`
 
+	// the media node PhysicalProximityGroup
+	PhysicalProximityGroup string `json:"PhysicalProximityGroup,omitempty"`
+
+	// the media node ResiliencyDomain
+	ResiliencyDomain string `json:"ResiliencyDomain,omitempty"`
+
+	// the media node ResourceNamespace
+	ResourceNamespace string `json:"ResourceNamespace,omitempty"`
+
 	// s e d
 	SED bool `json:"sed"`
 
@@ -74,6 +86,9 @@ type Media struct {
 	// count of how many volumes are using the media
 	// Read Only: true
 	VolumesCount int64 `json:"volumescount"`
+
+	// the media node ResourceNamespace
+	AccountID string `json:"accountID,omitempty"`
 
 	// assignment
 	// Read Only: true
@@ -100,6 +115,10 @@ type Media struct {
 	// progress
 	// Read Only: true
 	Progress int64 `json:"progress"`
+
+	// region
+	// Example: us-east-1
+	Region string `json:"region"`
 
 	// size
 	Size int64 `json:"size"`
