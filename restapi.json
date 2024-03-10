@@ -834,6 +834,40 @@
                 }
             }
         },
+        "/volumes/{volume}/attachments": {
+            "get": {
+                "summary": "Get a list of attachments",
+                "tags": [
+                    "Attachments"
+                ],
+                "operationId": "AttachmentsListForVolume",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "volume",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of attachments",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Attachment"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Error getting a list of attachments",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/volumes/{volume}/snapshots/{snapshot}/attachments": {
             "get": {
                 "summary": "Get a list of attachments",
@@ -1106,7 +1140,7 @@
                     }
                 }
             }
-        },
+        }    ,
         "/nodes/{node}": {
             "get": {
                 "summary": "Get the properties of a node",
@@ -1190,6 +1224,62 @@
                 }
             }
         },
+        "/nodes/logs/{node}/{tenant}": {
+            "post": {
+                "summary": "Node collect logs",
+                "tags": [
+                    "Nodes",
+                    "SupportAPI"
+                ],
+                "operationId": "NodeCollectLogs",
+                "parameters": [
+                    {
+                        "name": "node",
+                        "in": "path",
+                        "description": "Name of node",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "tenant",
+                        "in": "path",
+                        "description": "Tenant ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                     
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Node collect logs job  was created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid node name supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Node not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error trying to create node collect logs job ",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+
+
         "/nodes/cleanup/{node}": {
             "post": {
                 "summary": "performing node cleanup",
@@ -1232,6 +1322,60 @@
                     },
                     "default": {
                         "description": "Error trying to cleanup node",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/nodes/upgrade/{node}": {
+            "post": {
+                "summary": "performing node version upgrade",
+                "tags": [
+                    "Nodes"                    
+                ],
+                "operationId": "NodeUpgrade",
+                "parameters": [
+                    {
+                        "name": "node",
+                        "in": "path",
+                        "description": "Name of node to upgrade",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Connector Version",
+                        "schema": {
+                            "$ref": "#/definitions/NodeVersion"
+                        }
+                    }
+                     
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Node upgrade started successfully",
+                        "schema": {
+                            "$ref": "#/definitions/RegularResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid node name supplied",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Node not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error trying to upgrade node",
                         "schema": {
                             "$ref": "#/definitions/ErrorResponse"
                         }
@@ -3415,6 +3559,12 @@
         "Node": {
             "type": "object",
             "properties": {
+                "instanceid" : {
+                    "x-go-name": "InstanceID",
+                    "x-isnullable": true,
+                    "x-omitempty": true,
+                    "type": "string"
+                },
                 "name": {
                     "x-isnullable": false,
                     "x-omitempty": false,
@@ -3524,7 +3674,7 @@
                 "cloudprovider": {
                     "x-go-name": "CloudProvider",
                     "x-isnullable": false,
-                    "x-omitempty": false,
+                    "x-omitempty": true,
                     "type": "string"
                 },
                 "nodecluster": {
@@ -3539,12 +3689,29 @@
                     "x-omitempty": true,
                     "type": "string",
                     "readOnly":true
+                },
+                "instancetype" : {
+                    "x-go-name": "InstanceType",
+                    "x-isnullable": true,
+                    "x-omitempty": true,
+                    "type": "string"
                 }
             },
             "required": [
                 "name",
                 "os"
             ]
+        },
+        "NodeVersion": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "x-isnullable": false,
+                    "x-omitempty": false,
+                    "type": "string",
+                    "example": "1.1.0"
+                }
+            }
         },
         "RefreshToken": {
             "type": "object",
@@ -4644,7 +4811,9 @@
                     "x-go-name": "AllocatedResources",
                     "x-isnullable": true,
                     "x-omitempty": true,
-                    "type": "string",
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
                     "title": "Allocated performance resources"
                 }
             },
@@ -4695,6 +4864,12 @@
                 "node": {
                     "x-isnullable": false,
                     "x-omitempty": false,
+                    "type": "string"
+                },
+                "cloudprovider": {
+                    "x-go-name": "CloudProvider",
+                    "x-isnullable": false,
+                    "x-omitempty": true,
                     "type": "string"
                 },
                 "accountID":{

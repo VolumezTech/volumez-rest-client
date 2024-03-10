@@ -32,6 +32,9 @@ type Media struct {
 	// Read Only: true
 	CapacityGroup string `json:"capacitygroup"`
 
+	// cloud provider
+	CloudProvider string `json:"cloudprovider,omitempty"`
+
 	// the media node FaultDomain
 	FaultDomain string `json:"FaultDomain,omitempty"`
 

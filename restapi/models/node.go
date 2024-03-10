@@ -24,7 +24,7 @@ type Node struct {
 	AutoProvisionInfraUUID string `json:"autoprovisionInfraUUID,omitempty"`
 
 	// cloud provider
-	CloudProvider string `json:"cloudprovider"`
+	CloudProvider string `json:"cloudprovider,omitempty"`
 
 	// cluster
 	Cluster string `json:"nodecluster,omitempty"`
@@ -38,6 +38,12 @@ type Node struct {
 
 	// identifier for node in FaultDomain
 	FaultDomain string `json:"FaultDomain,omitempty"`
+
+	// instance ID
+	InstanceID *string `json:"instanceid,omitempty"`
+
+	// instance type
+	InstanceType *string `json:"instancetype,omitempty"`
 
 	// o s
 	// Example: rhel

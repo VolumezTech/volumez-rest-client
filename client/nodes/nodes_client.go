@@ -30,9 +30,13 @@ type ClientOption func(*runtime.ClientOperation)
 type ClientService interface {
 	NodeCleanUp(params *NodeCleanUpParams, opts ...ClientOption) (*NodeCleanUpOK, error)
 
+	NodeCollectLogs(params *NodeCollectLogsParams, opts ...ClientOption) (*NodeCollectLogsOK, error)
+
 	NodeDelete(params *NodeDeleteParams, opts ...ClientOption) (*NodeDeleteOK, error)
 
 	NodeGet(params *NodeGetParams, opts ...ClientOption) (*NodeGetOK, error)
+
+	NodeUpgrade(params *NodeUpgradeParams, opts ...ClientOption) (*NodeUpgradeOK, error)
 
 	NodesList(params *NodesListParams, opts ...ClientOption) (*NodesListOK, error)
 
@@ -73,6 +77,43 @@ func (a *Client) NodeCleanUp(params *NodeCleanUpParams, opts ...ClientOption) (*
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*NodeCleanUpDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+NodeCollectLogs nodes collect logs
+*/
+func (a *Client) NodeCollectLogs(params *NodeCollectLogsParams, opts ...ClientOption) (*NodeCollectLogsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewNodeCollectLogsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "NodeCollectLogs",
+		Method:             "POST",
+		PathPattern:        "/nodes/logs/{node}/{tenant}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &NodeCollectLogsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*NodeCollectLogsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*NodeCollectLogsDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -147,6 +188,43 @@ func (a *Client) NodeGet(params *NodeGetParams, opts ...ClientOption) (*NodeGetO
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*NodeGetDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+NodeUpgrade performings node version upgrade
+*/
+func (a *Client) NodeUpgrade(params *NodeUpgradeParams, opts ...ClientOption) (*NodeUpgradeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewNodeUpgradeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "NodeUpgrade",
+		Method:             "POST",
+		PathPattern:        "/nodes/upgrade/{node}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &NodeUpgradeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*NodeUpgradeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*NodeUpgradeDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
