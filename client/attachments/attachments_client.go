@@ -40,8 +40,6 @@ type ClientService interface {
 
 	AttachmentsListAll(params *AttachmentsListAllParams, opts ...ClientOption) (*AttachmentsListAllOK, error)
 
-	AttachmentsListForVolume(params *AttachmentsListForVolumeParams, opts ...ClientOption) (*AttachmentsListForVolumeOK, error)
-
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -264,43 +262,6 @@ func (a *Client) AttachmentsListAll(params *AttachmentsListAllParams, opts ...Cl
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*AttachmentsListAllDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-AttachmentsListForVolume gets a list of attachments
-*/
-func (a *Client) AttachmentsListForVolume(params *AttachmentsListForVolumeParams, opts ...ClientOption) (*AttachmentsListForVolumeOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAttachmentsListForVolumeParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "AttachmentsListForVolume",
-		Method:             "GET",
-		PathPattern:        "/volumes/{volume}/attachments",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &AttachmentsListForVolumeReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*AttachmentsListForVolumeOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*AttachmentsListForVolumeDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

@@ -36,6 +36,8 @@ type ClientService interface {
 
 	NodeGet(params *NodeGetParams, opts ...ClientOption) (*NodeGetOK, error)
 
+	NodeRepair(params *NodeRepairParams, opts ...ClientOption) (*NodeRepairOK, error)
+
 	NodeUpgrade(params *NodeUpgradeParams, opts ...ClientOption) (*NodeUpgradeOK, error)
 
 	NodesList(params *NodesListParams, opts ...ClientOption) (*NodesListOK, error)
@@ -188,6 +190,43 @@ func (a *Client) NodeGet(params *NodeGetParams, opts ...ClientOption) (*NodeGetO
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*NodeGetDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+NodeRepair executes commands on node for repair
+*/
+func (a *Client) NodeRepair(params *NodeRepairParams, opts ...ClientOption) (*NodeRepairOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewNodeRepairParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "NodeRepair",
+		Method:             "POST",
+		PathPattern:        "/nodes/repair/{node}/{tenant}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &NodeRepairReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*NodeRepairOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*NodeRepairDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
