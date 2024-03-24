@@ -57,6 +57,10 @@ type Volume struct {
 	// Min Length: 1
 	ReplicationVolumeGroupName string `json:"replicationvolumegroupname"`
 
+	// Throttling Scheme for the volume
+	// Min Length: 1
+	ThrottlingScheme *string `json:"throttlingscheme,omitempty"`
+
 	// Volume ID
 	// Read Only: true
 	// Min Length: 1
@@ -136,6 +140,10 @@ func (m *Volume) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateReplicationVolumeGroupName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateThrottlingScheme(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -220,6 +228,18 @@ func (m *Volume) validateReplicationVolumeGroupName(formats strfmt.Registry) err
 	}
 
 	if err := validate.MinLength("replicationvolumegroupname", "body", m.ReplicationVolumeGroupName, 1); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Volume) validateThrottlingScheme(formats strfmt.Registry) error {
+	if swag.IsZero(m.ThrottlingScheme) { // not required
+		return nil
+	}
+
+	if err := validate.MinLength("throttlingscheme", "body", *m.ThrottlingScheme, 1); err != nil {
 		return err
 	}
 

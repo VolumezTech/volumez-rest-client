@@ -40,6 +40,8 @@ type ClientService interface {
 
 	NodeUpgrade(params *NodeUpgradeParams, opts ...ClientOption) (*NodeUpgradeOK, error)
 
+	NodeUpgradeForSupport(params *NodeUpgradeForSupportParams, opts ...ClientOption) (*NodeUpgradeForSupportOK, error)
+
 	NodesList(params *NodesListParams, opts ...ClientOption) (*NodesListOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
@@ -264,6 +266,43 @@ func (a *Client) NodeUpgrade(params *NodeUpgradeParams, opts ...ClientOption) (*
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*NodeUpgradeDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+NodeUpgradeForSupport performings node version upgrade
+*/
+func (a *Client) NodeUpgradeForSupport(params *NodeUpgradeForSupportParams, opts ...ClientOption) (*NodeUpgradeForSupportOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewNodeUpgradeForSupportParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "NodeUpgradeForSupport",
+		Method:             "POST",
+		PathPattern:        "/nodes/upgrade/{node}/tenant/{tenant}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &NodeUpgradeForSupportReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*NodeUpgradeForSupportOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*NodeUpgradeForSupportDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

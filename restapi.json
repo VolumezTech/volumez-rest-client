@@ -832,6 +832,40 @@
         }
       }
     },
+    "/volumes/{volume}/attachments": {
+      "get": {
+        "summary": "Get a list of attachments",
+        "tags": [
+          "Attachments"
+        ],
+        "operationId": "AttachmentsListForVolume",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "volume",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of attachments",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Attachment"
+              }
+            }
+          },
+          "default": {
+            "description": "Error getting a list of attachments",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/volumes/{volume}/snapshots/{snapshot}/attachments": {
       "get": {
         "summary": "Get a list of attachments",
@@ -1358,6 +1392,66 @@
         ],
         "operationId": "NodeUpgrade",
         "parameters": [
+          {
+            "name": "node",
+            "in": "path",
+            "description": "Name of node to upgrade",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Connector Version",
+            "schema": {
+              "$ref": "#/definitions/NodeVersion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Node upgrade started successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid node name supplied",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error trying to upgrade node",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/nodes/upgrade/{node}/tenant/{tenant}": {
+      "post": {
+        "summary": "performing node version upgrade",
+        "tags": [
+          "Nodes",
+          "SupportAPI"
+        ],
+        "operationId": "NodeUpgradeForSupport",
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "path",
+            "description": "Name of tenant to upgrade",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "node",
             "in": "path",
@@ -3555,6 +3649,15 @@
           "minLength": 1,
           "title": "Capacity group from which the volume is allocated",
           "readOnly": false
+        },
+        "throttlingscheme": {
+          "x-go-name": "ThrottlingScheme",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "minLength": 1,
+          "title": "Throttling Scheme for the volume",
+          "readOnly": false
         }
       },
       "required": [
@@ -4812,7 +4915,9 @@
           "x-go-name": "AllocatedResources",
           "x-isnullable": true,
           "x-omitempty": true,
-          "type": "string",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
           "title": "Allocated performance resources"
         }
       },

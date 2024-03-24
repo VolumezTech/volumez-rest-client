@@ -20,7 +20,9 @@ import (
 type Attachment struct {
 
 	// Allocated performance resources
-	AllocatedResources *string `json:"allocated_resources,omitempty"`
+	// Maximum: 100
+	// Minimum: 1
+	AllocatedResources *int64 `json:"allocated_resources,omitempty"`
 
 	// Mount point
 	MountPoint string `json:"mountpoint,omitempty"`
@@ -64,6 +66,10 @@ type Attachment struct {
 func (m *Attachment) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAllocatedResources(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateNode(formats); err != nil {
 		res = append(res, err)
 	}
@@ -71,6 +77,22 @@ func (m *Attachment) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Attachment) validateAllocatedResources(formats strfmt.Registry) error {
+	if swag.IsZero(m.AllocatedResources) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("allocated_resources", "body", *m.AllocatedResources, 1, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("allocated_resources", "body", *m.AllocatedResources, 100, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 
