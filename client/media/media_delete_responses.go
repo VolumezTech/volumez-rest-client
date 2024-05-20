@@ -6,6 +6,7 @@ package media
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *MediaDeleteOK) Code() int {
 }
 
 func (o *MediaDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /media/{media}][%d] mediaDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /media/{media}][%d] mediaDeleteOK %s", 200, payload)
 }
 
 func (o *MediaDeleteOK) String() string {
-	return fmt.Sprintf("[DELETE /media/{media}][%d] mediaDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /media/{media}][%d] mediaDeleteOK %s", 200, payload)
 }
 
 func (o *MediaDeleteOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *MediaDeleteDefault) Code() int {
 }
 
 func (o *MediaDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /media/{media}][%d] MediaDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /media/{media}][%d] MediaDelete default %s", o._statusCode, payload)
 }
 
 func (o *MediaDeleteDefault) String() string {
-	return fmt.Sprintf("[DELETE /media/{media}][%d] MediaDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /media/{media}][%d] MediaDelete default %s", o._statusCode, payload)
 }
 
 func (o *MediaDeleteDefault) GetPayload() *models.ErrorResponse {

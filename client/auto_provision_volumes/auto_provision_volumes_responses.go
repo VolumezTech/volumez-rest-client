@@ -6,6 +6,7 @@ package auto_provision_volumes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,11 +99,13 @@ func (o *AutoProvisionVolumesOK) Code() int {
 }
 
 func (o *AutoProvisionVolumesOK) Error() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesOK %s", 200, payload)
 }
 
 func (o *AutoProvisionVolumesOK) String() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesOK %s", 200, payload)
 }
 
 func (o *AutoProvisionVolumesOK) GetPayload() *models.RegularResponse {
@@ -166,11 +169,13 @@ func (o *AutoProvisionVolumesAccepted) Code() int {
 }
 
 func (o *AutoProvisionVolumesAccepted) Error() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesAccepted %s", 202, payload)
 }
 
 func (o *AutoProvisionVolumesAccepted) String() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesAccepted %s", 202, payload)
 }
 
 func (o *AutoProvisionVolumesAccepted) GetPayload() *models.ErrorResponse {
@@ -234,11 +239,13 @@ func (o *AutoProvisionVolumesConflict) Code() int {
 }
 
 func (o *AutoProvisionVolumesConflict) Error() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesConflict %s", 409, payload)
 }
 
 func (o *AutoProvisionVolumesConflict) String() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] autoProvisionVolumesConflict %s", 409, payload)
 }
 
 func (o *AutoProvisionVolumesConflict) GetPayload() *models.ErrorResponse {
@@ -306,11 +313,13 @@ func (o *AutoProvisionVolumesDefault) Code() int {
 }
 
 func (o *AutoProvisionVolumesDefault) Error() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] AutoProvisionVolumes default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] AutoProvisionVolumes default %s", o._statusCode, payload)
 }
 
 func (o *AutoProvisionVolumesDefault) String() string {
-	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] AutoProvisionVolumes default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /autoprovisionvolumes][%d] AutoProvisionVolumes default %s", o._statusCode, payload)
 }
 
 func (o *AutoProvisionVolumesDefault) GetPayload() *models.ErrorResponse {

@@ -6,6 +6,7 @@ package tenant_host_credentials
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -87,11 +88,13 @@ func (o *TenanthostAccessCredentialsOK) Code() int {
 }
 
 func (o *TenanthostAccessCredentialsOK) Error() string {
-	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsOK %s", 200, payload)
 }
 
 func (o *TenanthostAccessCredentialsOK) String() string {
-	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsOK %s", 200, payload)
 }
 
 func (o *TenanthostAccessCredentialsOK) GetPayload() *models.RefreshTokenResponse {
@@ -164,11 +167,13 @@ func (o *TenanthostAccessCredentialsInternalServerError) Code() int {
 }
 
 func (o *TenanthostAccessCredentialsInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsInternalServerError %s", 500, payload)
 }
 
 func (o *TenanthostAccessCredentialsInternalServerError) String() string {
-	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsInternalServerError %s", 500, payload)
 }
 
 func (o *TenanthostAccessCredentialsInternalServerError) GetPayload() *models.ErrorResponse {

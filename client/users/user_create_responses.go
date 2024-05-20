@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *UserCreateOK) Code() int {
 }
 
 func (o *UserCreateOK) Error() string {
-	return fmt.Sprintf("[POST /signup][%d] userCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signup][%d] userCreateOK %s", 200, payload)
 }
 
 func (o *UserCreateOK) String() string {
-	return fmt.Sprintf("[POST /signup][%d] userCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signup][%d] userCreateOK %s", 200, payload)
 }
 
 func (o *UserCreateOK) GetPayload() *models.SignUpResponse {
@@ -153,11 +156,13 @@ func (o *UserCreateInternalServerError) Code() int {
 }
 
 func (o *UserCreateInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /signup][%d] userCreateInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signup][%d] userCreateInternalServerError %s", 500, payload)
 }
 
 func (o *UserCreateInternalServerError) String() string {
-	return fmt.Sprintf("[POST /signup][%d] userCreateInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signup][%d] userCreateInternalServerError %s", 500, payload)
 }
 
 func (o *UserCreateInternalServerError) GetPayload() *models.SignUpResponse {

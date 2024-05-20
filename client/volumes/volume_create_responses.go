@@ -6,6 +6,7 @@ package volumes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,11 +99,13 @@ func (o *VolumeCreateOK) Code() int {
 }
 
 func (o *VolumeCreateOK) Error() string {
-	return fmt.Sprintf("[POST /volumes][%d] volumeCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes][%d] volumeCreateOK %s", 200, payload)
 }
 
 func (o *VolumeCreateOK) String() string {
-	return fmt.Sprintf("[POST /volumes][%d] volumeCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes][%d] volumeCreateOK %s", 200, payload)
 }
 
 func (o *VolumeCreateOK) GetPayload() *models.RegularResponse {
@@ -166,11 +169,13 @@ func (o *VolumeCreateAccepted) Code() int {
 }
 
 func (o *VolumeCreateAccepted) Error() string {
-	return fmt.Sprintf("[POST /volumes][%d] volumeCreateAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes][%d] volumeCreateAccepted %s", 202, payload)
 }
 
 func (o *VolumeCreateAccepted) String() string {
-	return fmt.Sprintf("[POST /volumes][%d] volumeCreateAccepted  %+v", 202, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes][%d] volumeCreateAccepted %s", 202, payload)
 }
 
 func (o *VolumeCreateAccepted) GetPayload() *models.ErrorResponse {
@@ -234,11 +239,13 @@ func (o *VolumeCreateConflict) Code() int {
 }
 
 func (o *VolumeCreateConflict) Error() string {
-	return fmt.Sprintf("[POST /volumes][%d] volumeCreateConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes][%d] volumeCreateConflict %s", 409, payload)
 }
 
 func (o *VolumeCreateConflict) String() string {
-	return fmt.Sprintf("[POST /volumes][%d] volumeCreateConflict  %+v", 409, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes][%d] volumeCreateConflict %s", 409, payload)
 }
 
 func (o *VolumeCreateConflict) GetPayload() *models.ErrorResponse {
@@ -306,11 +313,13 @@ func (o *VolumeCreateDefault) Code() int {
 }
 
 func (o *VolumeCreateDefault) Error() string {
-	return fmt.Sprintf("[POST /volumes][%d] VolumeCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes][%d] VolumeCreate default %s", o._statusCode, payload)
 }
 
 func (o *VolumeCreateDefault) String() string {
-	return fmt.Sprintf("[POST /volumes][%d] VolumeCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes][%d] VolumeCreate default %s", o._statusCode, payload)
 }
 
 func (o *VolumeCreateDefault) GetPayload() *models.ErrorResponse {

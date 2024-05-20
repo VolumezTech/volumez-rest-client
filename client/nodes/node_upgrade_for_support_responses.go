@@ -6,6 +6,7 @@ package nodes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,11 +99,13 @@ func (o *NodeUpgradeForSupportOK) Code() int {
 }
 
 func (o *NodeUpgradeForSupportOK) Error() string {
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportOK %s", 200, payload)
 }
 
 func (o *NodeUpgradeForSupportOK) String() string {
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportOK %s", 200, payload)
 }
 
 func (o *NodeUpgradeForSupportOK) GetPayload() *models.RegularResponse {
@@ -166,11 +169,13 @@ func (o *NodeUpgradeForSupportBadRequest) Code() int {
 }
 
 func (o *NodeUpgradeForSupportBadRequest) Error() string {
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportBadRequest %s", 400, payload)
 }
 
 func (o *NodeUpgradeForSupportBadRequest) String() string {
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportBadRequest %s", 400, payload)
 }
 
 func (o *NodeUpgradeForSupportBadRequest) GetPayload() *models.ErrorResponse {
@@ -234,11 +239,13 @@ func (o *NodeUpgradeForSupportNotFound) Code() int {
 }
 
 func (o *NodeUpgradeForSupportNotFound) Error() string {
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportNotFound %s", 404, payload)
 }
 
 func (o *NodeUpgradeForSupportNotFound) String() string {
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportNotFound %s", 404, payload)
 }
 
 func (o *NodeUpgradeForSupportNotFound) GetPayload() *models.ErrorResponse {
@@ -306,11 +313,13 @@ func (o *NodeUpgradeForSupportDefault) Code() int {
 }
 
 func (o *NodeUpgradeForSupportDefault) Error() string {
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] NodeUpgradeForSupport default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] NodeUpgradeForSupport default %s", o._statusCode, payload)
 }
 
 func (o *NodeUpgradeForSupportDefault) String() string {
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] NodeUpgradeForSupport default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] NodeUpgradeForSupport default %s", o._statusCode, payload)
 }
 
 func (o *NodeUpgradeForSupportDefault) GetPayload() *models.ErrorResponse {

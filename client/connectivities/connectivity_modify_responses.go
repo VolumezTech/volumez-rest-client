@@ -6,6 +6,7 @@ package connectivities
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *ConnectivityModifyOK) Code() int {
 }
 
 func (o *ConnectivityModifyOK) Error() string {
-	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] connectivityModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] connectivityModifyOK %s", 200, payload)
 }
 
 func (o *ConnectivityModifyOK) String() string {
-	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] connectivityModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] connectivityModifyOK %s", 200, payload)
 }
 
 func (o *ConnectivityModifyOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *ConnectivityModifyDefault) Code() int {
 }
 
 func (o *ConnectivityModifyDefault) Error() string {
-	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] ConnectivityModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] ConnectivityModify default %s", o._statusCode, payload)
 }
 
 func (o *ConnectivityModifyDefault) String() string {
-	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] ConnectivityModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /connectivities/{connectivity}][%d] ConnectivityModify default %s", o._statusCode, payload)
 }
 
 func (o *ConnectivityModifyDefault) GetPayload() *models.ErrorResponse {

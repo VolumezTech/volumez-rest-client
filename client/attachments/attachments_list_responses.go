@@ -6,6 +6,7 @@ package attachments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *AttachmentsListOK) Code() int {
 }
 
 func (o *AttachmentsListOK) Error() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentsListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentsListOK %s", 200, payload)
 }
 
 func (o *AttachmentsListOK) String() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentsListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentsListOK %s", 200, payload)
 }
 
 func (o *AttachmentsListOK) GetPayload() []*models.Attachment {
@@ -156,11 +159,13 @@ func (o *AttachmentsListDefault) Code() int {
 }
 
 func (o *AttachmentsListDefault) Error() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentsList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentsList default %s", o._statusCode, payload)
 }
 
 func (o *AttachmentsListDefault) String() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentsList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentsList default %s", o._statusCode, payload)
 }
 
 func (o *AttachmentsListDefault) GetPayload() *models.ErrorResponse {

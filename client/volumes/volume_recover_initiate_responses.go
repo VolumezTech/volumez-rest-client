@@ -6,6 +6,7 @@ package volumes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *VolumeRecoverInitiateOK) Code() int {
 }
 
 func (o *VolumeRecoverInitiateOK) Error() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/recover][%d] volumeRecoverInitiateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/recover][%d] volumeRecoverInitiateOK %s", 200, payload)
 }
 
 func (o *VolumeRecoverInitiateOK) String() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/recover][%d] volumeRecoverInitiateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/recover][%d] volumeRecoverInitiateOK %s", 200, payload)
 }
 
 func (o *VolumeRecoverInitiateOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *VolumeRecoverInitiateDefault) Code() int {
 }
 
 func (o *VolumeRecoverInitiateDefault) Error() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/recover][%d] VolumeRecoverInitiate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/recover][%d] VolumeRecoverInitiate default %s", o._statusCode, payload)
 }
 
 func (o *VolumeRecoverInitiateDefault) String() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/recover][%d] VolumeRecoverInitiate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/recover][%d] VolumeRecoverInitiate default %s", o._statusCode, payload)
 }
 
 func (o *VolumeRecoverInitiateDefault) GetPayload() *models.ErrorResponse {

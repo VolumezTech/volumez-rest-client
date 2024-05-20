@@ -6,6 +6,7 @@ package attachments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *AttachmentsListForVolumeOK) Code() int {
 }
 
 func (o *AttachmentsListForVolumeOK) Error() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] attachmentsListForVolumeOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] attachmentsListForVolumeOK %s", 200, payload)
 }
 
 func (o *AttachmentsListForVolumeOK) String() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] attachmentsListForVolumeOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] attachmentsListForVolumeOK %s", 200, payload)
 }
 
 func (o *AttachmentsListForVolumeOK) GetPayload() []*models.Attachment {
@@ -156,11 +159,13 @@ func (o *AttachmentsListForVolumeDefault) Code() int {
 }
 
 func (o *AttachmentsListForVolumeDefault) Error() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] AttachmentsListForVolume default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] AttachmentsListForVolume default %s", o._statusCode, payload)
 }
 
 func (o *AttachmentsListForVolumeDefault) String() string {
-	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] AttachmentsListForVolume default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] AttachmentsListForVolume default %s", o._statusCode, payload)
 }
 
 func (o *AttachmentsListForVolumeDefault) GetPayload() *models.ErrorResponse {

@@ -31,7 +31,7 @@ type AutoProvisionInfraPlan struct {
 	InstanceType string `json:"instanceType"`
 
 	// os type
-	// Enum: [Linux Rhel Ubuntu]
+	// Enum: ["Linux","Rhel","Ubuntu"]
 	OsType string `json:"osType"`
 
 	// Number of instance to provision

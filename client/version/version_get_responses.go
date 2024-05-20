@@ -6,6 +6,7 @@ package version
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *VersionGetOK) Code() int {
 }
 
 func (o *VersionGetOK) Error() string {
-	return fmt.Sprintf("[GET /version][%d] versionGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /version][%d] versionGetOK %s", 200, payload)
 }
 
 func (o *VersionGetOK) String() string {
-	return fmt.Sprintf("[GET /version][%d] versionGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /version][%d] versionGetOK %s", 200, payload)
 }
 
 func (o *VersionGetOK) GetPayload() *models.VersionResponse {
@@ -158,11 +161,13 @@ func (o *VersionGetDefault) Code() int {
 }
 
 func (o *VersionGetDefault) Error() string {
-	return fmt.Sprintf("[GET /version][%d] versionGet default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /version][%d] versionGet default %s", o._statusCode, payload)
 }
 
 func (o *VersionGetDefault) String() string {
-	return fmt.Sprintf("[GET /version][%d] versionGet default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /version][%d] versionGet default %s", o._statusCode, payload)
 }
 
 func (o *VersionGetDefault) GetPayload() *models.ErrorResponse {

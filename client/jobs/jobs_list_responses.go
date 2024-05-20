@@ -6,6 +6,7 @@ package jobs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *JobsListOK) Code() int {
 }
 
 func (o *JobsListOK) Error() string {
-	return fmt.Sprintf("[GET /jobs][%d] jobsListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /jobs][%d] jobsListOK %s", 200, payload)
 }
 
 func (o *JobsListOK) String() string {
-	return fmt.Sprintf("[GET /jobs][%d] jobsListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /jobs][%d] jobsListOK %s", 200, payload)
 }
 
 func (o *JobsListOK) GetPayload() []*models.Job {
@@ -156,11 +159,13 @@ func (o *JobsListDefault) Code() int {
 }
 
 func (o *JobsListDefault) Error() string {
-	return fmt.Sprintf("[GET /jobs][%d] JobsList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /jobs][%d] JobsList default %s", o._statusCode, payload)
 }
 
 func (o *JobsListDefault) String() string {
-	return fmt.Sprintf("[GET /jobs][%d] JobsList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /jobs][%d] JobsList default %s", o._statusCode, payload)
 }
 
 func (o *JobsListDefault) GetPayload() *models.ErrorResponse {

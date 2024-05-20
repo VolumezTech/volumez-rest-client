@@ -6,6 +6,7 @@ package health
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -79,11 +80,13 @@ func (o *HealthOK) Code() int {
 }
 
 func (o *HealthOK) Error() string {
-	return fmt.Sprintf("[GET /healthcheck][%d] healthOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /healthcheck][%d] healthOK %s", 200, payload)
 }
 
 func (o *HealthOK) String() string {
-	return fmt.Sprintf("[GET /healthcheck][%d] healthOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /healthcheck][%d] healthOK %s", 200, payload)
 }
 
 func (o *HealthOK) GetPayload() *models.RegularResponse {

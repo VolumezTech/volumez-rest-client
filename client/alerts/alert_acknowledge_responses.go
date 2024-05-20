@@ -6,6 +6,7 @@ package alerts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *AlertAcknowledgeOK) Code() int {
 }
 
 func (o *AlertAcknowledgeOK) Error() string {
-	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] alertAcknowledgeOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] alertAcknowledgeOK %s", 200, payload)
 }
 
 func (o *AlertAcknowledgeOK) String() string {
-	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] alertAcknowledgeOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] alertAcknowledgeOK %s", 200, payload)
 }
 
 func (o *AlertAcknowledgeOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *AlertAcknowledgeDefault) Code() int {
 }
 
 func (o *AlertAcknowledgeDefault) Error() string {
-	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] AlertAcknowledge default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] AlertAcknowledge default %s", o._statusCode, payload)
 }
 
 func (o *AlertAcknowledgeDefault) String() string {
-	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] AlertAcknowledge default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] AlertAcknowledge default %s", o._statusCode, payload)
 }
 
 func (o *AlertAcknowledgeDefault) GetPayload() *models.ErrorResponse {

@@ -6,6 +6,7 @@ package networks
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *NetworkCreateOK) Code() int {
 }
 
 func (o *NetworkCreateOK) Error() string {
-	return fmt.Sprintf("[POST /networks][%d] networkCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /networks][%d] networkCreateOK %s", 200, payload)
 }
 
 func (o *NetworkCreateOK) String() string {
-	return fmt.Sprintf("[POST /networks][%d] networkCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /networks][%d] networkCreateOK %s", 200, payload)
 }
 
 func (o *NetworkCreateOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *NetworkCreateDefault) Code() int {
 }
 
 func (o *NetworkCreateDefault) Error() string {
-	return fmt.Sprintf("[POST /networks][%d] NetworkCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /networks][%d] NetworkCreate default %s", o._statusCode, payload)
 }
 
 func (o *NetworkCreateDefault) String() string {
-	return fmt.Sprintf("[POST /networks][%d] NetworkCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /networks][%d] NetworkCreate default %s", o._statusCode, payload)
 }
 
 func (o *NetworkCreateDefault) GetPayload() *models.ErrorResponse {

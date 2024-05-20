@@ -6,6 +6,7 @@ package volumes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *VolumeModifyOK) Code() int {
 }
 
 func (o *VolumeModifyOK) Error() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}][%d] volumeModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}][%d] volumeModifyOK %s", 200, payload)
 }
 
 func (o *VolumeModifyOK) String() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}][%d] volumeModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}][%d] volumeModifyOK %s", 200, payload)
 }
 
 func (o *VolumeModifyOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *VolumeModifyDefault) Code() int {
 }
 
 func (o *VolumeModifyDefault) Error() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}][%d] VolumeModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}][%d] VolumeModify default %s", o._statusCode, payload)
 }
 
 func (o *VolumeModifyDefault) String() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}][%d] VolumeModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}][%d] VolumeModify default %s", o._statusCode, payload)
 }
 
 func (o *VolumeModifyDefault) GetPayload() *models.ErrorResponse {

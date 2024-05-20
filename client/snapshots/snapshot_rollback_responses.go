@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *SnapshotRollbackOK) Code() int {
 }
 
 func (o *SnapshotRollbackOK) Error() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] snapshotRollbackOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] snapshotRollbackOK %s", 200, payload)
 }
 
 func (o *SnapshotRollbackOK) String() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] snapshotRollbackOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] snapshotRollbackOK %s", 200, payload)
 }
 
 func (o *SnapshotRollbackOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *SnapshotRollbackDefault) Code() int {
 }
 
 func (o *SnapshotRollbackDefault) Error() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] SnapshotRollback default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] SnapshotRollback default %s", o._statusCode, payload)
 }
 
 func (o *SnapshotRollbackDefault) String() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] SnapshotRollback default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}/rollback][%d] SnapshotRollback default %s", o._statusCode, payload)
 }
 
 func (o *SnapshotRollbackDefault) GetPayload() *models.ErrorResponse {

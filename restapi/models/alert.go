@@ -36,21 +36,21 @@ type Alert struct {
 	// Required: true
 	// Read Only: true
 	// Min Length: 1
-	// Enum: [Info Warning Critical Fatal]
+	// Enum: ["Info","Warning","Critical","Fatal"]
 	AlertSeverity string `json:"severity"`
 
 	// Alert State
 	// Required: true
 	// Read Only: true
 	// Min Length: 1
-	// Enum: [Active Acknowledged Cleared]
+	// Enum: ["Active","Acknowledged","Cleared"]
 	AlertState string `json:"state"`
 
 	// Alert Type
 	// Required: true
 	// Read Only: true
 	// Min Length: 1
-	// Enum: [StateChange ProcessFailed ThresholdReached]
+	// Enum: ["StateChange","ProcessFailed","ThresholdReached"]
 	AlertType string `json:"type"`
 
 	// Alert Clear Time
@@ -79,7 +79,7 @@ type Alert struct {
 	// Required: true
 	// Read Only: true
 	// Min Length: 1
-	// Enum: [Media Node Volume Snapshot Attachment]
+	// Enum: ["Media","Node","Volume","Snapshot","Attachment"]
 	UnderlyingObjectType string `json:"objecttype"`
 }
 

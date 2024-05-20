@@ -6,6 +6,7 @@ package networks
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *NetworkModifyOK) Code() int {
 }
 
 func (o *NetworkModifyOK) Error() string {
-	return fmt.Sprintf("[PATCH /networks/{network}][%d] networkModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /networks/{network}][%d] networkModifyOK %s", 200, payload)
 }
 
 func (o *NetworkModifyOK) String() string {
-	return fmt.Sprintf("[PATCH /networks/{network}][%d] networkModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /networks/{network}][%d] networkModifyOK %s", 200, payload)
 }
 
 func (o *NetworkModifyOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *NetworkModifyDefault) Code() int {
 }
 
 func (o *NetworkModifyDefault) Error() string {
-	return fmt.Sprintf("[PATCH /networks/{network}][%d] NetworkModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /networks/{network}][%d] NetworkModify default %s", o._statusCode, payload)
 }
 
 func (o *NetworkModifyDefault) String() string {
-	return fmt.Sprintf("[PATCH /networks/{network}][%d] NetworkModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /networks/{network}][%d] NetworkModify default %s", o._statusCode, payload)
 }
 
 func (o *NetworkModifyDefault) GetPayload() *models.ErrorResponse {

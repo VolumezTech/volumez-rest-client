@@ -91,11 +91,13 @@ func (o *ConsistencyGroupSnapshotCreateOK) Code() int {
 }
 
 func (o *ConsistencyGroupSnapshotCreateOK) Error() string {
-	return fmt.Sprintf("[POST /volumes/snapshot][%d] consistencyGroupSnapshotCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/snapshot][%d] consistencyGroupSnapshotCreateOK %s", 200, payload)
 }
 
 func (o *ConsistencyGroupSnapshotCreateOK) String() string {
-	return fmt.Sprintf("[POST /volumes/snapshot][%d] consistencyGroupSnapshotCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/snapshot][%d] consistencyGroupSnapshotCreateOK %s", 200, payload)
 }
 
 func (o *ConsistencyGroupSnapshotCreateOK) GetPayload() *models.RegularResponse {
@@ -163,11 +165,13 @@ func (o *ConsistencyGroupSnapshotCreateDefault) Code() int {
 }
 
 func (o *ConsistencyGroupSnapshotCreateDefault) Error() string {
-	return fmt.Sprintf("[POST /volumes/snapshot][%d] ConsistencyGroupSnapshotCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/snapshot][%d] ConsistencyGroupSnapshotCreate default %s", o._statusCode, payload)
 }
 
 func (o *ConsistencyGroupSnapshotCreateDefault) String() string {
-	return fmt.Sprintf("[POST /volumes/snapshot][%d] ConsistencyGroupSnapshotCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/snapshot][%d] ConsistencyGroupSnapshotCreate default %s", o._statusCode, payload)
 }
 
 func (o *ConsistencyGroupSnapshotCreateDefault) GetPayload() *models.ErrorResponse {
@@ -193,7 +197,7 @@ swagger:model ConsistencyGroupSnapshotCreateBody
 type ConsistencyGroupSnapshotCreateBody struct {
 
 	// consistency
-	// Enum: [crash application]
+	// Enum: ["crash","application"]
 	Consistency *string `json:"consistency,omitempty"`
 
 	// group name

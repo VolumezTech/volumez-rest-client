@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *SnapshotsListAllOK) Code() int {
 }
 
 func (o *SnapshotsListAllOK) Error() string {
-	return fmt.Sprintf("[GET /snapshots][%d] snapshotsListAllOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots][%d] snapshotsListAllOK %s", 200, payload)
 }
 
 func (o *SnapshotsListAllOK) String() string {
-	return fmt.Sprintf("[GET /snapshots][%d] snapshotsListAllOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots][%d] snapshotsListAllOK %s", 200, payload)
 }
 
 func (o *SnapshotsListAllOK) GetPayload() []*models.Snapshot {
@@ -156,11 +159,13 @@ func (o *SnapshotsListAllDefault) Code() int {
 }
 
 func (o *SnapshotsListAllDefault) Error() string {
-	return fmt.Sprintf("[GET /snapshots][%d] SnapshotsListAll default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots][%d] SnapshotsListAll default %s", o._statusCode, payload)
 }
 
 func (o *SnapshotsListAllDefault) String() string {
-	return fmt.Sprintf("[GET /snapshots][%d] SnapshotsListAll default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /snapshots][%d] SnapshotsListAll default %s", o._statusCode, payload)
 }
 
 func (o *SnapshotsListAllDefault) GetPayload() *models.ErrorResponse {

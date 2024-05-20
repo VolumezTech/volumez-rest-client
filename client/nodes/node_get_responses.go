@@ -6,6 +6,7 @@ package nodes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,11 +99,13 @@ func (o *NodeGetOK) Code() int {
 }
 
 func (o *NodeGetOK) Error() string {
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetOK %s", 200, payload)
 }
 
 func (o *NodeGetOK) String() string {
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetOK %s", 200, payload)
 }
 
 func (o *NodeGetOK) GetPayload() *models.Node {
@@ -166,11 +169,13 @@ func (o *NodeGetBadRequest) Code() int {
 }
 
 func (o *NodeGetBadRequest) Error() string {
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetBadRequest %s", 400, payload)
 }
 
 func (o *NodeGetBadRequest) String() string {
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetBadRequest %s", 400, payload)
 }
 
 func (o *NodeGetBadRequest) GetPayload() *models.ErrorResponse {
@@ -234,11 +239,13 @@ func (o *NodeGetNotFound) Code() int {
 }
 
 func (o *NodeGetNotFound) Error() string {
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetNotFound %s", 404, payload)
 }
 
 func (o *NodeGetNotFound) String() string {
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetNotFound %s", 404, payload)
 }
 
 func (o *NodeGetNotFound) GetPayload() *models.ErrorResponse {
@@ -306,11 +313,13 @@ func (o *NodeGetDefault) Code() int {
 }
 
 func (o *NodeGetDefault) Error() string {
-	return fmt.Sprintf("[GET /nodes/{node}][%d] NodeGet default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] NodeGet default %s", o._statusCode, payload)
 }
 
 func (o *NodeGetDefault) String() string {
-	return fmt.Sprintf("[GET /nodes/{node}][%d] NodeGet default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] NodeGet default %s", o._statusCode, payload)
 }
 
 func (o *NodeGetDefault) GetPayload() *models.ErrorResponse {

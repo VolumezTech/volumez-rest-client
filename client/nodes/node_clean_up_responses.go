@@ -6,6 +6,7 @@ package nodes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,11 +99,13 @@ func (o *NodeCleanUpOK) Code() int {
 }
 
 func (o *NodeCleanUpOK) Error() string {
-	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpOK %s", 200, payload)
 }
 
 func (o *NodeCleanUpOK) String() string {
-	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpOK %s", 200, payload)
 }
 
 func (o *NodeCleanUpOK) GetPayload() *models.RegularResponse {
@@ -166,11 +169,13 @@ func (o *NodeCleanUpBadRequest) Code() int {
 }
 
 func (o *NodeCleanUpBadRequest) Error() string {
-	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpBadRequest %s", 400, payload)
 }
 
 func (o *NodeCleanUpBadRequest) String() string {
-	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpBadRequest %s", 400, payload)
 }
 
 func (o *NodeCleanUpBadRequest) GetPayload() *models.ErrorResponse {
@@ -234,11 +239,13 @@ func (o *NodeCleanUpNotFound) Code() int {
 }
 
 func (o *NodeCleanUpNotFound) Error() string {
-	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpNotFound %s", 404, payload)
 }
 
 func (o *NodeCleanUpNotFound) String() string {
-	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] nodeCleanUpNotFound %s", 404, payload)
 }
 
 func (o *NodeCleanUpNotFound) GetPayload() *models.ErrorResponse {
@@ -306,11 +313,13 @@ func (o *NodeCleanUpDefault) Code() int {
 }
 
 func (o *NodeCleanUpDefault) Error() string {
-	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] NodeCleanUp default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] NodeCleanUp default %s", o._statusCode, payload)
 }
 
 func (o *NodeCleanUpDefault) String() string {
-	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] NodeCleanUp default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/cleanup/{node}][%d] NodeCleanUp default %s", o._statusCode, payload)
 }
 
 func (o *NodeCleanUpDefault) GetPayload() *models.ErrorResponse {

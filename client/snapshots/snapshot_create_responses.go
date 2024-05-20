@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *SnapshotCreateOK) Code() int {
 }
 
 func (o *SnapshotCreateOK) Error() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] snapshotCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] snapshotCreateOK %s", 200, payload)
 }
 
 func (o *SnapshotCreateOK) String() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] snapshotCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] snapshotCreateOK %s", 200, payload)
 }
 
 func (o *SnapshotCreateOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *SnapshotCreateDefault) Code() int {
 }
 
 func (o *SnapshotCreateDefault) Error() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] SnapshotCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] SnapshotCreate default %s", o._statusCode, payload)
 }
 
 func (o *SnapshotCreateDefault) String() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] SnapshotCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] SnapshotCreate default %s", o._statusCode, payload)
 }
 
 func (o *SnapshotCreateDefault) GetPayload() *models.ErrorResponse {

@@ -6,6 +6,7 @@ package capacity_groups
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *CapacityGroupGetOK) Code() int {
 }
 
 func (o *CapacityGroupGetOK) Error() string {
-	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGetOK %s", 200, payload)
 }
 
 func (o *CapacityGroupGetOK) String() string {
-	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGetOK %s", 200, payload)
 }
 
 func (o *CapacityGroupGetOK) GetPayload() []*models.CapacityGroup {
@@ -156,11 +159,13 @@ func (o *CapacityGroupGetDefault) Code() int {
 }
 
 func (o *CapacityGroupGetDefault) Error() string {
-	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGet default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGet default %s", o._statusCode, payload)
 }
 
 func (o *CapacityGroupGetDefault) String() string {
-	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGet default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /capacitygroups][%d] capacityGroupGet default %s", o._statusCode, payload)
 }
 
 func (o *CapacityGroupGetDefault) GetPayload() *models.ErrorResponse {

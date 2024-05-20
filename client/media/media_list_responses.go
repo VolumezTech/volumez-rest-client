@@ -6,6 +6,7 @@ package media
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *MediaListOK) Code() int {
 }
 
 func (o *MediaListOK) Error() string {
-	return fmt.Sprintf("[GET /media][%d] mediaListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media][%d] mediaListOK %s", 200, payload)
 }
 
 func (o *MediaListOK) String() string {
-	return fmt.Sprintf("[GET /media][%d] mediaListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media][%d] mediaListOK %s", 200, payload)
 }
 
 func (o *MediaListOK) GetPayload() []*models.Media {
@@ -156,11 +159,13 @@ func (o *MediaListDefault) Code() int {
 }
 
 func (o *MediaListDefault) Error() string {
-	return fmt.Sprintf("[GET /media][%d] MediaList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media][%d] MediaList default %s", o._statusCode, payload)
 }
 
 func (o *MediaListDefault) String() string {
-	return fmt.Sprintf("[GET /media][%d] MediaList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media][%d] MediaList default %s", o._statusCode, payload)
 }
 
 func (o *MediaListDefault) GetPayload() *models.ErrorResponse {

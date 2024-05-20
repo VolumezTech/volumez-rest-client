@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *ConsistencyGroupGetOK) Code() int {
 }
 
 func (o *ConsistencyGroupGetOK) Error() string {
-	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] consistencyGroupGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] consistencyGroupGetOK %s", 200, payload)
 }
 
 func (o *ConsistencyGroupGetOK) String() string {
-	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] consistencyGroupGetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] consistencyGroupGetOK %s", 200, payload)
 }
 
 func (o *ConsistencyGroupGetOK) GetPayload() []*models.Snapshot {
@@ -156,11 +159,13 @@ func (o *ConsistencyGroupGetDefault) Code() int {
 }
 
 func (o *ConsistencyGroupGetDefault) Error() string {
-	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] ConsistencyGroupGet default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] ConsistencyGroupGet default %s", o._statusCode, payload)
 }
 
 func (o *ConsistencyGroupGetDefault) String() string {
-	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] ConsistencyGroupGet default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] ConsistencyGroupGet default %s", o._statusCode, payload)
 }
 
 func (o *ConsistencyGroupGetDefault) GetPayload() *models.ErrorResponse {

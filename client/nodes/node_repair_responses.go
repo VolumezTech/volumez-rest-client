@@ -6,6 +6,7 @@ package nodes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,11 +99,13 @@ func (o *NodeRepairOK) Code() int {
 }
 
 func (o *NodeRepairOK) Error() string {
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairOK %s", 200, payload)
 }
 
 func (o *NodeRepairOK) String() string {
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairOK %s", 200, payload)
 }
 
 func (o *NodeRepairOK) GetPayload() *models.RegularResponse {
@@ -166,11 +169,13 @@ func (o *NodeRepairBadRequest) Code() int {
 }
 
 func (o *NodeRepairBadRequest) Error() string {
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairBadRequest %s", 400, payload)
 }
 
 func (o *NodeRepairBadRequest) String() string {
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairBadRequest %s", 400, payload)
 }
 
 func (o *NodeRepairBadRequest) GetPayload() *models.ErrorResponse {
@@ -234,11 +239,13 @@ func (o *NodeRepairNotFound) Code() int {
 }
 
 func (o *NodeRepairNotFound) Error() string {
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairNotFound %s", 404, payload)
 }
 
 func (o *NodeRepairNotFound) String() string {
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairNotFound %s", 404, payload)
 }
 
 func (o *NodeRepairNotFound) GetPayload() *models.ErrorResponse {
@@ -306,11 +313,13 @@ func (o *NodeRepairDefault) Code() int {
 }
 
 func (o *NodeRepairDefault) Error() string {
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] NodeRepair default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] NodeRepair default %s", o._statusCode, payload)
 }
 
 func (o *NodeRepairDefault) String() string {
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] NodeRepair default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] NodeRepair default %s", o._statusCode, payload)
 }
 
 func (o *NodeRepairDefault) GetPayload() *models.ErrorResponse {

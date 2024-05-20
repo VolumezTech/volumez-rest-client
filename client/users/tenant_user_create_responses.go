@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *TenantUserCreateOK) Code() int {
 }
 
 func (o *TenantUserCreateOK) Error() string {
-	return fmt.Sprintf("[POST /tenant/user][%d] tenantUserCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/user][%d] tenantUserCreateOK %s", 200, payload)
 }
 
 func (o *TenantUserCreateOK) String() string {
-	return fmt.Sprintf("[POST /tenant/user][%d] tenantUserCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/user][%d] tenantUserCreateOK %s", 200, payload)
 }
 
 func (o *TenantUserCreateOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *TenantUserCreateDefault) Code() int {
 }
 
 func (o *TenantUserCreateDefault) Error() string {
-	return fmt.Sprintf("[POST /tenant/user][%d] TenantUserCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/user][%d] TenantUserCreate default %s", o._statusCode, payload)
 }
 
 func (o *TenantUserCreateDefault) String() string {
-	return fmt.Sprintf("[POST /tenant/user][%d] TenantUserCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/user][%d] TenantUserCreate default %s", o._statusCode, payload)
 }
 
 func (o *TenantUserCreateDefault) GetPayload() *models.ErrorResponse {

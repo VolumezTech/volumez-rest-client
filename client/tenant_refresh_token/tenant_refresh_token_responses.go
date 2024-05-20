@@ -6,6 +6,7 @@ package tenant_refresh_token
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -92,11 +93,13 @@ func (o *TenantRefreshTokenOK) Code() int {
 }
 
 func (o *TenantRefreshTokenOK) Error() string {
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenOK %s", 200, payload)
 }
 
 func (o *TenantRefreshTokenOK) String() string {
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenOK %s", 200, payload)
 }
 
 func (o *TenantRefreshTokenOK) GetPayload() *models.RefreshToken {
@@ -160,11 +163,13 @@ func (o *TenantRefreshTokenInternalServerError) Code() int {
 }
 
 func (o *TenantRefreshTokenInternalServerError) Error() string {
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenInternalServerError %s", 500, payload)
 }
 
 func (o *TenantRefreshTokenInternalServerError) String() string {
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenInternalServerError %s", 500, payload)
 }
 
 func (o *TenantRefreshTokenInternalServerError) GetPayload() *models.ErrorResponse {
@@ -232,11 +237,13 @@ func (o *TenantRefreshTokenDefault) Code() int {
 }
 
 func (o *TenantRefreshTokenDefault) Error() string {
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] TenantRefreshToken default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] TenantRefreshToken default %s", o._statusCode, payload)
 }
 
 func (o *TenantRefreshTokenDefault) String() string {
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] TenantRefreshToken default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] TenantRefreshToken default %s", o._statusCode, payload)
 }
 
 func (o *TenantRefreshTokenDefault) GetPayload() *models.ErrorResponse {

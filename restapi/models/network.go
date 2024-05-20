@@ -37,7 +37,7 @@ type Network struct {
 
 	// type
 	// Required: true
-	// Enum: [management storage]
+	// Enum: ["management","storage"]
 	Type string `json:"type"`
 
 	// zone

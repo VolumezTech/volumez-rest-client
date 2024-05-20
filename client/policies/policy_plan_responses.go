@@ -6,6 +6,7 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -92,11 +93,13 @@ func (o *PolicyPlanOK) Code() int {
 }
 
 func (o *PolicyPlanOK) Error() string {
-	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanOK %s", 200, payload)
 }
 
 func (o *PolicyPlanOK) String() string {
-	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanOK %s", 200, payload)
 }
 
 func (o *PolicyPlanOK) GetPayload() *models.Plan {
@@ -160,11 +163,13 @@ func (o *PolicyPlanNotFound) Code() int {
 }
 
 func (o *PolicyPlanNotFound) Error() string {
-	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanNotFound %s", 404, payload)
 }
 
 func (o *PolicyPlanNotFound) String() string {
-	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] policyPlanNotFound %s", 404, payload)
 }
 
 func (o *PolicyPlanNotFound) GetPayload() *models.ErrorResponse {
@@ -232,11 +237,13 @@ func (o *PolicyPlanDefault) Code() int {
 }
 
 func (o *PolicyPlanDefault) Error() string {
-	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] PolicyPlan default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] PolicyPlan default %s", o._statusCode, payload)
 }
 
 func (o *PolicyPlanDefault) String() string {
-	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] PolicyPlan default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies/{policy}/size/{size}/zone/{zone}][%d] PolicyPlan default %s", o._statusCode, payload)
 }
 
 func (o *PolicyPlanDefault) GetPayload() *models.ErrorResponse {

@@ -6,6 +6,7 @@ package user_confirm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -92,11 +93,13 @@ func (o *UserConfirmOK) Code() int {
 }
 
 func (o *UserConfirmOK) Error() string {
-	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmOK %s", 200, payload)
 }
 
 func (o *UserConfirmOK) String() string {
-	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmOK %s", 200, payload)
 }
 
 func (o *UserConfirmOK) GetPayload() *models.RegularResponse {
@@ -160,11 +163,13 @@ func (o *UserConfirmInternalServerError) Code() int {
 }
 
 func (o *UserConfirmInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmInternalServerError %s", 500, payload)
 }
 
 func (o *UserConfirmInternalServerError) String() string {
-	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] userConfirmInternalServerError %s", 500, payload)
 }
 
 func (o *UserConfirmInternalServerError) GetPayload() *models.ErrorResponse {
@@ -232,11 +237,13 @@ func (o *UserConfirmDefault) Code() int {
 }
 
 func (o *UserConfirmDefault) Error() string {
-	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] UserConfirm default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] UserConfirm default %s", o._statusCode, payload)
 }
 
 func (o *UserConfirmDefault) String() string {
-	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] UserConfirm default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/user/confirmation][%d] UserConfirm default %s", o._statusCode, payload)
 }
 
 func (o *UserConfirmDefault) GetPayload() *models.ErrorResponse {

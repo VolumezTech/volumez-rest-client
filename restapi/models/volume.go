@@ -111,7 +111,7 @@ type Volume struct {
 
 	// type
 	// Required: true
-	// Enum: [file block]
+	// Enum: ["file","block"]
 	Type string `json:"type"`
 
 	// zone

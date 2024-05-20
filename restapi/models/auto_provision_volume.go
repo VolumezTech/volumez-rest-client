@@ -36,7 +36,7 @@ type AutoProvisionVolume struct {
 
 	// os type
 	// Required: true
-	// Enum: [Linux Rhel Ubuntu]
+	// Enum: ["Linux","Rhel","Ubuntu"]
 	OsType string `json:"osType"`
 
 	// Region to create teh volume in

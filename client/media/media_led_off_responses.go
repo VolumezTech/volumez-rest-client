@@ -6,6 +6,7 @@ package media
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *MediaLedOffOK) Code() int {
 }
 
 func (o *MediaLedOffOK) Error() string {
-	return fmt.Sprintf("[GET /media/{media}/ledoff][%d] mediaLedOffOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media/{media}/ledoff][%d] mediaLedOffOK %s", 200, payload)
 }
 
 func (o *MediaLedOffOK) String() string {
-	return fmt.Sprintf("[GET /media/{media}/ledoff][%d] mediaLedOffOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media/{media}/ledoff][%d] mediaLedOffOK %s", 200, payload)
 }
 
 func (o *MediaLedOffOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *MediaLedOffDefault) Code() int {
 }
 
 func (o *MediaLedOffDefault) Error() string {
-	return fmt.Sprintf("[GET /media/{media}/ledoff][%d] MediaLedOff default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media/{media}/ledoff][%d] MediaLedOff default %s", o._statusCode, payload)
 }
 
 func (o *MediaLedOffDefault) String() string {
-	return fmt.Sprintf("[GET /media/{media}/ledoff][%d] MediaLedOff default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media/{media}/ledoff][%d] MediaLedOff default %s", o._statusCode, payload)
 }
 
 func (o *MediaLedOffDefault) GetPayload() *models.ErrorResponse {

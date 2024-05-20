@@ -6,6 +6,7 @@ package jobs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *JobResumeSuspendOK) Code() int {
 }
 
 func (o *JobResumeSuspendOK) Error() string {
-	return fmt.Sprintf("[PATCH /jobs/{job}/resume_suspend/{state}][%d] jobResumeSuspendOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /jobs/{job}/resume_suspend/{state}][%d] jobResumeSuspendOK %s", 200, payload)
 }
 
 func (o *JobResumeSuspendOK) String() string {
-	return fmt.Sprintf("[PATCH /jobs/{job}/resume_suspend/{state}][%d] jobResumeSuspendOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /jobs/{job}/resume_suspend/{state}][%d] jobResumeSuspendOK %s", 200, payload)
 }
 
 func (o *JobResumeSuspendOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *JobResumeSuspendDefault) Code() int {
 }
 
 func (o *JobResumeSuspendDefault) Error() string {
-	return fmt.Sprintf("[PATCH /jobs/{job}/resume_suspend/{state}][%d] JobResumeSuspend default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /jobs/{job}/resume_suspend/{state}][%d] JobResumeSuspend default %s", o._statusCode, payload)
 }
 
 func (o *JobResumeSuspendDefault) String() string {
-	return fmt.Sprintf("[PATCH /jobs/{job}/resume_suspend/{state}][%d] JobResumeSuspend default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /jobs/{job}/resume_suspend/{state}][%d] JobResumeSuspend default %s", o._statusCode, payload)
 }
 
 func (o *JobResumeSuspendDefault) GetPayload() *models.ErrorResponse {

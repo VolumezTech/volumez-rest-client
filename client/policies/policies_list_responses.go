@@ -6,6 +6,7 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *PoliciesListOK) Code() int {
 }
 
 func (o *PoliciesListOK) Error() string {
-	return fmt.Sprintf("[GET /policies][%d] policiesListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies][%d] policiesListOK %s", 200, payload)
 }
 
 func (o *PoliciesListOK) String() string {
-	return fmt.Sprintf("[GET /policies][%d] policiesListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies][%d] policiesListOK %s", 200, payload)
 }
 
 func (o *PoliciesListOK) GetPayload() []*models.Policy {
@@ -156,11 +159,13 @@ func (o *PoliciesListDefault) Code() int {
 }
 
 func (o *PoliciesListDefault) Error() string {
-	return fmt.Sprintf("[GET /policies][%d] PoliciesList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies][%d] PoliciesList default %s", o._statusCode, payload)
 }
 
 func (o *PoliciesListDefault) String() string {
-	return fmt.Sprintf("[GET /policies][%d] PoliciesList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /policies][%d] PoliciesList default %s", o._statusCode, payload)
 }
 
 func (o *PoliciesListDefault) GetPayload() *models.ErrorResponse {

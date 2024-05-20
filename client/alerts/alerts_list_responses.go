@@ -6,6 +6,7 @@ package alerts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *AlertsListOK) Code() int {
 }
 
 func (o *AlertsListOK) Error() string {
-	return fmt.Sprintf("[GET /alerts][%d] alertsListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] alertsListOK %s", 200, payload)
 }
 
 func (o *AlertsListOK) String() string {
-	return fmt.Sprintf("[GET /alerts][%d] alertsListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] alertsListOK %s", 200, payload)
 }
 
 func (o *AlertsListOK) GetPayload() []*models.Alert {
@@ -156,11 +159,13 @@ func (o *AlertsListDefault) Code() int {
 }
 
 func (o *AlertsListDefault) Error() string {
-	return fmt.Sprintf("[GET /alerts][%d] AlertsList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] AlertsList default %s", o._statusCode, payload)
 }
 
 func (o *AlertsListDefault) String() string {
-	return fmt.Sprintf("[GET /alerts][%d] AlertsList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alerts][%d] AlertsList default %s", o._statusCode, payload)
 }
 
 func (o *AlertsListDefault) GetPayload() *models.ErrorResponse {

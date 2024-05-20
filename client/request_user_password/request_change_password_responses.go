@@ -6,6 +6,7 @@ package request_user_password
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *RequestChangePasswordOK) Code() int {
 }
 
 func (o *RequestChangePasswordOK) Error() string {
-	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] requestChangePasswordOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] requestChangePasswordOK %s", 200, payload)
 }
 
 func (o *RequestChangePasswordOK) String() string {
-	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] requestChangePasswordOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] requestChangePasswordOK %s", 200, payload)
 }
 
 func (o *RequestChangePasswordOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *RequestChangePasswordDefault) Code() int {
 }
 
 func (o *RequestChangePasswordDefault) Error() string {
-	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] RequestChangePassword default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] RequestChangePassword default %s", o._statusCode, payload)
 }
 
 func (o *RequestChangePasswordDefault) String() string {
-	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] RequestChangePassword default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /tenant/user/requestchangepassword][%d] RequestChangePassword default %s", o._statusCode, payload)
 }
 
 func (o *RequestChangePasswordDefault) GetPayload() *models.ErrorResponse {

@@ -6,6 +6,7 @@ package media
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *MediaModifyOK) Code() int {
 }
 
 func (o *MediaModifyOK) Error() string {
-	return fmt.Sprintf("[PATCH /media/{media}][%d] mediaModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /media/{media}][%d] mediaModifyOK %s", 200, payload)
 }
 
 func (o *MediaModifyOK) String() string {
-	return fmt.Sprintf("[PATCH /media/{media}][%d] mediaModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /media/{media}][%d] mediaModifyOK %s", 200, payload)
 }
 
 func (o *MediaModifyOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *MediaModifyDefault) Code() int {
 }
 
 func (o *MediaModifyDefault) Error() string {
-	return fmt.Sprintf("[PATCH /media/{media}][%d] MediaModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /media/{media}][%d] MediaModify default %s", o._statusCode, payload)
 }
 
 func (o *MediaModifyDefault) String() string {
-	return fmt.Sprintf("[PATCH /media/{media}][%d] MediaModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /media/{media}][%d] MediaModify default %s", o._statusCode, payload)
 }
 
 func (o *MediaModifyDefault) GetPayload() *models.ErrorResponse {

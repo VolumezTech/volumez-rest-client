@@ -6,6 +6,7 @@ package users
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *SignoutOK) Code() int {
 }
 
 func (o *SignoutOK) Error() string {
-	return fmt.Sprintf("[POST /signout][%d] signoutOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signout][%d] signoutOK %s", 200, payload)
 }
 
 func (o *SignoutOK) String() string {
-	return fmt.Sprintf("[POST /signout][%d] signoutOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signout][%d] signoutOK %s", 200, payload)
 }
 
 func (o *SignoutOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *SignoutDefault) Code() int {
 }
 
 func (o *SignoutDefault) Error() string {
-	return fmt.Sprintf("[POST /signout][%d] Signout default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signout][%d] Signout default %s", o._statusCode, payload)
 }
 
 func (o *SignoutDefault) String() string {
-	return fmt.Sprintf("[POST /signout][%d] Signout default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signout][%d] Signout default %s", o._statusCode, payload)
 }
 
 func (o *SignoutDefault) GetPayload() *models.ErrorResponse {

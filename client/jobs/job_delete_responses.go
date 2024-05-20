@@ -6,6 +6,7 @@ package jobs
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *JobDeleteOK) Code() int {
 }
 
 func (o *JobDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /jobs/{job}][%d] jobDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /jobs/{job}][%d] jobDeleteOK %s", 200, payload)
 }
 
 func (o *JobDeleteOK) String() string {
-	return fmt.Sprintf("[DELETE /jobs/{job}][%d] jobDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /jobs/{job}][%d] jobDeleteOK %s", 200, payload)
 }
 
 func (o *JobDeleteOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *JobDeleteDefault) Code() int {
 }
 
 func (o *JobDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /jobs/{job}][%d] JobDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /jobs/{job}][%d] JobDelete default %s", o._statusCode, payload)
 }
 
 func (o *JobDeleteDefault) String() string {
-	return fmt.Sprintf("[DELETE /jobs/{job}][%d] JobDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /jobs/{job}][%d] JobDelete default %s", o._statusCode, payload)
 }
 
 func (o *JobDeleteDefault) GetPayload() *models.ErrorResponse {

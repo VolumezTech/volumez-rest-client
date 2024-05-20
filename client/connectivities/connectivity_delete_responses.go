@@ -6,6 +6,7 @@ package connectivities
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *ConnectivityDeleteOK) Code() int {
 }
 
 func (o *ConnectivityDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] connectivityDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] connectivityDeleteOK %s", 200, payload)
 }
 
 func (o *ConnectivityDeleteOK) String() string {
-	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] connectivityDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] connectivityDeleteOK %s", 200, payload)
 }
 
 func (o *ConnectivityDeleteOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *ConnectivityDeleteDefault) Code() int {
 }
 
 func (o *ConnectivityDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] ConnectivityDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] ConnectivityDelete default %s", o._statusCode, payload)
 }
 
 func (o *ConnectivityDeleteDefault) String() string {
-	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] ConnectivityDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /connectivities/{connectivity}][%d] ConnectivityDelete default %s", o._statusCode, payload)
 }
 
 func (o *ConnectivityDeleteDefault) GetPayload() *models.ErrorResponse {

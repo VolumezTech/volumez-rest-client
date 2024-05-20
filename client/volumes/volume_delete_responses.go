@@ -6,6 +6,7 @@ package volumes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *VolumeDeleteOK) Code() int {
 }
 
 func (o *VolumeDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /volumes/{volume}][%d] volumeDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}][%d] volumeDeleteOK %s", 200, payload)
 }
 
 func (o *VolumeDeleteOK) String() string {
-	return fmt.Sprintf("[DELETE /volumes/{volume}][%d] volumeDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}][%d] volumeDeleteOK %s", 200, payload)
 }
 
 func (o *VolumeDeleteOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *VolumeDeleteDefault) Code() int {
 }
 
 func (o *VolumeDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /volumes/{volume}][%d] VolumeDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}][%d] VolumeDelete default %s", o._statusCode, payload)
 }
 
 func (o *VolumeDeleteDefault) String() string {
-	return fmt.Sprintf("[DELETE /volumes/{volume}][%d] VolumeDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}][%d] VolumeDelete default %s", o._statusCode, payload)
 }
 
 func (o *VolumeDeleteDefault) GetPayload() *models.ErrorResponse {

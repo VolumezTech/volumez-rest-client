@@ -6,6 +6,7 @@ package tenant_hosts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *TenanthostdeleteOK) Code() int {
 }
 
 func (o *TenanthostdeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteOK %s", 200, payload)
 }
 
 func (o *TenanthostdeleteOK) String() string {
-	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteOK %s", 200, payload)
 }
 
 func (o *TenanthostdeleteOK) GetPayload() *models.TenantHostDeleteResponse {
@@ -153,11 +156,13 @@ func (o *TenanthostdeleteInternalServerError) Code() int {
 }
 
 func (o *TenanthostdeleteInternalServerError) Error() string {
-	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteInternalServerError %s", 500, payload)
 }
 
 func (o *TenanthostdeleteInternalServerError) String() string {
-	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteInternalServerError %s", 500, payload)
 }
 
 func (o *TenanthostdeleteInternalServerError) GetPayload() *models.TenantHostDeleteResponse {

@@ -6,6 +6,7 @@ package amp
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -92,11 +93,13 @@ func (o *GetSubscriptionOK) Code() int {
 }
 
 func (o *GetSubscriptionOK) Error() string {
-	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionOK %s", 200, payload)
 }
 
 func (o *GetSubscriptionOK) String() string {
-	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionOK %s", 200, payload)
 }
 
 func (o *GetSubscriptionOK) GetPayload() *models.RegularResponse {
@@ -160,11 +163,13 @@ func (o *GetSubscriptionNotFound) Code() int {
 }
 
 func (o *GetSubscriptionNotFound) Error() string {
-	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionNotFound %s", 404, payload)
 }
 
 func (o *GetSubscriptionNotFound) String() string {
-	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] getSubscriptionNotFound %s", 404, payload)
 }
 
 func (o *GetSubscriptionNotFound) GetPayload() *models.ErrorResponse {
@@ -232,11 +237,13 @@ func (o *GetSubscriptionDefault) Code() int {
 }
 
 func (o *GetSubscriptionDefault) Error() string {
-	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] GetSubscription default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] GetSubscription default %s", o._statusCode, payload)
 }
 
 func (o *GetSubscriptionDefault) String() string {
-	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] GetSubscription default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /azuremarketplace/subscription][%d] GetSubscription default %s", o._statusCode, payload)
 }
 
 func (o *GetSubscriptionDefault) GetPayload() *models.ErrorResponse {

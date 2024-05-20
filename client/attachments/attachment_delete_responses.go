@@ -6,6 +6,7 @@ package attachments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *AttachmentDeleteOK) Code() int {
 }
 
 func (o *AttachmentDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] attachmentDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] attachmentDeleteOK %s", 200, payload)
 }
 
 func (o *AttachmentDeleteOK) String() string {
-	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] attachmentDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] attachmentDeleteOK %s", 200, payload)
 }
 
 func (o *AttachmentDeleteOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *AttachmentDeleteDefault) Code() int {
 }
 
 func (o *AttachmentDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] AttachmentDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] AttachmentDelete default %s", o._statusCode, payload)
 }
 
 func (o *AttachmentDeleteDefault) String() string {
-	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] AttachmentDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}/attachments/{node}][%d] AttachmentDelete default %s", o._statusCode, payload)
 }
 
 func (o *AttachmentDeleteDefault) GetPayload() *models.ErrorResponse {

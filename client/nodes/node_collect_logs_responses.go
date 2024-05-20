@@ -6,6 +6,7 @@ package nodes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -98,11 +99,13 @@ func (o *NodeCollectLogsOK) Code() int {
 }
 
 func (o *NodeCollectLogsOK) Error() string {
-	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsOK %s", 200, payload)
 }
 
 func (o *NodeCollectLogsOK) String() string {
-	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsOK %s", 200, payload)
 }
 
 func (o *NodeCollectLogsOK) GetPayload() *models.RegularResponse {
@@ -166,11 +169,13 @@ func (o *NodeCollectLogsBadRequest) Code() int {
 }
 
 func (o *NodeCollectLogsBadRequest) Error() string {
-	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsBadRequest %s", 400, payload)
 }
 
 func (o *NodeCollectLogsBadRequest) String() string {
-	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsBadRequest  %+v", 400, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsBadRequest %s", 400, payload)
 }
 
 func (o *NodeCollectLogsBadRequest) GetPayload() *models.ErrorResponse {
@@ -234,11 +239,13 @@ func (o *NodeCollectLogsNotFound) Code() int {
 }
 
 func (o *NodeCollectLogsNotFound) Error() string {
-	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsNotFound %s", 404, payload)
 }
 
 func (o *NodeCollectLogsNotFound) String() string {
-	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsNotFound  %+v", 404, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] nodeCollectLogsNotFound %s", 404, payload)
 }
 
 func (o *NodeCollectLogsNotFound) GetPayload() *models.ErrorResponse {
@@ -306,11 +313,13 @@ func (o *NodeCollectLogsDefault) Code() int {
 }
 
 func (o *NodeCollectLogsDefault) Error() string {
-	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] NodeCollectLogs default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] NodeCollectLogs default %s", o._statusCode, payload)
 }
 
 func (o *NodeCollectLogsDefault) String() string {
-	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] NodeCollectLogs default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /nodes/logs/{node}/{tenant}][%d] NodeCollectLogs default %s", o._statusCode, payload)
 }
 
 func (o *NodeCollectLogsDefault) GetPayload() *models.ErrorResponse {

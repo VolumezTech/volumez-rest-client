@@ -6,6 +6,7 @@ package attachments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *AttachmentCreateOK) Code() int {
 }
 
 func (o *AttachmentCreateOK) Error() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentCreateOK %s", 200, payload)
 }
 
 func (o *AttachmentCreateOK) String() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentCreateOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentCreateOK %s", 200, payload)
 }
 
 func (o *AttachmentCreateOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *AttachmentCreateDefault) Code() int {
 }
 
 func (o *AttachmentCreateDefault) Error() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentCreate default %s", o._statusCode, payload)
 }
 
 func (o *AttachmentCreateDefault) String() string {
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentCreate default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentCreate default %s", o._statusCode, payload)
 }
 
 func (o *AttachmentCreateDefault) GetPayload() *models.ErrorResponse {

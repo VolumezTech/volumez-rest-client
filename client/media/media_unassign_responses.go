@@ -6,6 +6,7 @@ package media
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *MediaUnassignOK) Code() int {
 }
 
 func (o *MediaUnassignOK) Error() string {
-	return fmt.Sprintf("[GET /media/{media}/unassign][%d] mediaUnassignOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media/{media}/unassign][%d] mediaUnassignOK %s", 200, payload)
 }
 
 func (o *MediaUnassignOK) String() string {
-	return fmt.Sprintf("[GET /media/{media}/unassign][%d] mediaUnassignOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media/{media}/unassign][%d] mediaUnassignOK %s", 200, payload)
 }
 
 func (o *MediaUnassignOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *MediaUnassignDefault) Code() int {
 }
 
 func (o *MediaUnassignDefault) Error() string {
-	return fmt.Sprintf("[GET /media/{media}/unassign][%d] MediaUnassign default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media/{media}/unassign][%d] MediaUnassign default %s", o._statusCode, payload)
 }
 
 func (o *MediaUnassignDefault) String() string {
-	return fmt.Sprintf("[GET /media/{media}/unassign][%d] MediaUnassign default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /media/{media}/unassign][%d] MediaUnassign default %s", o._statusCode, payload)
 }
 
 func (o *MediaUnassignDefault) GetPayload() *models.ErrorResponse {

@@ -6,6 +6,7 @@ package volumes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *VolumesListOK) Code() int {
 }
 
 func (o *VolumesListOK) Error() string {
-	return fmt.Sprintf("[GET /volumes][%d] volumesListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes][%d] volumesListOK %s", 200, payload)
 }
 
 func (o *VolumesListOK) String() string {
-	return fmt.Sprintf("[GET /volumes][%d] volumesListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes][%d] volumesListOK %s", 200, payload)
 }
 
 func (o *VolumesListOK) GetPayload() []*models.Volume {
@@ -156,11 +159,13 @@ func (o *VolumesListDefault) Code() int {
 }
 
 func (o *VolumesListDefault) Error() string {
-	return fmt.Sprintf("[GET /volumes][%d] VolumesList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes][%d] VolumesList default %s", o._statusCode, payload)
 }
 
 func (o *VolumesListDefault) String() string {
-	return fmt.Sprintf("[GET /volumes][%d] VolumesList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /volumes][%d] VolumesList default %s", o._statusCode, payload)
 }
 
 func (o *VolumesListDefault) GetPayload() *models.ErrorResponse {

@@ -22,7 +22,7 @@ type Snapshot struct {
 
 	// consistency
 	// Required: true
-	// Enum: [crash application]
+	// Enum: ["crash","application"]
 	Consistency string `json:"consistency"`
 
 	// consistency group

@@ -6,6 +6,7 @@ package signin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *SignInOK) Code() int {
 }
 
 func (o *SignInOK) Error() string {
-	return fmt.Sprintf("[POST /signin][%d] signInOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signin][%d] signInOK %s", 200, payload)
 }
 
 func (o *SignInOK) String() string {
-	return fmt.Sprintf("[POST /signin][%d] signInOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signin][%d] signInOK %s", 200, payload)
 }
 
 func (o *SignInOK) GetPayload() *models.SignInResponse {
@@ -158,11 +161,13 @@ func (o *SignInDefault) Code() int {
 }
 
 func (o *SignInDefault) Error() string {
-	return fmt.Sprintf("[POST /signin][%d] SignIn default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signin][%d] SignIn default %s", o._statusCode, payload)
 }
 
 func (o *SignInDefault) String() string {
-	return fmt.Sprintf("[POST /signin][%d] SignIn default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /signin][%d] SignIn default %s", o._statusCode, payload)
 }
 
 func (o *SignInDefault) GetPayload() *models.ErrorResponse {

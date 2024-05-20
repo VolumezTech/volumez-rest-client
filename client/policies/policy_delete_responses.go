@@ -6,6 +6,7 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *PolicyDeleteOK) Code() int {
 }
 
 func (o *PolicyDeleteOK) Error() string {
-	return fmt.Sprintf("[DELETE /policies/{policy}][%d] policyDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{policy}][%d] policyDeleteOK %s", 200, payload)
 }
 
 func (o *PolicyDeleteOK) String() string {
-	return fmt.Sprintf("[DELETE /policies/{policy}][%d] policyDeleteOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{policy}][%d] policyDeleteOK %s", 200, payload)
 }
 
 func (o *PolicyDeleteOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *PolicyDeleteDefault) Code() int {
 }
 
 func (o *PolicyDeleteDefault) Error() string {
-	return fmt.Sprintf("[DELETE /policies/{policy}][%d] PolicyDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{policy}][%d] PolicyDelete default %s", o._statusCode, payload)
 }
 
 func (o *PolicyDeleteDefault) String() string {
-	return fmt.Sprintf("[DELETE /policies/{policy}][%d] PolicyDelete default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /policies/{policy}][%d] PolicyDelete default %s", o._statusCode, payload)
 }
 
 func (o *PolicyDeleteDefault) GetPayload() *models.ErrorResponse {

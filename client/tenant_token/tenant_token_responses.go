@@ -6,6 +6,7 @@ package tenant_token
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *TenantTokenOK) Code() int {
 }
 
 func (o *TenantTokenOK) Error() string {
-	return fmt.Sprintf("[GET /tenant/token][%d] tenantTokenOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/token][%d] tenantTokenOK %s", 200, payload)
 }
 
 func (o *TenantTokenOK) String() string {
-	return fmt.Sprintf("[GET /tenant/token][%d] tenantTokenOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/token][%d] tenantTokenOK %s", 200, payload)
 }
 
 func (o *TenantTokenOK) GetPayload() *models.TenantTokenResponse {
@@ -158,11 +161,13 @@ func (o *TenantTokenDefault) Code() int {
 }
 
 func (o *TenantTokenDefault) Error() string {
-	return fmt.Sprintf("[GET /tenant/token][%d] TenantToken default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/token][%d] TenantToken default %s", o._statusCode, payload)
 }
 
 func (o *TenantTokenDefault) String() string {
-	return fmt.Sprintf("[GET /tenant/token][%d] TenantToken default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/token][%d] TenantToken default %s", o._statusCode, payload)
 }
 
 func (o *TenantTokenDefault) GetPayload() *models.ErrorResponse {

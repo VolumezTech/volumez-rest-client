@@ -6,6 +6,7 @@ package tenant_host
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -85,11 +86,13 @@ func (o *TenanthostgetOK) Code() int {
 }
 
 func (o *TenanthostgetOK) Error() string {
-	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetOK %s", 200, payload)
 }
 
 func (o *TenanthostgetOK) String() string {
-	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetOK %s", 200, payload)
 }
 
 func (o *TenanthostgetOK) GetPayload() *models.GetTenantHostResponse {
@@ -153,11 +156,13 @@ func (o *TenanthostgetInternalServerError) Code() int {
 }
 
 func (o *TenanthostgetInternalServerError) Error() string {
-	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetInternalServerError %s", 500, payload)
 }
 
 func (o *TenanthostgetInternalServerError) String() string {
-	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetInternalServerError  %+v", 500, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetInternalServerError %s", 500, payload)
 }
 
 func (o *TenanthostgetInternalServerError) GetPayload() *models.GetTenantHostResponse {

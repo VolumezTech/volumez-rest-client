@@ -6,6 +6,7 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -86,11 +87,13 @@ func (o *SnapshotModifyOK) Code() int {
 }
 
 func (o *SnapshotModifyOK) Error() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] snapshotModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] snapshotModifyOK %s", 200, payload)
 }
 
 func (o *SnapshotModifyOK) String() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] snapshotModifyOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] snapshotModifyOK %s", 200, payload)
 }
 
 func (o *SnapshotModifyOK) GetPayload() *models.RegularResponse {
@@ -158,11 +161,13 @@ func (o *SnapshotModifyDefault) Code() int {
 }
 
 func (o *SnapshotModifyDefault) Error() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotModify default %s", o._statusCode, payload)
 }
 
 func (o *SnapshotModifyDefault) String() string {
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotModify default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotModify default %s", o._statusCode, payload)
 }
 
 func (o *SnapshotModifyDefault) GetPayload() *models.ErrorResponse {
