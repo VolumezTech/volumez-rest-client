@@ -6,7 +6,6 @@ package nodes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewNodeDeleteOK() *NodeDeleteOK {
 }
 
 /*
-NodeDeleteOK describes a response with status code 200, with default header values.
+	NodeDeleteOK describes a response with status code 200, with default header values.
 
 A node delete job was created successfully
 */
@@ -56,46 +55,9 @@ type NodeDeleteOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this node delete o k response has a 2xx status code
-func (o *NodeDeleteOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this node delete o k response has a 3xx status code
-func (o *NodeDeleteOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node delete o k response has a 4xx status code
-func (o *NodeDeleteOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this node delete o k response has a 5xx status code
-func (o *NodeDeleteOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node delete o k response a status code equal to that given
-func (o *NodeDeleteOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the node delete o k response
-func (o *NodeDeleteOK) Code() int {
-	return 200
-}
-
 func (o *NodeDeleteOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /nodes/{node}][%d] nodeDeleteOK %s", 200, payload)
+	return fmt.Sprintf("[DELETE /nodes/{node}][%d] nodeDeleteOK  %+v", 200, o.Payload)
 }
-
-func (o *NodeDeleteOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /nodes/{node}][%d] nodeDeleteOK %s", 200, payload)
-}
-
 func (o *NodeDeleteOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewNodeDeleteDefault(code int) *NodeDeleteDefault {
 }
 
 /*
-NodeDeleteDefault describes a response with status code -1, with default header values.
+	NodeDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a node
 */
@@ -130,46 +92,14 @@ type NodeDeleteDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node delete default response has a 2xx status code
-func (o *NodeDeleteDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this node delete default response has a 3xx status code
-func (o *NodeDeleteDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this node delete default response has a 4xx status code
-func (o *NodeDeleteDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this node delete default response has a 5xx status code
-func (o *NodeDeleteDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this node delete default response a status code equal to that given
-func (o *NodeDeleteDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the node delete default response
 func (o *NodeDeleteDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *NodeDeleteDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /nodes/{node}][%d] NodeDelete default %s", o._statusCode, payload)
+	return fmt.Sprintf("[DELETE /nodes/{node}][%d] NodeDelete default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *NodeDeleteDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /nodes/{node}][%d] NodeDelete default %s", o._statusCode, payload)
-}
-
 func (o *NodeDeleteDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

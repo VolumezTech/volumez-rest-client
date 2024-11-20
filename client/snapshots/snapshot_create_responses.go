@@ -6,7 +6,6 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewSnapshotCreateOK() *SnapshotCreateOK {
 }
 
 /*
-SnapshotCreateOK describes a response with status code 200, with default header values.
+	SnapshotCreateOK describes a response with status code 200, with default header values.
 
 New snapshot was created successfully
 */
@@ -56,46 +55,9 @@ type SnapshotCreateOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this snapshot create o k response has a 2xx status code
-func (o *SnapshotCreateOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this snapshot create o k response has a 3xx status code
-func (o *SnapshotCreateOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this snapshot create o k response has a 4xx status code
-func (o *SnapshotCreateOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this snapshot create o k response has a 5xx status code
-func (o *SnapshotCreateOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this snapshot create o k response a status code equal to that given
-func (o *SnapshotCreateOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the snapshot create o k response
-func (o *SnapshotCreateOK) Code() int {
-	return 200
-}
-
 func (o *SnapshotCreateOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] snapshotCreateOK %s", 200, payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] snapshotCreateOK  %+v", 200, o.Payload)
 }
-
-func (o *SnapshotCreateOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] snapshotCreateOK %s", 200, payload)
-}
-
 func (o *SnapshotCreateOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewSnapshotCreateDefault(code int) *SnapshotCreateDefault {
 }
 
 /*
-SnapshotCreateDefault describes a response with status code -1, with default header values.
+	SnapshotCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new snapshot
 */
@@ -130,46 +92,14 @@ type SnapshotCreateDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this snapshot create default response has a 2xx status code
-func (o *SnapshotCreateDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this snapshot create default response has a 3xx status code
-func (o *SnapshotCreateDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this snapshot create default response has a 4xx status code
-func (o *SnapshotCreateDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this snapshot create default response has a 5xx status code
-func (o *SnapshotCreateDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this snapshot create default response a status code equal to that given
-func (o *SnapshotCreateDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the snapshot create default response
 func (o *SnapshotCreateDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *SnapshotCreateDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] SnapshotCreate default %s", o._statusCode, payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] SnapshotCreate default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *SnapshotCreateDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots][%d] SnapshotCreate default %s", o._statusCode, payload)
-}
-
 func (o *SnapshotCreateDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -63,6 +63,9 @@ ConnectivityModifyParams contains all the parameters to send to the API endpoint
 */
 type ConnectivityModifyParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Body.
 
 	   A Connectivity object
@@ -125,6 +128,17 @@ func (o *ConnectivityModifyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the connectivity modify params
+func (o *ConnectivityModifyParams) WithAuthorization(authorization *string) *ConnectivityModifyParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the connectivity modify params
+func (o *ConnectivityModifyParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithBody adds the body to the connectivity modify params
 func (o *ConnectivityModifyParams) WithBody(body *models.Connectivity) *ConnectivityModifyParams {
 	o.SetBody(body)
@@ -154,6 +168,14 @@ func (o *ConnectivityModifyParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

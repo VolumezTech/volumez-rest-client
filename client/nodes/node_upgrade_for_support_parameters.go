@@ -63,6 +63,9 @@ NodeUpgradeForSupportParams contains all the parameters to send to the API endpo
 */
 type NodeUpgradeForSupportParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Body.
 
 	   Connector Version
@@ -134,6 +137,17 @@ func (o *NodeUpgradeForSupportParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the node upgrade for support params
+func (o *NodeUpgradeForSupportParams) WithAuthorization(authorization *string) *NodeUpgradeForSupportParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the node upgrade for support params
+func (o *NodeUpgradeForSupportParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithBody adds the body to the node upgrade for support params
 func (o *NodeUpgradeForSupportParams) WithBody(body *models.NodeVersion) *NodeUpgradeForSupportParams {
 	o.SetBody(body)
@@ -174,6 +188,14 @@ func (o *NodeUpgradeForSupportParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

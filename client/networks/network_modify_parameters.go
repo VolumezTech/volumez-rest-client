@@ -63,6 +63,9 @@ NetworkModifyParams contains all the parameters to send to the API endpoint
 */
 type NetworkModifyParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Body.
 
 	   A Network object
@@ -125,6 +128,17 @@ func (o *NetworkModifyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the network modify params
+func (o *NetworkModifyParams) WithAuthorization(authorization *string) *NetworkModifyParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the network modify params
+func (o *NetworkModifyParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithBody adds the body to the network modify params
 func (o *NetworkModifyParams) WithBody(body *models.Network) *NetworkModifyParams {
 	o.SetBody(body)
@@ -154,6 +168,14 @@ func (o *NetworkModifyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -6,7 +6,6 @@ package media
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewMediaUnassignOK() *MediaUnassignOK {
 }
 
 /*
-MediaUnassignOK describes a response with status code 200, with default header values.
+	MediaUnassignOK describes a response with status code 200, with default header values.
 
 Operation completed successfully
 */
@@ -56,46 +55,9 @@ type MediaUnassignOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this media unassign o k response has a 2xx status code
-func (o *MediaUnassignOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this media unassign o k response has a 3xx status code
-func (o *MediaUnassignOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this media unassign o k response has a 4xx status code
-func (o *MediaUnassignOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this media unassign o k response has a 5xx status code
-func (o *MediaUnassignOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this media unassign o k response a status code equal to that given
-func (o *MediaUnassignOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the media unassign o k response
-func (o *MediaUnassignOK) Code() int {
-	return 200
-}
-
 func (o *MediaUnassignOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /media/{media}/unassign][%d] mediaUnassignOK %s", 200, payload)
+	return fmt.Sprintf("[PATCH /media/{media}/unassign][%d] mediaUnassignOK  %+v", 200, o.Payload)
 }
-
-func (o *MediaUnassignOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /media/{media}/unassign][%d] mediaUnassignOK %s", 200, payload)
-}
-
 func (o *MediaUnassignOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewMediaUnassignDefault(code int) *MediaUnassignDefault {
 }
 
 /*
-MediaUnassignDefault describes a response with status code -1, with default header values.
+	MediaUnassignDefault describes a response with status code -1, with default header values.
 
 Error completing the operation
 */
@@ -130,46 +92,14 @@ type MediaUnassignDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this media unassign default response has a 2xx status code
-func (o *MediaUnassignDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this media unassign default response has a 3xx status code
-func (o *MediaUnassignDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this media unassign default response has a 4xx status code
-func (o *MediaUnassignDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this media unassign default response has a 5xx status code
-func (o *MediaUnassignDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this media unassign default response a status code equal to that given
-func (o *MediaUnassignDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the media unassign default response
 func (o *MediaUnassignDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *MediaUnassignDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /media/{media}/unassign][%d] MediaUnassign default %s", o._statusCode, payload)
+	return fmt.Sprintf("[PATCH /media/{media}/unassign][%d] MediaUnassign default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *MediaUnassignDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /media/{media}/unassign][%d] MediaUnassign default %s", o._statusCode, payload)
-}
-
 func (o *MediaUnassignDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

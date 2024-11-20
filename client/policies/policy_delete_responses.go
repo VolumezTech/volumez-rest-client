@@ -6,7 +6,6 @@ package policies
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewPolicyDeleteOK() *PolicyDeleteOK {
 }
 
 /*
-PolicyDeleteOK describes a response with status code 200, with default header values.
+	PolicyDeleteOK describes a response with status code 200, with default header values.
 
 A policy was deleted successfully
 */
@@ -56,46 +55,9 @@ type PolicyDeleteOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this policy delete o k response has a 2xx status code
-func (o *PolicyDeleteOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this policy delete o k response has a 3xx status code
-func (o *PolicyDeleteOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this policy delete o k response has a 4xx status code
-func (o *PolicyDeleteOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this policy delete o k response has a 5xx status code
-func (o *PolicyDeleteOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this policy delete o k response a status code equal to that given
-func (o *PolicyDeleteOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the policy delete o k response
-func (o *PolicyDeleteOK) Code() int {
-	return 200
-}
-
 func (o *PolicyDeleteOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /policies/{policy}][%d] policyDeleteOK %s", 200, payload)
+	return fmt.Sprintf("[DELETE /policies/{policy}][%d] policyDeleteOK  %+v", 200, o.Payload)
 }
-
-func (o *PolicyDeleteOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /policies/{policy}][%d] policyDeleteOK %s", 200, payload)
-}
-
 func (o *PolicyDeleteOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewPolicyDeleteDefault(code int) *PolicyDeleteDefault {
 }
 
 /*
-PolicyDeleteDefault describes a response with status code -1, with default header values.
+	PolicyDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a policy
 */
@@ -130,46 +92,14 @@ type PolicyDeleteDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this policy delete default response has a 2xx status code
-func (o *PolicyDeleteDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this policy delete default response has a 3xx status code
-func (o *PolicyDeleteDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this policy delete default response has a 4xx status code
-func (o *PolicyDeleteDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this policy delete default response has a 5xx status code
-func (o *PolicyDeleteDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this policy delete default response a status code equal to that given
-func (o *PolicyDeleteDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the policy delete default response
 func (o *PolicyDeleteDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PolicyDeleteDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /policies/{policy}][%d] PolicyDelete default %s", o._statusCode, payload)
+	return fmt.Sprintf("[DELETE /policies/{policy}][%d] PolicyDelete default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *PolicyDeleteDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /policies/{policy}][%d] PolicyDelete default %s", o._statusCode, payload)
-}
-
 func (o *PolicyDeleteDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

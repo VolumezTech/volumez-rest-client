@@ -59,6 +59,9 @@ type Media struct {
 	// i o p s write
 	IOPSWrite int64 `json:"iopswrite"`
 
+	// Available LBA formats for the media — ensure the block size specified in the media assignment matches one of these formats
+	LBAFormats []string `json:"lbaformats,omitempty"`
+
 	// latency read
 	LatencyRead int64 `json:"latencyread"`
 
@@ -160,8 +163,6 @@ func (m *Media) validateOfflineTime(formats strfmt.Registry) error {
 	if err := m.OfflineTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("offlinetime")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("offlinetime")
 		}
 		return err
 	}

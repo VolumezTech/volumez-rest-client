@@ -12,14 +12,15 @@ import (
 
 	"github.com/VolumezTech/volumez-rest-client/client/alerts"
 	"github.com/VolumezTech/volumez-rest-client/client/amp"
+	"github.com/VolumezTech/volumez-rest-client/client/associations"
 	"github.com/VolumezTech/volumez-rest-client/client/attachments"
 	"github.com/VolumezTech/volumez-rest-client/client/auto_provision_volumes"
 	"github.com/VolumezTech/volumez-rest-client/client/capacity_groups"
 	"github.com/VolumezTech/volumez-rest-client/client/connectivities"
-	"github.com/VolumezTech/volumez-rest-client/client/health"
 	"github.com/VolumezTech/volumez-rest-client/client/jobs"
 	"github.com/VolumezTech/volumez-rest-client/client/media"
 	"github.com/VolumezTech/volumez-rest-client/client/networks"
+	"github.com/VolumezTech/volumez-rest-client/client/node"
 	"github.com/VolumezTech/volumez-rest-client/client/nodes"
 	"github.com/VolumezTech/volumez-rest-client/client/policies"
 	"github.com/VolumezTech/volumez-rest-client/client/request_user_password"
@@ -85,14 +86,15 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Volumez {
 	cli.Transport = transport
 	cli.Alerts = alerts.New(transport, formats)
 	cli.Amp = amp.New(transport, formats)
+	cli.Associations = associations.New(transport, formats)
 	cli.Attachments = attachments.New(transport, formats)
 	cli.AutoProvisionVolumes = auto_provision_volumes.New(transport, formats)
 	cli.CapacityGroups = capacity_groups.New(transport, formats)
 	cli.Connectivities = connectivities.New(transport, formats)
-	cli.Health = health.New(transport, formats)
 	cli.Jobs = jobs.New(transport, formats)
 	cli.Media = media.New(transport, formats)
 	cli.Networks = networks.New(transport, formats)
+	cli.Node = node.New(transport, formats)
 	cli.Nodes = nodes.New(transport, formats)
 	cli.Policies = policies.New(transport, formats)
 	cli.RequestUserPassword = request_user_password.New(transport, formats)
@@ -160,6 +162,8 @@ type Volumez struct {
 
 	Amp amp.ClientService
 
+	Associations associations.ClientService
+
 	Attachments attachments.ClientService
 
 	AutoProvisionVolumes auto_provision_volumes.ClientService
@@ -168,13 +172,13 @@ type Volumez struct {
 
 	Connectivities connectivities.ClientService
 
-	Health health.ClientService
-
 	Jobs jobs.ClientService
 
 	Media media.ClientService
 
 	Networks networks.ClientService
+
+	Node node.ClientService
 
 	Nodes nodes.ClientService
 
@@ -222,14 +226,15 @@ func (c *Volumez) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Alerts.SetTransport(transport)
 	c.Amp.SetTransport(transport)
+	c.Associations.SetTransport(transport)
 	c.Attachments.SetTransport(transport)
 	c.AutoProvisionVolumes.SetTransport(transport)
 	c.CapacityGroups.SetTransport(transport)
 	c.Connectivities.SetTransport(transport)
-	c.Health.SetTransport(transport)
 	c.Jobs.SetTransport(transport)
 	c.Media.SetTransport(transport)
 	c.Networks.SetTransport(transport)
+	c.Node.SetTransport(transport)
 	c.Nodes.SetTransport(transport)
 	c.Policies.SetTransport(transport)
 	c.RequestUserPassword.SetTransport(transport)

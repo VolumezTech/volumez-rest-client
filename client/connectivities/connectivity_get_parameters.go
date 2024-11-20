@@ -61,6 +61,9 @@ ConnectivityGetParams contains all the parameters to send to the API endpoint
 */
 type ConnectivityGetParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Connectivity.
 	Connectivity string
 
@@ -117,6 +120,17 @@ func (o *ConnectivityGetParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the connectivity get params
+func (o *ConnectivityGetParams) WithAuthorization(authorization *string) *ConnectivityGetParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the connectivity get params
+func (o *ConnectivityGetParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithConnectivity adds the connectivity to the connectivity get params
 func (o *ConnectivityGetParams) WithConnectivity(connectivity string) *ConnectivityGetParams {
 	o.SetConnectivity(connectivity)
@@ -135,6 +149,14 @@ func (o *ConnectivityGetParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param connectivity
 	if err := r.SetPathParam("connectivity", o.Connectivity); err != nil {

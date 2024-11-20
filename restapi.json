@@ -58,14 +58,6 @@
       "description": ""
     },
     {
-      "name": "Credentials",
-      "description": ""
-    },
-    {
-      "name": "Controllers",
-      "description": ""
-    },
-    {
       "name": "CapacityGroups",
       "description": ""
     },
@@ -76,6 +68,14 @@
   ],
   "paths": {
     "/volumes": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of volumes",
         "tags": [
@@ -122,11 +122,6 @@
             "schema": {
               "$ref": "#/definitions/Volume"
             }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -157,9 +152,121 @@
         }
       }
     },
-    "/volumes/snapshot": {
+    "/volumes/plan": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "post": {
-        "summary": "Create a new snapshot",
+        "summary": "check if volumes can be created",
+        "tags": [
+          "volumes"
+        ],
+        "operationId": "BatchVolumesPlan",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "volumes"
+              ],
+              "properties": {
+                "Volumes": {
+                  "x-go-name": "Volumes",
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "x-go-name": "VolumePlanInput",
+                    "type": "object",
+                    "properties": {
+                      "Policy": {
+                        "type": "string",
+                        "description": "policy name for the planned volume"
+                      },
+                      "Size": {
+                        "x-go-name": "Size",
+                        "x-isnullable": false,
+                        "x-omitempty": false,
+                        "type": "integer",
+                        "description": "volume size in GiB",
+                        "title": "volume size",
+                        "example": 10
+                      },
+                      "Zone": {
+                        "type": "string",
+                        "example": "us-east-1a"
+                      }
+                    },
+                    "required": [
+                      "Size"
+                    ]
+                  }
+                },
+                "CapacityGroup": {
+                  "x-go-name": "CapacityGroup",
+                  "type": "string",
+                  "description": "capacity groups to create the volume from (optional)"
+                },
+                "DefaultZone": {
+                  "x-go-name": "Zone",
+                  "type": "string",
+                  "description": "zone parameter for all volumes that dont have zone parameter",
+                  "x-isnullable": false,
+                  "x-omitempty": true
+                },
+                "DefaultPolicy": {
+                  "x-go-name": "Policy",
+                  "type": "string",
+                  "description": "policy parameter for all volumes that dont have policy parameter defined in their input",
+                  "x-isnullable": false,
+                  "x-omitempty": true
+                }
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "verbose",
+            "type": "boolean",
+            "required": false,
+            "description": "if true will return the volume plan if false will omit the plan from the response",
+            "default": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "volume plan output",
+            "schema": {
+              "$ref": "#/definitions/VolumePlanOutput"
+            }
+          },
+          "default": {
+            "description": "Error creating new snapshot",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/volumes/snapshot": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "summary": "Create a new snapshot for given consistency group",
         "tags": [
           "Snapshots"
         ],
@@ -205,9 +312,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "New snapshot was created successfully",
@@ -231,6 +335,12 @@
           "name": "snapshot_group_name",
           "type": "string",
           "required": true
+        },
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
         }
       ],
       "get": {
@@ -266,6 +376,12 @@
           "name": "volume",
           "type": "string",
           "required": true
+        },
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
         }
       ],
       "get": {
@@ -274,13 +390,7 @@
           "Volumes"
         ],
         "operationId": "VolumeGet",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Properties of a volume",
@@ -311,15 +421,7 @@
             "default": false,
             "allowEmptyValue": true,
             "x-nullable": false
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -357,15 +459,7 @@
             "schema": {
               "$ref": "#/definitions/Volume"
             }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -384,6 +478,14 @@
       }
     },
     "/volumes/{volume}/describe": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "describe existing volume ",
         "tags": [
@@ -396,11 +498,6 @@
             "name": "volume",
             "type": "string",
             "required": true
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -420,6 +517,14 @@
       }
     },
     "/volumes/{volume}/recover": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "post": {
         "summary": "Initiate recover on volume",
         "tags": [
@@ -432,15 +537,7 @@
             "name": "volume",
             "type": "string",
             "required": true
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -459,6 +556,14 @@
       }
     },
     "/volumes/{volume}/snapshots": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of snapshots",
         "tags": [
@@ -512,15 +617,7 @@
             "schema": {
               "$ref": "#/definitions/Snapshot"
             }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -539,6 +636,14 @@
       }
     },
     "/volumes/{volume}/snapshots/{snapshot}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get the properties of a snapshot",
         "tags": [
@@ -557,11 +662,6 @@
             "name": "snapshot",
             "type": "string",
             "required": true
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -606,15 +706,7 @@
             "default": false,
             "allowEmptyValue": true,
             "x-nullable": false
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -660,9 +752,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "A snapshot was updated successfully",
@@ -680,6 +769,14 @@
       }
     },
     "/volumes/{volume}/snapshots/{snapshot}/rollback": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "patch": {
         "summary": "Roll back to snapshot",
         "tags": [
@@ -698,11 +795,6 @@
             "name": "snapshot",
             "type": "string",
             "required": true
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -721,7 +813,164 @@
         }
       }
     },
+    "/associations": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "summary": "Create association",
+        "tags": [
+          "Associations"
+        ],
+        "operationId": "AssociationCreate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "An association object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AssociationCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Association has been created successfully",
+            "schema": {
+              "$ref": "#/definitions/SuccessJobResponse"
+            }
+          },
+          "default": {
+            "description": "Error creating association",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a list of associations",
+        "tags": [
+          "Associations"
+        ],
+        "operationId": "AssociationsList",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startfrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of associations",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Association"
+              }
+            }
+          },
+          "default": {
+            "description": "Error getting a list of jobs",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/associations/{association}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "association",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "patch": {
+        "summary": "Association modify",
+        "tags": [
+          "Associations"
+        ],
+        "operationId": "AssociationModify",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "An association object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AssociationModify"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "swap successful",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error during swap",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an association",
+        "tags": [
+          "Associations"
+        ],
+        "operationId": "AssociationDelete",
+        "responses": {
+          "200": {
+            "description": "An associations was deleted successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error deleting association",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/autoprovisionvolumes": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "post": {
         "summary": "Create a new auto provisioned volume",
         "tags": [
@@ -737,11 +986,6 @@
             "schema": {
               "$ref": "#/definitions/AutoProvisionVolume"
             }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -773,6 +1017,14 @@
       }
     },
     "/snapshots": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of all snapshots",
         "tags": [
@@ -806,6 +1058,14 @@
       }
     },
     "/attachments": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of all attachments",
         "tags": [
@@ -833,8 +1093,16 @@
       }
     },
     "/volumes/{volume}/attachments": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
-        "summary": "Get a list of attachments",
+        "summary": "Get a list of attachments for a given volume",
         "tags": [
           "Attachments"
         ],
@@ -867,8 +1135,16 @@
       }
     },
     "/volumes/{volume}/snapshots/{snapshot}/attachments": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
-        "summary": "Get a list of attachments",
+        "summary": "Get a list of attachments for a given volume and snapshot",
         "tags": [
           "Attachments"
         ],
@@ -932,15 +1208,7 @@
             "schema": {
               "$ref": "#/definitions/Attachment"
             }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -959,6 +1227,14 @@
       }
     },
     "/volumes/{volume}/snapshots/{snapshot}/attachments/{node}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get the properties of an attachment",
         "tags": [
@@ -1033,15 +1309,7 @@
             "default": false,
             "allowEmptyValue": true,
             "x-nullable": false
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -1093,9 +1361,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "An attachment was updated successfully",
@@ -1113,6 +1378,14 @@
       }
     },
     "/nodes": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of nodes",
         "tags": [
@@ -1139,7 +1412,76 @@
         }
       }
     },
+    "/nodes/tags/{node}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "patch": {
+        "summary": "Set the tags of a node",
+        "tags": [
+          "Nodes"
+        ],
+        "operationId": "NodeSetTags",
+        "parameters": [
+          {
+            "name": "node",
+            "in": "path",
+            "description": "Name of node to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "in": "body",
+            "description": "user defined tags",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Tags"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A node set tags was successful",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid node name supplied",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error setting tags for node",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/nodes/{node}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get the properties of a node",
         "tags": [
@@ -1222,7 +1564,61 @@
         }
       }
     },
+    "/nodes/{node}/drain": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "summary": "Node drain",
+        "tags": [
+          "Node"
+        ],
+        "operationId": "NodeDrain",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "node",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "cleanup",
+            "type": "boolean",
+            "default": false,
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation completed successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error draining node",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/nodes/logs/{node}/{tenant}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "post": {
         "summary": "Node collect logs",
         "tags": [
@@ -1275,6 +1671,14 @@
       }
     },
     "/nodes/repair/{node}/{tenant}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "post": {
         "summary": "Execute commands on node for repair",
         "tags": [
@@ -1335,56 +1739,15 @@
         }
       }
     },
-    "/nodes/cleanup/{node}": {
-      "post": {
-        "summary": "performing node cleanup",
-        "tags": [
-          "Nodes"
-        ],
-        "operationId": "NodeCleanUp",
-        "parameters": [
-          {
-            "name": "node",
-            "in": "path",
-            "description": "Name of node to return",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Node cleanup started successfully",
-            "schema": {
-              "$ref": "#/definitions/RegularResponse"
-            }
-          },
-          "400": {
-            "description": "Invalid node name supplied",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "404": {
-            "description": "Node not found",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "default": {
-            "description": "Error trying to cleanup node",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/nodes/upgrade/{node}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "post": {
         "summary": "performing node version upgrade",
         "tags": [
@@ -1437,6 +1800,14 @@
       }
     },
     "/nodes/upgrade/{node}/tenant/{tenant}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "post": {
         "summary": "performing node version upgrade",
         "tags": [
@@ -1497,6 +1868,14 @@
       }
     },
     "/policies": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of policies",
         "tags": [
@@ -1539,9 +1918,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "New policy was created successfully",
@@ -1559,6 +1935,14 @@
       }
     },
     "/policies/{policy}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get the properties of a policy",
         "tags": [
@@ -1602,9 +1986,6 @@
             "required": true
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "A policy was deleted successfully",
@@ -1643,9 +2024,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "A policy was updated successfully",
@@ -1662,7 +2040,49 @@
         }
       }
     },
+    "/policies/{policy}/volumes": {
+      "get": {
+        "summary": "Get the properties of a policy",
+        "tags": [
+          "Policies"
+        ],
+        "operationId": "PolicyGetVolumes",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "policy",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of volumes, using given policy",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Volume"
+              }
+            }
+          },
+          "default": {
+            "description": "Error getting properties of a policy",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/policies/{policy}/size/{size}/zone/{zone}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Show policy volume create plan",
         "tags": [
@@ -1718,6 +2138,14 @@
       }
     },
     "/networks": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of networks",
         "tags": [
@@ -1760,9 +2188,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "New network was created successfully",
@@ -1780,6 +2205,14 @@
       }
     },
     "/networks/{network}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get the properties of a network",
         "tags": [
@@ -1823,9 +2256,6 @@
             "required": true
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "A network was deleted successfully",
@@ -1864,9 +2294,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "A network was updated successfully",
@@ -1884,6 +2311,14 @@
       }
     },
     "/jobs": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of jobs",
         "tags": [
@@ -1929,6 +2364,14 @@
       }
     },
     "/jobs/{job}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get the properties of a job",
         "tags": [
@@ -1941,11 +2384,6 @@
             "name": "job",
             "type": "integer",
             "required": true
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
@@ -1977,9 +2415,6 @@
             "required": true
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "A job was deleted successfully",
@@ -1997,6 +2432,14 @@
       }
     },
     "/jobs/{job}/resume_suspend/{state}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "patch": {
         "summary": "Resume or Suspend a job",
         "tags": [
@@ -2035,6 +2478,14 @@
       }
     },
     "/media": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of media",
         "tags": [
@@ -2163,75 +2614,21 @@
         }
       }
     },
-    "/media/{media}/ledon": {
-      "get": {
-        "summary": "Turn the media LED on",
-        "tags": [
-          "Media"
-        ],
-        "operationId": "MediaLedOn",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "media",
-            "type": "string",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operation completed successfully",
-            "schema": {
-              "$ref": "#/definitions/RegularResponse"
-            }
-          },
-          "default": {
-            "description": "Error completing the operation",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/media/{media}/ledoff": {
-      "get": {
-        "summary": "Turn the media LED off",
-        "tags": [
-          "Media"
-        ],
-        "operationId": "MediaLedOff",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "media",
-            "type": "string",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operation completed successfully",
-            "schema": {
-              "$ref": "#/definitions/RegularResponse"
-            }
-          },
-          "default": {
-            "description": "Error completing the operation",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/media/{media}/assign": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Assign media",
         "tags": [
           "Media"
         ],
-        "operationId": "MediaAssign",
+        "operationId": "MediaAssignLegacy",
         "parameters": [
           {
             "in": "path",
@@ -2267,10 +2664,84 @@
             }
           }
         }
+      },
+      "patch": {
+        "summary": "Assign media",
+        "tags": [
+          "Media"
+        ],
+        "operationId": "MediaAssign",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "media",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/MediaAssign"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation completed successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error completing the operation",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
       }
     },
     "/media/{media}/unassign": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
+        "summary": "Unassign media",
+        "tags": [
+          "Media"
+        ],
+        "operationId": "MediaUnassignLegacy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "media",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation completed successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error completing the operation",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
         "summary": "Unassign media",
         "tags": [
           "Media"
@@ -2301,36 +2772,14 @@
       }
     },
     "/media/{media}/profile": {
-      "get": {
-        "summary": "profile a media - deprecated",
-        "tags": [
-          "Media",
-          "deprecated"
-        ],
-        "operationId": "MediaProfile",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "media",
-            "type": "string",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operation completed successfully",
-            "schema": {
-              "$ref": "#/definitions/RegularResponse"
-            }
-          },
-          "default": {
-            "description": "Error completing the operation",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
         }
-      },
+      ],
       "patch": {
         "summary": "Modify a media profile",
         "tags": [
@@ -2370,7 +2819,297 @@
         }
       }
     },
+    "/media/{media}/drain": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "summary": "Media drain",
+        "tags": [
+          "Media"
+        ],
+        "operationId": "MediaDrain",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "media",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation completed successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error draining media",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/media/{media}/diagnose": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "summary": "Media diagnose",
+        "tags": [
+          "Media"
+        ],
+        "operationId": "MediaDiagnose",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "media",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation completed successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error diagnosing media",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/media/{media}/cleanup": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "summary": "Media cleanup",
+        "tags": [
+          "Media"
+        ],
+        "operationId": "MediaCleanup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "media",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation completed successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error cleaning media",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/media/{media}/cleanup/{volume}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "summary": "Media cleanup",
+        "tags": [
+          "Media"
+        ],
+        "operationId": "MediaCleanupVolume",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "media",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "volume",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation completed successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error cleaning media's volume",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/virtualmedia": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "summary": "Create (virtual) media",
+        "tags": [
+          "Media"
+        ],
+        "operationId": "VirtualMediaCreate",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Virtual media creation parameters",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VirtualMediaCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual media has been created successfully",
+            "schema": {
+              "$ref": "#/definitions/SuccessJobResponse"
+            }
+          },
+          "default": {
+            "description": "Error creating virtual media",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get a list of virtual media",
+        "tags": [
+          "Media"
+        ],
+        "operationId": "VirtualMediaList",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startfrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of media",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VirtualMedia"
+              }
+            }
+          },
+          "default": {
+            "description": "Error getting a list of media",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/virtualmedia/{media}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "media",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete virtual media",
+        "tags": [
+          "Media"
+        ],
+        "operationId": "VirtualMediaDelete",
+        "produces": [
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual media was deleted successfully",
+            "schema": {
+              "$ref": "#/definitions/RegularResponse"
+            }
+          },
+          "default": {
+            "description": "Error deleting virtual media",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/connectivities": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of connectivities",
         "tags": [
@@ -2413,9 +3152,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "New connectivity was created successfully",
@@ -2433,6 +3169,14 @@
       }
     },
     "/connectivities/{connectivity}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get the properties of a connectivity",
         "tags": [
@@ -2476,9 +3220,6 @@
             "required": true
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "A connectivity was deleted successfully",
@@ -2517,9 +3258,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "A connectivity was updated successfully",
@@ -2537,6 +3275,14 @@
       }
     },
     "/capacitygroups": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get available capacity groups",
         "tags": [
@@ -2544,9 +3290,6 @@
         ],
         "operationId": "capacityGroupGet",
         "parameters": [],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "capacity groups",
@@ -2584,9 +3327,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "Successfully Signed up",
@@ -2620,9 +3360,6 @@
               "$ref": "#/definitions/SignoutRequest"
             }
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -2658,9 +3395,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "Sign in was successful",
@@ -2678,6 +3412,14 @@
       }
     },
     "/tenant/{tenantID}/tenanthosts/{tenantHost}": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "delete": {
         "summary": "Delete a tenant host",
         "tags": [
@@ -2696,15 +3438,7 @@
             "name": "tenantHost",
             "type": "string",
             "required": true
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -2778,9 +3512,6 @@
             "type": "string"
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "Got Tenant's Host successfully",
@@ -2811,9 +3542,6 @@
             "required": true,
             "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -2913,19 +3641,21 @@
       }
     },
     "/tenant/token": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get the Tenant's Token",
         "tags": [
           "tenant token"
         ],
         "operationId": "TenantToken",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Tenant's Token retrieval was successful",
@@ -2943,15 +3673,20 @@
       }
     },
     "/tenant/user": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get tenant user",
         "tags": [
           "Tenant User"
         ],
         "operationId": "tenantuserget",
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "Got Tenant's User successfully",
@@ -2984,9 +3719,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "New user was created successfully",
@@ -3015,23 +3747,23 @@
             "in": "query",
             "name": "client_id",
             "type": "string",
+            "required": true,
             "description": "Cognito Client ID"
           },
           {
             "in": "query",
             "name": "user_name",
             "type": "string",
+            "required": true,
             "description": "Cognito User Name"
           },
           {
             "in": "query",
             "name": "confirmation_code",
             "type": "string",
+            "required": true,
             "description": "Cognito Signup Confirmation Code"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -3073,9 +3805,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "Request for password change done successfully",
@@ -3112,11 +3841,9 @@
           {
             "name": "authorization",
             "in": "header",
+            "required": false,
             "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -3152,9 +3879,6 @@
             }
           }
         ],
-        "produces": [
-          "text/plain"
-        ],
         "responses": {
           "200": {
             "description": "New password changed successfully",
@@ -3172,6 +3896,14 @@
       }
     },
     "/version": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get version of sio",
         "tags": [
@@ -3190,24 +3922,6 @@
             "description": "Error getting version of sio",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/healthcheck": {
-      "get": {
-        "summary": "Check SIO's health",
-        "tags": [
-          "Health"
-        ],
-        "operationId": "health",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "SIO is running",
-            "schema": {
-              "$ref": "#/definitions/RegularResponse"
             }
           }
         }
@@ -3251,6 +3965,14 @@
       }
     },
     "/alerts": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "get": {
         "summary": "Get a list of alerts",
         "tags": [
@@ -3284,6 +4006,14 @@
       }
     },
     "/alerts/{alert}/acknowledge": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
       "post": {
         "summary": "Acknowledge a pending alert",
         "tags": [
@@ -3296,15 +4026,7 @@
             "name": "alert",
             "type": "string",
             "required": true
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
           }
-        ],
-        "produces": [
-          "text/plain"
         ],
         "responses": {
           "200": {
@@ -3315,6 +4037,39 @@
           },
           "default": {
             "description": "Error acknowledging alert",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/system/machineinfo": {
+      "parameters": [
+        {
+          "name": "authorization",
+          "in": "header",
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "summary": "get system info",
+        "tags": [
+          "Nodes",
+          "DevAPI"
+        ],
+        "operationId": "GetMachineInfo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "confirmation of subscription registered",
+            "schema": {
+              "$ref": "#/definitions/MachineInfo"
+            }
+          },
+          "default": {
+            "description": "Error Getting volume plan",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -3391,7 +4146,7 @@
           "x-isnullable": false,
           "x-omitempty": false,
           "type": "array",
-          "minLength": 1,
+          "minItems": 1,
           "items": {
             "type": "string"
           }
@@ -3401,7 +4156,7 @@
           "x-isnullable": false,
           "x-omitempty": false,
           "type": "array",
-          "minLength": 1,
+          "minItems": 1,
           "items": {
             "type": "string"
           }
@@ -3454,7 +4209,7 @@
           "x-isnullable": false,
           "x-omitempty": false,
           "type": "array",
-          "minLength": 1,
+          "minItems": 1,
           "items": {
             "type": "string"
           }
@@ -3658,6 +4413,24 @@
           "minLength": 1,
           "title": "Throttling Scheme for the volume",
           "readOnly": false
+        },
+        "allowdatamovement": {
+          "x-go-name": "AllowDataMovement",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "boolean",
+          "title": "Allow movement of the volume",
+          "default": false
+        },
+        "flavor": {
+          "x-go-name": "Flavor",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "enum": [
+            "regular",
+            "filedirect"
+          ]
         }
       },
       "required": [
@@ -3689,6 +4462,20 @@
           "x-omitempty": false,
           "type": "string",
           "example": "rhel"
+        },
+        "osversion": {
+          "x-go-name": "OSVersion",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "example": "9.3"
+        },
+        "kversion": {
+          "x-go-name": "KernelVersion",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "example": "6.5.13"
         },
         "controladdress": {
           "x-go-name": "ControlAddress",
@@ -3780,6 +4567,13 @@
           "x-isnullable": true,
           "x-omitempty": true,
           "type": "string"
+        },
+        "tags": {
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "additionalProperties": {
+            "type": "string"
+          }
         },
         "cloudprovider": {
           "x-go-name": "CloudProvider",
@@ -4421,6 +5215,46 @@
         }
       }
     },
+    "VolumePlanOutput": {
+      "type": "object",
+      "properties": {
+        "Message": {
+          "x-isnullable": false,
+          "x-omitempty": true,
+          "type": "string"
+        },
+        "Success": {
+          "type": "boolean"
+        },
+        "Plans": {
+          "x-omitempty": true,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Plan"
+          }
+        }
+      }
+    },
+    "SuccessJobResponse": {
+      "type": "object",
+      "properties": {
+        "Message": {
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string"
+        },
+        "JobID": {
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "string"
+        },
+        "ObjectID": {
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string"
+        }
+      }
+    },
     "ChangePasswordRequest": {
       "type": "object",
       "properties": {
@@ -4633,6 +5467,12 @@
         "ipstart",
         "ipend"
       ]
+    },
+    "Tags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "Job": {
       "type": "object",
@@ -5148,122 +5988,183 @@
           "x-omitempty": false,
           "readOnly": true,
           "type": "string"
+        },
+        "lbaformats": {
+          "x-go-name": "LBAFormats",
+          "description": "Available LBA formats for the media — ensure the block size specified in the media assignment matches one of these formats",
+          "type": "array",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
-    "Credential": {
+    "MediaModify": {
       "type": "object",
       "properties": {
-        "name": {
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "os": {
-          "x-go-name": "OS",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "domain": {
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "dc": {
-          "x-go-name": "DC",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "username": {
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "password": {
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "privatekey": {
-          "x-go-name": "PrivateKey",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
+        "offlinetime": {
+          "x-go-name": "OfflineTime",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "x-go-type": {
+            "type": "DateTime"
+          }
         }
-      },
-      "required": [
-        "name",
-        "os",
-        "username"
-      ]
+      }
     },
-    "Controller": {
+    "MediaAssign": {
       "type": "object",
       "properties": {
-        "name": {
-          "x-isnullable": false,
-          "x-omitempty": false,
+        "capacity_group": {
+          "x-go-name": "CapacityGroup",
+          "x-isnullable": true,
+          "x-omitempty": true,
           "type": "string"
         },
-        "primarynode": {
-          "x-go-name": "PrimaryNode",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
+        "reprofile": {
+          "x-isnullable": true,
+          "x-omitempty": true,
+
+          "type": "boolean",
+          "description": "Profile media even if it was already profiled"
         },
-        "backupnode": {
-          "x-go-name": "BackupNode",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "activenode": {
-          "x-go-name": "ActiveNode",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "protocol": {
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "state": {
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string",
-          "readOnly": true
-        },
-        "status": {
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string",
-          "readOnly": true
-        },
-        "progress": {
-          "x-isnullable": false,
-          "x-omitempty": false,
+        "blocksize": {
+          "x-isnullable": true,
+          "x-omitempty": true,
           "type": "integer",
-          "readOnly": true
+          "description": "LBA size for media format"
         }
-      },
-      "required": [
-        "name",
-        "primarynode",
-        "backupnode",
-        "protocol"
-      ]
+      }
+    },
+    "MediaProfile": {
+      "type": "object",
+      "properties": {
+        "iopsread": {
+          "x-go-name": "IOPSRead",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        },
+        "iopswrite": {
+          "x-go-name": "IOPSWrite",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        },
+        "bandwidthread": {
+          "x-go-name": "BandwidthRead",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        },
+        "bandwidthwrite": {
+          "x-go-name": "BandwidthWrite",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        },
+        "latencyread": {
+          "x-go-name": "LatencyRead",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        },
+        "latencywrite": {
+          "x-go-name": "LatencyWrite",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        },
+        "freeiopsread": {
+          "x-go-name": "FreeIOPSRead",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        },
+        "freeiopswrite": {
+          "x-go-name": "FreeIOPSWrite",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        },
+        "freebandwidthread": {
+          "x-go-name": "FreeBandwidthRead",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        },
+        "freebandwidthwrite": {
+          "x-go-name": "FreeBandwidthWrite",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "integer"
+        }
+      }
+    },
+    "VirtualMediaCreate": {
+      "type": "object",
+      "properties": {
+        "selector": {
+          "x-go-name": "Selector",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "minLength": 1
+        },
+        "flavor": {
+          "x-go-name": "Flavor",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "enum": [
+            "stripped",
+            "raid1",
+            "split"
+          ]
+        }
+      }
+    },
+    "VirtualMedia": {
+      "type": "object",
+      "properties": {
+        "media": {
+          "$ref": "#/definitions/Media"
+        },
+        "flavor": {
+          "x-go-name": "Flavor",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "enum": [
+            "stripped",
+            "raid1"
+          ]
+        },
+        "members": {
+          "type": "array",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     },
     "Plan": {
       "type": "object",
+      "required": [
+        "volumegroup"
+      ],
       "properties": {
         "volumegroup": {
           "$ref": "#/definitions/VolumeGroup"
         },
         "replicationvolumegroup": {
-          "$ref": "#/definitions/VolumeGroup"
+          "$ref": "#/definitions/VolumeGroup",
+          "x-omitempty": true
         }
       }
     },
@@ -5336,7 +6237,7 @@
           "x-isnullable": false,
           "x-omitempty": false,
           "type": "array",
-          "minLength": 1,
+          "minItems": 1,
           "items": {
             "type": "string"
           }
@@ -5357,102 +6258,6 @@
         "cmds",
         "checksum"
       ]
-    },
-    "MediaModify": {
-      "type": "object",
-      "properties": {
-        "offlinetime": {
-          "x-go-name": "OfflineTime",
-          "x-isnullable": true,
-          "x-omitempty": true,
-          "type": "string",
-          "x-go-type": {
-            "type": "DateTime"
-          }
-        }
-      }
-    },
-    "MediaProfile": {
-      "type": "object",
-      "properties": {
-        "iopsread": {
-          "x-go-name": "IOPSRead",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        },
-        "iopswrite": {
-          "x-go-name": "IOPSWrite",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        },
-        "bandwidthread": {
-          "x-go-name": "BandwidthRead",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        },
-        "bandwidthwrite": {
-          "x-go-name": "BandwidthWrite",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        },
-        "latencyread": {
-          "x-go-name": "LatencyRead",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        },
-        "latencywrite": {
-          "x-go-name": "LatencyWrite",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        },
-        "freeiopsread": {
-          "x-go-name": "FreeIOPSRead",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        },
-        "freeiopswrite": {
-          "x-go-name": "FreeIOPSWrite",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        },
-        "freebandwidthread": {
-          "x-go-name": "FreeBandwidthRead",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        },
-        "freebandwidthwrite": {
-          "x-go-name": "FreeBandwidthWrite",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "integer"
-        }
-      }
-    },
-    "Location": {
-      "type": "object",
-      "properties": {
-        "region": {
-          "x-go-name": "Region",
-          "x-isnullable": true,
-          "x-omitempty": false,
-          "type": "string"
-        },
-        "zone": {
-          "x-go-name": "Zone",
-          "x-isnullable": false,
-          "x-omitempty": false,
-          "type": "string"
-        }
-      }
     },
     "Alert": {
       "type": "object",
@@ -5570,17 +6375,7 @@
           "title": "Alert Details (according to alert type)",
           "readOnly": true
         }
-      },
-      "required": [
-        "alertid",
-        "type",
-        "state",
-        "severity",
-        "objecttype",
-        "objectid",
-        "creationtime",
-        "details"
-      ]
+      }
     },
     "GetTenantIDResponse": {
       "type": "object",
@@ -5659,6 +6454,177 @@
         "TenantID": {
           "x-isnullable": false,
           "x-omitempty": false,
+          "type": "string"
+        }
+      }
+    },
+    "AssociationCreate": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "x-go-name": "Name",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "title": "name"
+        },
+        "volume": {
+          "x-go-name": "Volume",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "string",
+          "title": "Volume"
+        },
+        "snapshot": {
+          "x-go-name": "Snapshot",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "minLength": 1,
+          "title": "Snapshot"
+        },
+        "mountpoint": {
+          "x-go-name": "MountPoint",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "title": "Mount point"
+        },
+        "selector": {
+          "x-go-name": "Selector",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "AssociationModify": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "x-go-name": "Name",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "title": "name"
+        },
+        "snapshot": {
+          "x-go-name": "Snapshot",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "minLength": 1,
+          "title": "Snapshot"
+        },
+        "selector": {
+          "x-go-name": "Selector",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Association": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "x-go-name": "Name",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "title": "name"
+        },
+        "id": {
+          "x-go-name": "id",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "string",
+          "title": "id"
+        },
+        "volumename": {
+          "x-go-name": "VolumeName",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "string",
+          "title": "Volume name",
+          "example": "vol1"
+        },
+        "volumeid": {
+          "x-go-name": "VolumeID",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "string",
+          "minLength": 1,
+          "title": "Volume ID",
+          "readOnly": true
+        },
+        "snapshotname": {
+          "x-go-name": "SnapshotName",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "string",
+          "minLength": 1,
+          "title": "Snapshot name"
+        },
+        "snapshotid": {
+          "x-go-name": "SnapshotID",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "string",
+          "minLength": 1,
+          "title": "Snapshot ID"
+        },
+        "state": {
+          "x-go-name": "State",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "string",
+          "readOnly": true
+        },
+        "status": {
+          "x-go-name": "Status",
+          "x-isnullable": false,
+          "x-omitempty": false,
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "MachineInfo": {
+      "type": "object",
+      "properties": {
+        "instanceid": {
+          "x-go-name": "InstanceID",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string"
+        },
+        "instancetype": {
+          "x-go-name": "InstanceType",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string",
+          "title": "instance type",
+          "example": "c6gd.2xlarge"
+        },
+        "controladdress": {
+          "x-go-name": "ControlAddress",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string"
+        },
+        "imageid": {
+          "x-go-name": "ImageId",
+          "x-isnullable": true,
+          "x-omitempty": true,
+          "type": "string"
+        },
+        "zone": {
+          "x-go-name": "Zone",
+          "x-isnullable": true,
+          "x-omitempty": true,
           "type": "string"
         }
       }

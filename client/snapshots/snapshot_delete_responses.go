@@ -6,7 +6,6 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewSnapshotDeleteOK() *SnapshotDeleteOK {
 }
 
 /*
-SnapshotDeleteOK describes a response with status code 200, with default header values.
+	SnapshotDeleteOK describes a response with status code 200, with default header values.
 
 A snapshot was deleted successfully
 */
@@ -56,46 +55,9 @@ type SnapshotDeleteOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this snapshot delete o k response has a 2xx status code
-func (o *SnapshotDeleteOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this snapshot delete o k response has a 3xx status code
-func (o *SnapshotDeleteOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this snapshot delete o k response has a 4xx status code
-func (o *SnapshotDeleteOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this snapshot delete o k response has a 5xx status code
-func (o *SnapshotDeleteOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this snapshot delete o k response a status code equal to that given
-func (o *SnapshotDeleteOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the snapshot delete o k response
-func (o *SnapshotDeleteOK) Code() int {
-	return 200
-}
-
 func (o *SnapshotDeleteOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}][%d] snapshotDeleteOK %s", 200, payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}][%d] snapshotDeleteOK  %+v", 200, o.Payload)
 }
-
-func (o *SnapshotDeleteOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}][%d] snapshotDeleteOK %s", 200, payload)
-}
-
 func (o *SnapshotDeleteOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewSnapshotDeleteDefault(code int) *SnapshotDeleteDefault {
 }
 
 /*
-SnapshotDeleteDefault describes a response with status code -1, with default header values.
+	SnapshotDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a snapshot
 */
@@ -130,46 +92,14 @@ type SnapshotDeleteDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this snapshot delete default response has a 2xx status code
-func (o *SnapshotDeleteDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this snapshot delete default response has a 3xx status code
-func (o *SnapshotDeleteDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this snapshot delete default response has a 4xx status code
-func (o *SnapshotDeleteDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this snapshot delete default response has a 5xx status code
-func (o *SnapshotDeleteDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this snapshot delete default response a status code equal to that given
-func (o *SnapshotDeleteDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the snapshot delete default response
 func (o *SnapshotDeleteDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *SnapshotDeleteDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotDelete default %s", o._statusCode, payload)
+	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotDelete default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *SnapshotDeleteDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotDelete default %s", o._statusCode, payload)
-}
-
 func (o *SnapshotDeleteDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

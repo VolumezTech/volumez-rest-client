@@ -61,6 +61,9 @@ ConsistencyGroupSnapshotCreateParams contains all the parameters to send to the 
 */
 type ConsistencyGroupSnapshotCreateParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Body.
 
 	   A Snapshot object
@@ -120,6 +123,17 @@ func (o *ConsistencyGroupSnapshotCreateParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the consistency group snapshot create params
+func (o *ConsistencyGroupSnapshotCreateParams) WithAuthorization(authorization *string) *ConsistencyGroupSnapshotCreateParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the consistency group snapshot create params
+func (o *ConsistencyGroupSnapshotCreateParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithBody adds the body to the consistency group snapshot create params
 func (o *ConsistencyGroupSnapshotCreateParams) WithBody(body ConsistencyGroupSnapshotCreateBody) *ConsistencyGroupSnapshotCreateParams {
 	o.SetBody(body)
@@ -138,6 +152,14 @@ func (o *ConsistencyGroupSnapshotCreateParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

@@ -6,7 +6,6 @@ package networks
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewNetworkDeleteOK() *NetworkDeleteOK {
 }
 
 /*
-NetworkDeleteOK describes a response with status code 200, with default header values.
+	NetworkDeleteOK describes a response with status code 200, with default header values.
 
 A network was deleted successfully
 */
@@ -56,46 +55,9 @@ type NetworkDeleteOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this network delete o k response has a 2xx status code
-func (o *NetworkDeleteOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this network delete o k response has a 3xx status code
-func (o *NetworkDeleteOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this network delete o k response has a 4xx status code
-func (o *NetworkDeleteOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this network delete o k response has a 5xx status code
-func (o *NetworkDeleteOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this network delete o k response a status code equal to that given
-func (o *NetworkDeleteOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the network delete o k response
-func (o *NetworkDeleteOK) Code() int {
-	return 200
-}
-
 func (o *NetworkDeleteOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /networks/{network}][%d] networkDeleteOK %s", 200, payload)
+	return fmt.Sprintf("[DELETE /networks/{network}][%d] networkDeleteOK  %+v", 200, o.Payload)
 }
-
-func (o *NetworkDeleteOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /networks/{network}][%d] networkDeleteOK %s", 200, payload)
-}
-
 func (o *NetworkDeleteOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewNetworkDeleteDefault(code int) *NetworkDeleteDefault {
 }
 
 /*
-NetworkDeleteDefault describes a response with status code -1, with default header values.
+	NetworkDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a network
 */
@@ -130,46 +92,14 @@ type NetworkDeleteDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this network delete default response has a 2xx status code
-func (o *NetworkDeleteDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this network delete default response has a 3xx status code
-func (o *NetworkDeleteDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this network delete default response has a 4xx status code
-func (o *NetworkDeleteDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this network delete default response has a 5xx status code
-func (o *NetworkDeleteDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this network delete default response a status code equal to that given
-func (o *NetworkDeleteDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the network delete default response
 func (o *NetworkDeleteDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *NetworkDeleteDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /networks/{network}][%d] NetworkDelete default %s", o._statusCode, payload)
+	return fmt.Sprintf("[DELETE /networks/{network}][%d] NetworkDelete default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *NetworkDeleteDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /networks/{network}][%d] NetworkDelete default %s", o._statusCode, payload)
-}
-
 func (o *NetworkDeleteDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

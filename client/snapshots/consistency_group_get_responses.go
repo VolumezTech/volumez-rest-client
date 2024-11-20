@@ -6,7 +6,6 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewConsistencyGroupGetOK() *ConsistencyGroupGetOK {
 }
 
 /*
-ConsistencyGroupGetOK describes a response with status code 200, with default header values.
+	ConsistencyGroupGetOK describes a response with status code 200, with default header values.
 
 List of snapshots
 */
@@ -56,46 +55,9 @@ type ConsistencyGroupGetOK struct {
 	Payload []*models.Snapshot
 }
 
-// IsSuccess returns true when this consistency group get o k response has a 2xx status code
-func (o *ConsistencyGroupGetOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this consistency group get o k response has a 3xx status code
-func (o *ConsistencyGroupGetOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this consistency group get o k response has a 4xx status code
-func (o *ConsistencyGroupGetOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this consistency group get o k response has a 5xx status code
-func (o *ConsistencyGroupGetOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this consistency group get o k response a status code equal to that given
-func (o *ConsistencyGroupGetOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the consistency group get o k response
-func (o *ConsistencyGroupGetOK) Code() int {
-	return 200
-}
-
 func (o *ConsistencyGroupGetOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] consistencyGroupGetOK %s", 200, payload)
+	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] consistencyGroupGetOK  %+v", 200, o.Payload)
 }
-
-func (o *ConsistencyGroupGetOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] consistencyGroupGetOK %s", 200, payload)
-}
-
 func (o *ConsistencyGroupGetOK) GetPayload() []*models.Snapshot {
 	return o.Payload
 }
@@ -118,7 +80,7 @@ func NewConsistencyGroupGetDefault(code int) *ConsistencyGroupGetDefault {
 }
 
 /*
-ConsistencyGroupGetDefault describes a response with status code -1, with default header values.
+	ConsistencyGroupGetDefault describes a response with status code -1, with default header values.
 
 Error getting a list of snapshots
 */
@@ -128,46 +90,14 @@ type ConsistencyGroupGetDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this consistency group get default response has a 2xx status code
-func (o *ConsistencyGroupGetDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this consistency group get default response has a 3xx status code
-func (o *ConsistencyGroupGetDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this consistency group get default response has a 4xx status code
-func (o *ConsistencyGroupGetDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this consistency group get default response has a 5xx status code
-func (o *ConsistencyGroupGetDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this consistency group get default response a status code equal to that given
-func (o *ConsistencyGroupGetDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the consistency group get default response
 func (o *ConsistencyGroupGetDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *ConsistencyGroupGetDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] ConsistencyGroupGet default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] ConsistencyGroupGet default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *ConsistencyGroupGetDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/snapshot/{snapshot_group_name}][%d] ConsistencyGroupGet default %s", o._statusCode, payload)
-}
-
 func (o *ConsistencyGroupGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

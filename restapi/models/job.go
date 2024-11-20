@@ -78,8 +78,6 @@ func (m *Job) validateEndTime(formats strfmt.Registry) error {
 	if err := m.EndTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("endtime")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("endtime")
 		}
 		return err
 	}
@@ -95,8 +93,6 @@ func (m *Job) validateStartTime(formats strfmt.Registry) error {
 	if err := m.StartTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("starttime")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("starttime")
 		}
 		return err
 	}

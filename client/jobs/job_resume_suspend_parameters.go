@@ -62,6 +62,9 @@ JobResumeSuspendParams contains all the parameters to send to the API endpoint
 */
 type JobResumeSuspendParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Job.
 	Job int64
 
@@ -121,6 +124,17 @@ func (o *JobResumeSuspendParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the job resume suspend params
+func (o *JobResumeSuspendParams) WithAuthorization(authorization *string) *JobResumeSuspendParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the job resume suspend params
+func (o *JobResumeSuspendParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithJob adds the job to the job resume suspend params
 func (o *JobResumeSuspendParams) WithJob(job int64) *JobResumeSuspendParams {
 	o.SetJob(job)
@@ -150,6 +164,14 @@ func (o *JobResumeSuspendParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param job
 	if err := r.SetPathParam("job", swag.FormatInt64(o.Job)); err != nil {

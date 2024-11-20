@@ -6,7 +6,6 @@ package alerts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewAlertsListOK() *AlertsListOK {
 }
 
 /*
-AlertsListOK describes a response with status code 200, with default header values.
+	AlertsListOK describes a response with status code 200, with default header values.
 
 List of alerts
 */
@@ -56,46 +55,9 @@ type AlertsListOK struct {
 	Payload []*models.Alert
 }
 
-// IsSuccess returns true when this alerts list o k response has a 2xx status code
-func (o *AlertsListOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this alerts list o k response has a 3xx status code
-func (o *AlertsListOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this alerts list o k response has a 4xx status code
-func (o *AlertsListOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this alerts list o k response has a 5xx status code
-func (o *AlertsListOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this alerts list o k response a status code equal to that given
-func (o *AlertsListOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the alerts list o k response
-func (o *AlertsListOK) Code() int {
-	return 200
-}
-
 func (o *AlertsListOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /alerts][%d] alertsListOK %s", 200, payload)
+	return fmt.Sprintf("[GET /alerts][%d] alertsListOK  %+v", 200, o.Payload)
 }
-
-func (o *AlertsListOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /alerts][%d] alertsListOK %s", 200, payload)
-}
-
 func (o *AlertsListOK) GetPayload() []*models.Alert {
 	return o.Payload
 }
@@ -118,7 +80,7 @@ func NewAlertsListDefault(code int) *AlertsListDefault {
 }
 
 /*
-AlertsListDefault describes a response with status code -1, with default header values.
+	AlertsListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of alerts
 */
@@ -128,46 +90,14 @@ type AlertsListDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this alerts list default response has a 2xx status code
-func (o *AlertsListDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this alerts list default response has a 3xx status code
-func (o *AlertsListDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this alerts list default response has a 4xx status code
-func (o *AlertsListDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this alerts list default response has a 5xx status code
-func (o *AlertsListDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this alerts list default response a status code equal to that given
-func (o *AlertsListDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the alerts list default response
 func (o *AlertsListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AlertsListDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /alerts][%d] AlertsList default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /alerts][%d] AlertsList default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *AlertsListDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /alerts][%d] AlertsList default %s", o._statusCode, payload)
-}
-
 func (o *AlertsListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

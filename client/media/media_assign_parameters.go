@@ -14,7 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
+
+	"github.com/VolumezTech/volumez-rest-client/restapi/models"
 )
 
 // NewMediaAssignParams creates a new MediaAssignParams object,
@@ -62,14 +63,14 @@ MediaAssignParams contains all the parameters to send to the API endpoint
 */
 type MediaAssignParams struct {
 
-	// CapacityGroup.
-	CapacityGroup *string
+	// Authorization.
+	Authorization *string
+
+	// Body.
+	Body *models.MediaAssign
 
 	// Media.
 	Media string
-
-	// Reprofile.
-	Reprofile *bool
 
 	timeout    time.Duration
 	Context    context.Context
@@ -88,18 +89,7 @@ func (o *MediaAssignParams) WithDefaults() *MediaAssignParams {
 //
 // All values with no default are reset to their zero value.
 func (o *MediaAssignParams) SetDefaults() {
-	var (
-		reprofileDefault = bool(false)
-	)
-
-	val := MediaAssignParams{
-		Reprofile: &reprofileDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the media assign params
@@ -135,15 +125,26 @@ func (o *MediaAssignParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithCapacityGroup adds the capacityGroup to the media assign params
-func (o *MediaAssignParams) WithCapacityGroup(capacityGroup *string) *MediaAssignParams {
-	o.SetCapacityGroup(capacityGroup)
+// WithAuthorization adds the authorization to the media assign params
+func (o *MediaAssignParams) WithAuthorization(authorization *string) *MediaAssignParams {
+	o.SetAuthorization(authorization)
 	return o
 }
 
-// SetCapacityGroup adds the capacityGroup to the media assign params
-func (o *MediaAssignParams) SetCapacityGroup(capacityGroup *string) {
-	o.CapacityGroup = capacityGroup
+// SetAuthorization adds the authorization to the media assign params
+func (o *MediaAssignParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
+// WithBody adds the body to the media assign params
+func (o *MediaAssignParams) WithBody(body *models.MediaAssign) *MediaAssignParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the media assign params
+func (o *MediaAssignParams) SetBody(body *models.MediaAssign) {
+	o.Body = body
 }
 
 // WithMedia adds the media to the media assign params
@@ -157,17 +158,6 @@ func (o *MediaAssignParams) SetMedia(media string) {
 	o.Media = media
 }
 
-// WithReprofile adds the reprofile to the media assign params
-func (o *MediaAssignParams) WithReprofile(reprofile *bool) *MediaAssignParams {
-	o.SetReprofile(reprofile)
-	return o
-}
-
-// SetReprofile adds the reprofile to the media assign params
-func (o *MediaAssignParams) SetReprofile(reprofile *bool) {
-	o.Reprofile = reprofile
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *MediaAssignParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -176,43 +166,22 @@ func (o *MediaAssignParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	}
 	var res []error
 
-	if o.CapacityGroup != nil {
+	if o.Authorization != nil {
 
-		// query param capacity_group
-		var qrCapacityGroup string
-
-		if o.CapacityGroup != nil {
-			qrCapacityGroup = *o.CapacityGroup
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
 		}
-		qCapacityGroup := qrCapacityGroup
-		if qCapacityGroup != "" {
-
-			if err := r.SetQueryParam("capacity_group", qCapacityGroup); err != nil {
-				return err
-			}
+	}
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
 		}
 	}
 
 	// path param media
 	if err := r.SetPathParam("media", o.Media); err != nil {
 		return err
-	}
-
-	if o.Reprofile != nil {
-
-		// query param reprofile
-		var qrReprofile bool
-
-		if o.Reprofile != nil {
-			qrReprofile = *o.Reprofile
-		}
-		qReprofile := swag.FormatBool(qrReprofile)
-		if qReprofile != "" {
-
-			if err := r.SetQueryParam("reprofile", qReprofile); err != nil {
-				return err
-			}
-		}
 	}
 
 	if len(res) > 0 {

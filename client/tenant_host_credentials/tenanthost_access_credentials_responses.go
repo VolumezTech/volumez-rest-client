@@ -6,7 +6,6 @@ package tenant_host_credentials
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -37,7 +36,7 @@ func (o *TenanthostAccessCredentialsReader) ReadResponse(response runtime.Client
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /tenant/tenanthost/credentials] TenanthostAccessCredentials", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -47,7 +46,7 @@ func NewTenanthostAccessCredentialsOK() *TenanthostAccessCredentialsOK {
 }
 
 /*
-TenanthostAccessCredentialsOK describes a response with status code 200, with default header values.
+	TenanthostAccessCredentialsOK describes a response with status code 200, with default header values.
 
 200 response
 */
@@ -57,46 +56,9 @@ type TenanthostAccessCredentialsOK struct {
 	Payload *models.RefreshTokenResponse
 }
 
-// IsSuccess returns true when this tenanthost access credentials o k response has a 2xx status code
-func (o *TenanthostAccessCredentialsOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this tenanthost access credentials o k response has a 3xx status code
-func (o *TenanthostAccessCredentialsOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenanthost access credentials o k response has a 4xx status code
-func (o *TenanthostAccessCredentialsOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenanthost access credentials o k response has a 5xx status code
-func (o *TenanthostAccessCredentialsOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this tenanthost access credentials o k response a status code equal to that given
-func (o *TenanthostAccessCredentialsOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the tenanthost access credentials o k response
-func (o *TenanthostAccessCredentialsOK) Code() int {
-	return 200
-}
-
 func (o *TenanthostAccessCredentialsOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsOK %s", 200, payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsOK  %+v", 200, o.Payload)
 }
-
-func (o *TenanthostAccessCredentialsOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsOK %s", 200, payload)
-}
-
 func (o *TenanthostAccessCredentialsOK) GetPayload() *models.RefreshTokenResponse {
 	return o.Payload
 }
@@ -126,7 +88,7 @@ func NewTenanthostAccessCredentialsInternalServerError() *TenanthostAccessCreden
 }
 
 /*
-TenanthostAccessCredentialsInternalServerError describes a response with status code 500, with default header values.
+	TenanthostAccessCredentialsInternalServerError describes a response with status code 500, with default header values.
 
 Error getting ID Token from Tenant's Host Token (Refresh Token)
 */
@@ -136,46 +98,9 @@ type TenanthostAccessCredentialsInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this tenanthost access credentials internal server error response has a 2xx status code
-func (o *TenanthostAccessCredentialsInternalServerError) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this tenanthost access credentials internal server error response has a 3xx status code
-func (o *TenanthostAccessCredentialsInternalServerError) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenanthost access credentials internal server error response has a 4xx status code
-func (o *TenanthostAccessCredentialsInternalServerError) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenanthost access credentials internal server error response has a 5xx status code
-func (o *TenanthostAccessCredentialsInternalServerError) IsServerError() bool {
-	return true
-}
-
-// IsCode returns true when this tenanthost access credentials internal server error response a status code equal to that given
-func (o *TenanthostAccessCredentialsInternalServerError) IsCode(code int) bool {
-	return code == 500
-}
-
-// Code gets the status code for the tenanthost access credentials internal server error response
-func (o *TenanthostAccessCredentialsInternalServerError) Code() int {
-	return 500
-}
-
 func (o *TenanthostAccessCredentialsInternalServerError) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsInternalServerError  %+v", 500, o.Payload)
 }
-
-func (o *TenanthostAccessCredentialsInternalServerError) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant/tenanthost/credentials][%d] tenanthostAccessCredentialsInternalServerError %s", 500, payload)
-}
-
 func (o *TenanthostAccessCredentialsInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

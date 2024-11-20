@@ -6,7 +6,6 @@ package tenant_host
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -37,7 +36,7 @@ func (o *TenanthostgetReader) ReadResponse(response runtime.ClientResponse, cons
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[GET /tenant/tenanthost] tenanthostget", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -47,7 +46,7 @@ func NewTenanthostgetOK() *TenanthostgetOK {
 }
 
 /*
-TenanthostgetOK describes a response with status code 200, with default header values.
+	TenanthostgetOK describes a response with status code 200, with default header values.
 
 Got Tenant's Host successfully
 */
@@ -55,46 +54,9 @@ type TenanthostgetOK struct {
 	Payload *models.GetTenantHostResponse
 }
 
-// IsSuccess returns true when this tenanthostget o k response has a 2xx status code
-func (o *TenanthostgetOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this tenanthostget o k response has a 3xx status code
-func (o *TenanthostgetOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenanthostget o k response has a 4xx status code
-func (o *TenanthostgetOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenanthostget o k response has a 5xx status code
-func (o *TenanthostgetOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this tenanthostget o k response a status code equal to that given
-func (o *TenanthostgetOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the tenanthostget o k response
-func (o *TenanthostgetOK) Code() int {
-	return 200
-}
-
 func (o *TenanthostgetOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetOK %s", 200, payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetOK  %+v", 200, o.Payload)
 }
-
-func (o *TenanthostgetOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetOK %s", 200, payload)
-}
-
 func (o *TenanthostgetOK) GetPayload() *models.GetTenantHostResponse {
 	return o.Payload
 }
@@ -117,7 +79,7 @@ func NewTenanthostgetInternalServerError() *TenanthostgetInternalServerError {
 }
 
 /*
-TenanthostgetInternalServerError describes a response with status code 500, with default header values.
+	TenanthostgetInternalServerError describes a response with status code 500, with default header values.
 
 Error getting Tenant's Host
 */
@@ -125,46 +87,9 @@ type TenanthostgetInternalServerError struct {
 	Payload *models.GetTenantHostResponse
 }
 
-// IsSuccess returns true when this tenanthostget internal server error response has a 2xx status code
-func (o *TenanthostgetInternalServerError) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this tenanthostget internal server error response has a 3xx status code
-func (o *TenanthostgetInternalServerError) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenanthostget internal server error response has a 4xx status code
-func (o *TenanthostgetInternalServerError) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenanthostget internal server error response has a 5xx status code
-func (o *TenanthostgetInternalServerError) IsServerError() bool {
-	return true
-}
-
-// IsCode returns true when this tenanthostget internal server error response a status code equal to that given
-func (o *TenanthostgetInternalServerError) IsCode(code int) bool {
-	return code == 500
-}
-
-// Code gets the status code for the tenanthostget internal server error response
-func (o *TenanthostgetInternalServerError) Code() int {
-	return 500
-}
-
 func (o *TenanthostgetInternalServerError) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetInternalServerError  %+v", 500, o.Payload)
 }
-
-func (o *TenanthostgetInternalServerError) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /tenant/tenanthost][%d] tenanthostgetInternalServerError %s", 500, payload)
-}
-
 func (o *TenanthostgetInternalServerError) GetPayload() *models.GetTenantHostResponse {
 	return o.Payload
 }

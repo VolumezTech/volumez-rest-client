@@ -63,6 +63,9 @@ PolicyModifyParams contains all the parameters to send to the API endpoint
 */
 type PolicyModifyParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Body.
 
 	   A Policy object
@@ -125,6 +128,17 @@ func (o *PolicyModifyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the policy modify params
+func (o *PolicyModifyParams) WithAuthorization(authorization *string) *PolicyModifyParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the policy modify params
+func (o *PolicyModifyParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithBody adds the body to the policy modify params
 func (o *PolicyModifyParams) WithBody(body *models.Policy) *PolicyModifyParams {
 	o.SetBody(body)
@@ -154,6 +168,14 @@ func (o *PolicyModifyParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

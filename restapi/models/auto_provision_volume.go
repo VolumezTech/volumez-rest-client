@@ -22,6 +22,7 @@ type AutoProvisionVolume struct {
 
 	// availability zones
 	// Required: true
+	// Min Items: 1
 	AvailabilityZones []string `json:"availabilityZones"`
 
 	// cloud provider name
@@ -36,7 +37,7 @@ type AutoProvisionVolume struct {
 
 	// os type
 	// Required: true
-	// Enum: ["Linux","Rhel","Ubuntu"]
+	// Enum: [Linux Rhel Ubuntu]
 	OsType string `json:"osType"`
 
 	// Region to create teh volume in
@@ -51,6 +52,7 @@ type AutoProvisionVolume struct {
 
 	// subnets
 	// Required: true
+	// Min Items: 1
 	Subnets []string `json:"subnets"`
 
 	// infra plan
@@ -119,6 +121,12 @@ func (m *AutoProvisionVolume) Validate(formats strfmt.Registry) error {
 func (m *AutoProvisionVolume) validateAvailabilityZones(formats strfmt.Registry) error {
 
 	if err := validate.Required("availabilityZones", "body", m.AvailabilityZones); err != nil {
+		return err
+	}
+
+	iAvailabilityZonesSize := int64(len(m.AvailabilityZones))
+
+	if err := validate.MinItems("availabilityZones", "body", iAvailabilityZonesSize, 1); err != nil {
 		return err
 	}
 
@@ -227,6 +235,12 @@ func (m *AutoProvisionVolume) validateSubnets(formats strfmt.Registry) error {
 		return err
 	}
 
+	iSubnetsSize := int64(len(m.Subnets))
+
+	if err := validate.MinItems("subnets", "body", iSubnetsSize, 1); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -239,8 +253,6 @@ func (m *AutoProvisionVolume) validateInfraPlan(formats strfmt.Registry) error {
 		if err := m.InfraPlan.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("infraPlan")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("infraPlan")
 			}
 			return err
 		}
@@ -272,8 +284,6 @@ func (m *AutoProvisionVolume) validateVolume(formats strfmt.Registry) error {
 		if err := m.Volume.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("volume")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("volume")
 			}
 			return err
 		}
@@ -303,16 +313,9 @@ func (m *AutoProvisionVolume) ContextValidate(ctx context.Context, formats strfm
 func (m *AutoProvisionVolume) contextValidateInfraPlan(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InfraPlan != nil {
-
-		if swag.IsZero(m.InfraPlan) { // not required
-			return nil
-		}
-
 		if err := m.InfraPlan.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("infraPlan")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("infraPlan")
 			}
 			return err
 		}
@@ -324,12 +327,9 @@ func (m *AutoProvisionVolume) contextValidateInfraPlan(ctx context.Context, form
 func (m *AutoProvisionVolume) contextValidateVolume(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Volume != nil {
-
 		if err := m.Volume.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("volume")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("volume")
 			}
 			return err
 		}

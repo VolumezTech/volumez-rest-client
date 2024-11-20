@@ -61,6 +61,9 @@ NetworkGetParams contains all the parameters to send to the API endpoint
 */
 type NetworkGetParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Network.
 	Network string
 
@@ -117,6 +120,17 @@ func (o *NetworkGetParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the network get params
+func (o *NetworkGetParams) WithAuthorization(authorization *string) *NetworkGetParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the network get params
+func (o *NetworkGetParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithNetwork adds the network to the network get params
 func (o *NetworkGetParams) WithNetwork(network string) *NetworkGetParams {
 	o.SetNetwork(network)
@@ -135,6 +149,14 @@ func (o *NetworkGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param network
 	if err := r.SetPathParam("network", o.Network); err != nil {

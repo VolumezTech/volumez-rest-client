@@ -6,7 +6,6 @@ package nodes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -60,7 +59,7 @@ func NewNodeGetOK() *NodeGetOK {
 }
 
 /*
-NodeGetOK describes a response with status code 200, with default header values.
+	NodeGetOK describes a response with status code 200, with default header values.
 
 Properties of a node
 */
@@ -68,46 +67,9 @@ type NodeGetOK struct {
 	Payload *models.Node
 }
 
-// IsSuccess returns true when this node get o k response has a 2xx status code
-func (o *NodeGetOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this node get o k response has a 3xx status code
-func (o *NodeGetOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node get o k response has a 4xx status code
-func (o *NodeGetOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this node get o k response has a 5xx status code
-func (o *NodeGetOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node get o k response a status code equal to that given
-func (o *NodeGetOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the node get o k response
-func (o *NodeGetOK) Code() int {
-	return 200
-}
-
 func (o *NodeGetOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetOK %s", 200, payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetOK  %+v", 200, o.Payload)
 }
-
-func (o *NodeGetOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetOK %s", 200, payload)
-}
-
 func (o *NodeGetOK) GetPayload() *models.Node {
 	return o.Payload
 }
@@ -130,7 +92,7 @@ func NewNodeGetBadRequest() *NodeGetBadRequest {
 }
 
 /*
-NodeGetBadRequest describes a response with status code 400, with default header values.
+	NodeGetBadRequest describes a response with status code 400, with default header values.
 
 Invalid node name supplied
 */
@@ -138,46 +100,9 @@ type NodeGetBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node get bad request response has a 2xx status code
-func (o *NodeGetBadRequest) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this node get bad request response has a 3xx status code
-func (o *NodeGetBadRequest) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node get bad request response has a 4xx status code
-func (o *NodeGetBadRequest) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this node get bad request response has a 5xx status code
-func (o *NodeGetBadRequest) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node get bad request response a status code equal to that given
-func (o *NodeGetBadRequest) IsCode(code int) bool {
-	return code == 400
-}
-
-// Code gets the status code for the node get bad request response
-func (o *NodeGetBadRequest) Code() int {
-	return 400
-}
-
 func (o *NodeGetBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetBadRequest %s", 400, payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetBadRequest  %+v", 400, o.Payload)
 }
-
-func (o *NodeGetBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetBadRequest %s", 400, payload)
-}
-
 func (o *NodeGetBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -200,7 +125,7 @@ func NewNodeGetNotFound() *NodeGetNotFound {
 }
 
 /*
-NodeGetNotFound describes a response with status code 404, with default header values.
+	NodeGetNotFound describes a response with status code 404, with default header values.
 
 Node not found
 */
@@ -208,46 +133,9 @@ type NodeGetNotFound struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node get not found response has a 2xx status code
-func (o *NodeGetNotFound) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this node get not found response has a 3xx status code
-func (o *NodeGetNotFound) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node get not found response has a 4xx status code
-func (o *NodeGetNotFound) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this node get not found response has a 5xx status code
-func (o *NodeGetNotFound) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node get not found response a status code equal to that given
-func (o *NodeGetNotFound) IsCode(code int) bool {
-	return code == 404
-}
-
-// Code gets the status code for the node get not found response
-func (o *NodeGetNotFound) Code() int {
-	return 404
-}
-
 func (o *NodeGetNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetNotFound %s", 404, payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetNotFound  %+v", 404, o.Payload)
 }
-
-func (o *NodeGetNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /nodes/{node}][%d] nodeGetNotFound %s", 404, payload)
-}
-
 func (o *NodeGetNotFound) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -272,7 +160,7 @@ func NewNodeGetDefault(code int) *NodeGetDefault {
 }
 
 /*
-NodeGetDefault describes a response with status code -1, with default header values.
+	NodeGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a node
 */
@@ -282,46 +170,14 @@ type NodeGetDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node get default response has a 2xx status code
-func (o *NodeGetDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this node get default response has a 3xx status code
-func (o *NodeGetDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this node get default response has a 4xx status code
-func (o *NodeGetDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this node get default response has a 5xx status code
-func (o *NodeGetDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this node get default response a status code equal to that given
-func (o *NodeGetDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the node get default response
 func (o *NodeGetDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *NodeGetDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /nodes/{node}][%d] NodeGet default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /nodes/{node}][%d] NodeGet default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *NodeGetDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /nodes/{node}][%d] NodeGet default %s", o._statusCode, payload)
-}
-
 func (o *NodeGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

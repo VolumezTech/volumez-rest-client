@@ -11,6 +11,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // Plan plan
@@ -22,7 +23,8 @@ type Plan struct {
 	Replicationvolumegroup *VolumeGroup `json:"replicationvolumegroup,omitempty"`
 
 	// volumegroup
-	Volumegroup *VolumeGroup `json:"volumegroup,omitempty"`
+	// Required: true
+	Volumegroup *VolumeGroup `json:"volumegroup"`
 }
 
 // Validate validates this plan
@@ -52,8 +54,6 @@ func (m *Plan) validateReplicationvolumegroup(formats strfmt.Registry) error {
 		if err := m.Replicationvolumegroup.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("replicationvolumegroup")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("replicationvolumegroup")
 			}
 			return err
 		}
@@ -63,16 +63,15 @@ func (m *Plan) validateReplicationvolumegroup(formats strfmt.Registry) error {
 }
 
 func (m *Plan) validateVolumegroup(formats strfmt.Registry) error {
-	if swag.IsZero(m.Volumegroup) { // not required
-		return nil
+
+	if err := validate.Required("volumegroup", "body", m.Volumegroup); err != nil {
+		return err
 	}
 
 	if m.Volumegroup != nil {
 		if err := m.Volumegroup.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("volumegroup")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("volumegroup")
 			}
 			return err
 		}
@@ -102,16 +101,9 @@ func (m *Plan) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 func (m *Plan) contextValidateReplicationvolumegroup(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Replicationvolumegroup != nil {
-
-		if swag.IsZero(m.Replicationvolumegroup) { // not required
-			return nil
-		}
-
 		if err := m.Replicationvolumegroup.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("replicationvolumegroup")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("replicationvolumegroup")
 			}
 			return err
 		}
@@ -123,16 +115,9 @@ func (m *Plan) contextValidateReplicationvolumegroup(ctx context.Context, format
 func (m *Plan) contextValidateVolumegroup(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Volumegroup != nil {
-
-		if swag.IsZero(m.Volumegroup) { // not required
-			return nil
-		}
-
 		if err := m.Volumegroup.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("volumegroup")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("volumegroup")
 			}
 			return err
 		}

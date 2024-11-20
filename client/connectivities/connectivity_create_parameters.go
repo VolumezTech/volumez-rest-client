@@ -63,6 +63,9 @@ ConnectivityCreateParams contains all the parameters to send to the API endpoint
 */
 type ConnectivityCreateParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Body.
 
 	   A Connectivity object
@@ -122,6 +125,17 @@ func (o *ConnectivityCreateParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the connectivity create params
+func (o *ConnectivityCreateParams) WithAuthorization(authorization *string) *ConnectivityCreateParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the connectivity create params
+func (o *ConnectivityCreateParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithBody adds the body to the connectivity create params
 func (o *ConnectivityCreateParams) WithBody(body *models.Connectivity) *ConnectivityCreateParams {
 	o.SetBody(body)
@@ -140,6 +154,14 @@ func (o *ConnectivityCreateParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

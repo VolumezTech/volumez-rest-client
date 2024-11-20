@@ -6,7 +6,6 @@ package volumes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewVolumeGetOK() *VolumeGetOK {
 }
 
 /*
-VolumeGetOK describes a response with status code 200, with default header values.
+	VolumeGetOK describes a response with status code 200, with default header values.
 
 Properties of a volume
 */
@@ -56,46 +55,9 @@ type VolumeGetOK struct {
 	Payload *models.Volume
 }
 
-// IsSuccess returns true when this volume get o k response has a 2xx status code
-func (o *VolumeGetOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this volume get o k response has a 3xx status code
-func (o *VolumeGetOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this volume get o k response has a 4xx status code
-func (o *VolumeGetOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this volume get o k response has a 5xx status code
-func (o *VolumeGetOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this volume get o k response a status code equal to that given
-func (o *VolumeGetOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the volume get o k response
-func (o *VolumeGetOK) Code() int {
-	return 200
-}
-
 func (o *VolumeGetOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/{volume}][%d] volumeGetOK %s", 200, payload)
+	return fmt.Sprintf("[GET /volumes/{volume}][%d] volumeGetOK  %+v", 200, o.Payload)
 }
-
-func (o *VolumeGetOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/{volume}][%d] volumeGetOK %s", 200, payload)
-}
-
 func (o *VolumeGetOK) GetPayload() *models.Volume {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewVolumeGetDefault(code int) *VolumeGetDefault {
 }
 
 /*
-VolumeGetDefault describes a response with status code -1, with default header values.
+	VolumeGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a volume
 */
@@ -130,46 +92,14 @@ type VolumeGetDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this volume get default response has a 2xx status code
-func (o *VolumeGetDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this volume get default response has a 3xx status code
-func (o *VolumeGetDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this volume get default response has a 4xx status code
-func (o *VolumeGetDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this volume get default response has a 5xx status code
-func (o *VolumeGetDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this volume get default response a status code equal to that given
-func (o *VolumeGetDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the volume get default response
 func (o *VolumeGetDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *VolumeGetDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/{volume}][%d] VolumeGet default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /volumes/{volume}][%d] VolumeGet default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *VolumeGetDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/{volume}][%d] VolumeGet default %s", o._statusCode, payload)
-}
-
 func (o *VolumeGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

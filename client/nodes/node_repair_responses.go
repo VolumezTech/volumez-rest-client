@@ -6,7 +6,6 @@ package nodes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -60,7 +59,7 @@ func NewNodeRepairOK() *NodeRepairOK {
 }
 
 /*
-NodeRepairOK describes a response with status code 200, with default header values.
+	NodeRepairOK describes a response with status code 200, with default header values.
 
 Node Repair job was created successfully
 */
@@ -68,46 +67,9 @@ type NodeRepairOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this node repair o k response has a 2xx status code
-func (o *NodeRepairOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this node repair o k response has a 3xx status code
-func (o *NodeRepairOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node repair o k response has a 4xx status code
-func (o *NodeRepairOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this node repair o k response has a 5xx status code
-func (o *NodeRepairOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node repair o k response a status code equal to that given
-func (o *NodeRepairOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the node repair o k response
-func (o *NodeRepairOK) Code() int {
-	return 200
-}
-
 func (o *NodeRepairOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairOK %s", 200, payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairOK  %+v", 200, o.Payload)
 }
-
-func (o *NodeRepairOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairOK %s", 200, payload)
-}
-
 func (o *NodeRepairOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -130,7 +92,7 @@ func NewNodeRepairBadRequest() *NodeRepairBadRequest {
 }
 
 /*
-NodeRepairBadRequest describes a response with status code 400, with default header values.
+	NodeRepairBadRequest describes a response with status code 400, with default header values.
 
 Invalid node name supplied
 */
@@ -138,46 +100,9 @@ type NodeRepairBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node repair bad request response has a 2xx status code
-func (o *NodeRepairBadRequest) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this node repair bad request response has a 3xx status code
-func (o *NodeRepairBadRequest) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node repair bad request response has a 4xx status code
-func (o *NodeRepairBadRequest) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this node repair bad request response has a 5xx status code
-func (o *NodeRepairBadRequest) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node repair bad request response a status code equal to that given
-func (o *NodeRepairBadRequest) IsCode(code int) bool {
-	return code == 400
-}
-
-// Code gets the status code for the node repair bad request response
-func (o *NodeRepairBadRequest) Code() int {
-	return 400
-}
-
 func (o *NodeRepairBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairBadRequest  %+v", 400, o.Payload)
 }
-
-func (o *NodeRepairBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairBadRequest %s", 400, payload)
-}
-
 func (o *NodeRepairBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -200,7 +125,7 @@ func NewNodeRepairNotFound() *NodeRepairNotFound {
 }
 
 /*
-NodeRepairNotFound describes a response with status code 404, with default header values.
+	NodeRepairNotFound describes a response with status code 404, with default header values.
 
 Node not found
 */
@@ -208,46 +133,9 @@ type NodeRepairNotFound struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node repair not found response has a 2xx status code
-func (o *NodeRepairNotFound) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this node repair not found response has a 3xx status code
-func (o *NodeRepairNotFound) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node repair not found response has a 4xx status code
-func (o *NodeRepairNotFound) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this node repair not found response has a 5xx status code
-func (o *NodeRepairNotFound) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node repair not found response a status code equal to that given
-func (o *NodeRepairNotFound) IsCode(code int) bool {
-	return code == 404
-}
-
-// Code gets the status code for the node repair not found response
-func (o *NodeRepairNotFound) Code() int {
-	return 404
-}
-
 func (o *NodeRepairNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairNotFound  %+v", 404, o.Payload)
 }
-
-func (o *NodeRepairNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] nodeRepairNotFound %s", 404, payload)
-}
-
 func (o *NodeRepairNotFound) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -272,7 +160,7 @@ func NewNodeRepairDefault(code int) *NodeRepairDefault {
 }
 
 /*
-NodeRepairDefault describes a response with status code -1, with default header values.
+	NodeRepairDefault describes a response with status code -1, with default header values.
 
 Error trying to create node repair job
 */
@@ -282,46 +170,14 @@ type NodeRepairDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node repair default response has a 2xx status code
-func (o *NodeRepairDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this node repair default response has a 3xx status code
-func (o *NodeRepairDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this node repair default response has a 4xx status code
-func (o *NodeRepairDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this node repair default response has a 5xx status code
-func (o *NodeRepairDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this node repair default response a status code equal to that given
-func (o *NodeRepairDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the node repair default response
 func (o *NodeRepairDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *NodeRepairDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] NodeRepair default %s", o._statusCode, payload)
+	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] NodeRepair default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *NodeRepairDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/repair/{node}/{tenant}][%d] NodeRepair default %s", o._statusCode, payload)
-}
-
 func (o *NodeRepairDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

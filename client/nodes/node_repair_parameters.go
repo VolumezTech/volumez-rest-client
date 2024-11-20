@@ -63,6 +63,9 @@ NodeRepairParams contains all the parameters to send to the API endpoint
 */
 type NodeRepairParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Body.
 
 	   A repair node object
@@ -134,6 +137,17 @@ func (o *NodeRepairParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the node repair params
+func (o *NodeRepairParams) WithAuthorization(authorization *string) *NodeRepairParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the node repair params
+func (o *NodeRepairParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithBody adds the body to the node repair params
 func (o *NodeRepairParams) WithBody(body *models.RepairCmds) *NodeRepairParams {
 	o.SetBody(body)
@@ -174,6 +188,14 @@ func (o *NodeRepairParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

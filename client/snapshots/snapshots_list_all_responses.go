@@ -6,7 +6,6 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewSnapshotsListAllOK() *SnapshotsListAllOK {
 }
 
 /*
-SnapshotsListAllOK describes a response with status code 200, with default header values.
+	SnapshotsListAllOK describes a response with status code 200, with default header values.
 
 List of all snapshots
 */
@@ -56,46 +55,9 @@ type SnapshotsListAllOK struct {
 	Payload []*models.Snapshot
 }
 
-// IsSuccess returns true when this snapshots list all o k response has a 2xx status code
-func (o *SnapshotsListAllOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this snapshots list all o k response has a 3xx status code
-func (o *SnapshotsListAllOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this snapshots list all o k response has a 4xx status code
-func (o *SnapshotsListAllOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this snapshots list all o k response has a 5xx status code
-func (o *SnapshotsListAllOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this snapshots list all o k response a status code equal to that given
-func (o *SnapshotsListAllOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the snapshots list all o k response
-func (o *SnapshotsListAllOK) Code() int {
-	return 200
-}
-
 func (o *SnapshotsListAllOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /snapshots][%d] snapshotsListAllOK %s", 200, payload)
+	return fmt.Sprintf("[GET /snapshots][%d] snapshotsListAllOK  %+v", 200, o.Payload)
 }
-
-func (o *SnapshotsListAllOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /snapshots][%d] snapshotsListAllOK %s", 200, payload)
-}
-
 func (o *SnapshotsListAllOK) GetPayload() []*models.Snapshot {
 	return o.Payload
 }
@@ -118,7 +80,7 @@ func NewSnapshotsListAllDefault(code int) *SnapshotsListAllDefault {
 }
 
 /*
-SnapshotsListAllDefault describes a response with status code -1, with default header values.
+	SnapshotsListAllDefault describes a response with status code -1, with default header values.
 
 Error getting a list of all snapshots
 */
@@ -128,46 +90,14 @@ type SnapshotsListAllDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this snapshots list all default response has a 2xx status code
-func (o *SnapshotsListAllDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this snapshots list all default response has a 3xx status code
-func (o *SnapshotsListAllDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this snapshots list all default response has a 4xx status code
-func (o *SnapshotsListAllDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this snapshots list all default response has a 5xx status code
-func (o *SnapshotsListAllDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this snapshots list all default response a status code equal to that given
-func (o *SnapshotsListAllDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the snapshots list all default response
 func (o *SnapshotsListAllDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *SnapshotsListAllDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /snapshots][%d] SnapshotsListAll default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /snapshots][%d] SnapshotsListAll default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *SnapshotsListAllDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /snapshots][%d] SnapshotsListAll default %s", o._statusCode, payload)
-}
-
 func (o *SnapshotsListAllDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
