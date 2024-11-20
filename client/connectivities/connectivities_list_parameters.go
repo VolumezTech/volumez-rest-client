@@ -60,6 +60,10 @@ ConnectivitiesListParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type ConnectivitiesListParams struct {
+
+	// Authorization.
+	Authorization *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -113,6 +117,17 @@ func (o *ConnectivitiesListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the connectivities list params
+func (o *ConnectivitiesListParams) WithAuthorization(authorization *string) *ConnectivitiesListParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the connectivities list params
+func (o *ConnectivitiesListParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *ConnectivitiesListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +135,14 @@ func (o *ConnectivitiesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

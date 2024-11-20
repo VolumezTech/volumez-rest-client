@@ -65,19 +65,19 @@ type UserConfirmParams struct {
 
 	   Cognito Client ID
 	*/
-	ClientID *string
+	ClientID string
 
 	/* ConfirmationCode.
 
 	   Cognito Signup Confirmation Code
 	*/
-	ConfirmationCode *string
+	ConfirmationCode string
 
 	/* UserName.
 
 	   Cognito User Name
 	*/
-	UserName *string
+	UserName string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -133,35 +133,35 @@ func (o *UserConfirmParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithClientID adds the clientID to the user confirm params
-func (o *UserConfirmParams) WithClientID(clientID *string) *UserConfirmParams {
+func (o *UserConfirmParams) WithClientID(clientID string) *UserConfirmParams {
 	o.SetClientID(clientID)
 	return o
 }
 
 // SetClientID adds the clientId to the user confirm params
-func (o *UserConfirmParams) SetClientID(clientID *string) {
+func (o *UserConfirmParams) SetClientID(clientID string) {
 	o.ClientID = clientID
 }
 
 // WithConfirmationCode adds the confirmationCode to the user confirm params
-func (o *UserConfirmParams) WithConfirmationCode(confirmationCode *string) *UserConfirmParams {
+func (o *UserConfirmParams) WithConfirmationCode(confirmationCode string) *UserConfirmParams {
 	o.SetConfirmationCode(confirmationCode)
 	return o
 }
 
 // SetConfirmationCode adds the confirmationCode to the user confirm params
-func (o *UserConfirmParams) SetConfirmationCode(confirmationCode *string) {
+func (o *UserConfirmParams) SetConfirmationCode(confirmationCode string) {
 	o.ConfirmationCode = confirmationCode
 }
 
 // WithUserName adds the userName to the user confirm params
-func (o *UserConfirmParams) WithUserName(userName *string) *UserConfirmParams {
+func (o *UserConfirmParams) WithUserName(userName string) *UserConfirmParams {
 	o.SetUserName(userName)
 	return o
 }
 
 // SetUserName adds the userName to the user confirm params
-func (o *UserConfirmParams) SetUserName(userName *string) {
+func (o *UserConfirmParams) SetUserName(userName string) {
 	o.UserName = userName
 }
 
@@ -173,54 +173,33 @@ func (o *UserConfirmParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	}
 	var res []error
 
-	if o.ClientID != nil {
+	// query param client_id
+	qrClientID := o.ClientID
+	qClientID := qrClientID
+	if qClientID != "" {
 
-		// query param client_id
-		var qrClientID string
-
-		if o.ClientID != nil {
-			qrClientID = *o.ClientID
-		}
-		qClientID := qrClientID
-		if qClientID != "" {
-
-			if err := r.SetQueryParam("client_id", qClientID); err != nil {
-				return err
-			}
+		if err := r.SetQueryParam("client_id", qClientID); err != nil {
+			return err
 		}
 	}
 
-	if o.ConfirmationCode != nil {
+	// query param confirmation_code
+	qrConfirmationCode := o.ConfirmationCode
+	qConfirmationCode := qrConfirmationCode
+	if qConfirmationCode != "" {
 
-		// query param confirmation_code
-		var qrConfirmationCode string
-
-		if o.ConfirmationCode != nil {
-			qrConfirmationCode = *o.ConfirmationCode
-		}
-		qConfirmationCode := qrConfirmationCode
-		if qConfirmationCode != "" {
-
-			if err := r.SetQueryParam("confirmation_code", qConfirmationCode); err != nil {
-				return err
-			}
+		if err := r.SetQueryParam("confirmation_code", qConfirmationCode); err != nil {
+			return err
 		}
 	}
 
-	if o.UserName != nil {
+	// query param user_name
+	qrUserName := o.UserName
+	qUserName := qrUserName
+	if qUserName != "" {
 
-		// query param user_name
-		var qrUserName string
-
-		if o.UserName != nil {
-			qrUserName = *o.UserName
-		}
-		qUserName := qrUserName
-		if qUserName != "" {
-
-			if err := r.SetQueryParam("user_name", qUserName); err != nil {
-				return err
-			}
+		if err := r.SetQueryParam("user_name", qUserName); err != nil {
+			return err
 		}
 	}
 

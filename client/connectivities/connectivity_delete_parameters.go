@@ -61,6 +61,9 @@ ConnectivityDeleteParams contains all the parameters to send to the API endpoint
 */
 type ConnectivityDeleteParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Connectivity.
 	Connectivity string
 
@@ -117,6 +120,17 @@ func (o *ConnectivityDeleteParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the connectivity delete params
+func (o *ConnectivityDeleteParams) WithAuthorization(authorization *string) *ConnectivityDeleteParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the connectivity delete params
+func (o *ConnectivityDeleteParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithConnectivity adds the connectivity to the connectivity delete params
 func (o *ConnectivityDeleteParams) WithConnectivity(connectivity string) *ConnectivityDeleteParams {
 	o.SetConnectivity(connectivity)
@@ -135,6 +149,14 @@ func (o *ConnectivityDeleteParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param connectivity
 	if err := r.SetPathParam("connectivity", o.Connectivity); err != nil {

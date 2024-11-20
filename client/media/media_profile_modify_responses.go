@@ -6,7 +6,6 @@ package media
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewMediaProfileModifyOK() *MediaProfileModifyOK {
 }
 
 /*
-MediaProfileModifyOK describes a response with status code 200, with default header values.
+	MediaProfileModifyOK describes a response with status code 200, with default header values.
 
 A media profile was updated successfully
 */
@@ -56,46 +55,9 @@ type MediaProfileModifyOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this media profile modify o k response has a 2xx status code
-func (o *MediaProfileModifyOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this media profile modify o k response has a 3xx status code
-func (o *MediaProfileModifyOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this media profile modify o k response has a 4xx status code
-func (o *MediaProfileModifyOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this media profile modify o k response has a 5xx status code
-func (o *MediaProfileModifyOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this media profile modify o k response a status code equal to that given
-func (o *MediaProfileModifyOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the media profile modify o k response
-func (o *MediaProfileModifyOK) Code() int {
-	return 200
-}
-
 func (o *MediaProfileModifyOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /media/{media}/profile][%d] mediaProfileModifyOK %s", 200, payload)
+	return fmt.Sprintf("[PATCH /media/{media}/profile][%d] mediaProfileModifyOK  %+v", 200, o.Payload)
 }
-
-func (o *MediaProfileModifyOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /media/{media}/profile][%d] mediaProfileModifyOK %s", 200, payload)
-}
-
 func (o *MediaProfileModifyOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewMediaProfileModifyDefault(code int) *MediaProfileModifyDefault {
 }
 
 /*
-MediaProfileModifyDefault describes a response with status code -1, with default header values.
+	MediaProfileModifyDefault describes a response with status code -1, with default header values.
 
 Error updating a media profile
 */
@@ -130,46 +92,14 @@ type MediaProfileModifyDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this media profile modify default response has a 2xx status code
-func (o *MediaProfileModifyDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this media profile modify default response has a 3xx status code
-func (o *MediaProfileModifyDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this media profile modify default response has a 4xx status code
-func (o *MediaProfileModifyDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this media profile modify default response has a 5xx status code
-func (o *MediaProfileModifyDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this media profile modify default response a status code equal to that given
-func (o *MediaProfileModifyDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the media profile modify default response
 func (o *MediaProfileModifyDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *MediaProfileModifyDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /media/{media}/profile][%d] MediaProfileModify default %s", o._statusCode, payload)
+	return fmt.Sprintf("[PATCH /media/{media}/profile][%d] MediaProfileModify default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *MediaProfileModifyDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /media/{media}/profile][%d] MediaProfileModify default %s", o._statusCode, payload)
-}
-
 func (o *MediaProfileModifyDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,7 +6,6 @@ package user_password
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewChangePasswordOK() *ChangePasswordOK {
 }
 
 /*
-ChangePasswordOK describes a response with status code 200, with default header values.
+	ChangePasswordOK describes a response with status code 200, with default header values.
 
 New password changed successfully
 */
@@ -56,46 +55,9 @@ type ChangePasswordOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this change password o k response has a 2xx status code
-func (o *ChangePasswordOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this change password o k response has a 3xx status code
-func (o *ChangePasswordOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this change password o k response has a 4xx status code
-func (o *ChangePasswordOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this change password o k response has a 5xx status code
-func (o *ChangePasswordOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this change password o k response a status code equal to that given
-func (o *ChangePasswordOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the change password o k response
-func (o *ChangePasswordOK) Code() int {
-	return 200
-}
-
 func (o *ChangePasswordOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/user/changepassword][%d] changePasswordOK %s", 200, payload)
+	return fmt.Sprintf("[POST /tenant/user/changepassword][%d] changePasswordOK  %+v", 200, o.Payload)
 }
-
-func (o *ChangePasswordOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/user/changepassword][%d] changePasswordOK %s", 200, payload)
-}
-
 func (o *ChangePasswordOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewChangePasswordDefault(code int) *ChangePasswordDefault {
 }
 
 /*
-ChangePasswordDefault describes a response with status code -1, with default header values.
+	ChangePasswordDefault describes a response with status code -1, with default header values.
 
 Error changing password
 */
@@ -130,46 +92,14 @@ type ChangePasswordDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this change password default response has a 2xx status code
-func (o *ChangePasswordDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this change password default response has a 3xx status code
-func (o *ChangePasswordDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this change password default response has a 4xx status code
-func (o *ChangePasswordDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this change password default response has a 5xx status code
-func (o *ChangePasswordDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this change password default response a status code equal to that given
-func (o *ChangePasswordDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the change password default response
 func (o *ChangePasswordDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *ChangePasswordDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/user/changepassword][%d] ChangePassword default %s", o._statusCode, payload)
+	return fmt.Sprintf("[POST /tenant/user/changepassword][%d] ChangePassword default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *ChangePasswordDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/user/changepassword][%d] ChangePassword default %s", o._statusCode, payload)
-}
-
 func (o *ChangePasswordDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

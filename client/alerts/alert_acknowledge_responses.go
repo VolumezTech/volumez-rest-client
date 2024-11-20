@@ -6,7 +6,6 @@ package alerts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewAlertAcknowledgeOK() *AlertAcknowledgeOK {
 }
 
 /*
-AlertAcknowledgeOK describes a response with status code 200, with default header values.
+	AlertAcknowledgeOK describes a response with status code 200, with default header values.
 
 Alert was successfully acknowledged
 */
@@ -56,46 +55,9 @@ type AlertAcknowledgeOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this alert acknowledge o k response has a 2xx status code
-func (o *AlertAcknowledgeOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this alert acknowledge o k response has a 3xx status code
-func (o *AlertAcknowledgeOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this alert acknowledge o k response has a 4xx status code
-func (o *AlertAcknowledgeOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this alert acknowledge o k response has a 5xx status code
-func (o *AlertAcknowledgeOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this alert acknowledge o k response a status code equal to that given
-func (o *AlertAcknowledgeOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the alert acknowledge o k response
-func (o *AlertAcknowledgeOK) Code() int {
-	return 200
-}
-
 func (o *AlertAcknowledgeOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] alertAcknowledgeOK %s", 200, payload)
+	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] alertAcknowledgeOK  %+v", 200, o.Payload)
 }
-
-func (o *AlertAcknowledgeOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] alertAcknowledgeOK %s", 200, payload)
-}
-
 func (o *AlertAcknowledgeOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewAlertAcknowledgeDefault(code int) *AlertAcknowledgeDefault {
 }
 
 /*
-AlertAcknowledgeDefault describes a response with status code -1, with default header values.
+	AlertAcknowledgeDefault describes a response with status code -1, with default header values.
 
 Error acknowledging alert
 */
@@ -130,46 +92,14 @@ type AlertAcknowledgeDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this alert acknowledge default response has a 2xx status code
-func (o *AlertAcknowledgeDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this alert acknowledge default response has a 3xx status code
-func (o *AlertAcknowledgeDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this alert acknowledge default response has a 4xx status code
-func (o *AlertAcknowledgeDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this alert acknowledge default response has a 5xx status code
-func (o *AlertAcknowledgeDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this alert acknowledge default response a status code equal to that given
-func (o *AlertAcknowledgeDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the alert acknowledge default response
 func (o *AlertAcknowledgeDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AlertAcknowledgeDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] AlertAcknowledge default %s", o._statusCode, payload)
+	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] AlertAcknowledge default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *AlertAcknowledgeDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /alerts/{alert}/acknowledge][%d] AlertAcknowledge default %s", o._statusCode, payload)
-}
-
 func (o *AlertAcknowledgeDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

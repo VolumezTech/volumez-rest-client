@@ -61,6 +61,9 @@ NetworkDeleteParams contains all the parameters to send to the API endpoint
 */
 type NetworkDeleteParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Network.
 	Network string
 
@@ -117,6 +120,17 @@ func (o *NetworkDeleteParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the network delete params
+func (o *NetworkDeleteParams) WithAuthorization(authorization *string) *NetworkDeleteParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the network delete params
+func (o *NetworkDeleteParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithNetwork adds the network to the network delete params
 func (o *NetworkDeleteParams) WithNetwork(network string) *NetworkDeleteParams {
 	o.SetNetwork(network)
@@ -135,6 +149,14 @@ func (o *NetworkDeleteParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param network
 	if err := r.SetPathParam("network", o.Network); err != nil {

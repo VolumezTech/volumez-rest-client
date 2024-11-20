@@ -61,6 +61,9 @@ MediaUnassignParams contains all the parameters to send to the API endpoint
 */
 type MediaUnassignParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Media.
 	Media string
 
@@ -117,6 +120,17 @@ func (o *MediaUnassignParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the media unassign params
+func (o *MediaUnassignParams) WithAuthorization(authorization *string) *MediaUnassignParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the media unassign params
+func (o *MediaUnassignParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithMedia adds the media to the media unassign params
 func (o *MediaUnassignParams) WithMedia(media string) *MediaUnassignParams {
 	o.SetMedia(media)
@@ -135,6 +149,14 @@ func (o *MediaUnassignParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param media
 	if err := r.SetPathParam("media", o.Media); err != nil {

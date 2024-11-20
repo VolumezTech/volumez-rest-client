@@ -6,7 +6,6 @@ package snapshots
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewSnapshotModifyOK() *SnapshotModifyOK {
 }
 
 /*
-SnapshotModifyOK describes a response with status code 200, with default header values.
+	SnapshotModifyOK describes a response with status code 200, with default header values.
 
 A snapshot was updated successfully
 */
@@ -56,46 +55,9 @@ type SnapshotModifyOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this snapshot modify o k response has a 2xx status code
-func (o *SnapshotModifyOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this snapshot modify o k response has a 3xx status code
-func (o *SnapshotModifyOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this snapshot modify o k response has a 4xx status code
-func (o *SnapshotModifyOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this snapshot modify o k response has a 5xx status code
-func (o *SnapshotModifyOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this snapshot modify o k response a status code equal to that given
-func (o *SnapshotModifyOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the snapshot modify o k response
-func (o *SnapshotModifyOK) Code() int {
-	return 200
-}
-
 func (o *SnapshotModifyOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] snapshotModifyOK %s", 200, payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] snapshotModifyOK  %+v", 200, o.Payload)
 }
-
-func (o *SnapshotModifyOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] snapshotModifyOK %s", 200, payload)
-}
-
 func (o *SnapshotModifyOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewSnapshotModifyDefault(code int) *SnapshotModifyDefault {
 }
 
 /*
-SnapshotModifyDefault describes a response with status code -1, with default header values.
+	SnapshotModifyDefault describes a response with status code -1, with default header values.
 
 Error updating a snapshot
 */
@@ -130,46 +92,14 @@ type SnapshotModifyDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this snapshot modify default response has a 2xx status code
-func (o *SnapshotModifyDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this snapshot modify default response has a 3xx status code
-func (o *SnapshotModifyDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this snapshot modify default response has a 4xx status code
-func (o *SnapshotModifyDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this snapshot modify default response has a 5xx status code
-func (o *SnapshotModifyDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this snapshot modify default response a status code equal to that given
-func (o *SnapshotModifyDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the snapshot modify default response
 func (o *SnapshotModifyDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *SnapshotModifyDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotModify default %s", o._statusCode, payload)
+	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotModify default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *SnapshotModifyDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /volumes/{volume}/snapshots/{snapshot}][%d] SnapshotModify default %s", o._statusCode, payload)
-}
-
 func (o *SnapshotModifyDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

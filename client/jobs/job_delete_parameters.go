@@ -61,6 +61,9 @@ JobDeleteParams contains all the parameters to send to the API endpoint
 */
 type JobDeleteParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Job.
 	Job string
 
@@ -117,6 +120,17 @@ func (o *JobDeleteParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the job delete params
+func (o *JobDeleteParams) WithAuthorization(authorization *string) *JobDeleteParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the job delete params
+func (o *JobDeleteParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithJob adds the job to the job delete params
 func (o *JobDeleteParams) WithJob(job string) *JobDeleteParams {
 	o.SetJob(job)
@@ -135,6 +149,14 @@ func (o *JobDeleteParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param job
 	if err := r.SetPathParam("job", o.Job); err != nil {

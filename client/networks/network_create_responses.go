@@ -6,7 +6,6 @@ package networks
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewNetworkCreateOK() *NetworkCreateOK {
 }
 
 /*
-NetworkCreateOK describes a response with status code 200, with default header values.
+	NetworkCreateOK describes a response with status code 200, with default header values.
 
 New network was created successfully
 */
@@ -56,46 +55,9 @@ type NetworkCreateOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this network create o k response has a 2xx status code
-func (o *NetworkCreateOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this network create o k response has a 3xx status code
-func (o *NetworkCreateOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this network create o k response has a 4xx status code
-func (o *NetworkCreateOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this network create o k response has a 5xx status code
-func (o *NetworkCreateOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this network create o k response a status code equal to that given
-func (o *NetworkCreateOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the network create o k response
-func (o *NetworkCreateOK) Code() int {
-	return 200
-}
-
 func (o *NetworkCreateOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /networks][%d] networkCreateOK %s", 200, payload)
+	return fmt.Sprintf("[POST /networks][%d] networkCreateOK  %+v", 200, o.Payload)
 }
-
-func (o *NetworkCreateOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /networks][%d] networkCreateOK %s", 200, payload)
-}
-
 func (o *NetworkCreateOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewNetworkCreateDefault(code int) *NetworkCreateDefault {
 }
 
 /*
-NetworkCreateDefault describes a response with status code -1, with default header values.
+	NetworkCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new network
 */
@@ -130,46 +92,14 @@ type NetworkCreateDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this network create default response has a 2xx status code
-func (o *NetworkCreateDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this network create default response has a 3xx status code
-func (o *NetworkCreateDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this network create default response has a 4xx status code
-func (o *NetworkCreateDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this network create default response has a 5xx status code
-func (o *NetworkCreateDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this network create default response a status code equal to that given
-func (o *NetworkCreateDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the network create default response
 func (o *NetworkCreateDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *NetworkCreateDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /networks][%d] NetworkCreate default %s", o._statusCode, payload)
+	return fmt.Sprintf("[POST /networks][%d] NetworkCreate default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *NetworkCreateDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /networks][%d] NetworkCreate default %s", o._statusCode, payload)
-}
-
 func (o *NetworkCreateDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

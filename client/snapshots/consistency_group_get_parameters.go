@@ -61,6 +61,9 @@ ConsistencyGroupGetParams contains all the parameters to send to the API endpoin
 */
 type ConsistencyGroupGetParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// SnapshotGroupName.
 	SnapshotGroupName string
 
@@ -117,6 +120,17 @@ func (o *ConsistencyGroupGetParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the consistency group get params
+func (o *ConsistencyGroupGetParams) WithAuthorization(authorization *string) *ConsistencyGroupGetParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the consistency group get params
+func (o *ConsistencyGroupGetParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithSnapshotGroupName adds the snapshotGroupName to the consistency group get params
 func (o *ConsistencyGroupGetParams) WithSnapshotGroupName(snapshotGroupName string) *ConsistencyGroupGetParams {
 	o.SetSnapshotGroupName(snapshotGroupName)
@@ -135,6 +149,14 @@ func (o *ConsistencyGroupGetParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param snapshot_group_name
 	if err := r.SetPathParam("snapshot_group_name", o.SnapshotGroupName); err != nil {

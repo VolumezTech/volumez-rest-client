@@ -45,10 +45,18 @@ type Node struct {
 	// instance type
 	InstanceType *string `json:"instancetype,omitempty"`
 
+	// kernel version
+	// Example: 6.5.13
+	KernelVersion *string `json:"kversion,omitempty"`
+
 	// o s
 	// Example: rhel
 	// Required: true
 	OS string `json:"os"`
+
+	// o s version
+	// Example: 9.3
+	OSVersion *string `json:"osversion,omitempty"`
 
 	// offline time
 	OfflineTime DateTime `json:"offlinetime"`
@@ -92,6 +100,9 @@ type Node struct {
 	// status
 	// Read Only: true
 	Status string `json:"status"`
+
+	// tags
+	Tags map[string]string `json:"tags,omitempty"`
 
 	// zone
 	// Example: z1
@@ -137,8 +148,6 @@ func (m *Node) validateOfflineTime(formats strfmt.Registry) error {
 	if err := m.OfflineTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("offlinetime")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("offlinetime")
 		}
 		return err
 	}

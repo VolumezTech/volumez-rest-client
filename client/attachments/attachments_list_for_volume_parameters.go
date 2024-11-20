@@ -61,6 +61,9 @@ AttachmentsListForVolumeParams contains all the parameters to send to the API en
 */
 type AttachmentsListForVolumeParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Volume.
 	Volume string
 
@@ -117,6 +120,17 @@ func (o *AttachmentsListForVolumeParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the attachments list for volume params
+func (o *AttachmentsListForVolumeParams) WithAuthorization(authorization *string) *AttachmentsListForVolumeParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the attachments list for volume params
+func (o *AttachmentsListForVolumeParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithVolume adds the volume to the attachments list for volume params
 func (o *AttachmentsListForVolumeParams) WithVolume(volume string) *AttachmentsListForVolumeParams {
 	o.SetVolume(volume)
@@ -135,6 +149,14 @@ func (o *AttachmentsListForVolumeParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param volume
 	if err := r.SetPathParam("volume", o.Volume); err != nil {

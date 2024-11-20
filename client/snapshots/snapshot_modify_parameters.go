@@ -63,6 +63,9 @@ SnapshotModifyParams contains all the parameters to send to the API endpoint
 */
 type SnapshotModifyParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Body.
 
 	   A Snapshot object
@@ -128,6 +131,17 @@ func (o *SnapshotModifyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the snapshot modify params
+func (o *SnapshotModifyParams) WithAuthorization(authorization *string) *SnapshotModifyParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the snapshot modify params
+func (o *SnapshotModifyParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithBody adds the body to the snapshot modify params
 func (o *SnapshotModifyParams) WithBody(body *models.Snapshot) *SnapshotModifyParams {
 	o.SetBody(body)
@@ -168,6 +182,14 @@ func (o *SnapshotModifyParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

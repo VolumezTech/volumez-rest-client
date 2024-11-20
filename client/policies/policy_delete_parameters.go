@@ -61,6 +61,9 @@ PolicyDeleteParams contains all the parameters to send to the API endpoint
 */
 type PolicyDeleteParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Policy.
 	Policy string
 
@@ -117,6 +120,17 @@ func (o *PolicyDeleteParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the policy delete params
+func (o *PolicyDeleteParams) WithAuthorization(authorization *string) *PolicyDeleteParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the policy delete params
+func (o *PolicyDeleteParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithPolicy adds the policy to the policy delete params
 func (o *PolicyDeleteParams) WithPolicy(policy string) *PolicyDeleteParams {
 	o.SetPolicy(policy)
@@ -135,6 +149,14 @@ func (o *PolicyDeleteParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param policy
 	if err := r.SetPathParam("policy", o.Policy); err != nil {

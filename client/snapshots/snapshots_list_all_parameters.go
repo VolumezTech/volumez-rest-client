@@ -62,6 +62,9 @@ SnapshotsListAllParams contains all the parameters to send to the API endpoint
 */
 type SnapshotsListAllParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Capacity.
 	Capacity *bool
 
@@ -118,6 +121,17 @@ func (o *SnapshotsListAllParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the snapshots list all params
+func (o *SnapshotsListAllParams) WithAuthorization(authorization *string) *SnapshotsListAllParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the snapshots list all params
+func (o *SnapshotsListAllParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithCapacity adds the capacity to the snapshots list all params
 func (o *SnapshotsListAllParams) WithCapacity(capacity *bool) *SnapshotsListAllParams {
 	o.SetCapacity(capacity)
@@ -136,6 +150,14 @@ func (o *SnapshotsListAllParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	if o.Capacity != nil {
 

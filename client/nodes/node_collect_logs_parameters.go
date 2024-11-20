@@ -61,6 +61,9 @@ NodeCollectLogsParams contains all the parameters to send to the API endpoint
 */
 type NodeCollectLogsParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Node.
 
 	   Name of node
@@ -126,6 +129,17 @@ func (o *NodeCollectLogsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the node collect logs params
+func (o *NodeCollectLogsParams) WithAuthorization(authorization *string) *NodeCollectLogsParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the node collect logs params
+func (o *NodeCollectLogsParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithNode adds the node to the node collect logs params
 func (o *NodeCollectLogsParams) WithNode(node string) *NodeCollectLogsParams {
 	o.SetNode(node)
@@ -155,6 +169,14 @@ func (o *NodeCollectLogsParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param node
 	if err := r.SetPathParam("node", o.Node); err != nil {

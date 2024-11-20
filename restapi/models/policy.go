@@ -30,7 +30,7 @@ type Policy struct {
 
 	// Choosing “Capacity” directs Volumez to prefer using capacity-saving methods (such as compression, deduplication, erasure coding and thin provisioning) where relevant, in order to consume the minimum amount of raw media. Using such methods might take some CPU cycles, and might reduce the performance of your volumes (it will still be within the range you specified). Choosing “Balanced” directs Volumez to prefer using some capacity-saving methods where relevant, in order to use less raw media, while consuming a small amount of CPU cycles. “Performance Optimized” directs Volumez to avoid using capacity-saving any methods (such as compression and deduplication) that reduce media consumption. This way applications can get the optimal performance from their media, however more raw media might be consumed to provision Performance-Optimized volumes.
 	// Required: true
-	// Enum: ["capacity","balanced","performance"]
+	// Enum: [capacity balanced performance]
 	CapacityOptimization string `json:"capacityoptimization"`
 
 	// Enter how much logical capacity is reserved up-front for the applications to use. If more capacity is needed for the volume, it will be allocated based on availability of media. Capacities that are reserved can be used for the volume itself and for its snapshots. For example – Use 0% for thin-provisioned volumes, 130% for thick-provisioned volumes with estimated 30% of space for snapshots. Valid values are 0%-500%, default is 20%.
@@ -345,8 +345,6 @@ func (m *Policy) validateCreatedTime(formats strfmt.Registry) error {
 	if err := m.CreatedTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("createdtime")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("createdtime")
 		}
 		return err
 	}
@@ -498,8 +496,6 @@ func (m *Policy) validateUpdateTime(formats strfmt.Registry) error {
 	if err := m.UpdateTime.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("updatetime")
-		} else if ce, ok := err.(*errors.CompositeError); ok {
-			return ce.ValidateName("updatetime")
 		}
 		return err
 	}

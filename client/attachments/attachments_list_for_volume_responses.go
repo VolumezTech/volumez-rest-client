@@ -6,7 +6,6 @@ package attachments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewAttachmentsListForVolumeOK() *AttachmentsListForVolumeOK {
 }
 
 /*
-AttachmentsListForVolumeOK describes a response with status code 200, with default header values.
+	AttachmentsListForVolumeOK describes a response with status code 200, with default header values.
 
 List of attachments
 */
@@ -56,46 +55,9 @@ type AttachmentsListForVolumeOK struct {
 	Payload []*models.Attachment
 }
 
-// IsSuccess returns true when this attachments list for volume o k response has a 2xx status code
-func (o *AttachmentsListForVolumeOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this attachments list for volume o k response has a 3xx status code
-func (o *AttachmentsListForVolumeOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this attachments list for volume o k response has a 4xx status code
-func (o *AttachmentsListForVolumeOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this attachments list for volume o k response has a 5xx status code
-func (o *AttachmentsListForVolumeOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this attachments list for volume o k response a status code equal to that given
-func (o *AttachmentsListForVolumeOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the attachments list for volume o k response
-func (o *AttachmentsListForVolumeOK) Code() int {
-	return 200
-}
-
 func (o *AttachmentsListForVolumeOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] attachmentsListForVolumeOK %s", 200, payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] attachmentsListForVolumeOK  %+v", 200, o.Payload)
 }
-
-func (o *AttachmentsListForVolumeOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] attachmentsListForVolumeOK %s", 200, payload)
-}
-
 func (o *AttachmentsListForVolumeOK) GetPayload() []*models.Attachment {
 	return o.Payload
 }
@@ -118,7 +80,7 @@ func NewAttachmentsListForVolumeDefault(code int) *AttachmentsListForVolumeDefau
 }
 
 /*
-AttachmentsListForVolumeDefault describes a response with status code -1, with default header values.
+	AttachmentsListForVolumeDefault describes a response with status code -1, with default header values.
 
 Error getting a list of attachments
 */
@@ -128,46 +90,14 @@ type AttachmentsListForVolumeDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this attachments list for volume default response has a 2xx status code
-func (o *AttachmentsListForVolumeDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this attachments list for volume default response has a 3xx status code
-func (o *AttachmentsListForVolumeDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this attachments list for volume default response has a 4xx status code
-func (o *AttachmentsListForVolumeDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this attachments list for volume default response has a 5xx status code
-func (o *AttachmentsListForVolumeDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this attachments list for volume default response a status code equal to that given
-func (o *AttachmentsListForVolumeDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the attachments list for volume default response
 func (o *AttachmentsListForVolumeDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AttachmentsListForVolumeDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] AttachmentsListForVolume default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] AttachmentsListForVolume default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *AttachmentsListForVolumeDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes/{volume}/attachments][%d] AttachmentsListForVolume default %s", o._statusCode, payload)
-}
-
 func (o *AttachmentsListForVolumeDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,7 +6,6 @@ package nodes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -60,7 +59,7 @@ func NewNodeUpgradeForSupportOK() *NodeUpgradeForSupportOK {
 }
 
 /*
-NodeUpgradeForSupportOK describes a response with status code 200, with default header values.
+	NodeUpgradeForSupportOK describes a response with status code 200, with default header values.
 
 Node upgrade started successfully
 */
@@ -68,46 +67,9 @@ type NodeUpgradeForSupportOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this node upgrade for support o k response has a 2xx status code
-func (o *NodeUpgradeForSupportOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this node upgrade for support o k response has a 3xx status code
-func (o *NodeUpgradeForSupportOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node upgrade for support o k response has a 4xx status code
-func (o *NodeUpgradeForSupportOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this node upgrade for support o k response has a 5xx status code
-func (o *NodeUpgradeForSupportOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node upgrade for support o k response a status code equal to that given
-func (o *NodeUpgradeForSupportOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the node upgrade for support o k response
-func (o *NodeUpgradeForSupportOK) Code() int {
-	return 200
-}
-
 func (o *NodeUpgradeForSupportOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportOK %s", 200, payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportOK  %+v", 200, o.Payload)
 }
-
-func (o *NodeUpgradeForSupportOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportOK %s", 200, payload)
-}
-
 func (o *NodeUpgradeForSupportOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -130,7 +92,7 @@ func NewNodeUpgradeForSupportBadRequest() *NodeUpgradeForSupportBadRequest {
 }
 
 /*
-NodeUpgradeForSupportBadRequest describes a response with status code 400, with default header values.
+	NodeUpgradeForSupportBadRequest describes a response with status code 400, with default header values.
 
 Invalid node name supplied
 */
@@ -138,46 +100,9 @@ type NodeUpgradeForSupportBadRequest struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node upgrade for support bad request response has a 2xx status code
-func (o *NodeUpgradeForSupportBadRequest) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this node upgrade for support bad request response has a 3xx status code
-func (o *NodeUpgradeForSupportBadRequest) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node upgrade for support bad request response has a 4xx status code
-func (o *NodeUpgradeForSupportBadRequest) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this node upgrade for support bad request response has a 5xx status code
-func (o *NodeUpgradeForSupportBadRequest) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node upgrade for support bad request response a status code equal to that given
-func (o *NodeUpgradeForSupportBadRequest) IsCode(code int) bool {
-	return code == 400
-}
-
-// Code gets the status code for the node upgrade for support bad request response
-func (o *NodeUpgradeForSupportBadRequest) Code() int {
-	return 400
-}
-
 func (o *NodeUpgradeForSupportBadRequest) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportBadRequest %s", 400, payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportBadRequest  %+v", 400, o.Payload)
 }
-
-func (o *NodeUpgradeForSupportBadRequest) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportBadRequest %s", 400, payload)
-}
-
 func (o *NodeUpgradeForSupportBadRequest) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -200,7 +125,7 @@ func NewNodeUpgradeForSupportNotFound() *NodeUpgradeForSupportNotFound {
 }
 
 /*
-NodeUpgradeForSupportNotFound describes a response with status code 404, with default header values.
+	NodeUpgradeForSupportNotFound describes a response with status code 404, with default header values.
 
 Node not found
 */
@@ -208,46 +133,9 @@ type NodeUpgradeForSupportNotFound struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node upgrade for support not found response has a 2xx status code
-func (o *NodeUpgradeForSupportNotFound) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this node upgrade for support not found response has a 3xx status code
-func (o *NodeUpgradeForSupportNotFound) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this node upgrade for support not found response has a 4xx status code
-func (o *NodeUpgradeForSupportNotFound) IsClientError() bool {
-	return true
-}
-
-// IsServerError returns true when this node upgrade for support not found response has a 5xx status code
-func (o *NodeUpgradeForSupportNotFound) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this node upgrade for support not found response a status code equal to that given
-func (o *NodeUpgradeForSupportNotFound) IsCode(code int) bool {
-	return code == 404
-}
-
-// Code gets the status code for the node upgrade for support not found response
-func (o *NodeUpgradeForSupportNotFound) Code() int {
-	return 404
-}
-
 func (o *NodeUpgradeForSupportNotFound) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportNotFound %s", 404, payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportNotFound  %+v", 404, o.Payload)
 }
-
-func (o *NodeUpgradeForSupportNotFound) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] nodeUpgradeForSupportNotFound %s", 404, payload)
-}
-
 func (o *NodeUpgradeForSupportNotFound) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -272,7 +160,7 @@ func NewNodeUpgradeForSupportDefault(code int) *NodeUpgradeForSupportDefault {
 }
 
 /*
-NodeUpgradeForSupportDefault describes a response with status code -1, with default header values.
+	NodeUpgradeForSupportDefault describes a response with status code -1, with default header values.
 
 Error trying to upgrade node
 */
@@ -282,46 +170,14 @@ type NodeUpgradeForSupportDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this node upgrade for support default response has a 2xx status code
-func (o *NodeUpgradeForSupportDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this node upgrade for support default response has a 3xx status code
-func (o *NodeUpgradeForSupportDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this node upgrade for support default response has a 4xx status code
-func (o *NodeUpgradeForSupportDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this node upgrade for support default response has a 5xx status code
-func (o *NodeUpgradeForSupportDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this node upgrade for support default response a status code equal to that given
-func (o *NodeUpgradeForSupportDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the node upgrade for support default response
 func (o *NodeUpgradeForSupportDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *NodeUpgradeForSupportDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] NodeUpgradeForSupport default %s", o._statusCode, payload)
+	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] NodeUpgradeForSupport default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *NodeUpgradeForSupportDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /nodes/upgrade/{node}/tenant/{tenant}][%d] NodeUpgradeForSupport default %s", o._statusCode, payload)
-}
-
 func (o *NodeUpgradeForSupportDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

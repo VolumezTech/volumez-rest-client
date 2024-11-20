@@ -63,6 +63,9 @@ MediaProfileModifyParams contains all the parameters to send to the API endpoint
 */
 type MediaProfileModifyParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Body.
 
 	   A Media Profile object
@@ -125,6 +128,17 @@ func (o *MediaProfileModifyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the media profile modify params
+func (o *MediaProfileModifyParams) WithAuthorization(authorization *string) *MediaProfileModifyParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the media profile modify params
+func (o *MediaProfileModifyParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithBody adds the body to the media profile modify params
 func (o *MediaProfileModifyParams) WithBody(body *models.MediaProfile) *MediaProfileModifyParams {
 	o.SetBody(body)
@@ -154,6 +168,14 @@ func (o *MediaProfileModifyParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

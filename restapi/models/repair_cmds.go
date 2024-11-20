@@ -26,6 +26,7 @@ type RepairCmds struct {
 
 	// cmds
 	// Required: true
+	// Min Items: 1
 	Cmds []string `json:"cmds"`
 
 	// message
@@ -66,6 +67,12 @@ func (m *RepairCmds) validateChecksum(formats strfmt.Registry) error {
 func (m *RepairCmds) validateCmds(formats strfmt.Registry) error {
 
 	if err := validate.Required("cmds", "body", m.Cmds); err != nil {
+		return err
+	}
+
+	iCmdsSize := int64(len(m.Cmds))
+
+	if err := validate.MinItems("cmds", "body", iCmdsSize, 1); err != nil {
 		return err
 	}
 

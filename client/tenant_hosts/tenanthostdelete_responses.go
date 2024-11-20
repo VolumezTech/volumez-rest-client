@@ -6,7 +6,6 @@ package tenant_hosts
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -37,7 +36,7 @@ func (o *TenanthostdeleteReader) ReadResponse(response runtime.ClientResponse, c
 		}
 		return nil, result
 	default:
-		return nil, runtime.NewAPIError("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}] tenanthostdelete", response, response.Code())
+		return nil, runtime.NewAPIError("response status code does not match any response statuses defined for this endpoint in the swagger spec", response, response.Code())
 	}
 }
 
@@ -47,7 +46,7 @@ func NewTenanthostdeleteOK() *TenanthostdeleteOK {
 }
 
 /*
-TenanthostdeleteOK describes a response with status code 200, with default header values.
+	TenanthostdeleteOK describes a response with status code 200, with default header values.
 
 Tenant Host was deleted successfully
 */
@@ -55,46 +54,9 @@ type TenanthostdeleteOK struct {
 	Payload *models.TenantHostDeleteResponse
 }
 
-// IsSuccess returns true when this tenanthostdelete o k response has a 2xx status code
-func (o *TenanthostdeleteOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this tenanthostdelete o k response has a 3xx status code
-func (o *TenanthostdeleteOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenanthostdelete o k response has a 4xx status code
-func (o *TenanthostdeleteOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenanthostdelete o k response has a 5xx status code
-func (o *TenanthostdeleteOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this tenanthostdelete o k response a status code equal to that given
-func (o *TenanthostdeleteOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the tenanthostdelete o k response
-func (o *TenanthostdeleteOK) Code() int {
-	return 200
-}
-
 func (o *TenanthostdeleteOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteOK %s", 200, payload)
+	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteOK  %+v", 200, o.Payload)
 }
-
-func (o *TenanthostdeleteOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteOK %s", 200, payload)
-}
-
 func (o *TenanthostdeleteOK) GetPayload() *models.TenantHostDeleteResponse {
 	return o.Payload
 }
@@ -117,7 +79,7 @@ func NewTenanthostdeleteInternalServerError() *TenanthostdeleteInternalServerErr
 }
 
 /*
-TenanthostdeleteInternalServerError describes a response with status code 500, with default header values.
+	TenanthostdeleteInternalServerError describes a response with status code 500, with default header values.
 
 Error deleting Tenant's Host
 */
@@ -125,46 +87,9 @@ type TenanthostdeleteInternalServerError struct {
 	Payload *models.TenantHostDeleteResponse
 }
 
-// IsSuccess returns true when this tenanthostdelete internal server error response has a 2xx status code
-func (o *TenanthostdeleteInternalServerError) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this tenanthostdelete internal server error response has a 3xx status code
-func (o *TenanthostdeleteInternalServerError) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenanthostdelete internal server error response has a 4xx status code
-func (o *TenanthostdeleteInternalServerError) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenanthostdelete internal server error response has a 5xx status code
-func (o *TenanthostdeleteInternalServerError) IsServerError() bool {
-	return true
-}
-
-// IsCode returns true when this tenanthostdelete internal server error response a status code equal to that given
-func (o *TenanthostdeleteInternalServerError) IsCode(code int) bool {
-	return code == 500
-}
-
-// Code gets the status code for the tenanthostdelete internal server error response
-func (o *TenanthostdeleteInternalServerError) Code() int {
-	return 500
-}
-
 func (o *TenanthostdeleteInternalServerError) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteInternalServerError  %+v", 500, o.Payload)
 }
-
-func (o *TenanthostdeleteInternalServerError) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[DELETE /tenant/{tenantID}/tenanthosts/{tenantHost}][%d] tenanthostdeleteInternalServerError %s", 500, payload)
-}
-
 func (o *TenanthostdeleteInternalServerError) GetPayload() *models.TenantHostDeleteResponse {
 	return o.Payload
 }

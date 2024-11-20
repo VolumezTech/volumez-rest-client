@@ -6,7 +6,6 @@ package tenant_refresh_token
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +53,7 @@ func NewTenantRefreshTokenOK() *TenantRefreshTokenOK {
 }
 
 /*
-TenantRefreshTokenOK describes a response with status code 200, with default header values.
+	TenantRefreshTokenOK describes a response with status code 200, with default header values.
 
 Refresh Token
 */
@@ -62,46 +61,9 @@ type TenantRefreshTokenOK struct {
 	Payload *models.RefreshToken
 }
 
-// IsSuccess returns true when this tenant refresh token o k response has a 2xx status code
-func (o *TenantRefreshTokenOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this tenant refresh token o k response has a 3xx status code
-func (o *TenantRefreshTokenOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenant refresh token o k response has a 4xx status code
-func (o *TenantRefreshTokenOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenant refresh token o k response has a 5xx status code
-func (o *TenantRefreshTokenOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this tenant refresh token o k response a status code equal to that given
-func (o *TenantRefreshTokenOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the tenant refresh token o k response
-func (o *TenantRefreshTokenOK) Code() int {
-	return 200
-}
-
 func (o *TenantRefreshTokenOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenOK %s", 200, payload)
+	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenOK  %+v", 200, o.Payload)
 }
-
-func (o *TenantRefreshTokenOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenOK %s", 200, payload)
-}
-
 func (o *TenantRefreshTokenOK) GetPayload() *models.RefreshToken {
 	return o.Payload
 }
@@ -124,7 +86,7 @@ func NewTenantRefreshTokenInternalServerError() *TenantRefreshTokenInternalServe
 }
 
 /*
-TenantRefreshTokenInternalServerError describes a response with status code 500, with default header values.
+	TenantRefreshTokenInternalServerError describes a response with status code 500, with default header values.
 
 Error getting Tenant's Refresh Token
 */
@@ -132,46 +94,9 @@ type TenantRefreshTokenInternalServerError struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this tenant refresh token internal server error response has a 2xx status code
-func (o *TenantRefreshTokenInternalServerError) IsSuccess() bool {
-	return false
-}
-
-// IsRedirect returns true when this tenant refresh token internal server error response has a 3xx status code
-func (o *TenantRefreshTokenInternalServerError) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this tenant refresh token internal server error response has a 4xx status code
-func (o *TenantRefreshTokenInternalServerError) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this tenant refresh token internal server error response has a 5xx status code
-func (o *TenantRefreshTokenInternalServerError) IsServerError() bool {
-	return true
-}
-
-// IsCode returns true when this tenant refresh token internal server error response a status code equal to that given
-func (o *TenantRefreshTokenInternalServerError) IsCode(code int) bool {
-	return code == 500
-}
-
-// Code gets the status code for the tenant refresh token internal server error response
-func (o *TenantRefreshTokenInternalServerError) Code() int {
-	return 500
-}
-
 func (o *TenantRefreshTokenInternalServerError) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenInternalServerError %s", 500, payload)
+	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenInternalServerError  %+v", 500, o.Payload)
 }
-
-func (o *TenantRefreshTokenInternalServerError) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] tenantRefreshTokenInternalServerError %s", 500, payload)
-}
-
 func (o *TenantRefreshTokenInternalServerError) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
@@ -196,7 +121,7 @@ func NewTenantRefreshTokenDefault(code int) *TenantRefreshTokenDefault {
 }
 
 /*
-TenantRefreshTokenDefault describes a response with status code -1, with default header values.
+	TenantRefreshTokenDefault describes a response with status code -1, with default header values.
 
 Error getting Tenant's Refresh Token
 */
@@ -206,46 +131,14 @@ type TenantRefreshTokenDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this tenant refresh token default response has a 2xx status code
-func (o *TenantRefreshTokenDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this tenant refresh token default response has a 3xx status code
-func (o *TenantRefreshTokenDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this tenant refresh token default response has a 4xx status code
-func (o *TenantRefreshTokenDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this tenant refresh token default response has a 5xx status code
-func (o *TenantRefreshTokenDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this tenant refresh token default response a status code equal to that given
-func (o *TenantRefreshTokenDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the tenant refresh token default response
 func (o *TenantRefreshTokenDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *TenantRefreshTokenDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] TenantRefreshToken default %s", o._statusCode, payload)
+	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] TenantRefreshToken default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *TenantRefreshTokenDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /tenant/refreshtoken][%d] TenantRefreshToken default %s", o._statusCode, payload)
-}
-
 func (o *TenantRefreshTokenDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -61,6 +61,9 @@ PolicyGetParams contains all the parameters to send to the API endpoint
 */
 type PolicyGetParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Policy.
 	Policy string
 
@@ -117,6 +120,17 @@ func (o *PolicyGetParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the policy get params
+func (o *PolicyGetParams) WithAuthorization(authorization *string) *PolicyGetParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the policy get params
+func (o *PolicyGetParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithPolicy adds the policy to the policy get params
 func (o *PolicyGetParams) WithPolicy(policy string) *PolicyGetParams {
 	o.SetPolicy(policy)
@@ -135,6 +149,14 @@ func (o *PolicyGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param policy
 	if err := r.SetPathParam("policy", o.Policy); err != nil {

@@ -62,6 +62,9 @@ NodeDeleteParams contains all the parameters to send to the API endpoint
 */
 type NodeDeleteParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Force.
 	Force *bool
 
@@ -135,6 +138,17 @@ func (o *NodeDeleteParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the node delete params
+func (o *NodeDeleteParams) WithAuthorization(authorization *string) *NodeDeleteParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the node delete params
+func (o *NodeDeleteParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithForce adds the force to the node delete params
 func (o *NodeDeleteParams) WithForce(force *bool) *NodeDeleteParams {
 	o.SetForce(force)
@@ -164,6 +178,14 @@ func (o *NodeDeleteParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	if o.Force != nil {
 

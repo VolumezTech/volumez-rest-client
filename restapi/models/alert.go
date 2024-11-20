@@ -21,36 +21,31 @@ import (
 type Alert struct {
 
 	// Alert Details (according to alert type)
-	// Required: true
 	// Read Only: true
 	// Min Length: 1
 	AlertDetails string `json:"details"`
 
 	// Alert ID
-	// Required: true
 	// Read Only: true
 	// Min Length: 1
 	AlertID string `json:"alertid"`
 
 	// Alert Severity
-	// Required: true
 	// Read Only: true
 	// Min Length: 1
-	// Enum: ["Info","Warning","Critical","Fatal"]
+	// Enum: [Info Warning Critical Fatal]
 	AlertSeverity string `json:"severity"`
 
 	// Alert State
-	// Required: true
 	// Read Only: true
 	// Min Length: 1
-	// Enum: ["Active","Acknowledged","Cleared"]
+	// Enum: [Active Acknowledged Cleared]
 	AlertState string `json:"state"`
 
 	// Alert Type
-	// Required: true
 	// Read Only: true
 	// Min Length: 1
-	// Enum: ["StateChange","ProcessFailed","ThresholdReached"]
+	// Enum: [StateChange ProcessFailed ThresholdReached]
 	AlertType string `json:"type"`
 
 	// Alert Clear Time
@@ -59,7 +54,6 @@ type Alert struct {
 	ClearTime string `json:"cleartime"`
 
 	// Alert Creation Time
-	// Required: true
 	// Read Only: true
 	// Min Length: 1
 	CreationTime string `json:"creationtime"`
@@ -70,16 +64,14 @@ type Alert struct {
 	LastSendTime string `json:"lastsendtime"`
 
 	// Alert Underlying Object ID
-	// Required: true
 	// Read Only: true
 	// Min Length: 1
 	UnderlyingObjectID string `json:"objectid"`
 
 	// Alert Underlying Object Type
-	// Required: true
 	// Read Only: true
 	// Min Length: 1
-	// Enum: ["Media","Node","Volume","Snapshot","Attachment"]
+	// Enum: [Media Node Volume Snapshot Attachment]
 	UnderlyingObjectType string `json:"objecttype"`
 }
 
@@ -134,9 +126,8 @@ func (m *Alert) Validate(formats strfmt.Registry) error {
 }
 
 func (m *Alert) validateAlertDetails(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("details", "body", m.AlertDetails); err != nil {
-		return err
+	if swag.IsZero(m.AlertDetails) { // not required
+		return nil
 	}
 
 	if err := validate.MinLength("details", "body", m.AlertDetails, 1); err != nil {
@@ -147,9 +138,8 @@ func (m *Alert) validateAlertDetails(formats strfmt.Registry) error {
 }
 
 func (m *Alert) validateAlertID(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("alertid", "body", m.AlertID); err != nil {
-		return err
+	if swag.IsZero(m.AlertID) { // not required
+		return nil
 	}
 
 	if err := validate.MinLength("alertid", "body", m.AlertID, 1); err != nil {
@@ -195,9 +185,8 @@ func (m *Alert) validateAlertSeverityEnum(path, location string, value string) e
 }
 
 func (m *Alert) validateAlertSeverity(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("severity", "body", m.AlertSeverity); err != nil {
-		return err
+	if swag.IsZero(m.AlertSeverity) { // not required
+		return nil
 	}
 
 	if err := validate.MinLength("severity", "body", m.AlertSeverity, 1); err != nil {
@@ -245,9 +234,8 @@ func (m *Alert) validateAlertStateEnum(path, location string, value string) erro
 }
 
 func (m *Alert) validateAlertState(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("state", "body", m.AlertState); err != nil {
-		return err
+	if swag.IsZero(m.AlertState) { // not required
+		return nil
 	}
 
 	if err := validate.MinLength("state", "body", m.AlertState, 1); err != nil {
@@ -295,9 +283,8 @@ func (m *Alert) validateAlertTypeEnum(path, location string, value string) error
 }
 
 func (m *Alert) validateAlertType(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("type", "body", m.AlertType); err != nil {
-		return err
+	if swag.IsZero(m.AlertType) { // not required
+		return nil
 	}
 
 	if err := validate.MinLength("type", "body", m.AlertType, 1); err != nil {
@@ -325,9 +312,8 @@ func (m *Alert) validateClearTime(formats strfmt.Registry) error {
 }
 
 func (m *Alert) validateCreationTime(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("creationtime", "body", m.CreationTime); err != nil {
-		return err
+	if swag.IsZero(m.CreationTime) { // not required
+		return nil
 	}
 
 	if err := validate.MinLength("creationtime", "body", m.CreationTime, 1); err != nil {
@@ -350,9 +336,8 @@ func (m *Alert) validateLastSendTime(formats strfmt.Registry) error {
 }
 
 func (m *Alert) validateUnderlyingObjectID(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("objectid", "body", m.UnderlyingObjectID); err != nil {
-		return err
+	if swag.IsZero(m.UnderlyingObjectID) { // not required
+		return nil
 	}
 
 	if err := validate.MinLength("objectid", "body", m.UnderlyingObjectID, 1); err != nil {
@@ -401,9 +386,8 @@ func (m *Alert) validateUnderlyingObjectTypeEnum(path, location string, value st
 }
 
 func (m *Alert) validateUnderlyingObjectType(formats strfmt.Registry) error {
-
-	if err := validate.RequiredString("objecttype", "body", m.UnderlyingObjectType); err != nil {
-		return err
+	if swag.IsZero(m.UnderlyingObjectType) { // not required
+		return nil
 	}
 
 	if err := validate.MinLength("objecttype", "body", m.UnderlyingObjectType, 1); err != nil {

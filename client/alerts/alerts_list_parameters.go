@@ -62,6 +62,9 @@ AlertsListParams contains all the parameters to send to the API endpoint
 */
 type AlertsListParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Capacity.
 	Capacity *bool
 
@@ -118,6 +121,17 @@ func (o *AlertsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the alerts list params
+func (o *AlertsListParams) WithAuthorization(authorization *string) *AlertsListParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the alerts list params
+func (o *AlertsListParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithCapacity adds the capacity to the alerts list params
 func (o *AlertsListParams) WithCapacity(capacity *bool) *AlertsListParams {
 	o.SetCapacity(capacity)
@@ -136,6 +150,14 @@ func (o *AlertsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	if o.Capacity != nil {
 

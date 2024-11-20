@@ -62,6 +62,9 @@ JobsListParams contains all the parameters to send to the API endpoint
 */
 type JobsListParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Count.
 	Count *int64
 
@@ -124,6 +127,17 @@ func (o *JobsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the jobs list params
+func (o *JobsListParams) WithAuthorization(authorization *string) *JobsListParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the jobs list params
+func (o *JobsListParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithCount adds the count to the jobs list params
 func (o *JobsListParams) WithCount(count *int64) *JobsListParams {
 	o.SetCount(count)
@@ -164,6 +178,14 @@ func (o *JobsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	if o.Count != nil {
 

@@ -7,38 +7,12 @@ package nodes
 
 import (
 	"github.com/go-openapi/runtime"
-	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new nodes API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
-}
-
-// New creates a new nodes API client with basic auth credentials.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - user: user for basic authentication header.
-// - password: password for basic authentication header.
-func NewClientWithBasicAuth(host, basePath, scheme, user, password string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BasicAuth(user, password)
-	return &Client{transport: transport, formats: strfmt.Default}
-}
-
-// New creates a new nodes API client with a bearer token for authentication.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - bearerToken: bearer token for Bearer authentication header.
-func NewClientWithBearerToken(host, basePath, scheme, bearerToken string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BearerToken(bearerToken)
-	return &Client{transport: transport, formats: strfmt.Default}
 }
 
 /*
@@ -49,12 +23,12 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption may be used to customize the behavior of Client methods.
+// ClientOption is the option for Client methods
 type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	NodeCleanUp(params *NodeCleanUpParams, opts ...ClientOption) (*NodeCleanUpOK, error)
+	GetMachineInfo(params *GetMachineInfoParams, opts ...ClientOption) (*GetMachineInfoOK, error)
 
 	NodeCollectLogs(params *NodeCollectLogsParams, opts ...ClientOption) (*NodeCollectLogsOK, error)
 
@@ -63,6 +37,8 @@ type ClientService interface {
 	NodeGet(params *NodeGetParams, opts ...ClientOption) (*NodeGetOK, error)
 
 	NodeRepair(params *NodeRepairParams, opts ...ClientOption) (*NodeRepairOK, error)
+
+	NodeSetTags(params *NodeSetTagsParams, opts ...ClientOption) (*NodeSetTagsOK, error)
 
 	NodeUpgrade(params *NodeUpgradeParams, opts ...ClientOption) (*NodeUpgradeOK, error)
 
@@ -74,22 +50,22 @@ type ClientService interface {
 }
 
 /*
-NodeCleanUp performings node cleanup
+GetMachineInfo gets system info
 */
-func (a *Client) NodeCleanUp(params *NodeCleanUpParams, opts ...ClientOption) (*NodeCleanUpOK, error) {
+func (a *Client) GetMachineInfo(params *GetMachineInfoParams, opts ...ClientOption) (*GetMachineInfoOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewNodeCleanUpParams()
+		params = NewGetMachineInfoParams()
 	}
 	op := &runtime.ClientOperation{
-		ID:                 "NodeCleanUp",
-		Method:             "POST",
-		PathPattern:        "/nodes/cleanup/{node}",
+		ID:                 "GetMachineInfo",
+		Method:             "GET",
+		PathPattern:        "/system/machineinfo",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http"},
 		Params:             params,
-		Reader:             &NodeCleanUpReader{formats: a.formats},
+		Reader:             &GetMachineInfoReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	}
@@ -101,12 +77,12 @@ func (a *Client) NodeCleanUp(params *NodeCleanUpParams, opts ...ClientOption) (*
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*NodeCleanUpOK)
+	success, ok := result.(*GetMachineInfoOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	unexpectedSuccess := result.(*NodeCleanUpDefault)
+	unexpectedSuccess := result.(*GetMachineInfoDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -255,6 +231,43 @@ func (a *Client) NodeRepair(params *NodeRepairParams, opts ...ClientOption) (*No
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*NodeRepairDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+NodeSetTags sets the tags of a node
+*/
+func (a *Client) NodeSetTags(params *NodeSetTagsParams, opts ...ClientOption) (*NodeSetTagsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewNodeSetTagsParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "NodeSetTags",
+		Method:             "PATCH",
+		PathPattern:        "/nodes/tags/{node}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &NodeSetTagsReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*NodeSetTagsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*NodeSetTagsDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

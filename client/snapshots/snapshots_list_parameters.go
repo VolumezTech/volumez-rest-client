@@ -61,6 +61,9 @@ SnapshotsListParams contains all the parameters to send to the API endpoint
 */
 type SnapshotsListParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	// Volume.
 	Volume string
 
@@ -117,6 +120,17 @@ func (o *SnapshotsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the snapshots list params
+func (o *SnapshotsListParams) WithAuthorization(authorization *string) *SnapshotsListParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the snapshots list params
+func (o *SnapshotsListParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithVolume adds the volume to the snapshots list params
 func (o *SnapshotsListParams) WithVolume(volume string) *SnapshotsListParams {
 	o.SetVolume(volume)
@@ -135,6 +149,14 @@ func (o *SnapshotsListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param volume
 	if err := r.SetPathParam("volume", o.Volume); err != nil {

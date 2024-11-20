@@ -61,6 +61,9 @@ NodeGetParams contains all the parameters to send to the API endpoint
 */
 type NodeGetParams struct {
 
+	// Authorization.
+	Authorization *string
+
 	/* Node.
 
 	   Name of node to return
@@ -120,6 +123,17 @@ func (o *NodeGetParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the node get params
+func (o *NodeGetParams) WithAuthorization(authorization *string) *NodeGetParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the node get params
+func (o *NodeGetParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WithNode adds the node to the node get params
 func (o *NodeGetParams) WithNode(node string) *NodeGetParams {
 	o.SetNode(node)
@@ -138,6 +152,14 @@ func (o *NodeGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regis
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	// path param node
 	if err := r.SetPathParam("node", o.Node); err != nil {

@@ -6,7 +6,6 @@ package media
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewMediaGetOK() *MediaGetOK {
 }
 
 /*
-MediaGetOK describes a response with status code 200, with default header values.
+	MediaGetOK describes a response with status code 200, with default header values.
 
 Properties of a media
 */
@@ -56,46 +55,9 @@ type MediaGetOK struct {
 	Payload *models.Media
 }
 
-// IsSuccess returns true when this media get o k response has a 2xx status code
-func (o *MediaGetOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this media get o k response has a 3xx status code
-func (o *MediaGetOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this media get o k response has a 4xx status code
-func (o *MediaGetOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this media get o k response has a 5xx status code
-func (o *MediaGetOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this media get o k response a status code equal to that given
-func (o *MediaGetOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the media get o k response
-func (o *MediaGetOK) Code() int {
-	return 200
-}
-
 func (o *MediaGetOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /media/{media}][%d] mediaGetOK %s", 200, payload)
+	return fmt.Sprintf("[GET /media/{media}][%d] mediaGetOK  %+v", 200, o.Payload)
 }
-
-func (o *MediaGetOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /media/{media}][%d] mediaGetOK %s", 200, payload)
-}
-
 func (o *MediaGetOK) GetPayload() *models.Media {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewMediaGetDefault(code int) *MediaGetDefault {
 }
 
 /*
-MediaGetDefault describes a response with status code -1, with default header values.
+	MediaGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a media
 */
@@ -130,46 +92,14 @@ type MediaGetDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this media get default response has a 2xx status code
-func (o *MediaGetDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this media get default response has a 3xx status code
-func (o *MediaGetDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this media get default response has a 4xx status code
-func (o *MediaGetDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this media get default response has a 5xx status code
-func (o *MediaGetDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this media get default response a status code equal to that given
-func (o *MediaGetDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the media get default response
 func (o *MediaGetDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *MediaGetDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /media/{media}][%d] MediaGet default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /media/{media}][%d] MediaGet default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *MediaGetDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /media/{media}][%d] MediaGet default %s", o._statusCode, payload)
-}
-
 func (o *MediaGetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

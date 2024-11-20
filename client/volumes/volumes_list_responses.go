@@ -6,7 +6,6 @@ package volumes
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewVolumesListOK() *VolumesListOK {
 }
 
 /*
-VolumesListOK describes a response with status code 200, with default header values.
+	VolumesListOK describes a response with status code 200, with default header values.
 
 List of volumes
 */
@@ -56,46 +55,9 @@ type VolumesListOK struct {
 	Payload []*models.Volume
 }
 
-// IsSuccess returns true when this volumes list o k response has a 2xx status code
-func (o *VolumesListOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this volumes list o k response has a 3xx status code
-func (o *VolumesListOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this volumes list o k response has a 4xx status code
-func (o *VolumesListOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this volumes list o k response has a 5xx status code
-func (o *VolumesListOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this volumes list o k response a status code equal to that given
-func (o *VolumesListOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the volumes list o k response
-func (o *VolumesListOK) Code() int {
-	return 200
-}
-
 func (o *VolumesListOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes][%d] volumesListOK %s", 200, payload)
+	return fmt.Sprintf("[GET /volumes][%d] volumesListOK  %+v", 200, o.Payload)
 }
-
-func (o *VolumesListOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes][%d] volumesListOK %s", 200, payload)
-}
-
 func (o *VolumesListOK) GetPayload() []*models.Volume {
 	return o.Payload
 }
@@ -118,7 +80,7 @@ func NewVolumesListDefault(code int) *VolumesListDefault {
 }
 
 /*
-VolumesListDefault describes a response with status code -1, with default header values.
+	VolumesListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of volumes
 */
@@ -128,46 +90,14 @@ type VolumesListDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this volumes list default response has a 2xx status code
-func (o *VolumesListDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this volumes list default response has a 3xx status code
-func (o *VolumesListDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this volumes list default response has a 4xx status code
-func (o *VolumesListDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this volumes list default response has a 5xx status code
-func (o *VolumesListDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this volumes list default response a status code equal to that given
-func (o *VolumesListDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the volumes list default response
 func (o *VolumesListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *VolumesListDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes][%d] VolumesList default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /volumes][%d] VolumesList default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *VolumesListDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /volumes][%d] VolumesList default %s", o._statusCode, payload)
-}
-
 func (o *VolumesListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

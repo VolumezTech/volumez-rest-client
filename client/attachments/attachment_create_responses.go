@@ -6,7 +6,6 @@ package attachments
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewAttachmentCreateOK() *AttachmentCreateOK {
 }
 
 /*
-AttachmentCreateOK describes a response with status code 200, with default header values.
+	AttachmentCreateOK describes a response with status code 200, with default header values.
 
 New attachment was created successfully
 */
@@ -56,46 +55,9 @@ type AttachmentCreateOK struct {
 	Payload *models.RegularResponse
 }
 
-// IsSuccess returns true when this attachment create o k response has a 2xx status code
-func (o *AttachmentCreateOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this attachment create o k response has a 3xx status code
-func (o *AttachmentCreateOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this attachment create o k response has a 4xx status code
-func (o *AttachmentCreateOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this attachment create o k response has a 5xx status code
-func (o *AttachmentCreateOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this attachment create o k response a status code equal to that given
-func (o *AttachmentCreateOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the attachment create o k response
-func (o *AttachmentCreateOK) Code() int {
-	return 200
-}
-
 func (o *AttachmentCreateOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentCreateOK %s", 200, payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentCreateOK  %+v", 200, o.Payload)
 }
-
-func (o *AttachmentCreateOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] attachmentCreateOK %s", 200, payload)
-}
-
 func (o *AttachmentCreateOK) GetPayload() *models.RegularResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewAttachmentCreateDefault(code int) *AttachmentCreateDefault {
 }
 
 /*
-AttachmentCreateDefault describes a response with status code -1, with default header values.
+	AttachmentCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new attachment
 */
@@ -130,46 +92,14 @@ type AttachmentCreateDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this attachment create default response has a 2xx status code
-func (o *AttachmentCreateDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this attachment create default response has a 3xx status code
-func (o *AttachmentCreateDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this attachment create default response has a 4xx status code
-func (o *AttachmentCreateDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this attachment create default response has a 5xx status code
-func (o *AttachmentCreateDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this attachment create default response a status code equal to that given
-func (o *AttachmentCreateDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the attachment create default response
 func (o *AttachmentCreateDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AttachmentCreateDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentCreate default %s", o._statusCode, payload)
+	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentCreate default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *AttachmentCreateDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /volumes/{volume}/snapshots/{snapshot}/attachments][%d] AttachmentCreate default %s", o._statusCode, payload)
-}
-
 func (o *AttachmentCreateDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

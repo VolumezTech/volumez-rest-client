@@ -7,38 +7,12 @@ package media
 
 import (
 	"github.com/go-openapi/runtime"
-	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 )
 
 // New creates a new media API client.
 func New(transport runtime.ClientTransport, formats strfmt.Registry) ClientService {
 	return &Client{transport: transport, formats: formats}
-}
-
-// New creates a new media API client with basic auth credentials.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - user: user for basic authentication header.
-// - password: password for basic authentication header.
-func NewClientWithBasicAuth(host, basePath, scheme, user, password string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BasicAuth(user, password)
-	return &Client{transport: transport, formats: strfmt.Default}
-}
-
-// New creates a new media API client with a bearer token for authentication.
-// It takes the following parameters:
-// - host: http host (github.com).
-// - basePath: any base path for the API client ("/v1", "/v3").
-// - scheme: http scheme ("http", "https").
-// - bearerToken: bearer token for Bearer authentication header.
-func NewClientWithBearerToken(host, basePath, scheme, bearerToken string) ClientService {
-	transport := httptransport.New(host, basePath, []string{scheme})
-	transport.DefaultAuthentication = httptransport.BearerToken(bearerToken)
-	return &Client{transport: transport, formats: strfmt.Default}
 }
 
 /*
@@ -49,30 +23,42 @@ type Client struct {
 	formats   strfmt.Registry
 }
 
-// ClientOption may be used to customize the behavior of Client methods.
+// ClientOption is the option for Client methods
 type ClientOption func(*runtime.ClientOperation)
 
 // ClientService is the interface for Client methods
 type ClientService interface {
 	MediaAssign(params *MediaAssignParams, opts ...ClientOption) (*MediaAssignOK, error)
 
+	MediaAssignLegacy(params *MediaAssignLegacyParams, opts ...ClientOption) (*MediaAssignLegacyOK, error)
+
+	MediaCleanup(params *MediaCleanupParams, opts ...ClientOption) (*MediaCleanupOK, error)
+
+	MediaCleanupVolume(params *MediaCleanupVolumeParams, opts ...ClientOption) (*MediaCleanupVolumeOK, error)
+
 	MediaDelete(params *MediaDeleteParams, opts ...ClientOption) (*MediaDeleteOK, error)
 
+	MediaDiagnose(params *MediaDiagnoseParams, opts ...ClientOption) (*MediaDiagnoseOK, error)
+
+	MediaDrain(params *MediaDrainParams, opts ...ClientOption) (*MediaDrainOK, error)
+
 	MediaGet(params *MediaGetParams, opts ...ClientOption) (*MediaGetOK, error)
-
-	MediaLedOff(params *MediaLedOffParams, opts ...ClientOption) (*MediaLedOffOK, error)
-
-	MediaLedOn(params *MediaLedOnParams, opts ...ClientOption) (*MediaLedOnOK, error)
 
 	MediaList(params *MediaListParams, opts ...ClientOption) (*MediaListOK, error)
 
 	MediaModify(params *MediaModifyParams, opts ...ClientOption) (*MediaModifyOK, error)
 
-	MediaProfile(params *MediaProfileParams, opts ...ClientOption) (*MediaProfileOK, error)
-
 	MediaProfileModify(params *MediaProfileModifyParams, opts ...ClientOption) (*MediaProfileModifyOK, error)
 
 	MediaUnassign(params *MediaUnassignParams, opts ...ClientOption) (*MediaUnassignOK, error)
+
+	MediaUnassignLegacy(params *MediaUnassignLegacyParams, opts ...ClientOption) (*MediaUnassignLegacyOK, error)
+
+	VirtualMediaCreate(params *VirtualMediaCreateParams, opts ...ClientOption) (*VirtualMediaCreateOK, error)
+
+	VirtualMediaDelete(params *VirtualMediaDeleteParams, opts ...ClientOption) (*VirtualMediaDeleteOK, error)
+
+	VirtualMediaList(params *VirtualMediaListParams, opts ...ClientOption) (*VirtualMediaListOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
@@ -87,7 +73,7 @@ func (a *Client) MediaAssign(params *MediaAssignParams, opts ...ClientOption) (*
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "MediaAssign",
-		Method:             "GET",
+		Method:             "PATCH",
 		PathPattern:        "/media/{media}/assign",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
@@ -111,6 +97,117 @@ func (a *Client) MediaAssign(params *MediaAssignParams, opts ...ClientOption) (*
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*MediaAssignDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+MediaAssignLegacy assigns media
+*/
+func (a *Client) MediaAssignLegacy(params *MediaAssignLegacyParams, opts ...ClientOption) (*MediaAssignLegacyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMediaAssignLegacyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "MediaAssignLegacy",
+		Method:             "GET",
+		PathPattern:        "/media/{media}/assign",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &MediaAssignLegacyReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*MediaAssignLegacyOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*MediaAssignLegacyDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+MediaCleanup media cleanup
+*/
+func (a *Client) MediaCleanup(params *MediaCleanupParams, opts ...ClientOption) (*MediaCleanupOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMediaCleanupParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "MediaCleanup",
+		Method:             "POST",
+		PathPattern:        "/media/{media}/cleanup",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &MediaCleanupReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*MediaCleanupOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*MediaCleanupDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+MediaCleanupVolume media cleanup
+*/
+func (a *Client) MediaCleanupVolume(params *MediaCleanupVolumeParams, opts ...ClientOption) (*MediaCleanupVolumeOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMediaCleanupVolumeParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "MediaCleanupVolume",
+		Method:             "POST",
+		PathPattern:        "/media/{media}/cleanup/{volume}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &MediaCleanupVolumeReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*MediaCleanupVolumeOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*MediaCleanupVolumeDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -152,6 +249,80 @@ func (a *Client) MediaDelete(params *MediaDeleteParams, opts ...ClientOption) (*
 }
 
 /*
+MediaDiagnose media diagnose
+*/
+func (a *Client) MediaDiagnose(params *MediaDiagnoseParams, opts ...ClientOption) (*MediaDiagnoseOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMediaDiagnoseParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "MediaDiagnose",
+		Method:             "POST",
+		PathPattern:        "/media/{media}/diagnose",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &MediaDiagnoseReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*MediaDiagnoseOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*MediaDiagnoseDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+MediaDrain media drain
+*/
+func (a *Client) MediaDrain(params *MediaDrainParams, opts ...ClientOption) (*MediaDrainOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMediaDrainParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "MediaDrain",
+		Method:             "POST",
+		PathPattern:        "/media/{media}/drain",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &MediaDrainReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*MediaDrainOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*MediaDrainDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
 MediaGet gets the properties of a media
 */
 func (a *Client) MediaGet(params *MediaGetParams, opts ...ClientOption) (*MediaGetOK, error) {
@@ -185,80 +356,6 @@ func (a *Client) MediaGet(params *MediaGetParams, opts ...ClientOption) (*MediaG
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*MediaGetDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-MediaLedOff turns the media l e d off
-*/
-func (a *Client) MediaLedOff(params *MediaLedOffParams, opts ...ClientOption) (*MediaLedOffOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewMediaLedOffParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "MediaLedOff",
-		Method:             "GET",
-		PathPattern:        "/media/{media}/ledoff",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &MediaLedOffReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*MediaLedOffOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*MediaLedOffDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-MediaLedOn turns the media l e d on
-*/
-func (a *Client) MediaLedOn(params *MediaLedOnParams, opts ...ClientOption) (*MediaLedOnOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewMediaLedOnParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "MediaLedOn",
-		Method:             "GET",
-		PathPattern:        "/media/{media}/ledon",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &MediaLedOnReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*MediaLedOnOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*MediaLedOnDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -337,43 +434,6 @@ func (a *Client) MediaModify(params *MediaModifyParams, opts ...ClientOption) (*
 }
 
 /*
-MediaProfile profiles a media deprecated
-*/
-func (a *Client) MediaProfile(params *MediaProfileParams, opts ...ClientOption) (*MediaProfileOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewMediaProfileParams()
-	}
-	op := &runtime.ClientOperation{
-		ID:                 "MediaProfile",
-		Method:             "GET",
-		PathPattern:        "/media/{media}/profile",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http"},
-		Params:             params,
-		Reader:             &MediaProfileReader{formats: a.formats},
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	}
-	for _, opt := range opts {
-		opt(op)
-	}
-
-	result, err := a.transport.Submit(op)
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*MediaProfileOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*MediaProfileDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
 MediaProfileModify modifies a media profile
 */
 func (a *Client) MediaProfileModify(params *MediaProfileModifyParams, opts ...ClientOption) (*MediaProfileModifyOK, error) {
@@ -420,7 +480,7 @@ func (a *Client) MediaUnassign(params *MediaUnassignParams, opts ...ClientOption
 	}
 	op := &runtime.ClientOperation{
 		ID:                 "MediaUnassign",
-		Method:             "GET",
+		Method:             "PATCH",
 		PathPattern:        "/media/{media}/unassign",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
@@ -444,6 +504,154 @@ func (a *Client) MediaUnassign(params *MediaUnassignParams, opts ...ClientOption
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*MediaUnassignDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+MediaUnassignLegacy unassigns media
+*/
+func (a *Client) MediaUnassignLegacy(params *MediaUnassignLegacyParams, opts ...ClientOption) (*MediaUnassignLegacyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMediaUnassignLegacyParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "MediaUnassignLegacy",
+		Method:             "GET",
+		PathPattern:        "/media/{media}/unassign",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &MediaUnassignLegacyReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*MediaUnassignLegacyOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*MediaUnassignLegacyDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+VirtualMediaCreate creates virtual media
+*/
+func (a *Client) VirtualMediaCreate(params *VirtualMediaCreateParams, opts ...ClientOption) (*VirtualMediaCreateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVirtualMediaCreateParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "VirtualMediaCreate",
+		Method:             "POST",
+		PathPattern:        "/virtualmedia",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &VirtualMediaCreateReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*VirtualMediaCreateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*VirtualMediaCreateDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+VirtualMediaDelete deletes virtual media
+*/
+func (a *Client) VirtualMediaDelete(params *VirtualMediaDeleteParams, opts ...ClientOption) (*VirtualMediaDeleteOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVirtualMediaDeleteParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "VirtualMediaDelete",
+		Method:             "DELETE",
+		PathPattern:        "/virtualmedia/{media}",
+		ProducesMediaTypes: []string{"text/plain"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &VirtualMediaDeleteReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*VirtualMediaDeleteOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*VirtualMediaDeleteDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+VirtualMediaList gets a list of virtual media
+*/
+func (a *Client) VirtualMediaList(params *VirtualMediaListParams, opts ...ClientOption) (*VirtualMediaListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVirtualMediaListParams()
+	}
+	op := &runtime.ClientOperation{
+		ID:                 "VirtualMediaList",
+		Method:             "GET",
+		PathPattern:        "/virtualmedia",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &VirtualMediaListReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	}
+	for _, opt := range opts {
+		opt(op)
+	}
+
+	result, err := a.transport.Submit(op)
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*VirtualMediaListOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*VirtualMediaListDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

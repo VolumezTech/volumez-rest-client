@@ -6,7 +6,6 @@ package signin
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"encoding/json"
 	"fmt"
 	"io"
 
@@ -48,7 +47,7 @@ func NewSignInOK() *SignInOK {
 }
 
 /*
-SignInOK describes a response with status code 200, with default header values.
+	SignInOK describes a response with status code 200, with default header values.
 
 Sign in was successful
 */
@@ -56,46 +55,9 @@ type SignInOK struct {
 	Payload *models.SignInResponse
 }
 
-// IsSuccess returns true when this sign in o k response has a 2xx status code
-func (o *SignInOK) IsSuccess() bool {
-	return true
-}
-
-// IsRedirect returns true when this sign in o k response has a 3xx status code
-func (o *SignInOK) IsRedirect() bool {
-	return false
-}
-
-// IsClientError returns true when this sign in o k response has a 4xx status code
-func (o *SignInOK) IsClientError() bool {
-	return false
-}
-
-// IsServerError returns true when this sign in o k response has a 5xx status code
-func (o *SignInOK) IsServerError() bool {
-	return false
-}
-
-// IsCode returns true when this sign in o k response a status code equal to that given
-func (o *SignInOK) IsCode(code int) bool {
-	return code == 200
-}
-
-// Code gets the status code for the sign in o k response
-func (o *SignInOK) Code() int {
-	return 200
-}
-
 func (o *SignInOK) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /signin][%d] signInOK %s", 200, payload)
+	return fmt.Sprintf("[POST /signin][%d] signInOK  %+v", 200, o.Payload)
 }
-
-func (o *SignInOK) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /signin][%d] signInOK %s", 200, payload)
-}
-
 func (o *SignInOK) GetPayload() *models.SignInResponse {
 	return o.Payload
 }
@@ -120,7 +82,7 @@ func NewSignInDefault(code int) *SignInDefault {
 }
 
 /*
-SignInDefault describes a response with status code -1, with default header values.
+	SignInDefault describes a response with status code -1, with default header values.
 
 Error signing in
 */
@@ -130,46 +92,14 @@ type SignInDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this sign in default response has a 2xx status code
-func (o *SignInDefault) IsSuccess() bool {
-	return o._statusCode/100 == 2
-}
-
-// IsRedirect returns true when this sign in default response has a 3xx status code
-func (o *SignInDefault) IsRedirect() bool {
-	return o._statusCode/100 == 3
-}
-
-// IsClientError returns true when this sign in default response has a 4xx status code
-func (o *SignInDefault) IsClientError() bool {
-	return o._statusCode/100 == 4
-}
-
-// IsServerError returns true when this sign in default response has a 5xx status code
-func (o *SignInDefault) IsServerError() bool {
-	return o._statusCode/100 == 5
-}
-
-// IsCode returns true when this sign in default response a status code equal to that given
-func (o *SignInDefault) IsCode(code int) bool {
-	return o._statusCode == code
-}
-
 // Code gets the status code for the sign in default response
 func (o *SignInDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *SignInDefault) Error() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /signin][%d] SignIn default %s", o._statusCode, payload)
+	return fmt.Sprintf("[POST /signin][%d] SignIn default  %+v", o._statusCode, o.Payload)
 }
-
-func (o *SignInDefault) String() string {
-	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[POST /signin][%d] SignIn default %s", o._statusCode, payload)
-}
-
 func (o *SignInDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -60,6 +60,10 @@ CapacityGroupGetParams contains all the parameters to send to the API endpoint
 	Typically these are written to a http.Request.
 */
 type CapacityGroupGetParams struct {
+
+	// Authorization.
+	Authorization *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -113,6 +117,17 @@ func (o *CapacityGroupGetParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAuthorization adds the authorization to the capacity group get params
+func (o *CapacityGroupGetParams) WithAuthorization(authorization *string) *CapacityGroupGetParams {
+	o.SetAuthorization(authorization)
+	return o
+}
+
+// SetAuthorization adds the authorization to the capacity group get params
+func (o *CapacityGroupGetParams) SetAuthorization(authorization *string) {
+	o.Authorization = authorization
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CapacityGroupGetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -120,6 +135,14 @@ func (o *CapacityGroupGetParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
+	if o.Authorization != nil {
+
+		// header param authorization
+		if err := r.SetHeaderParam("authorization", *o.Authorization); err != nil {
+			return err
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

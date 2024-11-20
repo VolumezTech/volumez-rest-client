@@ -20,6 +20,9 @@ import (
 // swagger:model Volume
 type Volume struct {
 
+	// Allow movement of the volume
+	AllowDataMovement bool `json:"allowdatamovement"`
+
 	// Capacity group from which the volume is allocated
 	// Min Length: 1
 	CapacityGroup *string `json:"capacitygroup,omitempty"`
@@ -32,6 +35,10 @@ type Volume struct {
 
 	// content volume
 	ContentVolume string `json:"contentvolume"`
+
+	// flavor
+	// Enum: [regular filedirect]
+	Flavor *string `json:"flavor,omitempty"`
 
 	// Upper limit size, GiB
 	// Example: 100
@@ -111,7 +118,7 @@ type Volume struct {
 
 	// type
 	// Required: true
-	// Enum: ["file","block"]
+	// Enum: [file block]
 	Type string `json:"type"`
 
 	// zone
@@ -128,6 +135,10 @@ func (m *Volume) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCapacityGroup(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFlavor(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -191,6 +202,48 @@ func (m *Volume) validateCapacityGroup(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MinLength("capacitygroup", "body", *m.CapacityGroup, 1); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var volumeTypeFlavorPropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["regular","filedirect"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		volumeTypeFlavorPropEnum = append(volumeTypeFlavorPropEnum, v)
+	}
+}
+
+const (
+
+	// VolumeFlavorRegular captures enum value "regular"
+	VolumeFlavorRegular string = "regular"
+
+	// VolumeFlavorFiledirect captures enum value "filedirect"
+	VolumeFlavorFiledirect string = "filedirect"
+)
+
+// prop value enum
+func (m *Volume) validateFlavorEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, volumeTypeFlavorPropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *Volume) validateFlavor(formats strfmt.Registry) error {
+	if swag.IsZero(m.Flavor) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateFlavorEnum("flavor", "body", *m.Flavor); err != nil {
 		return err
 	}
 

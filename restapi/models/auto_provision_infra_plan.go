@@ -31,7 +31,7 @@ type AutoProvisionInfraPlan struct {
 	InstanceType string `json:"instanceType"`
 
 	// os type
-	// Enum: ["Linux","Rhel","Ubuntu"]
+	// Enum: [Linux Rhel Ubuntu]
 	OsType string `json:"osType"`
 
 	// Number of instance to provision
@@ -40,6 +40,7 @@ type AutoProvisionInfraPlan struct {
 	Price int64 `json:"price"`
 
 	// subnets
+	// Min Items: 1
 	Subnets []string `json:"availabilityZones"`
 }
 
@@ -60,6 +61,10 @@ func (m *AutoProvisionInfraPlan) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePrice(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSubnets(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -144,6 +149,20 @@ func (m *AutoProvisionInfraPlan) validatePrice(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MinimumInt("price", "body", m.Price, 1, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AutoProvisionInfraPlan) validateSubnets(formats strfmt.Registry) error {
+	if swag.IsZero(m.Subnets) { // not required
+		return nil
+	}
+
+	iSubnetsSize := int64(len(m.Subnets))
+
+	if err := validate.MinItems("availabilityZones", "body", iSubnetsSize, 1); err != nil {
 		return err
 	}
 
