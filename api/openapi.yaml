@@ -15095,9 +15095,9 @@ paths:
         timeoutInMillis: 12000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
+          integration.request.querystring.confirmation_code: method.request.querystring.confirmation_code
           integration.request.querystring.client_id: method.request.querystring.client_id
           integration.request.querystring.user_name: method.request.querystring.user_name
-          integration.request.querystring.confirmation_code: method.request.querystring.confirmation_code
     options:
       responses:
         "200":
