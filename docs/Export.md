@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** |  | [optional] [readonly] 
 **Status** | Pointer to **string** |  | [optional] [readonly] 
 **Progress** | Pointer to **int32** |  | [optional] [readonly] 
+**Xqn** | Pointer to **string** |  | [optional] [readonly] 
+**Wwn** | Pointer to **string** |  | [optional] [readonly] 
 
 ## Methods
 
@@ -205,6 +207,56 @@ SetProgress sets Progress field to given value.
 `func (o *Export) HasProgress() bool`
 
 HasProgress returns a boolean if a field has been set.
+
+### GetXqn
+
+`func (o *Export) GetXqn() string`
+
+GetXqn returns the Xqn field if non-nil, zero value otherwise.
+
+### GetXqnOk
+
+`func (o *Export) GetXqnOk() (*string, bool)`
+
+GetXqnOk returns a tuple with the Xqn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetXqn
+
+`func (o *Export) SetXqn(v string)`
+
+SetXqn sets Xqn field to given value.
+
+### HasXqn
+
+`func (o *Export) HasXqn() bool`
+
+HasXqn returns a boolean if a field has been set.
+
+### GetWwn
+
+`func (o *Export) GetWwn() string`
+
+GetWwn returns the Wwn field if non-nil, zero value otherwise.
+
+### GetWwnOk
+
+`func (o *Export) GetWwnOk() (*string, bool)`
+
+GetWwnOk returns a tuple with the Wwn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWwn
+
+`func (o *Export) SetWwn(v string)`
+
+SetWwn sets Wwn field to given value.
+
+### HasWwn
+
+`func (o *Export) HasWwn() bool`
+
+HasWwn returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

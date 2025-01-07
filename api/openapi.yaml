@@ -15095,8 +15095,8 @@ paths:
         timeoutInMillis: 12000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
-          integration.request.querystring.user_name: method.request.querystring.user_name
           integration.request.querystring.client_id: method.request.querystring.client_id
+          integration.request.querystring.user_name: method.request.querystring.user_name
           integration.request.querystring.confirmation_code: method.request.querystring.confirmation_code
     options:
       responses:
@@ -18842,12 +18842,13 @@ components:
         nodes:
           items:
             $ref: '#/components/schemas/ExportCreate_nodes_inner'
-          minItems: 0
+          minItems: 1
           type: array
       type: object
     Export:
       example:
         volumename: volumename
+        xqn: xqn
         progress: 0
         snapshotname: snapshotname
         id: id
@@ -18871,6 +18872,7 @@ components:
               password: password
               user: user
         status: status
+        wwn: wwn
       properties:
         id:
           title: Export ID
@@ -18892,6 +18894,12 @@ components:
         progress:
           readOnly: true
           type: integer
+        xqn:
+          readOnly: true
+          type: string
+        wwn:
+          readOnly: true
+          type: string
       type: object
     Authentication:
       example:

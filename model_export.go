@@ -26,6 +26,8 @@ type Export struct {
 	State        *string       `json:"state,omitempty"`
 	Status       *string       `json:"status,omitempty"`
 	Progress     *int32        `json:"progress,omitempty"`
+	Xqn          *string       `json:"xqn,omitempty"`
+	Wwn          *string       `json:"wwn,omitempty"`
 }
 
 // NewExport instantiates a new Export object
@@ -269,6 +271,70 @@ func (o *Export) SetProgress(v int32) {
 	o.Progress = &v
 }
 
+// GetXqn returns the Xqn field value if set, zero value otherwise.
+func (o *Export) GetXqn() string {
+	if o == nil || IsNil(o.Xqn) {
+		var ret string
+		return ret
+	}
+	return *o.Xqn
+}
+
+// GetXqnOk returns a tuple with the Xqn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Export) GetXqnOk() (*string, bool) {
+	if o == nil || IsNil(o.Xqn) {
+		return nil, false
+	}
+	return o.Xqn, true
+}
+
+// HasXqn returns a boolean if a field has been set.
+func (o *Export) HasXqn() bool {
+	if o != nil && !IsNil(o.Xqn) {
+		return true
+	}
+
+	return false
+}
+
+// SetXqn gets a reference to the given string and assigns it to the Xqn field.
+func (o *Export) SetXqn(v string) {
+	o.Xqn = &v
+}
+
+// GetWwn returns the Wwn field value if set, zero value otherwise.
+func (o *Export) GetWwn() string {
+	if o == nil || IsNil(o.Wwn) {
+		var ret string
+		return ret
+	}
+	return *o.Wwn
+}
+
+// GetWwnOk returns a tuple with the Wwn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Export) GetWwnOk() (*string, bool) {
+	if o == nil || IsNil(o.Wwn) {
+		return nil, false
+	}
+	return o.Wwn, true
+}
+
+// HasWwn returns a boolean if a field has been set.
+func (o *Export) HasWwn() bool {
+	if o != nil && !IsNil(o.Wwn) {
+		return true
+	}
+
+	return false
+}
+
+// SetWwn gets a reference to the given string and assigns it to the Wwn field.
+func (o *Export) SetWwn(v string) {
+	o.Wwn = &v
+}
+
 func (o Export) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -299,6 +365,12 @@ func (o Export) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Progress) {
 		toSerialize["progress"] = o.Progress
+	}
+	if !IsNil(o.Xqn) {
+		toSerialize["xqn"] = o.Xqn
+	}
+	if !IsNil(o.Wwn) {
+		toSerialize["wwn"] = o.Wwn
 	}
 	return toSerialize, nil
 }
