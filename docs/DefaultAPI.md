@@ -49,14 +49,13 @@ Method | HTTP request | Description
 [**DeleteAzureSSOMapping**](DefaultAPI.md#DeleteAzureSSOMapping) | **Delete** /sso/azure/mapping | Delete Azure SSO Mapping
 [**DeleteRole**](DefaultAPI.md#DeleteRole) | **Delete** /tenant-cloud-resources/{cloudProviderAccountId}/role | Delete tenant role resource by the given cloudProviderAccountId query param
 [**DeleteTenantHost**](DefaultAPI.md#DeleteTenantHost) | **Delete** /tenant/{tenantID}/tenanthosts/{tenantHost} | 
-[**DeleteUser**](DefaultAPI.md#DeleteUser) | **Post** /delete-user/{email} | deletes a user
-[**DeleteUserEmailOptions**](DefaultAPI.md#DeleteUserEmailOptions) | **Options** /delete-user/{email} | 
 [**DisableUser**](DefaultAPI.md#DisableUser) | **Post** /disable-user/{email} | disable user
 [**DisableUserEmailOptions**](DefaultAPI.md#DisableUserEmailOptions) | **Options** /disable-user/{email} | 
 [**EnableUser**](DefaultAPI.md#EnableUser) | **Post** /enable-user/{email} | enable user
 [**EnableUserEmailOptions**](DefaultAPI.md#EnableUserEmailOptions) | **Options** /enable-user/{email} | 
 [**ExportCreate**](DefaultAPI.md#ExportCreate) | **Post** /exports/ | Create export
 [**ExportDelete**](DefaultAPI.md#ExportDelete) | **Delete** /exports/{export} | Delete an export
+[**ExportModify**](DefaultAPI.md#ExportModify) | **Patch** /exports/{export} | Modify an export
 [**ExportsExportOptions**](DefaultAPI.md#ExportsExportOptions) | **Options** /exports/{export} | 
 [**ExportsList**](DefaultAPI.md#ExportsList) | **Get** /exports/ | Get a list of associations
 [**ExportsOptions**](DefaultAPI.md#ExportsOptions) | **Options** /exports/ | 
@@ -90,7 +89,6 @@ Method | HTTP request | Description
 [**LogTenantidLogfileGet**](DefaultAPI.md#LogTenantidLogfileGet) | **Get** /log/{tenantid}/{logfile} | 
 [**LogTenantidLogfileOptions**](DefaultAPI.md#LogTenantidLogfileOptions) | **Options** /log/{tenantid}/{logfile} | 
 [**MediaAssign**](DefaultAPI.md#MediaAssign) | **Patch** /media/{media}/assign | Assign media
-[**MediaAssignLegacy**](DefaultAPI.md#MediaAssignLegacy) | **Get** /media/{media}/assign | Assign media
 [**MediaDelete**](DefaultAPI.md#MediaDelete) | **Delete** /media/{media} | Delete a media
 [**MediaDiagnose**](DefaultAPI.md#MediaDiagnose) | **Post** /media/{media}/{tenant}/diagnose | Media diagnose
 [**MediaDrain**](DefaultAPI.md#MediaDrain) | **Post** /media/{media}/drain | Media drain
@@ -106,7 +104,6 @@ Method | HTTP request | Description
 [**MediaOptions**](DefaultAPI.md#MediaOptions) | **Options** /media | 
 [**MediaProfileModify**](DefaultAPI.md#MediaProfileModify) | **Patch** /media/{media}/profile | Modify a media profile
 [**MediaUnassign**](DefaultAPI.md#MediaUnassign) | **Patch** /media/{media}/unassign | Unassign media
-[**MediaUnassignLegacy**](DefaultAPI.md#MediaUnassignLegacy) | **Get** /media/{media}/unassign | Unassign media
 [**ModifyTenantSettings**](DefaultAPI.md#ModifyTenantSettings) | **Put** /tenant-settings | Modify tenant settings
 [**NetworkCreate**](DefaultAPI.md#NetworkCreate) | **Post** /networks | Create a new network
 [**NetworkDelete**](DefaultAPI.md#NetworkDelete) | **Delete** /networks/{network} | Delete a network
@@ -337,7 +334,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1801,7 +1798,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -3179,133 +3176,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteUser
-
-> RegularResponse DeleteUser(ctx, email).Authorization(authorization).Execute()
-
-deletes a user
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "bitbucket.org/volumez/volumez-openapi-client"
-)
-
-func main() {
-	email := "email_example" // string | User email to invite
-	authorization := "authorization_example" // string |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultAPI.DeleteUser(context.Background(), email).Authorization(authorization).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.DeleteUser``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteUser`: RegularResponse
-	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.DeleteUser`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**email** | **string** | User email to invite | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteUserRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **authorization** | **string** |  | 
-
-### Return type
-
-[**RegularResponse**](RegularResponse.md)
-
-### Authorization
-
-[storage.io-authorizer](../README.md#storage.io-authorizer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteUserEmailOptions
-
-> DeleteUserEmailOptions(ctx).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "bitbucket.org/volumez/volumez-openapi-client"
-)
-
-func main() {
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.DefaultAPI.DeleteUserEmailOptions(context.Background()).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.DeleteUserEmailOptions``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteUserEmailOptionsRequest struct via the builder pattern
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## DisableUser
 
 > RegularResponse DisableUser(ctx, email).Authorization(authorization).Execute()
@@ -3426,7 +3296,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -3553,7 +3423,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -3691,6 +3561,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExportModify
+
+> SuccessJobResponse ExportModify(ctx, export).Body(body).Authorization(authorization).Execute()
+
+Modify an export
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "bitbucket.org/volumez/volumez-openapi-client"
+)
+
+func main() {
+	export := "export_example" // string | 
+	body := *openapiclient.NewExportModify() // ExportModify | 
+	authorization := "authorization_example" // string |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.ExportModify(context.Background(), export).Body(body).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ExportModify``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ExportModify`: SuccessJobResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ExportModify`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**export** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportModifyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**ExportModify**](ExportModify.md) |  | 
+ **authorization** | **string** |  | 
+
+### Return type
+
+[**SuccessJobResponse**](SuccessJobResponse.md)
+
+### Authorization
+
+[storage.io-authorizer](../README.md#storage.io-authorizer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -4928,7 +4870,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -4985,7 +4927,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -5042,7 +4984,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -5169,7 +5111,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -5772,7 +5714,7 @@ No authorization required
 
 ## MediaAssign
 
-> RegularResponse MediaAssign(ctx, media).Authorization(authorization).Body(body).Execute()
+> RegularResponse MediaAssign(ctx, media).CapacityGroup(capacityGroup).Reprofile(reprofile).BlockSize(blockSize).Authorization(authorization).Execute()
 
 Assign media
 
@@ -5790,12 +5732,14 @@ import (
 
 func main() {
 	media := "media_example" // string | 
+	capacityGroup := "capacityGroup_example" // string | Profile media even if it was already profiled (optional)
+	reprofile := true // bool |  (optional)
+	blockSize := int32(56) // int32 | LBA size for media format (optional)
 	authorization := "authorization_example" // string |  (optional)
-	body := *openapiclient.NewMediaAssign() // MediaAssign |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultAPI.MediaAssign(context.Background(), media).Authorization(authorization).Body(body).Execute()
+	resp, r, err := apiClient.DefaultAPI.MediaAssign(context.Background(), media).CapacityGroup(capacityGroup).Reprofile(reprofile).BlockSize(blockSize).Authorization(authorization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.MediaAssign``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -5821,81 +5765,9 @@ Other parameters are passed through a pointer to a apiMediaAssignRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **authorization** | **string** |  | 
- **body** | [**MediaAssign**](MediaAssign.md) |  | 
-
-### Return type
-
-[**RegularResponse**](RegularResponse.md)
-
-### Authorization
-
-[storage.io-authorizer](../README.md#storage.io-authorizer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## MediaAssignLegacy
-
-> RegularResponse MediaAssignLegacy(ctx, media).CapacityGroup(capacityGroup).Reprofile(reprofile).Authorization(authorization).Execute()
-
-Assign media
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "bitbucket.org/volumez/volumez-openapi-client"
-)
-
-func main() {
-	media := "media_example" // string | 
-	capacityGroup := "capacityGroup_example" // string |  (optional)
-	reprofile := true // bool |  (optional) (default to false)
-	authorization := "authorization_example" // string |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultAPI.MediaAssignLegacy(context.Background(), media).CapacityGroup(capacityGroup).Reprofile(reprofile).Authorization(authorization).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.MediaAssignLegacy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `MediaAssignLegacy`: RegularResponse
-	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.MediaAssignLegacy`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**media** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiMediaAssignLegacyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **capacityGroup** | **string** |  | 
- **reprofile** | **bool** |  | [default to false]
+ **capacityGroup** | **string** | Profile media even if it was already profiled | 
+ **reprofile** | **bool** |  | 
+ **blockSize** | **int32** | LBA size for media format | 
  **authorization** | **string** |  | 
 
 ### Return type
@@ -6887,76 +6759,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## MediaUnassignLegacy
-
-> RegularResponse MediaUnassignLegacy(ctx, media).Authorization(authorization).Execute()
-
-Unassign media
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "bitbucket.org/volumez/volumez-openapi-client"
-)
-
-func main() {
-	media := "media_example" // string | 
-	authorization := "authorization_example" // string |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultAPI.MediaUnassignLegacy(context.Background(), media).Authorization(authorization).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.MediaUnassignLegacy``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `MediaUnassignLegacy`: RegularResponse
-	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.MediaUnassignLegacy`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**media** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiMediaUnassignLegacyRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **authorization** | **string** |  | 
-
-### Return type
-
-[**RegularResponse**](RegularResponse.md)
-
-### Authorization
-
-[storage.io-authorizer](../README.md#storage.io-authorizer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## ModifyTenantSettings
 
 > map[string]interface{} ModifyTenantSettings(ctx).Authorization(authorization).ModifyTenantSettingsRequest(modifyTenantSettingsRequest).Execute()
@@ -7554,7 +7356,7 @@ Name | Type | Description  | Notes
 
 ## NodeDelete
 
-> RegularResponse NodeDelete(ctx, node).Force(force).Authorization(authorization).Execute()
+> RegularResponse NodeDelete(ctx, node).Force(force).DelayDelete(delayDelete).Authorization(authorization).Execute()
 
 Delete a node
 
@@ -7573,11 +7375,12 @@ import (
 func main() {
 	node := "node_example" // string |  node to delete
 	force := true // bool |  (optional) (default to false)
+	delayDelete := true // bool |  (optional) (default to false)
 	authorization := "authorization_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultAPI.NodeDelete(context.Background(), node).Force(force).Authorization(authorization).Execute()
+	resp, r, err := apiClient.DefaultAPI.NodeDelete(context.Background(), node).Force(force).DelayDelete(delayDelete).Authorization(authorization).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.NodeDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -7604,6 +7407,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **force** | **bool** |  | [default to false]
+ **delayDelete** | **bool** |  | [default to false]
  **authorization** | **string** |  | 
 
 ### Return type
@@ -9991,7 +9795,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -10048,7 +9852,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -10105,7 +9909,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -10723,7 +10527,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -10780,7 +10584,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -10894,7 +10698,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -10951,7 +10755,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11008,7 +10812,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11065,7 +10869,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11122,7 +10926,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11179,7 +10983,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11236,7 +11040,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11357,7 +11161,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11419,7 +11223,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11481,7 +11285,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11538,7 +11342,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11595,7 +11399,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11652,7 +11456,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11709,7 +11513,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11766,7 +11570,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11823,7 +11627,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11880,7 +11684,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -11937,7 +11741,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -12060,7 +11864,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -12117,7 +11921,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -12382,7 +12186,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

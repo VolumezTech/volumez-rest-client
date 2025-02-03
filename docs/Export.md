@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Progress** | Pointer to **int32** |  | [optional] [readonly] 
 **Xqn** | Pointer to **string** |  | [optional] [readonly] 
 **Wwn** | Pointer to **string** |  | [optional] [readonly] 
+**Ports** | Pointer to [**[]StoragePort**](StoragePort.md) |  | [optional] 
 
 ## Methods
 
@@ -257,6 +258,31 @@ SetWwn sets Wwn field to given value.
 `func (o *Export) HasWwn() bool`
 
 HasWwn returns a boolean if a field has been set.
+
+### GetPorts
+
+`func (o *Export) GetPorts() []StoragePort`
+
+GetPorts returns the Ports field if non-nil, zero value otherwise.
+
+### GetPortsOk
+
+`func (o *Export) GetPortsOk() (*[]StoragePort, bool)`
+
+GetPortsOk returns a tuple with the Ports field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPorts
+
+`func (o *Export) SetPorts(v []StoragePort)`
+
+SetPorts sets Ports field to given value.
+
+### HasPorts
+
+`func (o *Export) HasPorts() bool`
+
+HasPorts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

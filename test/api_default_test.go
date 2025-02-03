@@ -591,31 +591,6 @@ func Test_volumezopenapiclient_DefaultAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test DefaultAPIService DeleteUser", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		var email string
-
-		resp, httpRes, err := apiClient.DefaultAPI.DeleteUser(context.Background(), email).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test DefaultAPIService DeleteUserEmailOptions", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		httpRes, err := apiClient.DefaultAPI.DeleteUserEmailOptions(context.Background()).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test DefaultAPIService DisableUser", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
@@ -685,6 +660,20 @@ func Test_volumezopenapiclient_DefaultAPIService(t *testing.T) {
 		var export string
 
 		resp, httpRes, err := apiClient.DefaultAPI.ExportDelete(context.Background(), export).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService ExportModify", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var export string
+
+		resp, httpRes, err := apiClient.DefaultAPI.ExportModify(context.Background(), export).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -1105,20 +1094,6 @@ func Test_volumezopenapiclient_DefaultAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test DefaultAPIService MediaAssignLegacy", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		var media string
-
-		resp, httpRes, err := apiClient.DefaultAPI.MediaAssignLegacy(context.Background(), media).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test DefaultAPIService MediaDelete", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
@@ -1302,20 +1277,6 @@ func Test_volumezopenapiclient_DefaultAPIService(t *testing.T) {
 		var media string
 
 		resp, httpRes, err := apiClient.DefaultAPI.MediaUnassign(context.Background(), media).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test DefaultAPIService MediaUnassignLegacy", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		var media string
-
-		resp, httpRes, err := apiClient.DefaultAPI.MediaUnassignLegacy(context.Background(), media).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

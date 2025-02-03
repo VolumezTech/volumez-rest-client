@@ -28,6 +28,7 @@ type Export struct {
 	Progress     *int32        `json:"progress,omitempty"`
 	Xqn          *string       `json:"xqn,omitempty"`
 	Wwn          *string       `json:"wwn,omitempty"`
+	Ports        []StoragePort `json:"ports,omitempty"`
 }
 
 // NewExport instantiates a new Export object
@@ -335,6 +336,38 @@ func (o *Export) SetWwn(v string) {
 	o.Wwn = &v
 }
 
+// GetPorts returns the Ports field value if set, zero value otherwise.
+func (o *Export) GetPorts() []StoragePort {
+	if o == nil || IsNil(o.Ports) {
+		var ret []StoragePort
+		return ret
+	}
+	return o.Ports
+}
+
+// GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Export) GetPortsOk() ([]StoragePort, bool) {
+	if o == nil || IsNil(o.Ports) {
+		return nil, false
+	}
+	return o.Ports, true
+}
+
+// HasPorts returns a boolean if a field has been set.
+func (o *Export) HasPorts() bool {
+	if o != nil && !IsNil(o.Ports) {
+		return true
+	}
+
+	return false
+}
+
+// SetPorts gets a reference to the given []StoragePort and assigns it to the Ports field.
+func (o *Export) SetPorts(v []StoragePort) {
+	o.Ports = v
+}
+
 func (o Export) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -371,6 +404,9 @@ func (o Export) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Wwn) {
 		toSerialize["wwn"] = o.Wwn
+	}
+	if !IsNil(o.Ports) {
+		toSerialize["ports"] = o.Ports
 	}
 	return toSerialize, nil
 }

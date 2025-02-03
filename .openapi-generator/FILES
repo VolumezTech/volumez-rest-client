@@ -45,6 +45,7 @@ docs/ErrorResponse.md
 docs/Export.md
 docs/ExportCreate.md
 docs/ExportCreateNodesInner.md
+docs/ExportModify.md
 docs/GetAzureSSOMappingResponse.md
 docs/GetRolesResponse.md
 docs/GetRolesResponseRolesInner.md
@@ -67,7 +68,6 @@ docs/InviteUserResponse.md
 docs/Job.md
 docs/MachineInfo.md
 docs/Media.md
-docs/MediaAssign.md
 docs/MediaModify.md
 docs/MediaProfile.md
 docs/ModifyTenantSettingsRequest.md
@@ -100,6 +100,7 @@ docs/SignUpRequest.md
 docs/SignUpResponse.md
 docs/SignoutRequest.md
 docs/Snapshot.md
+docs/StoragePort.md
 docs/SuccessJobResponse.md
 docs/TenantCreateAdminUserRequest.md
 docs/TenantCreateUserRequest.md
@@ -155,6 +156,7 @@ model_error_response.go
 model_export.go
 model_export_create.go
 model_export_create_nodes_inner.go
+model_export_modify.go
 model_get_azure_sso_mapping_response.go
 model_get_roles_response.go
 model_get_roles_response_roles_inner.go
@@ -177,7 +179,6 @@ model_invite_user_response.go
 model_job.go
 model_machine_info.go
 model_media.go
-model_media_assign.go
 model_media_modify.go
 model_media_profile.go
 model_modify_tenant_settings_request.go
@@ -210,6 +211,7 @@ model_sign_up_request.go
 model_sign_up_response.go
 model_signout_request_0.go
 model_snapshot.go
+model_storage_port.go
 model_success_job_response.go
 model_tenant_create_admin_user_request.go
 model_tenant_create_user_request.go
