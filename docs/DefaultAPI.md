@@ -61,6 +61,7 @@ Method | HTTP request | Description
 [**ExportsOptions**](DefaultAPI.md#ExportsOptions) | **Options** /exports/ | 
 [**GetAllRoles**](DefaultAPI.md#GetAllRoles) | **Get** /tenant-cloud-resources/role | Get All Tenant roles
 [**GetAzureSSOMapping**](DefaultAPI.md#GetAzureSSOMapping) | **Get** /sso/azure/mapping | Get Azure SSO Mapping
+[**GetFeaturesList**](DefaultAPI.md#GetFeaturesList) | **Get** /system/features | 
 [**GetMachineInfo**](DefaultAPI.md#GetMachineInfo) | **Get** /system/machineinfo | get system info
 [**GetSubscription**](DefaultAPI.md#GetSubscription) | **Get** /azuremarketplace/subscription | get subscription
 [**GetTenantAccessToken**](DefaultAPI.md#GetTenantAccessToken) | **Get** /tenant/token | 
@@ -163,6 +164,7 @@ Method | HTTP request | Description
 [**SnapshotsOptions**](DefaultAPI.md#SnapshotsOptions) | **Options** /snapshots | 
 [**SsoAzureMappingOptions**](DefaultAPI.md#SsoAzureMappingOptions) | **Options** /sso/azure/mapping | 
 [**SsoCallbackUserPoolIDApplicationClientIdOptions**](DefaultAPI.md#SsoCallbackUserPoolIDApplicationClientIdOptions) | **Options** /sso/callback/{userPoolID}/{applicationClientId} | 
+[**SystemFeaturesOptions**](DefaultAPI.md#SystemFeaturesOptions) | **Options** /system/features | 
 [**SystemMachineinfoOptions**](DefaultAPI.md#SystemMachineinfoOptions) | **Options** /system/machineinfo | 
 [**TenantApiaccessCredentialsRefreshOptions**](DefaultAPI.md#TenantApiaccessCredentialsRefreshOptions) | **Options** /tenant/apiaccess/credentials/refresh | 
 [**TenantCloudResourcesCloudProviderAccountIdRoleOptions**](DefaultAPI.md#TenantCloudResourcesCloudProviderAccountIdRoleOptions) | **Options** /tenant-cloud-resources/{cloudProviderAccountId}/role | 
@@ -3935,6 +3937,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetAzureSSOMappingResponse**](GetAzureSSOMappingResponse.md)
+
+### Authorization
+
+[storage.io-authorizer](../README.md#storage.io-authorizer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetFeaturesList
+
+> []string GetFeaturesList(ctx).Authorization(authorization).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "bitbucket.org/volumez/volumez-openapi-client"
+)
+
+func main() {
+	authorization := "authorization_example" // string |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.GetFeaturesList(context.Background()).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.GetFeaturesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetFeaturesList`: []string
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.GetFeaturesList`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFeaturesListRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **authorization** | **string** |  | 
+
+### Return type
+
+**[]string**
 
 ### Authorization
 
@@ -10571,6 +10637,63 @@ This endpoint does not need any parameter.
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiSsoCallbackUserPoolIDApplicationClientIdOptionsRequest struct via the builder pattern
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SystemFeaturesOptions
+
+> SystemFeaturesOptions(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "bitbucket.org/volumez/volumez-openapi-client"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.SystemFeaturesOptions(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.SystemFeaturesOptions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSystemFeaturesOptionsRequest struct via the builder pattern
 
 
 ### Return type

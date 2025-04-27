@@ -112,27 +112,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/volumes"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.capacity: method.request.querystring.capacity
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -324,27 +306,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/volumes"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /volumes/plan:
@@ -522,27 +486,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/plan"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.verbose: method.request.querystring.verbose
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
@@ -712,27 +658,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/snapshot"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /volumes/snapshot/{snapshot_group_name}:
@@ -810,28 +738,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/snapshot/{snapshot_group_name}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.snapshot_group_name: method.request.path.snapshot_group_name
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       parameters:
@@ -1017,28 +927,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.force: method.request.querystring.force
           integration.request.header.X-Request-ID: context.requestId
     get:
@@ -1113,28 +1005,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       parameters:
@@ -1316,28 +1190,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /volumes/{volume}/describe:
@@ -1413,28 +1269,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/describe"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -1695,28 +1533,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/recover"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
   /volumes/{volume}/snapshots:
     get:
@@ -1793,28 +1613,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -1988,28 +1790,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /volumes/{volume}/snapshots/{snapshot}:
@@ -2102,29 +1886,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots/{snapshot}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
           integration.request.path.snapshot: method.request.path.snapshot
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.force: method.request.querystring.force
           integration.request.header.X-Request-ID: context.requestId
     get:
@@ -2206,29 +1972,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots/{snapshot}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
           integration.request.path.snapshot: method.request.path.snapshot
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -2409,29 +2157,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots/{snapshot}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
           integration.request.path.snapshot: method.request.path.snapshot
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /volumes/{volume}/snapshots/{snapshot}/rollback:
@@ -2607,29 +2337,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots/{snapshot}/rollback"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
           integration.request.path.snapshot: method.request.path.snapshot
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
   /associations:
     get:
@@ -2713,27 +2425,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/associations"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.startfrom: method.request.querystring.startfrom
           integration.request.querystring.count: method.request.querystring.count
           integration.request.header.X-Request-ID: context.requestId
@@ -2902,27 +2596,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/associations"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /associations/{association}:
@@ -2998,28 +2674,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/associations/{association}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.association: method.request.path.association
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       parameters:
@@ -3201,28 +2859,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/associations/{association}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.association: method.request.path.association
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /exports/:
@@ -3307,27 +2947,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/exports/"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.startfrom: method.request.querystring.startfrom
           integration.request.querystring.count: method.request.querystring.count
           integration.request.header.X-Request-ID: context.requestId
@@ -3496,27 +3118,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/exports/"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /exports/{export}:
@@ -3602,28 +3206,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/exports/{export}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.export: method.request.path.export
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.force: method.request.querystring.force
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -3797,28 +3383,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/exports/{export}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.export: method.request.path.export
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /autoprovisionvolumes:
@@ -4011,27 +3579,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/autoprovisionvolumes"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /snapshots:
@@ -4109,27 +3659,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/snapshots"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.capacity: method.request.querystring.capacity
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -4293,27 +3825,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/attachments"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -4483,28 +3997,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/attachments"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -4681,29 +4177,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots/{snapshot}/attachments"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
           integration.request.path.snapshot: method.request.path.snapshot
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -4884,29 +4362,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots/{snapshot}/attachments"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
           integration.request.path.snapshot: method.request.path.snapshot
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /volumes/{volume}/snapshots/{snapshot}/attachments/{node}:
@@ -5006,30 +4466,12 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots/{snapshot}/attachments/{node}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
           integration.request.path.snapshot: method.request.path.snapshot
           integration.request.path.node: method.request.path.node
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.force: method.request.querystring.force
           integration.request.header.X-Request-ID: context.requestId
     get:
@@ -5118,30 +4560,12 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots/{snapshot}/attachments/{node}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
           integration.request.path.snapshot: method.request.path.snapshot
           integration.request.path.node: method.request.path.node
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -5329,30 +4753,12 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/volumes/{volume}/snapshots/{snapshot}/attachments/{node}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.volume: method.request.path.volume
           integration.request.path.snapshot: method.request.path.snapshot
           integration.request.path.node: method.request.path.node
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /nodes:
@@ -5423,27 +4829,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/nodes"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -5712,28 +5100,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/nodes/tags/{node}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.node: method.request.path.node
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: tags
   /nodes/{node}:
@@ -5830,28 +5200,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/nodes/{node}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.node: method.request.path.node
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.force: method.request.querystring.force
           integration.request.querystring.delayDelete: method.request.querystring.delayDelete
           integration.request.header.X-Request-ID: context.requestId
@@ -5928,28 +5280,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/nodes/{node}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.node: method.request.path.node
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -6218,28 +5552,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/nodes/{node}/drain"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.node: method.request.path.node
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.cleanup: method.request.querystring.cleanup
           integration.request.header.X-Request-ID: context.requestId
   /nodes/{node}/describe:
@@ -6315,28 +5631,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/nodes/{node}/describe"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.node: method.request.path.node
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -6606,29 +5904,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/nodes/logs/{node}/{tenant}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.node: method.request.path.node
           integration.request.path.tenant: method.request.path.tenant
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
   /nodes/repair/{node}/{tenant}:
     options:
@@ -6812,29 +6092,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/nodes/repair/{node}/{tenant}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.node: method.request.path.node
           integration.request.path.tenant: method.request.path.tenant
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /nodes/upgrade/{node}:
@@ -7011,28 +6273,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/nodes/upgrade/{node}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.node: method.request.path.node
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /nodes/upgrade/{node}/tenant/{tenant}:
@@ -7217,29 +6461,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/nodes/upgrade/{node}/tenant/{tenant}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.node: method.request.path.node
           integration.request.path.tenant: method.request.path.tenant
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /policies:
@@ -7310,27 +6536,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/policies"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -7497,27 +6705,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/policies"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /policies/{policy}:
@@ -7593,28 +6783,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/policies/{policy}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.policy: method.request.path.policy
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     get:
       operationId: PolicyGet
@@ -7688,28 +6860,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/policies/{policy}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.policy: method.request.path.policy
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -7883,28 +7037,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/policies/{policy}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.policy: method.request.path.policy
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /policies/{policy}/volumes:
@@ -7982,28 +7118,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/policies/{policy}/volumes"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.policy: method.request.path.policy
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -8192,30 +7310,12 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/policies/{policy}/size/{size}/zone/{zone}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.policy: method.request.path.policy
           integration.request.path.size: method.request.path.size
           integration.request.path.zone: method.request.path.zone
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.capacity_group: method.request.querystring.capacity_group
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -8379,27 +7479,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/networks"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -8566,27 +7648,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/networks"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /networks/{network}:
@@ -8662,28 +7726,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/networks/{network}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.network: method.request.path.network
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     get:
       operationId: NetworkGet
@@ -8757,28 +7803,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/networks/{network}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.network: method.request.path.network
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -8952,28 +7980,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/networks/{network}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.network: method.request.path.network
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /jobs:
@@ -9065,27 +8075,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/jobs"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.internal: method.request.querystring.internal
           integration.request.querystring.page: method.request.querystring.page
           integration.request.querystring.count: method.request.querystring.count
@@ -9256,28 +8248,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/jobs/{job}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.job: method.request.path.job
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     get:
       operationId: JobGet
@@ -9351,28 +8325,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/jobs/{job}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.job: method.request.path.job
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -9640,29 +8596,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/jobs/{job}/resume_suspend/{state}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.job: method.request.path.job
           integration.request.path.state: method.request.path.state
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
   /media:
     get:
@@ -9732,27 +8670,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/media"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -9930,28 +8850,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/media/{media}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.media: method.request.path.media
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.force: method.request.querystring.force
           integration.request.header.X-Request-ID: context.requestId
     get:
@@ -10026,28 +8928,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/media/{media}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.media: method.request.path.media
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       parameters:
@@ -10229,28 +9113,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/media/{media}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.media: method.request.path.media
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /media/{media}/assign:
@@ -10442,28 +9308,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/media/{media}/assign"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.media: method.request.path.media
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.capacity_group: method.request.querystring.capacity_group
           integration.request.querystring.reprofile: method.request.querystring.reprofile
           integration.request.querystring.block_size: method.request.querystring.block_size
@@ -10634,28 +9482,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/media/{media}/unassign"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.media: method.request.path.media
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
   /media/{media}/profile:
     options:
@@ -10830,28 +9660,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/media/{media}/profile"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.media: method.request.path.media
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /media/{media}/drain:
@@ -11020,28 +9832,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/media/{media}/drain"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.media: method.request.path.media
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
   /media/{media}/{tenant}/diagnose:
     options:
@@ -11217,29 +10011,11 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/media/{media}/{tenant}/diagnose"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.media: method.request.path.media
           integration.request.path.tenant: method.request.path.tenant
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
   /virtualmedia:
     get:
@@ -11323,27 +10099,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/virtualmedia"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.startfrom: method.request.querystring.startfrom
           integration.request.querystring.count: method.request.querystring.count
           integration.request.header.X-Request-ID: context.requestId
@@ -11512,27 +10270,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/virtualmedia"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /virtualmedia/{media}:
@@ -11608,28 +10348,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/virtualmedia/{media}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.media: method.request.path.media
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       parameters:
@@ -11800,27 +10522,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/connectivities"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -11987,27 +10691,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/connectivities"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /connectivities/{connectivity}:
@@ -12083,28 +10769,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: delete
         uri: "http://${sio-public-dns}:8000/api/v1/connectivities/{connectivity}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.connectivity: method.request.path.connectivity
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     get:
       operationId: ConnectivityGet
@@ -12178,28 +10846,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/connectivities/{connectivity}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.connectivity: method.request.path.connectivity
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -12373,28 +11023,10 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: patch
         uri: "http://${sio-public-dns}:8000/api/v1/connectivities/{connectivity}"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
           integration.request.path.connectivity: method.request.path.connectivity
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
       x-codegen-request-body-name: body
   /capacitygroups:
@@ -12465,27 +11097,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/capacitygroups"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -12646,27 +11260,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/version"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -12836,27 +11432,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/alerts"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.querystring.capacity: method.request.querystring.capacity
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -13118,29 +11696,175 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: post
         uri: "http://${sio-public-dns}:8000/api/v1/alerts/{alert}/acknowledge"
+        passthroughBehavior: when_no_match
+        type: http_proxy
+        requestParameters:
+          integration.request.path.alert: method.request.path.alert
+          integration.request.header.X-Request-ID: context.requestId
+  /system/features:
+    get:
+      operationId: GetFeaturesList
+      parameters:
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: List of enabled features
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error getting a list of features
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error getting a list of features
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error getting a list of features
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - storage.io-authorizer: []
+      x-amazon-apigateway-integration:
+        httpMethod: get
+        uri: "http://${sio-public-dns}:8000/api/v1/system/features"
+        passthroughBehavior: when_no_match
+        type: http_proxy
+        requestParameters:
+          integration.request.header.X-Request-ID: context.requestId
+    options:
+      responses:
+        "200":
+          content: {}
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 500 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 400 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 404 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 202 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 409 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      x-amazon-apigateway-integration:
         responses:
           default:
             statusCode: "200"
             responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST,PATCH,DELETE'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
         passthroughBehavior: when_no_match
-        type: http
-        requestParameters:
-          integration.request.path.alert: method.request.path.alert
-          integration.request.header.authorization: method.request.header.authorization
-          integration.request.header.X-Request-ID: context.requestId
+        type: mock
   /system/machineinfo:
     get:
       operationId: GetMachineInfo
@@ -13207,27 +11931,9 @@ paths:
       x-amazon-apigateway-integration:
         httpMethod: get
         uri: "http://${sio-public-dns}:8000/api/v1/system/machineinfo"
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^(400)$:
-            statusCode: "400"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!500)(?!400)[0-9]*)$:
-            statusCode: "404"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
-          ^((?!200)(?!404)(?!400)(?!202)(?!409)[0-9]*)$:
-            statusCode: "500"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Origin: '''*'''
         passthroughBehavior: when_no_match
-        type: http
+        type: http_proxy
         requestParameters:
-          integration.request.header.authorization: method.request.header.authorization
           integration.request.header.X-Request-ID: context.requestId
     options:
       responses:
@@ -13596,7 +12302,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -13744,7 +12450,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /tenant-cloud-resources/vm/zones:
@@ -13791,7 +12497,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.querystring.cloudProvider: method.request.querystring.cloudProvider
@@ -13927,7 +12633,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.cloudProviderAccountId: method.request.path.cloudProviderAccountId
@@ -14074,7 +12780,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.cloudProviderAccountId: method.request.path.cloudProviderAccountId
@@ -14121,7 +12827,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.cloudProviderAccountId: method.request.path.cloudProviderAccountId
@@ -14274,7 +12980,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.cloudProviderAccountId: method.request.path.cloudProviderAccountId
@@ -14422,7 +13128,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.cloudProviderAccountId: method.request.path.cloudProviderAccountId
@@ -14689,7 +13395,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.querystring.shouldValidate: method.request.querystring.shouldValidate
@@ -14838,7 +13544,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /infra-planner/provider-pricing-info:
@@ -14968,7 +13674,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /signup:
@@ -15100,7 +13806,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /signout:
@@ -15232,7 +13938,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /signin:
@@ -15370,7 +14076,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /tenant/user:
@@ -15407,7 +14113,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -15541,7 +14247,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /tenant/user/requestchangepassword:
@@ -15667,7 +14373,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /tenant/user/changepassword:
@@ -15793,7 +14499,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /tenant/user/changepasswordloggedin:
@@ -15929,7 +14635,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /tenant/user/confirmation:
@@ -15981,11 +14687,11 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
-          integration.request.querystring.user_name: method.request.querystring.user_name
           integration.request.querystring.confirmation_code: method.request.querystring.confirmation_code
+          integration.request.querystring.user_name: method.request.querystring.user_name
           integration.request.querystring.client_id: method.request.querystring.client_id
     options:
       responses:
@@ -16202,7 +14908,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /disable-user/{email}:
@@ -16339,7 +15045,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.email: method.request.path.email
@@ -16477,7 +15183,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.email: method.request.path.email
@@ -16615,7 +15321,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.email: method.request.path.email
@@ -16663,7 +15369,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.tenantId: method.request.path.tenantId
@@ -16797,7 +15503,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.querystring.token: method.request.querystring.token
@@ -17014,7 +15720,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /tenant/token:
@@ -17051,7 +15757,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -17177,7 +15883,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -17319,7 +16025,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.tenantID: method.request.path.tenantID
@@ -17447,7 +16153,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -17573,7 +16279,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -17699,7 +16405,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -17824,7 +16530,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     get:
@@ -17860,7 +16566,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -17995,7 +16701,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /sso/callback/{userPoolID}/{applicationClientId}:
@@ -18084,7 +16790,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.userPoolID: method.request.path.userPoolID
@@ -18216,7 +16922,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
     options:
@@ -18363,7 +17069,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
   /tenant-settings/reset:
@@ -18511,7 +17217,7 @@ paths:
         passthroughBehavior: when_no_match
         connectionType: VPC_LINK
         type: http_proxy
-        timeoutInMillis: 12000
+        timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
 components:
