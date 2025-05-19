@@ -3510,6 +3510,11 @@
             "in": "header",
             "required": true,
             "type": "string"
+          },           {
+            "name": "tenantaccesstoken",
+            "in": "header",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {

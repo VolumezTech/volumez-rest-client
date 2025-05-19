@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-TenantAPIAccessRefreshToken givens the tenant s API access refresh token return new access token identity token and a newer refresh token
+  TenantAPIAccessRefreshToken givens the tenant s API access refresh token return new access token identity token and a newer refresh token
 */
 func (a *Client) TenantAPIAccessRefreshToken(params *TenantAPIAccessRefreshTokenParams, opts ...ClientOption) (*TenantAPIAccessRefreshTokenOK, error) {
 	// TODO: Validate the params before sending

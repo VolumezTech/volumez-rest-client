@@ -46,8 +46,7 @@ func NewMediaUnassignLegacyOK() *MediaUnassignLegacyOK {
 	return &MediaUnassignLegacyOK{}
 }
 
-/*
-	MediaUnassignLegacyOK describes a response with status code 200, with default header values.
+/* MediaUnassignLegacyOK describes a response with status code 200, with default header values.
 
 Operation completed successfully
 */
@@ -81,8 +80,7 @@ func NewMediaUnassignLegacyDefault(code int) *MediaUnassignLegacyDefault {
 	}
 }
 
-/*
-	MediaUnassignLegacyDefault describes a response with status code -1, with default header values.
+/* MediaUnassignLegacyDefault describes a response with status code -1, with default header values.
 
 Error completing the operation
 */

@@ -46,8 +46,7 @@ func NewMediaGetOK() *MediaGetOK {
 	return &MediaGetOK{}
 }
 
-/*
-	MediaGetOK describes a response with status code 200, with default header values.
+/* MediaGetOK describes a response with status code 200, with default header values.
 
 Properties of a media
 */
@@ -81,8 +80,7 @@ func NewMediaGetDefault(code int) *MediaGetDefault {
 	}
 }
 
-/*
-	MediaGetDefault describes a response with status code -1, with default header values.
+/* MediaGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a media
 */

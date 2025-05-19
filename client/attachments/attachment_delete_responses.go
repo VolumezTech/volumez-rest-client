@@ -46,8 +46,7 @@ func NewAttachmentDeleteOK() *AttachmentDeleteOK {
 	return &AttachmentDeleteOK{}
 }
 
-/*
-	AttachmentDeleteOK describes a response with status code 200, with default header values.
+/* AttachmentDeleteOK describes a response with status code 200, with default header values.
 
 An attachment was deleted successfully
 */
@@ -81,8 +80,7 @@ func NewAttachmentDeleteDefault(code int) *AttachmentDeleteDefault {
 	}
 }
 
-/*
-	AttachmentDeleteDefault describes a response with status code -1, with default header values.
+/* AttachmentDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting an attachment
 */

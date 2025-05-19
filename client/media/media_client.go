@@ -64,7 +64,7 @@ type ClientService interface {
 }
 
 /*
-MediaAssign assigns media
+  MediaAssign assigns media
 */
 func (a *Client) MediaAssign(params *MediaAssignParams, opts ...ClientOption) (*MediaAssignOK, error) {
 	// TODO: Validate the params before sending
@@ -101,7 +101,7 @@ func (a *Client) MediaAssign(params *MediaAssignParams, opts ...ClientOption) (*
 }
 
 /*
-MediaAssignLegacy assigns media
+  MediaAssignLegacy assigns media
 */
 func (a *Client) MediaAssignLegacy(params *MediaAssignLegacyParams, opts ...ClientOption) (*MediaAssignLegacyOK, error) {
 	// TODO: Validate the params before sending
@@ -138,7 +138,7 @@ func (a *Client) MediaAssignLegacy(params *MediaAssignLegacyParams, opts ...Clie
 }
 
 /*
-MediaCleanup media cleanup
+  MediaCleanup media cleanup
 */
 func (a *Client) MediaCleanup(params *MediaCleanupParams, opts ...ClientOption) (*MediaCleanupOK, error) {
 	// TODO: Validate the params before sending
@@ -175,7 +175,7 @@ func (a *Client) MediaCleanup(params *MediaCleanupParams, opts ...ClientOption) 
 }
 
 /*
-MediaCleanupVolume media cleanup
+  MediaCleanupVolume media cleanup
 */
 func (a *Client) MediaCleanupVolume(params *MediaCleanupVolumeParams, opts ...ClientOption) (*MediaCleanupVolumeOK, error) {
 	// TODO: Validate the params before sending
@@ -212,7 +212,7 @@ func (a *Client) MediaCleanupVolume(params *MediaCleanupVolumeParams, opts ...Cl
 }
 
 /*
-MediaDelete deletes a media
+  MediaDelete deletes a media
 */
 func (a *Client) MediaDelete(params *MediaDeleteParams, opts ...ClientOption) (*MediaDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -249,7 +249,7 @@ func (a *Client) MediaDelete(params *MediaDeleteParams, opts ...ClientOption) (*
 }
 
 /*
-MediaDiagnose media diagnose
+  MediaDiagnose media diagnose
 */
 func (a *Client) MediaDiagnose(params *MediaDiagnoseParams, opts ...ClientOption) (*MediaDiagnoseOK, error) {
 	// TODO: Validate the params before sending
@@ -286,7 +286,7 @@ func (a *Client) MediaDiagnose(params *MediaDiagnoseParams, opts ...ClientOption
 }
 
 /*
-MediaDrain media drain
+  MediaDrain media drain
 */
 func (a *Client) MediaDrain(params *MediaDrainParams, opts ...ClientOption) (*MediaDrainOK, error) {
 	// TODO: Validate the params before sending
@@ -323,7 +323,7 @@ func (a *Client) MediaDrain(params *MediaDrainParams, opts ...ClientOption) (*Me
 }
 
 /*
-MediaGet gets the properties of a media
+  MediaGet gets the properties of a media
 */
 func (a *Client) MediaGet(params *MediaGetParams, opts ...ClientOption) (*MediaGetOK, error) {
 	// TODO: Validate the params before sending
@@ -360,7 +360,7 @@ func (a *Client) MediaGet(params *MediaGetParams, opts ...ClientOption) (*MediaG
 }
 
 /*
-MediaList gets a list of media
+  MediaList gets a list of media
 */
 func (a *Client) MediaList(params *MediaListParams, opts ...ClientOption) (*MediaListOK, error) {
 	// TODO: Validate the params before sending
@@ -397,7 +397,7 @@ func (a *Client) MediaList(params *MediaListParams, opts ...ClientOption) (*Medi
 }
 
 /*
-MediaModify modifies a media properties
+  MediaModify modifies a media properties
 */
 func (a *Client) MediaModify(params *MediaModifyParams, opts ...ClientOption) (*MediaModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -434,7 +434,7 @@ func (a *Client) MediaModify(params *MediaModifyParams, opts ...ClientOption) (*
 }
 
 /*
-MediaProfileModify modifies a media profile
+  MediaProfileModify modifies a media profile
 */
 func (a *Client) MediaProfileModify(params *MediaProfileModifyParams, opts ...ClientOption) (*MediaProfileModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -471,7 +471,7 @@ func (a *Client) MediaProfileModify(params *MediaProfileModifyParams, opts ...Cl
 }
 
 /*
-MediaUnassign unassigns media
+  MediaUnassign unassigns media
 */
 func (a *Client) MediaUnassign(params *MediaUnassignParams, opts ...ClientOption) (*MediaUnassignOK, error) {
 	// TODO: Validate the params before sending
@@ -508,7 +508,7 @@ func (a *Client) MediaUnassign(params *MediaUnassignParams, opts ...ClientOption
 }
 
 /*
-MediaUnassignLegacy unassigns media
+  MediaUnassignLegacy unassigns media
 */
 func (a *Client) MediaUnassignLegacy(params *MediaUnassignLegacyParams, opts ...ClientOption) (*MediaUnassignLegacyOK, error) {
 	// TODO: Validate the params before sending
@@ -545,7 +545,7 @@ func (a *Client) MediaUnassignLegacy(params *MediaUnassignLegacyParams, opts ...
 }
 
 /*
-VirtualMediaCreate creates virtual media
+  VirtualMediaCreate creates virtual media
 */
 func (a *Client) VirtualMediaCreate(params *VirtualMediaCreateParams, opts ...ClientOption) (*VirtualMediaCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -582,7 +582,7 @@ func (a *Client) VirtualMediaCreate(params *VirtualMediaCreateParams, opts ...Cl
 }
 
 /*
-VirtualMediaDelete deletes virtual media
+  VirtualMediaDelete deletes virtual media
 */
 func (a *Client) VirtualMediaDelete(params *VirtualMediaDeleteParams, opts ...ClientOption) (*VirtualMediaDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -619,7 +619,7 @@ func (a *Client) VirtualMediaDelete(params *VirtualMediaDeleteParams, opts ...Cl
 }
 
 /*
-VirtualMediaList gets a list of virtual media
+  VirtualMediaList gets a list of virtual media
 */
 func (a *Client) VirtualMediaList(params *VirtualMediaListParams, opts ...ClientOption) (*VirtualMediaListOK, error) {
 	// TODO: Validate the params before sending

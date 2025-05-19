@@ -46,8 +46,7 @@ func NewNodeDeleteOK() *NodeDeleteOK {
 	return &NodeDeleteOK{}
 }
 
-/*
-	NodeDeleteOK describes a response with status code 200, with default header values.
+/* NodeDeleteOK describes a response with status code 200, with default header values.
 
 A node delete job was created successfully
 */
@@ -81,8 +80,7 @@ func NewNodeDeleteDefault(code int) *NodeDeleteDefault {
 	}
 }
 
-/*
-	NodeDeleteDefault describes a response with status code -1, with default header values.
+/* NodeDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a node
 */

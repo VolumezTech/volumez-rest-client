@@ -52,12 +52,10 @@ func NewAlertAcknowledgeParamsWithHTTPClient(client *http.Client) *AlertAcknowle
 	}
 }
 
-/*
-AlertAcknowledgeParams contains all the parameters to send to the API endpoint
+/* AlertAcknowledgeParams contains all the parameters to send to the API endpoint
+   for the alert acknowledge operation.
 
-	for the alert acknowledge operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type AlertAcknowledgeParams struct {
 

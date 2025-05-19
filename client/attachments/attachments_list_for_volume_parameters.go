@@ -52,12 +52,10 @@ func NewAttachmentsListForVolumeParamsWithHTTPClient(client *http.Client) *Attac
 	}
 }
 
-/*
-AttachmentsListForVolumeParams contains all the parameters to send to the API endpoint
+/* AttachmentsListForVolumeParams contains all the parameters to send to the API endpoint
+   for the attachments list for volume operation.
 
-	for the attachments list for volume operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type AttachmentsListForVolumeParams struct {
 

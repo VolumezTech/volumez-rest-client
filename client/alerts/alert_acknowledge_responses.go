@@ -46,8 +46,7 @@ func NewAlertAcknowledgeOK() *AlertAcknowledgeOK {
 	return &AlertAcknowledgeOK{}
 }
 
-/*
-	AlertAcknowledgeOK describes a response with status code 200, with default header values.
+/* AlertAcknowledgeOK describes a response with status code 200, with default header values.
 
 Alert was successfully acknowledged
 */
@@ -81,8 +80,7 @@ func NewAlertAcknowledgeDefault(code int) *AlertAcknowledgeDefault {
 	}
 }
 
-/*
-	AlertAcknowledgeDefault describes a response with status code -1, with default header values.
+/* AlertAcknowledgeDefault describes a response with status code -1, with default header values.
 
 Error acknowledging alert
 */

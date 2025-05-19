@@ -46,8 +46,7 @@ func NewConnectivityDeleteOK() *ConnectivityDeleteOK {
 	return &ConnectivityDeleteOK{}
 }
 
-/*
-	ConnectivityDeleteOK describes a response with status code 200, with default header values.
+/* ConnectivityDeleteOK describes a response with status code 200, with default header values.
 
 A connectivity was deleted successfully
 */
@@ -81,8 +80,7 @@ func NewConnectivityDeleteDefault(code int) *ConnectivityDeleteDefault {
 	}
 }
 
-/*
-	ConnectivityDeleteDefault describes a response with status code -1, with default header values.
+/* ConnectivityDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a connectivity
 */

@@ -52,12 +52,10 @@ func NewSnapshotsListParamsWithHTTPClient(client *http.Client) *SnapshotsListPar
 	}
 }
 
-/*
-SnapshotsListParams contains all the parameters to send to the API endpoint
+/* SnapshotsListParams contains all the parameters to send to the API endpoint
+   for the snapshots list operation.
 
-	for the snapshots list operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type SnapshotsListParams struct {
 

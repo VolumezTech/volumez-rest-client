@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-TenanthostAccessCredentials givens the tenant s host token refresh token get the ID token for this machine
+  TenanthostAccessCredentials givens the tenant s host token refresh token get the ID token for this machine
 */
 func (a *Client) TenanthostAccessCredentials(params *TenanthostAccessCredentialsParams, opts ...ClientOption) (*TenanthostAccessCredentialsOK, error) {
 	// TODO: Validate the params before sending

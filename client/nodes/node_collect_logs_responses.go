@@ -58,8 +58,7 @@ func NewNodeCollectLogsOK() *NodeCollectLogsOK {
 	return &NodeCollectLogsOK{}
 }
 
-/*
-	NodeCollectLogsOK describes a response with status code 200, with default header values.
+/* NodeCollectLogsOK describes a response with status code 200, with default header values.
 
 Node collect logs job  was created successfully
 */
@@ -91,8 +90,7 @@ func NewNodeCollectLogsBadRequest() *NodeCollectLogsBadRequest {
 	return &NodeCollectLogsBadRequest{}
 }
 
-/*
-	NodeCollectLogsBadRequest describes a response with status code 400, with default header values.
+/* NodeCollectLogsBadRequest describes a response with status code 400, with default header values.
 
 Invalid node name supplied
 */
@@ -124,8 +122,7 @@ func NewNodeCollectLogsNotFound() *NodeCollectLogsNotFound {
 	return &NodeCollectLogsNotFound{}
 }
 
-/*
-	NodeCollectLogsNotFound describes a response with status code 404, with default header values.
+/* NodeCollectLogsNotFound describes a response with status code 404, with default header values.
 
 Node not found
 */
@@ -159,8 +156,7 @@ func NewNodeCollectLogsDefault(code int) *NodeCollectLogsDefault {
 	}
 }
 
-/*
-	NodeCollectLogsDefault describes a response with status code -1, with default header values.
+/* NodeCollectLogsDefault describes a response with status code -1, with default header values.
 
 Error trying to create node collect logs job
 */

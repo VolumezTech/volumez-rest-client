@@ -46,8 +46,7 @@ func NewVolumesListOK() *VolumesListOK {
 	return &VolumesListOK{}
 }
 
-/*
-	VolumesListOK describes a response with status code 200, with default header values.
+/* VolumesListOK describes a response with status code 200, with default header values.
 
 List of volumes
 */
@@ -79,8 +78,7 @@ func NewVolumesListDefault(code int) *VolumesListDefault {
 	}
 }
 
-/*
-	VolumesListDefault describes a response with status code -1, with default header values.
+/* VolumesListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of volumes
 */

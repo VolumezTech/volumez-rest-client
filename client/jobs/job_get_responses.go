@@ -46,8 +46,7 @@ func NewJobGetOK() *JobGetOK {
 	return &JobGetOK{}
 }
 
-/*
-	JobGetOK describes a response with status code 200, with default header values.
+/* JobGetOK describes a response with status code 200, with default header values.
 
 Properties of a job
 */
@@ -81,8 +80,7 @@ func NewJobGetDefault(code int) *JobGetDefault {
 	}
 }
 
-/*
-	JobGetDefault describes a response with status code -1, with default header values.
+/* JobGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a job
 */

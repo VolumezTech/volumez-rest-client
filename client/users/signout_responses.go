@@ -46,8 +46,7 @@ func NewSignoutOK() *SignoutOK {
 	return &SignoutOK{}
 }
 
-/*
-	SignoutOK describes a response with status code 200, with default header values.
+/* SignoutOK describes a response with status code 200, with default header values.
 
 Sign out was successful
 */
@@ -81,8 +80,7 @@ func NewSignoutDefault(code int) *SignoutDefault {
 	}
 }
 
-/*
-	SignoutDefault describes a response with status code -1, with default header values.
+/* SignoutDefault describes a response with status code -1, with default header values.
 
 Error signing out
 */

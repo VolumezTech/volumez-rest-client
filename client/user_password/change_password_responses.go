@@ -46,8 +46,7 @@ func NewChangePasswordOK() *ChangePasswordOK {
 	return &ChangePasswordOK{}
 }
 
-/*
-	ChangePasswordOK describes a response with status code 200, with default header values.
+/* ChangePasswordOK describes a response with status code 200, with default header values.
 
 New password changed successfully
 */
@@ -81,8 +80,7 @@ func NewChangePasswordDefault(code int) *ChangePasswordDefault {
 	}
 }
 
-/*
-	ChangePasswordDefault describes a response with status code -1, with default header values.
+/* ChangePasswordDefault describes a response with status code -1, with default header values.
 
 Error changing password
 */

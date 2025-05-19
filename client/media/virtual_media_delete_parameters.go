@@ -52,12 +52,10 @@ func NewVirtualMediaDeleteParamsWithHTTPClient(client *http.Client) *VirtualMedi
 	}
 }
 
-/*
-VirtualMediaDeleteParams contains all the parameters to send to the API endpoint
+/* VirtualMediaDeleteParams contains all the parameters to send to the API endpoint
+   for the virtual media delete operation.
 
-	for the virtual media delete operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type VirtualMediaDeleteParams struct {
 

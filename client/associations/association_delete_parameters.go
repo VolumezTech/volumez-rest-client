@@ -52,12 +52,10 @@ func NewAssociationDeleteParamsWithHTTPClient(client *http.Client) *AssociationD
 	}
 }
 
-/*
-AssociationDeleteParams contains all the parameters to send to the API endpoint
+/* AssociationDeleteParams contains all the parameters to send to the API endpoint
+   for the association delete operation.
 
-	for the association delete operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type AssociationDeleteParams struct {
 

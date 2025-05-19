@@ -51,8 +51,7 @@ func NewBatchVolumesPlanOK() *BatchVolumesPlanOK {
 	return &BatchVolumesPlanOK{}
 }
 
-/*
-	BatchVolumesPlanOK describes a response with status code 200, with default header values.
+/* BatchVolumesPlanOK describes a response with status code 200, with default header values.
 
 volume plan output
 */
@@ -86,8 +85,7 @@ func NewBatchVolumesPlanDefault(code int) *BatchVolumesPlanDefault {
 	}
 }
 
-/*
-	BatchVolumesPlanDefault describes a response with status code -1, with default header values.
+/* BatchVolumesPlanDefault describes a response with status code -1, with default header values.
 
 Error creating new snapshot
 */
@@ -121,8 +119,7 @@ func (o *BatchVolumesPlanDefault) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-/*
-BatchVolumesPlanBody batch volumes plan body
+/*BatchVolumesPlanBody batch volumes plan body
 swagger:model BatchVolumesPlanBody
 */
 type BatchVolumesPlanBody struct {
@@ -235,8 +232,7 @@ func (o *BatchVolumesPlanBody) UnmarshalBinary(b []byte) error {
 	return nil
 }
 
-/*
-VolumePlanInput volume plan input
+/*VolumePlanInput volume plan input
 swagger:model VolumePlanInput
 */
 type VolumePlanInput struct {

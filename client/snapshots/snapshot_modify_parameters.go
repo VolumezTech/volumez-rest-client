@@ -54,12 +54,10 @@ func NewSnapshotModifyParamsWithHTTPClient(client *http.Client) *SnapshotModifyP
 	}
 }
 
-/*
-SnapshotModifyParams contains all the parameters to send to the API endpoint
+/* SnapshotModifyParams contains all the parameters to send to the API endpoint
+   for the snapshot modify operation.
 
-	for the snapshot modify operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type SnapshotModifyParams struct {
 

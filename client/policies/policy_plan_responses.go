@@ -52,8 +52,7 @@ func NewPolicyPlanOK() *PolicyPlanOK {
 	return &PolicyPlanOK{}
 }
 
-/*
-	PolicyPlanOK describes a response with status code 200, with default header values.
+/* PolicyPlanOK describes a response with status code 200, with default header values.
 
 Policy volume group plan
 */
@@ -85,8 +84,7 @@ func NewPolicyPlanNotFound() *PolicyPlanNotFound {
 	return &PolicyPlanNotFound{}
 }
 
-/*
-	PolicyPlanNotFound describes a response with status code 404, with default header values.
+/* PolicyPlanNotFound describes a response with status code 404, with default header values.
 
 Plan failed
 */
@@ -120,8 +118,7 @@ func NewPolicyPlanDefault(code int) *PolicyPlanDefault {
 	}
 }
 
-/*
-	PolicyPlanDefault describes a response with status code -1, with default header values.
+/* PolicyPlanDefault describes a response with status code -1, with default header values.
 
 Error getting policy volume group plan
 */

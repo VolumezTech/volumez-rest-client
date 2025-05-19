@@ -46,8 +46,7 @@ func NewConnectivityCreateOK() *ConnectivityCreateOK {
 	return &ConnectivityCreateOK{}
 }
 
-/*
-	ConnectivityCreateOK describes a response with status code 200, with default header values.
+/* ConnectivityCreateOK describes a response with status code 200, with default header values.
 
 New connectivity was created successfully
 */
@@ -81,8 +80,7 @@ func NewConnectivityCreateDefault(code int) *ConnectivityCreateDefault {
 	}
 }
 
-/*
-	ConnectivityCreateDefault describes a response with status code -1, with default header values.
+/* ConnectivityCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new connectivity
 */

@@ -46,8 +46,7 @@ func NewMediaModifyOK() *MediaModifyOK {
 	return &MediaModifyOK{}
 }
 
-/*
-	MediaModifyOK describes a response with status code 200, with default header values.
+/* MediaModifyOK describes a response with status code 200, with default header values.
 
 Properties of a media to patch
 */
@@ -81,8 +80,7 @@ func NewMediaModifyDefault(code int) *MediaModifyDefault {
 	}
 }
 
-/*
-	MediaModifyDefault describes a response with status code -1, with default header values.
+/* MediaModifyDefault describes a response with status code -1, with default header values.
 
 Error patching properties of a media
 */

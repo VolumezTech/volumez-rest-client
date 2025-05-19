@@ -46,8 +46,7 @@ func NewPolicyGetOK() *PolicyGetOK {
 	return &PolicyGetOK{}
 }
 
-/*
-	PolicyGetOK describes a response with status code 200, with default header values.
+/* PolicyGetOK describes a response with status code 200, with default header values.
 
 Properties of a policy
 */
@@ -81,8 +80,7 @@ func NewPolicyGetDefault(code int) *PolicyGetDefault {
 	}
 }
 
-/*
-	PolicyGetDefault describes a response with status code -1, with default header values.
+/* PolicyGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a policy
 */

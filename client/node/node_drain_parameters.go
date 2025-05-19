@@ -53,12 +53,10 @@ func NewNodeDrainParamsWithHTTPClient(client *http.Client) *NodeDrainParams {
 	}
 }
 
-/*
-NodeDrainParams contains all the parameters to send to the API endpoint
+/* NodeDrainParams contains all the parameters to send to the API endpoint
+   for the node drain operation.
 
-	for the node drain operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type NodeDrainParams struct {
 

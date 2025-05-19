@@ -45,8 +45,7 @@ func NewUserCreateOK() *UserCreateOK {
 	return &UserCreateOK{}
 }
 
-/*
-	UserCreateOK describes a response with status code 200, with default header values.
+/* UserCreateOK describes a response with status code 200, with default header values.
 
 Successfully Signed up
 */
@@ -78,8 +77,7 @@ func NewUserCreateInternalServerError() *UserCreateInternalServerError {
 	return &UserCreateInternalServerError{}
 }
 
-/*
-	UserCreateInternalServerError describes a response with status code 500, with default header values.
+/* UserCreateInternalServerError describes a response with status code 500, with default header values.
 
 Error signing up
 */

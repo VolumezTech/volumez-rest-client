@@ -54,12 +54,10 @@ func NewAssociationModifyParamsWithHTTPClient(client *http.Client) *AssociationM
 	}
 }
 
-/*
-AssociationModifyParams contains all the parameters to send to the API endpoint
+/* AssociationModifyParams contains all the parameters to send to the API endpoint
+   for the association modify operation.
 
-	for the association modify operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type AssociationModifyParams struct {
 

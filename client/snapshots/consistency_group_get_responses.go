@@ -46,8 +46,7 @@ func NewConsistencyGroupGetOK() *ConsistencyGroupGetOK {
 	return &ConsistencyGroupGetOK{}
 }
 
-/*
-	ConsistencyGroupGetOK describes a response with status code 200, with default header values.
+/* ConsistencyGroupGetOK describes a response with status code 200, with default header values.
 
 List of snapshots
 */
@@ -79,8 +78,7 @@ func NewConsistencyGroupGetDefault(code int) *ConsistencyGroupGetDefault {
 	}
 }
 
-/*
-	ConsistencyGroupGetDefault describes a response with status code -1, with default header values.
+/* ConsistencyGroupGetDefault describes a response with status code -1, with default header values.
 
 Error getting a list of snapshots
 */

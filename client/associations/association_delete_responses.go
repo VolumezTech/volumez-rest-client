@@ -46,8 +46,7 @@ func NewAssociationDeleteOK() *AssociationDeleteOK {
 	return &AssociationDeleteOK{}
 }
 
-/*
-	AssociationDeleteOK describes a response with status code 200, with default header values.
+/* AssociationDeleteOK describes a response with status code 200, with default header values.
 
 An associations was deleted successfully
 */
@@ -81,8 +80,7 @@ func NewAssociationDeleteDefault(code int) *AssociationDeleteDefault {
 	}
 }
 
-/*
-	AssociationDeleteDefault describes a response with status code -1, with default header values.
+/* AssociationDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting association
 */

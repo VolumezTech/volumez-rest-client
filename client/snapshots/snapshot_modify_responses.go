@@ -46,8 +46,7 @@ func NewSnapshotModifyOK() *SnapshotModifyOK {
 	return &SnapshotModifyOK{}
 }
 
-/*
-	SnapshotModifyOK describes a response with status code 200, with default header values.
+/* SnapshotModifyOK describes a response with status code 200, with default header values.
 
 A snapshot was updated successfully
 */
@@ -81,8 +80,7 @@ func NewSnapshotModifyDefault(code int) *SnapshotModifyDefault {
 	}
 }
 
-/*
-	SnapshotModifyDefault describes a response with status code -1, with default header values.
+/* SnapshotModifyDefault describes a response with status code -1, with default header values.
 
 Error updating a snapshot
 */

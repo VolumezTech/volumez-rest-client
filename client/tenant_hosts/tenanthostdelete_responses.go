@@ -45,8 +45,7 @@ func NewTenanthostdeleteOK() *TenanthostdeleteOK {
 	return &TenanthostdeleteOK{}
 }
 
-/*
-	TenanthostdeleteOK describes a response with status code 200, with default header values.
+/* TenanthostdeleteOK describes a response with status code 200, with default header values.
 
 Tenant Host was deleted successfully
 */
@@ -78,8 +77,7 @@ func NewTenanthostdeleteInternalServerError() *TenanthostdeleteInternalServerErr
 	return &TenanthostdeleteInternalServerError{}
 }
 
-/*
-	TenanthostdeleteInternalServerError describes a response with status code 500, with default header values.
+/* TenanthostdeleteInternalServerError describes a response with status code 500, with default header values.
 
 Error deleting Tenant's Host
 */

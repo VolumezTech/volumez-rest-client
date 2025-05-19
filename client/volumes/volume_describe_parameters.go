@@ -52,12 +52,10 @@ func NewVolumeDescribeParamsWithHTTPClient(client *http.Client) *VolumeDescribeP
 	}
 }
 
-/*
-VolumeDescribeParams contains all the parameters to send to the API endpoint
+/* VolumeDescribeParams contains all the parameters to send to the API endpoint
+   for the volume describe operation.
 
-	for the volume describe operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type VolumeDescribeParams struct {
 

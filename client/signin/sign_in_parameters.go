@@ -54,12 +54,10 @@ func NewSignInParamsWithHTTPClient(client *http.Client) *SignInParams {
 	}
 }
 
-/*
-SignInParams contains all the parameters to send to the API endpoint
+/* SignInParams contains all the parameters to send to the API endpoint
+   for the sign in operation.
 
-	for the sign in operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type SignInParams struct {
 

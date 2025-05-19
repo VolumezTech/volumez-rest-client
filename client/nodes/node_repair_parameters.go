@@ -54,12 +54,10 @@ func NewNodeRepairParamsWithHTTPClient(client *http.Client) *NodeRepairParams {
 	}
 }
 
-/*
-NodeRepairParams contains all the parameters to send to the API endpoint
+/* NodeRepairParams contains all the parameters to send to the API endpoint
+   for the node repair operation.
 
-	for the node repair operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type NodeRepairParams struct {
 

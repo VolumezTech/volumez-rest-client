@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-TenantToken gets the tenant s token
+  TenantToken gets the tenant s token
 */
 func (a *Client) TenantToken(params *TenantTokenParams, opts ...ClientOption) (*TenantTokenOK, error) {
 	// TODO: Validate the params before sending

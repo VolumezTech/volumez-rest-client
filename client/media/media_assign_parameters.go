@@ -54,12 +54,10 @@ func NewMediaAssignParamsWithHTTPClient(client *http.Client) *MediaAssignParams 
 	}
 }
 
-/*
-MediaAssignParams contains all the parameters to send to the API endpoint
+/* MediaAssignParams contains all the parameters to send to the API endpoint
+   for the media assign operation.
 
-	for the media assign operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type MediaAssignParams struct {
 

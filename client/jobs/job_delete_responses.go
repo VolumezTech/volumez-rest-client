@@ -46,8 +46,7 @@ func NewJobDeleteOK() *JobDeleteOK {
 	return &JobDeleteOK{}
 }
 
-/*
-	JobDeleteOK describes a response with status code 200, with default header values.
+/* JobDeleteOK describes a response with status code 200, with default header values.
 
 A job was deleted successfully
 */
@@ -81,8 +80,7 @@ func NewJobDeleteDefault(code int) *JobDeleteDefault {
 	}
 }
 
-/*
-	JobDeleteDefault describes a response with status code -1, with default header values.
+/* JobDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a job
 */

@@ -53,12 +53,10 @@ func NewVirtualMediaListParamsWithHTTPClient(client *http.Client) *VirtualMediaL
 	}
 }
 
-/*
-VirtualMediaListParams contains all the parameters to send to the API endpoint
+/* VirtualMediaListParams contains all the parameters to send to the API endpoint
+   for the virtual media list operation.
 
-	for the virtual media list operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type VirtualMediaListParams struct {
 

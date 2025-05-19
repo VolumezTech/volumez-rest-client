@@ -52,12 +52,10 @@ func NewVolumeRecoverInitiateParamsWithHTTPClient(client *http.Client) *VolumeRe
 	}
 }
 
-/*
-VolumeRecoverInitiateParams contains all the parameters to send to the API endpoint
+/* VolumeRecoverInitiateParams contains all the parameters to send to the API endpoint
+   for the volume recover initiate operation.
 
-	for the volume recover initiate operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type VolumeRecoverInitiateParams struct {
 

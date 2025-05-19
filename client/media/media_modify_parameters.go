@@ -54,12 +54,10 @@ func NewMediaModifyParamsWithHTTPClient(client *http.Client) *MediaModifyParams 
 	}
 }
 
-/*
-MediaModifyParams contains all the parameters to send to the API endpoint
+/* MediaModifyParams contains all the parameters to send to the API endpoint
+   for the media modify operation.
 
-	for the media modify operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type MediaModifyParams struct {
 

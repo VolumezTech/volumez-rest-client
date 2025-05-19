@@ -52,12 +52,10 @@ func NewConnectivityGetParamsWithHTTPClient(client *http.Client) *ConnectivityGe
 	}
 }
 
-/*
-ConnectivityGetParams contains all the parameters to send to the API endpoint
+/* ConnectivityGetParams contains all the parameters to send to the API endpoint
+   for the connectivity get operation.
 
-	for the connectivity get operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type ConnectivityGetParams struct {
 

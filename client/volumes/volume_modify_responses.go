@@ -46,8 +46,7 @@ func NewVolumeModifyOK() *VolumeModifyOK {
 	return &VolumeModifyOK{}
 }
 
-/*
-	VolumeModifyOK describes a response with status code 200, with default header values.
+/* VolumeModifyOK describes a response with status code 200, with default header values.
 
 A volume was updated successfully
 */
@@ -81,8 +80,7 @@ func NewVolumeModifyDefault(code int) *VolumeModifyDefault {
 	}
 }
 
-/*
-	VolumeModifyDefault describes a response with status code -1, with default header values.
+/* VolumeModifyDefault describes a response with status code -1, with default header values.
 
 Error updating a volume
 */

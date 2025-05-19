@@ -52,12 +52,10 @@ func NewNetworksListParamsWithHTTPClient(client *http.Client) *NetworksListParam
 	}
 }
 
-/*
-NetworksListParams contains all the parameters to send to the API endpoint
+/* NetworksListParams contains all the parameters to send to the API endpoint
+   for the networks list operation.
 
-	for the networks list operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type NetworksListParams struct {
 

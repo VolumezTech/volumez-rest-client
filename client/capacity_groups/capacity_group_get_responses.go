@@ -46,8 +46,7 @@ func NewCapacityGroupGetOK() *CapacityGroupGetOK {
 	return &CapacityGroupGetOK{}
 }
 
-/*
-	CapacityGroupGetOK describes a response with status code 200, with default header values.
+/* CapacityGroupGetOK describes a response with status code 200, with default header values.
 
 capacity groups
 */
@@ -79,8 +78,7 @@ func NewCapacityGroupGetDefault(code int) *CapacityGroupGetDefault {
 	}
 }
 
-/*
-	CapacityGroupGetDefault describes a response with status code -1, with default header values.
+/* CapacityGroupGetDefault describes a response with status code -1, with default header values.
 
 Error getting capacity groups
 */

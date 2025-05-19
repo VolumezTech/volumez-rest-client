@@ -58,8 +58,7 @@ func NewNodeSetTagsOK() *NodeSetTagsOK {
 	return &NodeSetTagsOK{}
 }
 
-/*
-	NodeSetTagsOK describes a response with status code 200, with default header values.
+/* NodeSetTagsOK describes a response with status code 200, with default header values.
 
 A node set tags was successful
 */
@@ -91,8 +90,7 @@ func NewNodeSetTagsBadRequest() *NodeSetTagsBadRequest {
 	return &NodeSetTagsBadRequest{}
 }
 
-/*
-	NodeSetTagsBadRequest describes a response with status code 400, with default header values.
+/* NodeSetTagsBadRequest describes a response with status code 400, with default header values.
 
 Invalid node name supplied
 */
@@ -124,8 +122,7 @@ func NewNodeSetTagsNotFound() *NodeSetTagsNotFound {
 	return &NodeSetTagsNotFound{}
 }
 
-/*
-	NodeSetTagsNotFound describes a response with status code 404, with default header values.
+/* NodeSetTagsNotFound describes a response with status code 404, with default header values.
 
 Node not found
 */
@@ -159,8 +156,7 @@ func NewNodeSetTagsDefault(code int) *NodeSetTagsDefault {
 	}
 }
 
-/*
-	NodeSetTagsDefault describes a response with status code -1, with default header values.
+/* NodeSetTagsDefault describes a response with status code -1, with default header values.
 
 Error setting tags for node
 */

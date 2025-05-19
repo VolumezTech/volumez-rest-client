@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-PoliciesList gets a list of policies
+  PoliciesList gets a list of policies
 */
 func (a *Client) PoliciesList(params *PoliciesListParams, opts ...ClientOption) (*PoliciesListOK, error) {
 	// TODO: Validate the params before sending
@@ -83,7 +83,7 @@ func (a *Client) PoliciesList(params *PoliciesListParams, opts ...ClientOption) 
 }
 
 /*
-PolicyCreate creates a new policy
+  PolicyCreate creates a new policy
 */
 func (a *Client) PolicyCreate(params *PolicyCreateParams, opts ...ClientOption) (*PolicyCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -120,7 +120,7 @@ func (a *Client) PolicyCreate(params *PolicyCreateParams, opts ...ClientOption) 
 }
 
 /*
-PolicyDelete deletes a policy
+  PolicyDelete deletes a policy
 */
 func (a *Client) PolicyDelete(params *PolicyDeleteParams, opts ...ClientOption) (*PolicyDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -157,7 +157,7 @@ func (a *Client) PolicyDelete(params *PolicyDeleteParams, opts ...ClientOption) 
 }
 
 /*
-PolicyGet gets the properties of a policy
+  PolicyGet gets the properties of a policy
 */
 func (a *Client) PolicyGet(params *PolicyGetParams, opts ...ClientOption) (*PolicyGetOK, error) {
 	// TODO: Validate the params before sending
@@ -194,7 +194,7 @@ func (a *Client) PolicyGet(params *PolicyGetParams, opts ...ClientOption) (*Poli
 }
 
 /*
-PolicyGetVolumes gets the properties of a policy
+  PolicyGetVolumes gets the properties of a policy
 */
 func (a *Client) PolicyGetVolumes(params *PolicyGetVolumesParams, opts ...ClientOption) (*PolicyGetVolumesOK, error) {
 	// TODO: Validate the params before sending
@@ -231,7 +231,7 @@ func (a *Client) PolicyGetVolumes(params *PolicyGetVolumesParams, opts ...Client
 }
 
 /*
-PolicyModify modifies a policy
+  PolicyModify modifies a policy
 */
 func (a *Client) PolicyModify(params *PolicyModifyParams, opts ...ClientOption) (*PolicyModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -268,7 +268,7 @@ func (a *Client) PolicyModify(params *PolicyModifyParams, opts ...ClientOption) 
 }
 
 /*
-PolicyPlan shows policy volume create plan
+  PolicyPlan shows policy volume create plan
 */
 func (a *Client) PolicyPlan(params *PolicyPlanParams, opts ...ClientOption) (*PolicyPlanOK, error) {
 	// TODO: Validate the params before sending

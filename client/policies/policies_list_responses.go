@@ -46,8 +46,7 @@ func NewPoliciesListOK() *PoliciesListOK {
 	return &PoliciesListOK{}
 }
 
-/*
-	PoliciesListOK describes a response with status code 200, with default header values.
+/* PoliciesListOK describes a response with status code 200, with default header values.
 
 List of policies
 */
@@ -79,8 +78,7 @@ func NewPoliciesListDefault(code int) *PoliciesListDefault {
 	}
 }
 
-/*
-	PoliciesListDefault describes a response with status code -1, with default header values.
+/* PoliciesListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of policies
 */

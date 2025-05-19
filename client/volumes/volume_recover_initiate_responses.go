@@ -46,8 +46,7 @@ func NewVolumeRecoverInitiateOK() *VolumeRecoverInitiateOK {
 	return &VolumeRecoverInitiateOK{}
 }
 
-/*
-	VolumeRecoverInitiateOK describes a response with status code 200, with default header values.
+/* VolumeRecoverInitiateOK describes a response with status code 200, with default header values.
 
 Volume recovery was initiated successfully
 */
@@ -81,8 +80,7 @@ func NewVolumeRecoverInitiateDefault(code int) *VolumeRecoverInitiateDefault {
 	}
 }
 
-/*
-	VolumeRecoverInitiateDefault describes a response with status code -1, with default header values.
+/* VolumeRecoverInitiateDefault describes a response with status code -1, with default header values.
 
 Error initiating recovery on volume
 */

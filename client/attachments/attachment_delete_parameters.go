@@ -53,12 +53,10 @@ func NewAttachmentDeleteParamsWithHTTPClient(client *http.Client) *AttachmentDel
 	}
 }
 
-/*
-AttachmentDeleteParams contains all the parameters to send to the API endpoint
+/* AttachmentDeleteParams contains all the parameters to send to the API endpoint
+   for the attachment delete operation.
 
-	for the attachment delete operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type AttachmentDeleteParams struct {
 

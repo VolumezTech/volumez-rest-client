@@ -46,8 +46,7 @@ func NewVersionGetOK() *VersionGetOK {
 	return &VersionGetOK{}
 }
 
-/*
-	VersionGetOK describes a response with status code 200, with default header values.
+/* VersionGetOK describes a response with status code 200, with default header values.
 
 Version of sio
 */
@@ -81,8 +80,7 @@ func NewVersionGetDefault(code int) *VersionGetDefault {
 	}
 }
 
-/*
-	VersionGetDefault describes a response with status code -1, with default header values.
+/* VersionGetDefault describes a response with status code -1, with default header values.
 
 Error getting version of sio
 */

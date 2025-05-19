@@ -46,8 +46,7 @@ func NewNetworkGetOK() *NetworkGetOK {
 	return &NetworkGetOK{}
 }
 
-/*
-	NetworkGetOK describes a response with status code 200, with default header values.
+/* NetworkGetOK describes a response with status code 200, with default header values.
 
 Properties of a network
 */
@@ -81,8 +80,7 @@ func NewNetworkGetDefault(code int) *NetworkGetDefault {
 	}
 }
 
-/*
-	NetworkGetDefault describes a response with status code -1, with default header values.
+/* NetworkGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a network
 */

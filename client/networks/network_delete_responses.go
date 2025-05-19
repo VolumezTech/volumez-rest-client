@@ -46,8 +46,7 @@ func NewNetworkDeleteOK() *NetworkDeleteOK {
 	return &NetworkDeleteOK{}
 }
 
-/*
-	NetworkDeleteOK describes a response with status code 200, with default header values.
+/* NetworkDeleteOK describes a response with status code 200, with default header values.
 
 A network was deleted successfully
 */
@@ -81,8 +80,7 @@ func NewNetworkDeleteDefault(code int) *NetworkDeleteDefault {
 	}
 }
 
-/*
-	NetworkDeleteDefault describes a response with status code -1, with default header values.
+/* NetworkDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a network
 */

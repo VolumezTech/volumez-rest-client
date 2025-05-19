@@ -52,14 +52,15 @@ func NewTenanthostgetParamsWithHTTPClient(client *http.Client) *TenanthostgetPar
 	}
 }
 
-/*
-TenanthostgetParams contains all the parameters to send to the API endpoint
+/* TenanthostgetParams contains all the parameters to send to the API endpoint
+   for the tenanthostget operation.
 
-	for the tenanthostget operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type TenanthostgetParams struct {
+
+	// Tenantaccesstoken.
+	Tenantaccesstoken *string
 
 	// Tenanthosttoken.
 	Tenanthosttoken string
@@ -117,6 +118,17 @@ func (o *TenanthostgetParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithTenantaccesstoken adds the tenantaccesstoken to the tenanthostget params
+func (o *TenanthostgetParams) WithTenantaccesstoken(tenantaccesstoken *string) *TenanthostgetParams {
+	o.SetTenantaccesstoken(tenantaccesstoken)
+	return o
+}
+
+// SetTenantaccesstoken adds the tenantaccesstoken to the tenanthostget params
+func (o *TenanthostgetParams) SetTenantaccesstoken(tenantaccesstoken *string) {
+	o.Tenantaccesstoken = tenantaccesstoken
+}
+
 // WithTenanthosttoken adds the tenanthosttoken to the tenanthostget params
 func (o *TenanthostgetParams) WithTenanthosttoken(tenanthosttoken string) *TenanthostgetParams {
 	o.SetTenanthosttoken(tenanthosttoken)
@@ -135,6 +147,14 @@ func (o *TenanthostgetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
+
+	if o.Tenantaccesstoken != nil {
+
+		// header param tenantaccesstoken
+		if err := r.SetHeaderParam("tenantaccesstoken", *o.Tenantaccesstoken); err != nil {
+			return err
+		}
+	}
 
 	// header param tenanthosttoken
 	if err := r.SetHeaderParam("tenanthosttoken", o.Tenanthosttoken); err != nil {

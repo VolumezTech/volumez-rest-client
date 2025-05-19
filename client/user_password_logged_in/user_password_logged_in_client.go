@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-ChangePasswordLoggedIn changes clients password when user is logged in
+  ChangePasswordLoggedIn changes clients password when user is logged in
 */
 func (a *Client) ChangePasswordLoggedIn(params *ChangePasswordLoggedInParams, opts ...ClientOption) (*ChangePasswordLoggedInOK, error) {
 	// TODO: Validate the params before sending

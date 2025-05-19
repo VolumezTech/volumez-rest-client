@@ -58,8 +58,7 @@ func NewAutoProvisionVolumesOK() *AutoProvisionVolumesOK {
 	return &AutoProvisionVolumesOK{}
 }
 
-/*
-	AutoProvisionVolumesOK describes a response with status code 200, with default header values.
+/* AutoProvisionVolumesOK describes a response with status code 200, with default header values.
 
 Auto provision volume has been created successfully
 */
@@ -91,8 +90,7 @@ func NewAutoProvisionVolumesAccepted() *AutoProvisionVolumesAccepted {
 	return &AutoProvisionVolumesAccepted{}
 }
 
-/*
-	AutoProvisionVolumesAccepted describes a response with status code 202, with default header values.
+/* AutoProvisionVolumesAccepted describes a response with status code 202, with default header values.
 
 202 response
 */
@@ -124,8 +122,7 @@ func NewAutoProvisionVolumesConflict() *AutoProvisionVolumesConflict {
 	return &AutoProvisionVolumesConflict{}
 }
 
-/*
-	AutoProvisionVolumesConflict describes a response with status code 409, with default header values.
+/* AutoProvisionVolumesConflict describes a response with status code 409, with default header values.
 
 409 response
 */
@@ -159,8 +156,7 @@ func NewAutoProvisionVolumesDefault(code int) *AutoProvisionVolumesDefault {
 	}
 }
 
-/*
-	AutoProvisionVolumesDefault describes a response with status code -1, with default header values.
+/* AutoProvisionVolumesDefault describes a response with status code -1, with default header values.
 
 Error creating new volume
 */

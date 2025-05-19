@@ -46,8 +46,7 @@ func NewGetMachineInfoOK() *GetMachineInfoOK {
 	return &GetMachineInfoOK{}
 }
 
-/*
-	GetMachineInfoOK describes a response with status code 200, with default header values.
+/* GetMachineInfoOK describes a response with status code 200, with default header values.
 
 confirmation of subscription registered
 */
@@ -81,8 +80,7 @@ func NewGetMachineInfoDefault(code int) *GetMachineInfoDefault {
 	}
 }
 
-/*
-	GetMachineInfoDefault describes a response with status code -1, with default header values.
+/* GetMachineInfoDefault describes a response with status code -1, with default header values.
 
 Error Getting volume plan
 */

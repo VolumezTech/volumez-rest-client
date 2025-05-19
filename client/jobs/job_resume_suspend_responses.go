@@ -46,8 +46,7 @@ func NewJobResumeSuspendOK() *JobResumeSuspendOK {
 	return &JobResumeSuspendOK{}
 }
 
-/*
-	JobResumeSuspendOK describes a response with status code 200, with default header values.
+/* JobResumeSuspendOK describes a response with status code 200, with default header values.
 
 Operation completed successfully
 */
@@ -81,8 +80,7 @@ func NewJobResumeSuspendDefault(code int) *JobResumeSuspendDefault {
 	}
 }
 
-/*
-	JobResumeSuspendDefault describes a response with status code -1, with default header values.
+/* JobResumeSuspendDefault describes a response with status code -1, with default header values.
 
 Error resuming or suspending job
 */

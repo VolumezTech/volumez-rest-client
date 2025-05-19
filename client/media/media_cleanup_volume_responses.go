@@ -46,8 +46,7 @@ func NewMediaCleanupVolumeOK() *MediaCleanupVolumeOK {
 	return &MediaCleanupVolumeOK{}
 }
 
-/*
-	MediaCleanupVolumeOK describes a response with status code 200, with default header values.
+/* MediaCleanupVolumeOK describes a response with status code 200, with default header values.
 
 Operation completed successfully
 */
@@ -81,8 +80,7 @@ func NewMediaCleanupVolumeDefault(code int) *MediaCleanupVolumeDefault {
 	}
 }
 
-/*
-	MediaCleanupVolumeDefault describes a response with status code -1, with default header values.
+/* MediaCleanupVolumeDefault describes a response with status code -1, with default header values.
 
 Error cleaning media's volume
 */

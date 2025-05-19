@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-GetSubscription gets subscription
+  GetSubscription gets subscription
 */
 func (a *Client) GetSubscription(params *GetSubscriptionParams, opts ...ClientOption) (*GetSubscriptionOK, error) {
 	// TODO: Validate the params before sending

@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-NetworkCreate creates a new network
+  NetworkCreate creates a new network
 */
 func (a *Client) NetworkCreate(params *NetworkCreateParams, opts ...ClientOption) (*NetworkCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -79,7 +79,7 @@ func (a *Client) NetworkCreate(params *NetworkCreateParams, opts ...ClientOption
 }
 
 /*
-NetworkDelete deletes a network
+  NetworkDelete deletes a network
 */
 func (a *Client) NetworkDelete(params *NetworkDeleteParams, opts ...ClientOption) (*NetworkDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -116,7 +116,7 @@ func (a *Client) NetworkDelete(params *NetworkDeleteParams, opts ...ClientOption
 }
 
 /*
-NetworkGet gets the properties of a network
+  NetworkGet gets the properties of a network
 */
 func (a *Client) NetworkGet(params *NetworkGetParams, opts ...ClientOption) (*NetworkGetOK, error) {
 	// TODO: Validate the params before sending
@@ -153,7 +153,7 @@ func (a *Client) NetworkGet(params *NetworkGetParams, opts ...ClientOption) (*Ne
 }
 
 /*
-NetworkModify modifies a network
+  NetworkModify modifies a network
 */
 func (a *Client) NetworkModify(params *NetworkModifyParams, opts ...ClientOption) (*NetworkModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -190,7 +190,7 @@ func (a *Client) NetworkModify(params *NetworkModifyParams, opts ...ClientOption
 }
 
 /*
-NetworksList gets a list of networks
+  NetworksList gets a list of networks
 */
 func (a *Client) NetworksList(params *NetworksListParams, opts ...ClientOption) (*NetworksListOK, error) {
 	// TODO: Validate the params before sending

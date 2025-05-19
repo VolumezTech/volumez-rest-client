@@ -46,8 +46,7 @@ func NewSnapshotsListOK() *SnapshotsListOK {
 	return &SnapshotsListOK{}
 }
 
-/*
-	SnapshotsListOK describes a response with status code 200, with default header values.
+/* SnapshotsListOK describes a response with status code 200, with default header values.
 
 List of snapshots
 */
@@ -79,8 +78,7 @@ func NewSnapshotsListDefault(code int) *SnapshotsListDefault {
 	}
 }
 
-/*
-	SnapshotsListDefault describes a response with status code -1, with default header values.
+/* SnapshotsListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of snapshots
 */

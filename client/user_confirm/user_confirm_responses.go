@@ -52,8 +52,7 @@ func NewUserConfirmOK() *UserConfirmOK {
 	return &UserConfirmOK{}
 }
 
-/*
-	UserConfirmOK describes a response with status code 200, with default header values.
+/* UserConfirmOK describes a response with status code 200, with default header values.
 
 User has successfully confirmed
 */
@@ -85,8 +84,7 @@ func NewUserConfirmInternalServerError() *UserConfirmInternalServerError {
 	return &UserConfirmInternalServerError{}
 }
 
-/*
-	UserConfirmInternalServerError describes a response with status code 500, with default header values.
+/* UserConfirmInternalServerError describes a response with status code 500, with default header values.
 
 Error confirming user
 */
@@ -120,8 +118,7 @@ func NewUserConfirmDefault(code int) *UserConfirmDefault {
 	}
 }
 
-/*
-	UserConfirmDefault describes a response with status code -1, with default header values.
+/* UserConfirmDefault describes a response with status code -1, with default header values.
 
 User confirmation error
 */

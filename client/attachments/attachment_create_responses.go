@@ -46,8 +46,7 @@ func NewAttachmentCreateOK() *AttachmentCreateOK {
 	return &AttachmentCreateOK{}
 }
 
-/*
-	AttachmentCreateOK describes a response with status code 200, with default header values.
+/* AttachmentCreateOK describes a response with status code 200, with default header values.
 
 New attachment was created successfully
 */
@@ -81,8 +80,7 @@ func NewAttachmentCreateDefault(code int) *AttachmentCreateDefault {
 	}
 }
 
-/*
-	AttachmentCreateDefault describes a response with status code -1, with default header values.
+/* AttachmentCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new attachment
 */

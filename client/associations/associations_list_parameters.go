@@ -53,12 +53,10 @@ func NewAssociationsListParamsWithHTTPClient(client *http.Client) *AssociationsL
 	}
 }
 
-/*
-AssociationsListParams contains all the parameters to send to the API endpoint
+/* AssociationsListParams contains all the parameters to send to the API endpoint
+   for the associations list operation.
 
-	for the associations list operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type AssociationsListParams struct {
 

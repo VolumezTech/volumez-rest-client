@@ -45,8 +45,7 @@ func NewTenantusergetOK() *TenantusergetOK {
 	return &TenantusergetOK{}
 }
 
-/*
-	TenantusergetOK describes a response with status code 200, with default header values.
+/* TenantusergetOK describes a response with status code 200, with default header values.
 
 Got Tenant's User successfully
 */
@@ -78,8 +77,7 @@ func NewTenantusergetInternalServerError() *TenantusergetInternalServerError {
 	return &TenantusergetInternalServerError{}
 }
 
-/*
-	TenantusergetInternalServerError describes a response with status code 500, with default header values.
+/* TenantusergetInternalServerError describes a response with status code 500, with default header values.
 
 Error getting Tenant's User
 */

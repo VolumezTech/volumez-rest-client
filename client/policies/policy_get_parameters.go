@@ -52,12 +52,10 @@ func NewPolicyGetParamsWithHTTPClient(client *http.Client) *PolicyGetParams {
 	}
 }
 
-/*
-PolicyGetParams contains all the parameters to send to the API endpoint
+/* PolicyGetParams contains all the parameters to send to the API endpoint
+   for the policy get operation.
 
-	for the policy get operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type PolicyGetParams struct {
 

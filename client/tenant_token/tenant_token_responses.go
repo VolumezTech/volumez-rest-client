@@ -46,8 +46,7 @@ func NewTenantTokenOK() *TenantTokenOK {
 	return &TenantTokenOK{}
 }
 
-/*
-	TenantTokenOK describes a response with status code 200, with default header values.
+/* TenantTokenOK describes a response with status code 200, with default header values.
 
 Tenant's Token retrieval was successful
 */
@@ -81,8 +80,7 @@ func NewTenantTokenDefault(code int) *TenantTokenDefault {
 	}
 }
 
-/*
-	TenantTokenDefault describes a response with status code -1, with default header values.
+/* TenantTokenDefault describes a response with status code -1, with default header values.
 
 Error getting Tenant's Token
 */

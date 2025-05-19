@@ -1,6 +1,6 @@
 module github.com/VolumezTech/volumez-rest-client
 
-go 1.23
+go 1.24
 
 require (
 	github.com/go-openapi/errors v0.20.3

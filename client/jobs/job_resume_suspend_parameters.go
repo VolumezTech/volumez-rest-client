@@ -53,12 +53,10 @@ func NewJobResumeSuspendParamsWithHTTPClient(client *http.Client) *JobResumeSusp
 	}
 }
 
-/*
-JobResumeSuspendParams contains all the parameters to send to the API endpoint
+/* JobResumeSuspendParams contains all the parameters to send to the API endpoint
+   for the job resume suspend operation.
 
-	for the job resume suspend operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type JobResumeSuspendParams struct {
 

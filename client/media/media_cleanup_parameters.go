@@ -52,12 +52,10 @@ func NewMediaCleanupParamsWithHTTPClient(client *http.Client) *MediaCleanupParam
 	}
 }
 
-/*
-MediaCleanupParams contains all the parameters to send to the API endpoint
+/* MediaCleanupParams contains all the parameters to send to the API endpoint
+   for the media cleanup operation.
 
-	for the media cleanup operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type MediaCleanupParams struct {
 

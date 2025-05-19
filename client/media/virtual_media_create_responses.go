@@ -46,8 +46,7 @@ func NewVirtualMediaCreateOK() *VirtualMediaCreateOK {
 	return &VirtualMediaCreateOK{}
 }
 
-/*
-	VirtualMediaCreateOK describes a response with status code 200, with default header values.
+/* VirtualMediaCreateOK describes a response with status code 200, with default header values.
 
 Virtual media has been created successfully
 */
@@ -81,8 +80,7 @@ func NewVirtualMediaCreateDefault(code int) *VirtualMediaCreateDefault {
 	}
 }
 
-/*
-	VirtualMediaCreateDefault describes a response with status code -1, with default header values.
+/* VirtualMediaCreateDefault describes a response with status code -1, with default header values.
 
 Error creating virtual media
 */

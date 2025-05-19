@@ -46,8 +46,7 @@ func NewAlertsListOK() *AlertsListOK {
 	return &AlertsListOK{}
 }
 
-/*
-	AlertsListOK describes a response with status code 200, with default header values.
+/* AlertsListOK describes a response with status code 200, with default header values.
 
 List of alerts
 */
@@ -79,8 +78,7 @@ func NewAlertsListDefault(code int) *AlertsListDefault {
 	}
 }
 
-/*
-	AlertsListDefault describes a response with status code -1, with default header values.
+/* AlertsListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of alerts
 */

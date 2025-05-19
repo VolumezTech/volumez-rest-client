@@ -54,12 +54,10 @@ func NewNetworkCreateParamsWithHTTPClient(client *http.Client) *NetworkCreatePar
 	}
 }
 
-/*
-NetworkCreateParams contains all the parameters to send to the API endpoint
+/* NetworkCreateParams contains all the parameters to send to the API endpoint
+   for the network create operation.
 
-	for the network create operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type NetworkCreateParams struct {
 

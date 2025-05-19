@@ -46,8 +46,7 @@ func NewPolicyGetVolumesOK() *PolicyGetVolumesOK {
 	return &PolicyGetVolumesOK{}
 }
 
-/*
-	PolicyGetVolumesOK describes a response with status code 200, with default header values.
+/* PolicyGetVolumesOK describes a response with status code 200, with default header values.
 
 List of volumes, using given policy
 */
@@ -79,8 +78,7 @@ func NewPolicyGetVolumesDefault(code int) *PolicyGetVolumesDefault {
 	}
 }
 
-/*
-	PolicyGetVolumesDefault describes a response with status code -1, with default header values.
+/* PolicyGetVolumesDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a policy
 */

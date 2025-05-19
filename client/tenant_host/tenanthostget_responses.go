@@ -45,8 +45,7 @@ func NewTenanthostgetOK() *TenanthostgetOK {
 	return &TenanthostgetOK{}
 }
 
-/*
-	TenanthostgetOK describes a response with status code 200, with default header values.
+/* TenanthostgetOK describes a response with status code 200, with default header values.
 
 Got Tenant's Host successfully
 */
@@ -78,8 +77,7 @@ func NewTenanthostgetInternalServerError() *TenanthostgetInternalServerError {
 	return &TenanthostgetInternalServerError{}
 }
 
-/*
-	TenanthostgetInternalServerError describes a response with status code 500, with default header values.
+/* TenanthostgetInternalServerError describes a response with status code 500, with default header values.
 
 Error getting Tenant's Host
 */

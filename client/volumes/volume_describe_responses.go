@@ -46,8 +46,7 @@ func NewVolumeDescribeOK() *VolumeDescribeOK {
 	return &VolumeDescribeOK{}
 }
 
-/*
-	VolumeDescribeOK describes a response with status code 200, with default header values.
+/* VolumeDescribeOK describes a response with status code 200, with default header values.
 
 the Volume information
 */
@@ -81,8 +80,7 @@ func NewVolumeDescribeDefault(code int) *VolumeDescribeDefault {
 	}
 }
 
-/*
-	VolumeDescribeDefault describes a response with status code -1, with default header values.
+/* VolumeDescribeDefault describes a response with status code -1, with default header values.
 
 Error Getting volume plan
 */

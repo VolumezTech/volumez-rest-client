@@ -46,8 +46,7 @@ func NewNodeDrainOK() *NodeDrainOK {
 	return &NodeDrainOK{}
 }
 
-/*
-	NodeDrainOK describes a response with status code 200, with default header values.
+/* NodeDrainOK describes a response with status code 200, with default header values.
 
 Operation completed successfully
 */
@@ -81,8 +80,7 @@ func NewNodeDrainDefault(code int) *NodeDrainDefault {
 	}
 }
 
-/*
-	NodeDrainDefault describes a response with status code -1, with default header values.
+/* NodeDrainDefault describes a response with status code -1, with default header values.
 
 Error draining node
 */

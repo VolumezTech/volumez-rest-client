@@ -46,8 +46,7 @@ func NewNetworkCreateOK() *NetworkCreateOK {
 	return &NetworkCreateOK{}
 }
 
-/*
-	NetworkCreateOK describes a response with status code 200, with default header values.
+/* NetworkCreateOK describes a response with status code 200, with default header values.
 
 New network was created successfully
 */
@@ -81,8 +80,7 @@ func NewNetworkCreateDefault(code int) *NetworkCreateDefault {
 	}
 }
 
-/*
-	NetworkCreateDefault describes a response with status code -1, with default header values.
+/* NetworkCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new network
 */

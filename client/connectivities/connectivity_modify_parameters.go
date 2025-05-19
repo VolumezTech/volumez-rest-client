@@ -54,12 +54,10 @@ func NewConnectivityModifyParamsWithHTTPClient(client *http.Client) *Connectivit
 	}
 }
 
-/*
-ConnectivityModifyParams contains all the parameters to send to the API endpoint
+/* ConnectivityModifyParams contains all the parameters to send to the API endpoint
+   for the connectivity modify operation.
 
-	for the connectivity modify operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type ConnectivityModifyParams struct {
 

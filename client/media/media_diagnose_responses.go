@@ -46,8 +46,7 @@ func NewMediaDiagnoseOK() *MediaDiagnoseOK {
 	return &MediaDiagnoseOK{}
 }
 
-/*
-	MediaDiagnoseOK describes a response with status code 200, with default header values.
+/* MediaDiagnoseOK describes a response with status code 200, with default header values.
 
 Operation completed successfully
 */
@@ -81,8 +80,7 @@ func NewMediaDiagnoseDefault(code int) *MediaDiagnoseDefault {
 	}
 }
 
-/*
-	MediaDiagnoseDefault describes a response with status code -1, with default header values.
+/* MediaDiagnoseDefault describes a response with status code -1, with default header values.
 
 Error diagnosing media
 */

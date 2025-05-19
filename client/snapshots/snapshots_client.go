@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-ConsistencyGroupGet lists of snapshots group
+  ConsistencyGroupGet lists of snapshots group
 */
 func (a *Client) ConsistencyGroupGet(params *ConsistencyGroupGetParams, opts ...ClientOption) (*ConsistencyGroupGetOK, error) {
 	// TODO: Validate the params before sending
@@ -87,7 +87,7 @@ func (a *Client) ConsistencyGroupGet(params *ConsistencyGroupGetParams, opts ...
 }
 
 /*
-ConsistencyGroupSnapshotCreate creates a new snapshot for given consistency group
+  ConsistencyGroupSnapshotCreate creates a new snapshot for given consistency group
 */
 func (a *Client) ConsistencyGroupSnapshotCreate(params *ConsistencyGroupSnapshotCreateParams, opts ...ClientOption) (*ConsistencyGroupSnapshotCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -124,7 +124,7 @@ func (a *Client) ConsistencyGroupSnapshotCreate(params *ConsistencyGroupSnapshot
 }
 
 /*
-SnapshotCreate creates a new snapshot
+  SnapshotCreate creates a new snapshot
 */
 func (a *Client) SnapshotCreate(params *SnapshotCreateParams, opts ...ClientOption) (*SnapshotCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -161,7 +161,7 @@ func (a *Client) SnapshotCreate(params *SnapshotCreateParams, opts ...ClientOpti
 }
 
 /*
-SnapshotDelete deletes a snapshot
+  SnapshotDelete deletes a snapshot
 */
 func (a *Client) SnapshotDelete(params *SnapshotDeleteParams, opts ...ClientOption) (*SnapshotDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -198,7 +198,7 @@ func (a *Client) SnapshotDelete(params *SnapshotDeleteParams, opts ...ClientOpti
 }
 
 /*
-SnapshotGet gets the properties of a snapshot
+  SnapshotGet gets the properties of a snapshot
 */
 func (a *Client) SnapshotGet(params *SnapshotGetParams, opts ...ClientOption) (*SnapshotGetOK, error) {
 	// TODO: Validate the params before sending
@@ -235,7 +235,7 @@ func (a *Client) SnapshotGet(params *SnapshotGetParams, opts ...ClientOption) (*
 }
 
 /*
-SnapshotModify modifies a snapshot
+  SnapshotModify modifies a snapshot
 */
 func (a *Client) SnapshotModify(params *SnapshotModifyParams, opts ...ClientOption) (*SnapshotModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -272,7 +272,7 @@ func (a *Client) SnapshotModify(params *SnapshotModifyParams, opts ...ClientOpti
 }
 
 /*
-SnapshotRollback rolls back to snapshot
+  SnapshotRollback rolls back to snapshot
 */
 func (a *Client) SnapshotRollback(params *SnapshotRollbackParams, opts ...ClientOption) (*SnapshotRollbackOK, error) {
 	// TODO: Validate the params before sending
@@ -309,7 +309,7 @@ func (a *Client) SnapshotRollback(params *SnapshotRollbackParams, opts ...Client
 }
 
 /*
-SnapshotsList gets a list of snapshots
+  SnapshotsList gets a list of snapshots
 */
 func (a *Client) SnapshotsList(params *SnapshotsListParams, opts ...ClientOption) (*SnapshotsListOK, error) {
 	// TODO: Validate the params before sending
@@ -346,7 +346,7 @@ func (a *Client) SnapshotsList(params *SnapshotsListParams, opts ...ClientOption
 }
 
 /*
-SnapshotsListAll gets a list of all snapshots
+  SnapshotsListAll gets a list of all snapshots
 */
 func (a *Client) SnapshotsListAll(params *SnapshotsListAllParams, opts ...ClientOption) (*SnapshotsListAllOK, error) {
 	// TODO: Validate the params before sending

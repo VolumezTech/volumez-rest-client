@@ -46,8 +46,7 @@ func NewPolicyCreateOK() *PolicyCreateOK {
 	return &PolicyCreateOK{}
 }
 
-/*
-	PolicyCreateOK describes a response with status code 200, with default header values.
+/* PolicyCreateOK describes a response with status code 200, with default header values.
 
 New policy was created successfully
 */
@@ -81,8 +80,7 @@ func NewPolicyCreateDefault(code int) *PolicyCreateDefault {
 	}
 }
 
-/*
-	PolicyCreateDefault describes a response with status code -1, with default header values.
+/* PolicyCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new policy
 */

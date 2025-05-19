@@ -46,8 +46,7 @@ func NewAttachmentModifyOK() *AttachmentModifyOK {
 	return &AttachmentModifyOK{}
 }
 
-/*
-	AttachmentModifyOK describes a response with status code 200, with default header values.
+/* AttachmentModifyOK describes a response with status code 200, with default header values.
 
 An attachment was updated successfully
 */
@@ -81,8 +80,7 @@ func NewAttachmentModifyDefault(code int) *AttachmentModifyDefault {
 	}
 }
 
-/*
-	AttachmentModifyDefault describes a response with status code -1, with default header values.
+/* AttachmentModifyDefault describes a response with status code -1, with default header values.
 
 Error updating an attachment
 */

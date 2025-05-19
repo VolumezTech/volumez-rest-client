@@ -54,12 +54,10 @@ func NewTenantUserCreateParamsWithHTTPClient(client *http.Client) *TenantUserCre
 	}
 }
 
-/*
-TenantUserCreateParams contains all the parameters to send to the API endpoint
+/* TenantUserCreateParams contains all the parameters to send to the API endpoint
+   for the tenant user create operation.
 
-	for the tenant user create operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type TenantUserCreateParams struct {
 

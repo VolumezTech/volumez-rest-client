@@ -52,12 +52,10 @@ func NewPoliciesListParamsWithHTTPClient(client *http.Client) *PoliciesListParam
 	}
 }
 
-/*
-PoliciesListParams contains all the parameters to send to the API endpoint
+/* PoliciesListParams contains all the parameters to send to the API endpoint
+   for the policies list operation.
 
-	for the policies list operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type PoliciesListParams struct {
 

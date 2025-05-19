@@ -45,8 +45,7 @@ func NewTenanthostAccessCredentialsOK() *TenanthostAccessCredentialsOK {
 	return &TenanthostAccessCredentialsOK{}
 }
 
-/*
-	TenanthostAccessCredentialsOK describes a response with status code 200, with default header values.
+/* TenanthostAccessCredentialsOK describes a response with status code 200, with default header values.
 
 200 response
 */
@@ -87,8 +86,7 @@ func NewTenanthostAccessCredentialsInternalServerError() *TenanthostAccessCreden
 	return &TenanthostAccessCredentialsInternalServerError{}
 }
 
-/*
-	TenanthostAccessCredentialsInternalServerError describes a response with status code 500, with default header values.
+/* TenanthostAccessCredentialsInternalServerError describes a response with status code 500, with default header values.
 
 Error getting ID Token from Tenant's Host Token (Refresh Token)
 */

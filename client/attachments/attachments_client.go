@@ -46,7 +46,7 @@ type ClientService interface {
 }
 
 /*
-AttachmentCreate creates a new attachment
+  AttachmentCreate creates a new attachment
 */
 func (a *Client) AttachmentCreate(params *AttachmentCreateParams, opts ...ClientOption) (*AttachmentCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -83,7 +83,7 @@ func (a *Client) AttachmentCreate(params *AttachmentCreateParams, opts ...Client
 }
 
 /*
-AttachmentDelete deletes an attachment
+  AttachmentDelete deletes an attachment
 */
 func (a *Client) AttachmentDelete(params *AttachmentDeleteParams, opts ...ClientOption) (*AttachmentDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -120,7 +120,7 @@ func (a *Client) AttachmentDelete(params *AttachmentDeleteParams, opts ...Client
 }
 
 /*
-AttachmentGet gets the properties of an attachment
+  AttachmentGet gets the properties of an attachment
 */
 func (a *Client) AttachmentGet(params *AttachmentGetParams, opts ...ClientOption) (*AttachmentGetOK, error) {
 	// TODO: Validate the params before sending
@@ -157,7 +157,7 @@ func (a *Client) AttachmentGet(params *AttachmentGetParams, opts ...ClientOption
 }
 
 /*
-AttachmentModify modifies an attachment
+  AttachmentModify modifies an attachment
 */
 func (a *Client) AttachmentModify(params *AttachmentModifyParams, opts ...ClientOption) (*AttachmentModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -194,7 +194,7 @@ func (a *Client) AttachmentModify(params *AttachmentModifyParams, opts ...Client
 }
 
 /*
-AttachmentsList gets a list of attachments for a given volume and snapshot
+  AttachmentsList gets a list of attachments for a given volume and snapshot
 */
 func (a *Client) AttachmentsList(params *AttachmentsListParams, opts ...ClientOption) (*AttachmentsListOK, error) {
 	// TODO: Validate the params before sending
@@ -231,7 +231,7 @@ func (a *Client) AttachmentsList(params *AttachmentsListParams, opts ...ClientOp
 }
 
 /*
-AttachmentsListAll gets a list of all attachments
+  AttachmentsListAll gets a list of all attachments
 */
 func (a *Client) AttachmentsListAll(params *AttachmentsListAllParams, opts ...ClientOption) (*AttachmentsListAllOK, error) {
 	// TODO: Validate the params before sending
@@ -268,7 +268,7 @@ func (a *Client) AttachmentsListAll(params *AttachmentsListAllParams, opts ...Cl
 }
 
 /*
-AttachmentsListForVolume gets a list of attachments for a given volume
+  AttachmentsListForVolume gets a list of attachments for a given volume
 */
 func (a *Client) AttachmentsListForVolume(params *AttachmentsListForVolumeParams, opts ...ClientOption) (*AttachmentsListForVolumeOK, error) {
 	// TODO: Validate the params before sending

@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-AssociationCreate creates association
+  AssociationCreate creates association
 */
 func (a *Client) AssociationCreate(params *AssociationCreateParams, opts ...ClientOption) (*AssociationCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) AssociationCreate(params *AssociationCreateParams, opts ...Clie
 }
 
 /*
-AssociationDelete deletes an association
+  AssociationDelete deletes an association
 */
 func (a *Client) AssociationDelete(params *AssociationDeleteParams, opts ...ClientOption) (*AssociationDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -114,7 +114,7 @@ func (a *Client) AssociationDelete(params *AssociationDeleteParams, opts ...Clie
 }
 
 /*
-AssociationModify associations modify
+  AssociationModify associations modify
 */
 func (a *Client) AssociationModify(params *AssociationModifyParams, opts ...ClientOption) (*AssociationModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -151,7 +151,7 @@ func (a *Client) AssociationModify(params *AssociationModifyParams, opts ...Clie
 }
 
 /*
-AssociationsList gets a list of associations
+  AssociationsList gets a list of associations
 */
 func (a *Client) AssociationsList(params *AssociationsListParams, opts ...ClientOption) (*AssociationsListOK, error) {
 	// TODO: Validate the params before sending

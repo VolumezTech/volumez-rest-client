@@ -46,8 +46,7 @@ func NewJobsListOK() *JobsListOK {
 	return &JobsListOK{}
 }
 
-/*
-	JobsListOK describes a response with status code 200, with default header values.
+/* JobsListOK describes a response with status code 200, with default header values.
 
 List of jobs
 */
@@ -79,8 +78,7 @@ func NewJobsListDefault(code int) *JobsListDefault {
 	}
 }
 
-/*
-	JobsListDefault describes a response with status code -1, with default header values.
+/* JobsListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of jobs
 */

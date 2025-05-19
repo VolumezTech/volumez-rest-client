@@ -46,8 +46,7 @@ func NewVirtualMediaDeleteOK() *VirtualMediaDeleteOK {
 	return &VirtualMediaDeleteOK{}
 }
 
-/*
-	VirtualMediaDeleteOK describes a response with status code 200, with default header values.
+/* VirtualMediaDeleteOK describes a response with status code 200, with default header values.
 
 Virtual media was deleted successfully
 */
@@ -81,8 +80,7 @@ func NewVirtualMediaDeleteDefault(code int) *VirtualMediaDeleteDefault {
 	}
 }
 
-/*
-	VirtualMediaDeleteDefault describes a response with status code -1, with default header values.
+/* VirtualMediaDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting virtual media
 */

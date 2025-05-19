@@ -52,12 +52,10 @@ func NewMediaDrainParamsWithHTTPClient(client *http.Client) *MediaDrainParams {
 	}
 }
 
-/*
-MediaDrainParams contains all the parameters to send to the API endpoint
+/* MediaDrainParams contains all the parameters to send to the API endpoint
+   for the media drain operation.
 
-	for the media drain operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type MediaDrainParams struct {
 

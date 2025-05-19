@@ -46,8 +46,7 @@ func NewMediaDrainOK() *MediaDrainOK {
 	return &MediaDrainOK{}
 }
 
-/*
-	MediaDrainOK describes a response with status code 200, with default header values.
+/* MediaDrainOK describes a response with status code 200, with default header values.
 
 Operation completed successfully
 */
@@ -81,8 +80,7 @@ func NewMediaDrainDefault(code int) *MediaDrainDefault {
 	}
 }
 
-/*
-	MediaDrainDefault describes a response with status code -1, with default header values.
+/* MediaDrainDefault describes a response with status code -1, with default header values.
 
 Error draining media
 */

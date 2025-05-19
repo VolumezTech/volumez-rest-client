@@ -46,8 +46,7 @@ func NewMediaProfileModifyOK() *MediaProfileModifyOK {
 	return &MediaProfileModifyOK{}
 }
 
-/*
-	MediaProfileModifyOK describes a response with status code 200, with default header values.
+/* MediaProfileModifyOK describes a response with status code 200, with default header values.
 
 A media profile was updated successfully
 */
@@ -81,8 +80,7 @@ func NewMediaProfileModifyDefault(code int) *MediaProfileModifyDefault {
 	}
 }
 
-/*
-	MediaProfileModifyDefault describes a response with status code -1, with default header values.
+/* MediaProfileModifyDefault describes a response with status code -1, with default header values.
 
 Error updating a media profile
 */

@@ -46,8 +46,7 @@ func NewAttachmentsListAllOK() *AttachmentsListAllOK {
 	return &AttachmentsListAllOK{}
 }
 
-/*
-	AttachmentsListAllOK describes a response with status code 200, with default header values.
+/* AttachmentsListAllOK describes a response with status code 200, with default header values.
 
 List of all attachments
 */
@@ -79,8 +78,7 @@ func NewAttachmentsListAllDefault(code int) *AttachmentsListAllDefault {
 	}
 }
 
-/*
-	AttachmentsListAllDefault describes a response with status code -1, with default header values.
+/* AttachmentsListAllDefault describes a response with status code -1, with default header values.
 
 Error getting a list of all attachments
 */

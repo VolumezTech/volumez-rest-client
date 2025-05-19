@@ -46,8 +46,7 @@ func NewMediaAssignOK() *MediaAssignOK {
 	return &MediaAssignOK{}
 }
 
-/*
-	MediaAssignOK describes a response with status code 200, with default header values.
+/* MediaAssignOK describes a response with status code 200, with default header values.
 
 Operation completed successfully
 */
@@ -81,8 +80,7 @@ func NewMediaAssignDefault(code int) *MediaAssignDefault {
 	}
 }
 
-/*
-	MediaAssignDefault describes a response with status code -1, with default header values.
+/* MediaAssignDefault describes a response with status code -1, with default header values.
 
 Error completing the operation
 */

@@ -54,12 +54,10 @@ func NewNodeUpgradeParamsWithHTTPClient(client *http.Client) *NodeUpgradeParams 
 	}
 }
 
-/*
-NodeUpgradeParams contains all the parameters to send to the API endpoint
+/* NodeUpgradeParams contains all the parameters to send to the API endpoint
+   for the node upgrade operation.
 
-	for the node upgrade operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type NodeUpgradeParams struct {
 

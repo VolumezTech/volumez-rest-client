@@ -46,8 +46,7 @@ func NewAttachmentsListForVolumeOK() *AttachmentsListForVolumeOK {
 	return &AttachmentsListForVolumeOK{}
 }
 
-/*
-	AttachmentsListForVolumeOK describes a response with status code 200, with default header values.
+/* AttachmentsListForVolumeOK describes a response with status code 200, with default header values.
 
 List of attachments
 */
@@ -79,8 +78,7 @@ func NewAttachmentsListForVolumeDefault(code int) *AttachmentsListForVolumeDefau
 	}
 }
 
-/*
-	AttachmentsListForVolumeDefault describes a response with status code -1, with default header values.
+/* AttachmentsListForVolumeDefault describes a response with status code -1, with default header values.
 
 Error getting a list of attachments
 */

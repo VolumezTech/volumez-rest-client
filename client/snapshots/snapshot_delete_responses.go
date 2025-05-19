@@ -46,8 +46,7 @@ func NewSnapshotDeleteOK() *SnapshotDeleteOK {
 	return &SnapshotDeleteOK{}
 }
 
-/*
-	SnapshotDeleteOK describes a response with status code 200, with default header values.
+/* SnapshotDeleteOK describes a response with status code 200, with default header values.
 
 A snapshot was deleted successfully
 */
@@ -81,8 +80,7 @@ func NewSnapshotDeleteDefault(code int) *SnapshotDeleteDefault {
 	}
 }
 
-/*
-	SnapshotDeleteDefault describes a response with status code -1, with default header values.
+/* SnapshotDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a snapshot
 */

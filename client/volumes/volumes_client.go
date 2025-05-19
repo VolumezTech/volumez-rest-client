@@ -48,7 +48,7 @@ type ClientService interface {
 }
 
 /*
-BatchVolumesPlan checks if volumes can be created
+  BatchVolumesPlan checks if volumes can be created
 */
 func (a *Client) BatchVolumesPlan(params *BatchVolumesPlanParams, opts ...ClientOption) (*BatchVolumesPlanOK, error) {
 	// TODO: Validate the params before sending
@@ -85,7 +85,7 @@ func (a *Client) BatchVolumesPlan(params *BatchVolumesPlanParams, opts ...Client
 }
 
 /*
-VolumeCreate creates a new volume
+  VolumeCreate creates a new volume
 */
 func (a *Client) VolumeCreate(params *VolumeCreateParams, opts ...ClientOption) (*VolumeCreateOK, *VolumeCreateAccepted, error) {
 	// TODO: Validate the params before sending
@@ -124,7 +124,7 @@ func (a *Client) VolumeCreate(params *VolumeCreateParams, opts ...ClientOption) 
 }
 
 /*
-VolumeDelete deletes a volume
+  VolumeDelete deletes a volume
 */
 func (a *Client) VolumeDelete(params *VolumeDeleteParams, opts ...ClientOption) (*VolumeDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -161,7 +161,7 @@ func (a *Client) VolumeDelete(params *VolumeDeleteParams, opts ...ClientOption) 
 }
 
 /*
-VolumeDescribe describes existing volume
+  VolumeDescribe describes existing volume
 */
 func (a *Client) VolumeDescribe(params *VolumeDescribeParams, opts ...ClientOption) (*VolumeDescribeOK, error) {
 	// TODO: Validate the params before sending
@@ -198,7 +198,7 @@ func (a *Client) VolumeDescribe(params *VolumeDescribeParams, opts ...ClientOpti
 }
 
 /*
-VolumeGet gets the properties of a volume
+  VolumeGet gets the properties of a volume
 */
 func (a *Client) VolumeGet(params *VolumeGetParams, opts ...ClientOption) (*VolumeGetOK, error) {
 	// TODO: Validate the params before sending
@@ -235,7 +235,7 @@ func (a *Client) VolumeGet(params *VolumeGetParams, opts ...ClientOption) (*Volu
 }
 
 /*
-VolumeModify modifies a volume
+  VolumeModify modifies a volume
 */
 func (a *Client) VolumeModify(params *VolumeModifyParams, opts ...ClientOption) (*VolumeModifyOK, error) {
 	// TODO: Validate the params before sending
@@ -272,7 +272,7 @@ func (a *Client) VolumeModify(params *VolumeModifyParams, opts ...ClientOption) 
 }
 
 /*
-VolumeRecoverInitiate initiates recover on volume
+  VolumeRecoverInitiate initiates recover on volume
 */
 func (a *Client) VolumeRecoverInitiate(params *VolumeRecoverInitiateParams, opts ...ClientOption) (*VolumeRecoverInitiateOK, error) {
 	// TODO: Validate the params before sending
@@ -309,7 +309,7 @@ func (a *Client) VolumeRecoverInitiate(params *VolumeRecoverInitiateParams, opts
 }
 
 /*
-VolumesList gets a list of volumes
+  VolumesList gets a list of volumes
 */
 func (a *Client) VolumesList(params *VolumesListParams, opts ...ClientOption) (*VolumesListOK, error) {
 	// TODO: Validate the params before sending

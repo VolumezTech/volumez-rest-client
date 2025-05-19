@@ -46,8 +46,7 @@ func NewAssociationCreateOK() *AssociationCreateOK {
 	return &AssociationCreateOK{}
 }
 
-/*
-	AssociationCreateOK describes a response with status code 200, with default header values.
+/* AssociationCreateOK describes a response with status code 200, with default header values.
 
 Association has been created successfully
 */
@@ -81,8 +80,7 @@ func NewAssociationCreateDefault(code int) *AssociationCreateDefault {
 	}
 }
 
-/*
-	AssociationCreateDefault describes a response with status code -1, with default header values.
+/* AssociationCreateDefault describes a response with status code -1, with default header values.
 
 Error creating association
 */

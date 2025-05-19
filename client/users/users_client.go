@@ -40,7 +40,7 @@ type ClientService interface {
 }
 
 /*
-Signout signs out user from all devices
+  Signout signs out user from all devices
 */
 func (a *Client) Signout(params *SignoutParams, opts ...ClientOption) (*SignoutOK, error) {
 	// TODO: Validate the params before sending
@@ -77,7 +77,7 @@ func (a *Client) Signout(params *SignoutParams, opts ...ClientOption) (*SignoutO
 }
 
 /*
-TenantUserCreate creates tenant s additional user
+  TenantUserCreate creates tenant s additional user
 */
 func (a *Client) TenantUserCreate(params *TenantUserCreateParams, opts ...ClientOption) (*TenantUserCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -114,7 +114,7 @@ func (a *Client) TenantUserCreate(params *TenantUserCreateParams, opts ...Client
 }
 
 /*
-UserCreate creates tenant s first user
+  UserCreate creates tenant s first user
 */
 func (a *Client) UserCreate(params *UserCreateParams, opts ...ClientOption) (*UserCreateOK, error) {
 	// TODO: Validate the params before sending

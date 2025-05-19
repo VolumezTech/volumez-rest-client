@@ -53,12 +53,10 @@ func NewMediaAssignLegacyParamsWithHTTPClient(client *http.Client) *MediaAssignL
 	}
 }
 
-/*
-MediaAssignLegacyParams contains all the parameters to send to the API endpoint
+/* MediaAssignLegacyParams contains all the parameters to send to the API endpoint
+   for the media assign legacy operation.
 
-	for the media assign legacy operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type MediaAssignLegacyParams struct {
 

@@ -46,8 +46,7 @@ func NewPolicyDeleteOK() *PolicyDeleteOK {
 	return &PolicyDeleteOK{}
 }
 
-/*
-	PolicyDeleteOK describes a response with status code 200, with default header values.
+/* PolicyDeleteOK describes a response with status code 200, with default header values.
 
 A policy was deleted successfully
 */
@@ -81,8 +80,7 @@ func NewPolicyDeleteDefault(code int) *PolicyDeleteDefault {
 	}
 }
 
-/*
-	PolicyDeleteDefault describes a response with status code -1, with default header values.
+/* PolicyDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a policy
 */

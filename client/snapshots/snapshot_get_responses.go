@@ -46,8 +46,7 @@ func NewSnapshotGetOK() *SnapshotGetOK {
 	return &SnapshotGetOK{}
 }
 
-/*
-	SnapshotGetOK describes a response with status code 200, with default header values.
+/* SnapshotGetOK describes a response with status code 200, with default header values.
 
 Properties of a snapshot
 */
@@ -81,8 +80,7 @@ func NewSnapshotGetDefault(code int) *SnapshotGetDefault {
 	}
 }
 
-/*
-	SnapshotGetDefault describes a response with status code -1, with default header values.
+/* SnapshotGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a snapshot
 */

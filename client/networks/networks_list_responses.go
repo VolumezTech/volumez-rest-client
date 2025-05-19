@@ -46,8 +46,7 @@ func NewNetworksListOK() *NetworksListOK {
 	return &NetworksListOK{}
 }
 
-/*
-	NetworksListOK describes a response with status code 200, with default header values.
+/* NetworksListOK describes a response with status code 200, with default header values.
 
 List of networks
 */
@@ -79,8 +78,7 @@ func NewNetworksListDefault(code int) *NetworksListDefault {
 	}
 }
 
-/*
-	NetworksListDefault describes a response with status code -1, with default header values.
+/* NetworksListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of networks
 */

@@ -52,12 +52,10 @@ func NewMediaUnassignParamsWithHTTPClient(client *http.Client) *MediaUnassignPar
 	}
 }
 
-/*
-MediaUnassignParams contains all the parameters to send to the API endpoint
+/* MediaUnassignParams contains all the parameters to send to the API endpoint
+   for the media unassign operation.
 
-	for the media unassign operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type MediaUnassignParams struct {
 

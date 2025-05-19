@@ -54,12 +54,10 @@ func NewConnectivityCreateParamsWithHTTPClient(client *http.Client) *Connectivit
 	}
 }
 
-/*
-ConnectivityCreateParams contains all the parameters to send to the API endpoint
+/* ConnectivityCreateParams contains all the parameters to send to the API endpoint
+   for the connectivity create operation.
 
-	for the connectivity create operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type ConnectivityCreateParams struct {
 

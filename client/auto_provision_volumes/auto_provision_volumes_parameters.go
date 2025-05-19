@@ -54,12 +54,10 @@ func NewAutoProvisionVolumesParamsWithHTTPClient(client *http.Client) *AutoProvi
 	}
 }
 
-/*
-AutoProvisionVolumesParams contains all the parameters to send to the API endpoint
+/* AutoProvisionVolumesParams contains all the parameters to send to the API endpoint
+   for the auto provision volumes operation.
 
-	for the auto provision volumes operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type AutoProvisionVolumesParams struct {
 

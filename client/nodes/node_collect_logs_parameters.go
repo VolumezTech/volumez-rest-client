@@ -52,12 +52,10 @@ func NewNodeCollectLogsParamsWithHTTPClient(client *http.Client) *NodeCollectLog
 	}
 }
 
-/*
-NodeCollectLogsParams contains all the parameters to send to the API endpoint
+/* NodeCollectLogsParams contains all the parameters to send to the API endpoint
+   for the node collect logs operation.
 
-	for the node collect logs operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type NodeCollectLogsParams struct {
 

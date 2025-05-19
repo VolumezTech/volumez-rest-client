@@ -46,8 +46,7 @@ func NewConnectivityGetOK() *ConnectivityGetOK {
 	return &ConnectivityGetOK{}
 }
 
-/*
-	ConnectivityGetOK describes a response with status code 200, with default header values.
+/* ConnectivityGetOK describes a response with status code 200, with default header values.
 
 Properties of a connectivity
 */
@@ -81,8 +80,7 @@ func NewConnectivityGetDefault(code int) *ConnectivityGetDefault {
 	}
 }
 
-/*
-	ConnectivityGetDefault describes a response with status code -1, with default header values.
+/* ConnectivityGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a connectivity
 */

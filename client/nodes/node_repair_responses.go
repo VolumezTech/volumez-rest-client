@@ -58,8 +58,7 @@ func NewNodeRepairOK() *NodeRepairOK {
 	return &NodeRepairOK{}
 }
 
-/*
-	NodeRepairOK describes a response with status code 200, with default header values.
+/* NodeRepairOK describes a response with status code 200, with default header values.
 
 Node Repair job was created successfully
 */
@@ -91,8 +90,7 @@ func NewNodeRepairBadRequest() *NodeRepairBadRequest {
 	return &NodeRepairBadRequest{}
 }
 
-/*
-	NodeRepairBadRequest describes a response with status code 400, with default header values.
+/* NodeRepairBadRequest describes a response with status code 400, with default header values.
 
 Invalid node name supplied
 */
@@ -124,8 +122,7 @@ func NewNodeRepairNotFound() *NodeRepairNotFound {
 	return &NodeRepairNotFound{}
 }
 
-/*
-	NodeRepairNotFound describes a response with status code 404, with default header values.
+/* NodeRepairNotFound describes a response with status code 404, with default header values.
 
 Node not found
 */
@@ -159,8 +156,7 @@ func NewNodeRepairDefault(code int) *NodeRepairDefault {
 	}
 }
 
-/*
-	NodeRepairDefault describes a response with status code -1, with default header values.
+/* NodeRepairDefault describes a response with status code -1, with default header values.
 
 Error trying to create node repair job
 */

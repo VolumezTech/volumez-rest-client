@@ -52,12 +52,10 @@ func NewGetMachineInfoParamsWithHTTPClient(client *http.Client) *GetMachineInfoP
 	}
 }
 
-/*
-GetMachineInfoParams contains all the parameters to send to the API endpoint
+/* GetMachineInfoParams contains all the parameters to send to the API endpoint
+   for the get machine info operation.
 
-	for the get machine info operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type GetMachineInfoParams struct {
 

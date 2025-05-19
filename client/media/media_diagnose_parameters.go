@@ -52,12 +52,10 @@ func NewMediaDiagnoseParamsWithHTTPClient(client *http.Client) *MediaDiagnosePar
 	}
 }
 
-/*
-MediaDiagnoseParams contains all the parameters to send to the API endpoint
+/* MediaDiagnoseParams contains all the parameters to send to the API endpoint
+   for the media diagnose operation.
 
-	for the media diagnose operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type MediaDiagnoseParams struct {
 

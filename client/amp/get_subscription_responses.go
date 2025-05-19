@@ -52,8 +52,7 @@ func NewGetSubscriptionOK() *GetSubscriptionOK {
 	return &GetSubscriptionOK{}
 }
 
-/*
-	GetSubscriptionOK describes a response with status code 200, with default header values.
+/* GetSubscriptionOK describes a response with status code 200, with default header values.
 
 confirmation of subscription registered
 */
@@ -85,8 +84,7 @@ func NewGetSubscriptionNotFound() *GetSubscriptionNotFound {
 	return &GetSubscriptionNotFound{}
 }
 
-/*
-	GetSubscriptionNotFound describes a response with status code 404, with default header values.
+/* GetSubscriptionNotFound describes a response with status code 404, with default header values.
 
 Subscrition not available
 */
@@ -120,8 +118,7 @@ func NewGetSubscriptionDefault(code int) *GetSubscriptionDefault {
 	}
 }
 
-/*
-	GetSubscriptionDefault describes a response with status code -1, with default header values.
+/* GetSubscriptionDefault describes a response with status code -1, with default header values.
 
 Error Getting volume plan
 */

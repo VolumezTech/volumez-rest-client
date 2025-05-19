@@ -54,12 +54,10 @@ func NewNodeSetTagsParamsWithHTTPClient(client *http.Client) *NodeSetTagsParams 
 	}
 }
 
-/*
-NodeSetTagsParams contains all the parameters to send to the API endpoint
+/* NodeSetTagsParams contains all the parameters to send to the API endpoint
+   for the node set tags operation.
 
-	for the node set tags operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type NodeSetTagsParams struct {
 

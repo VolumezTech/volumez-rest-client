@@ -51,8 +51,7 @@ func NewConsistencyGroupSnapshotCreateOK() *ConsistencyGroupSnapshotCreateOK {
 	return &ConsistencyGroupSnapshotCreateOK{}
 }
 
-/*
-	ConsistencyGroupSnapshotCreateOK describes a response with status code 200, with default header values.
+/* ConsistencyGroupSnapshotCreateOK describes a response with status code 200, with default header values.
 
 New snapshot was created successfully
 */
@@ -86,8 +85,7 @@ func NewConsistencyGroupSnapshotCreateDefault(code int) *ConsistencyGroupSnapsho
 	}
 }
 
-/*
-	ConsistencyGroupSnapshotCreateDefault describes a response with status code -1, with default header values.
+/* ConsistencyGroupSnapshotCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new snapshot
 */
@@ -121,8 +119,7 @@ func (o *ConsistencyGroupSnapshotCreateDefault) readResponse(response runtime.Cl
 	return nil
 }
 
-/*
-ConsistencyGroupSnapshotCreateBody consistency group snapshot create body
+/*ConsistencyGroupSnapshotCreateBody consistency group snapshot create body
 swagger:model ConsistencyGroupSnapshotCreateBody
 */
 type ConsistencyGroupSnapshotCreateBody struct {

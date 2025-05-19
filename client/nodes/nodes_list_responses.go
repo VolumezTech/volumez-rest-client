@@ -46,8 +46,7 @@ func NewNodesListOK() *NodesListOK {
 	return &NodesListOK{}
 }
 
-/*
-	NodesListOK describes a response with status code 200, with default header values.
+/* NodesListOK describes a response with status code 200, with default header values.
 
 List of nodes
 */
@@ -79,8 +78,7 @@ func NewNodesListDefault(code int) *NodesListDefault {
 	}
 }
 
-/*
-	NodesListDefault describes a response with status code -1, with default header values.
+/* NodesListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of nodes
 */

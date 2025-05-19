@@ -45,8 +45,7 @@ func NewTenantIDgetOK() *TenantIDgetOK {
 	return &TenantIDgetOK{}
 }
 
-/*
-	TenantIDgetOK describes a response with status code 200, with default header values.
+/* TenantIDgetOK describes a response with status code 200, with default header values.
 
 Got Tenant's ID successfully
 */
@@ -78,8 +77,7 @@ func NewTenantIDgetInternalServerError() *TenantIDgetInternalServerError {
 	return &TenantIDgetInternalServerError{}
 }
 
-/*
-	TenantIDgetInternalServerError describes a response with status code 500, with default header values.
+/* TenantIDgetInternalServerError describes a response with status code 500, with default header values.
 
 Error getting Tenant's ID
 */

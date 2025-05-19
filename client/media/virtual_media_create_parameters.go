@@ -54,12 +54,10 @@ func NewVirtualMediaCreateParamsWithHTTPClient(client *http.Client) *VirtualMedi
 	}
 }
 
-/*
-VirtualMediaCreateParams contains all the parameters to send to the API endpoint
+/* VirtualMediaCreateParams contains all the parameters to send to the API endpoint
+   for the virtual media create operation.
 
-	for the virtual media create operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type VirtualMediaCreateParams struct {
 

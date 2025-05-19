@@ -46,8 +46,7 @@ func NewAssociationModifyOK() *AssociationModifyOK {
 	return &AssociationModifyOK{}
 }
 
-/*
-	AssociationModifyOK describes a response with status code 200, with default header values.
+/* AssociationModifyOK describes a response with status code 200, with default header values.
 
 swap successful
 */
@@ -81,8 +80,7 @@ func NewAssociationModifyDefault(code int) *AssociationModifyDefault {
 	}
 }
 
-/*
-	AssociationModifyDefault describes a response with status code -1, with default header values.
+/* AssociationModifyDefault describes a response with status code -1, with default header values.
 
 Error during swap
 */

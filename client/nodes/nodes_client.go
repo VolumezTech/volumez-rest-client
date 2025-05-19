@@ -50,7 +50,7 @@ type ClientService interface {
 }
 
 /*
-GetMachineInfo gets system info
+  GetMachineInfo gets system info
 */
 func (a *Client) GetMachineInfo(params *GetMachineInfoParams, opts ...ClientOption) (*GetMachineInfoOK, error) {
 	// TODO: Validate the params before sending
@@ -87,7 +87,7 @@ func (a *Client) GetMachineInfo(params *GetMachineInfoParams, opts ...ClientOpti
 }
 
 /*
-NodeCollectLogs nodes collect logs
+  NodeCollectLogs nodes collect logs
 */
 func (a *Client) NodeCollectLogs(params *NodeCollectLogsParams, opts ...ClientOption) (*NodeCollectLogsOK, error) {
 	// TODO: Validate the params before sending
@@ -124,7 +124,7 @@ func (a *Client) NodeCollectLogs(params *NodeCollectLogsParams, opts ...ClientOp
 }
 
 /*
-NodeDelete deletes a node
+  NodeDelete deletes a node
 */
 func (a *Client) NodeDelete(params *NodeDeleteParams, opts ...ClientOption) (*NodeDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -161,7 +161,7 @@ func (a *Client) NodeDelete(params *NodeDeleteParams, opts ...ClientOption) (*No
 }
 
 /*
-NodeGet gets the properties of a node
+  NodeGet gets the properties of a node
 */
 func (a *Client) NodeGet(params *NodeGetParams, opts ...ClientOption) (*NodeGetOK, error) {
 	// TODO: Validate the params before sending
@@ -198,7 +198,7 @@ func (a *Client) NodeGet(params *NodeGetParams, opts ...ClientOption) (*NodeGetO
 }
 
 /*
-NodeRepair executes commands on node for repair
+  NodeRepair executes commands on node for repair
 */
 func (a *Client) NodeRepair(params *NodeRepairParams, opts ...ClientOption) (*NodeRepairOK, error) {
 	// TODO: Validate the params before sending
@@ -235,7 +235,7 @@ func (a *Client) NodeRepair(params *NodeRepairParams, opts ...ClientOption) (*No
 }
 
 /*
-NodeSetTags sets the tags of a node
+  NodeSetTags sets the tags of a node
 */
 func (a *Client) NodeSetTags(params *NodeSetTagsParams, opts ...ClientOption) (*NodeSetTagsOK, error) {
 	// TODO: Validate the params before sending
@@ -272,7 +272,7 @@ func (a *Client) NodeSetTags(params *NodeSetTagsParams, opts ...ClientOption) (*
 }
 
 /*
-NodeUpgrade performings node version upgrade
+  NodeUpgrade performings node version upgrade
 */
 func (a *Client) NodeUpgrade(params *NodeUpgradeParams, opts ...ClientOption) (*NodeUpgradeOK, error) {
 	// TODO: Validate the params before sending
@@ -309,7 +309,7 @@ func (a *Client) NodeUpgrade(params *NodeUpgradeParams, opts ...ClientOption) (*
 }
 
 /*
-NodeUpgradeForSupport performings node version upgrade
+  NodeUpgradeForSupport performings node version upgrade
 */
 func (a *Client) NodeUpgradeForSupport(params *NodeUpgradeForSupportParams, opts ...ClientOption) (*NodeUpgradeForSupportOK, error) {
 	// TODO: Validate the params before sending
@@ -346,7 +346,7 @@ func (a *Client) NodeUpgradeForSupport(params *NodeUpgradeForSupportParams, opts
 }
 
 /*
-NodesList gets a list of nodes
+  NodesList gets a list of nodes
 */
 func (a *Client) NodesList(params *NodesListParams, opts ...ClientOption) (*NodesListOK, error) {
 	// TODO: Validate the params before sending

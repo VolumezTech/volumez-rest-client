@@ -46,8 +46,7 @@ func NewAttachmentGetOK() *AttachmentGetOK {
 	return &AttachmentGetOK{}
 }
 
-/*
-	AttachmentGetOK describes a response with status code 200, with default header values.
+/* AttachmentGetOK describes a response with status code 200, with default header values.
 
 Properties of an attachment
 */
@@ -81,8 +80,7 @@ func NewAttachmentGetDefault(code int) *AttachmentGetDefault {
 	}
 }
 
-/*
-	AttachmentGetDefault describes a response with status code -1, with default header values.
+/* AttachmentGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of an attachment
 */

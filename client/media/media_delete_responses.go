@@ -46,8 +46,7 @@ func NewMediaDeleteOK() *MediaDeleteOK {
 	return &MediaDeleteOK{}
 }
 
-/*
-	MediaDeleteOK describes a response with status code 200, with default header values.
+/* MediaDeleteOK describes a response with status code 200, with default header values.
 
 A node delete job was created successfully
 */
@@ -81,8 +80,7 @@ func NewMediaDeleteDefault(code int) *MediaDeleteDefault {
 	}
 }
 
-/*
-	MediaDeleteDefault describes a response with status code -1, with default header values.
+/* MediaDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a node
 */

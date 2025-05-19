@@ -45,8 +45,7 @@ func NewTenantAPIAccessRefreshTokenOK() *TenantAPIAccessRefreshTokenOK {
 	return &TenantAPIAccessRefreshTokenOK{}
 }
 
-/*
-	TenantAPIAccessRefreshTokenOK describes a response with status code 200, with default header values.
+/* TenantAPIAccessRefreshTokenOK describes a response with status code 200, with default header values.
 
 200 response
 */
@@ -87,8 +86,7 @@ func NewTenantAPIAccessRefreshTokenInternalServerError() *TenantAPIAccessRefresh
 	return &TenantAPIAccessRefreshTokenInternalServerError{}
 }
 
-/*
-	TenantAPIAccessRefreshTokenInternalServerError describes a response with status code 500, with default header values.
+/* TenantAPIAccessRefreshTokenInternalServerError describes a response with status code 500, with default header values.
 
 Error refreshing user Tenant's API Acces Token
 */

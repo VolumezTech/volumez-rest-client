@@ -46,8 +46,7 @@ func NewTenantUserCreateOK() *TenantUserCreateOK {
 	return &TenantUserCreateOK{}
 }
 
-/*
-	TenantUserCreateOK describes a response with status code 200, with default header values.
+/* TenantUserCreateOK describes a response with status code 200, with default header values.
 
 New user was created successfully
 */
@@ -81,8 +80,7 @@ func NewTenantUserCreateDefault(code int) *TenantUserCreateDefault {
 	}
 }
 
-/*
-	TenantUserCreateDefault describes a response with status code -1, with default header values.
+/* TenantUserCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new user
 */

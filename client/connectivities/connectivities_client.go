@@ -42,7 +42,7 @@ type ClientService interface {
 }
 
 /*
-ConnectivitiesList gets a list of connectivities
+  ConnectivitiesList gets a list of connectivities
 */
 func (a *Client) ConnectivitiesList(params *ConnectivitiesListParams, opts ...ClientOption) (*ConnectivitiesListOK, error) {
 	// TODO: Validate the params before sending
@@ -79,7 +79,7 @@ func (a *Client) ConnectivitiesList(params *ConnectivitiesListParams, opts ...Cl
 }
 
 /*
-ConnectivityCreate creates a new connectivity
+  ConnectivityCreate creates a new connectivity
 */
 func (a *Client) ConnectivityCreate(params *ConnectivityCreateParams, opts ...ClientOption) (*ConnectivityCreateOK, error) {
 	// TODO: Validate the params before sending
@@ -116,7 +116,7 @@ func (a *Client) ConnectivityCreate(params *ConnectivityCreateParams, opts ...Cl
 }
 
 /*
-ConnectivityDelete deletes a connectivity
+  ConnectivityDelete deletes a connectivity
 */
 func (a *Client) ConnectivityDelete(params *ConnectivityDeleteParams, opts ...ClientOption) (*ConnectivityDeleteOK, error) {
 	// TODO: Validate the params before sending
@@ -153,7 +153,7 @@ func (a *Client) ConnectivityDelete(params *ConnectivityDeleteParams, opts ...Cl
 }
 
 /*
-ConnectivityGet gets the properties of a connectivity
+  ConnectivityGet gets the properties of a connectivity
 */
 func (a *Client) ConnectivityGet(params *ConnectivityGetParams, opts ...ClientOption) (*ConnectivityGetOK, error) {
 	// TODO: Validate the params before sending
@@ -190,7 +190,7 @@ func (a *Client) ConnectivityGet(params *ConnectivityGetParams, opts ...ClientOp
 }
 
 /*
-ConnectivityModify modifies a connectivity
+  ConnectivityModify modifies a connectivity
 */
 func (a *Client) ConnectivityModify(params *ConnectivityModifyParams, opts ...ClientOption) (*ConnectivityModifyOK, error) {
 	// TODO: Validate the params before sending

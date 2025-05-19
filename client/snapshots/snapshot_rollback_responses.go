@@ -46,8 +46,7 @@ func NewSnapshotRollbackOK() *SnapshotRollbackOK {
 	return &SnapshotRollbackOK{}
 }
 
-/*
-	SnapshotRollbackOK describes a response with status code 200, with default header values.
+/* SnapshotRollbackOK describes a response with status code 200, with default header values.
 
 Rollback successful
 */
@@ -81,8 +80,7 @@ func NewSnapshotRollbackDefault(code int) *SnapshotRollbackDefault {
 	}
 }
 
-/*
-	SnapshotRollbackDefault describes a response with status code -1, with default header values.
+/* SnapshotRollbackDefault describes a response with status code -1, with default header values.
 
 Error during rollback
 */

@@ -46,8 +46,7 @@ func NewConnectivityModifyOK() *ConnectivityModifyOK {
 	return &ConnectivityModifyOK{}
 }
 
-/*
-	ConnectivityModifyOK describes a response with status code 200, with default header values.
+/* ConnectivityModifyOK describes a response with status code 200, with default header values.
 
 A connectivity was updated successfully
 */
@@ -81,8 +80,7 @@ func NewConnectivityModifyDefault(code int) *ConnectivityModifyDefault {
 	}
 }
 
-/*
-	ConnectivityModifyDefault describes a response with status code -1, with default header values.
+/* ConnectivityModifyDefault describes a response with status code -1, with default header values.
 
 Error updating a connectivity
 */

@@ -46,8 +46,7 @@ func NewSignInOK() *SignInOK {
 	return &SignInOK{}
 }
 
-/*
-	SignInOK describes a response with status code 200, with default header values.
+/* SignInOK describes a response with status code 200, with default header values.
 
 Sign in was successful
 */
@@ -81,8 +80,7 @@ func NewSignInDefault(code int) *SignInDefault {
 	}
 }
 
-/*
-	SignInDefault describes a response with status code -1, with default header values.
+/* SignInDefault describes a response with status code -1, with default header values.
 
 Error signing in
 */

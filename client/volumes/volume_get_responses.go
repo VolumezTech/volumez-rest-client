@@ -46,8 +46,7 @@ func NewVolumeGetOK() *VolumeGetOK {
 	return &VolumeGetOK{}
 }
 
-/*
-	VolumeGetOK describes a response with status code 200, with default header values.
+/* VolumeGetOK describes a response with status code 200, with default header values.
 
 Properties of a volume
 */
@@ -81,8 +80,7 @@ func NewVolumeGetDefault(code int) *VolumeGetDefault {
 	}
 }
 
-/*
-	VolumeGetDefault describes a response with status code -1, with default header values.
+/* VolumeGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a volume
 */

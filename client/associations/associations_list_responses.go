@@ -46,8 +46,7 @@ func NewAssociationsListOK() *AssociationsListOK {
 	return &AssociationsListOK{}
 }
 
-/*
-	AssociationsListOK describes a response with status code 200, with default header values.
+/* AssociationsListOK describes a response with status code 200, with default header values.
 
 List of associations
 */
@@ -79,8 +78,7 @@ func NewAssociationsListDefault(code int) *AssociationsListDefault {
 	}
 }
 
-/*
-	AssociationsListDefault describes a response with status code -1, with default header values.
+/* AssociationsListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of jobs
 */

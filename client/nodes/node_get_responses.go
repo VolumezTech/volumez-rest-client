@@ -58,8 +58,7 @@ func NewNodeGetOK() *NodeGetOK {
 	return &NodeGetOK{}
 }
 
-/*
-	NodeGetOK describes a response with status code 200, with default header values.
+/* NodeGetOK describes a response with status code 200, with default header values.
 
 Properties of a node
 */
@@ -91,8 +90,7 @@ func NewNodeGetBadRequest() *NodeGetBadRequest {
 	return &NodeGetBadRequest{}
 }
 
-/*
-	NodeGetBadRequest describes a response with status code 400, with default header values.
+/* NodeGetBadRequest describes a response with status code 400, with default header values.
 
 Invalid node name supplied
 */
@@ -124,8 +122,7 @@ func NewNodeGetNotFound() *NodeGetNotFound {
 	return &NodeGetNotFound{}
 }
 
-/*
-	NodeGetNotFound describes a response with status code 404, with default header values.
+/* NodeGetNotFound describes a response with status code 404, with default header values.
 
 Node not found
 */
@@ -159,8 +156,7 @@ func NewNodeGetDefault(code int) *NodeGetDefault {
 	}
 }
 
-/*
-	NodeGetDefault describes a response with status code -1, with default header values.
+/* NodeGetDefault describes a response with status code -1, with default header values.
 
 Error getting properties of a node
 */

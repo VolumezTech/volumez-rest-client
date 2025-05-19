@@ -46,8 +46,7 @@ func NewConnectivitiesListOK() *ConnectivitiesListOK {
 	return &ConnectivitiesListOK{}
 }
 
-/*
-	ConnectivitiesListOK describes a response with status code 200, with default header values.
+/* ConnectivitiesListOK describes a response with status code 200, with default header values.
 
 List of connectivities
 */
@@ -79,8 +78,7 @@ func NewConnectivitiesListDefault(code int) *ConnectivitiesListDefault {
 	}
 }
 
-/*
-	ConnectivitiesListDefault describes a response with status code -1, with default header values.
+/* ConnectivitiesListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of connectivities
 */

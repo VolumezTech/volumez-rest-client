@@ -52,12 +52,10 @@ func NewConnectivitiesListParamsWithHTTPClient(client *http.Client) *Connectivit
 	}
 }
 
-/*
-ConnectivitiesListParams contains all the parameters to send to the API endpoint
+/* ConnectivitiesListParams contains all the parameters to send to the API endpoint
+   for the connectivities list operation.
 
-	for the connectivities list operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type ConnectivitiesListParams struct {
 

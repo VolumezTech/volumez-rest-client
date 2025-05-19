@@ -46,8 +46,7 @@ func NewMediaListOK() *MediaListOK {
 	return &MediaListOK{}
 }
 
-/*
-	MediaListOK describes a response with status code 200, with default header values.
+/* MediaListOK describes a response with status code 200, with default header values.
 
 List of media
 */
@@ -79,8 +78,7 @@ func NewMediaListDefault(code int) *MediaListDefault {
 	}
 }
 
-/*
-	MediaListDefault describes a response with status code -1, with default header values.
+/* MediaListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of media
 */

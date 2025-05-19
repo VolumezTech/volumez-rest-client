@@ -54,12 +54,10 @@ func NewAssociationCreateParamsWithHTTPClient(client *http.Client) *AssociationC
 	}
 }
 
-/*
-AssociationCreateParams contains all the parameters to send to the API endpoint
+/* AssociationCreateParams contains all the parameters to send to the API endpoint
+   for the association create operation.
 
-	for the association create operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type AssociationCreateParams struct {
 

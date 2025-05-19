@@ -52,8 +52,7 @@ func NewTenantRefreshTokenOK() *TenantRefreshTokenOK {
 	return &TenantRefreshTokenOK{}
 }
 
-/*
-	TenantRefreshTokenOK describes a response with status code 200, with default header values.
+/* TenantRefreshTokenOK describes a response with status code 200, with default header values.
 
 Refresh Token
 */
@@ -85,8 +84,7 @@ func NewTenantRefreshTokenInternalServerError() *TenantRefreshTokenInternalServe
 	return &TenantRefreshTokenInternalServerError{}
 }
 
-/*
-	TenantRefreshTokenInternalServerError describes a response with status code 500, with default header values.
+/* TenantRefreshTokenInternalServerError describes a response with status code 500, with default header values.
 
 Error getting Tenant's Refresh Token
 */
@@ -120,8 +118,7 @@ func NewTenantRefreshTokenDefault(code int) *TenantRefreshTokenDefault {
 	}
 }
 
-/*
-	TenantRefreshTokenDefault describes a response with status code -1, with default header values.
+/* TenantRefreshTokenDefault describes a response with status code -1, with default header values.
 
 Error getting Tenant's Refresh Token
 */

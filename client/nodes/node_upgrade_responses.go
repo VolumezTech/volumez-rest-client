@@ -58,8 +58,7 @@ func NewNodeUpgradeOK() *NodeUpgradeOK {
 	return &NodeUpgradeOK{}
 }
 
-/*
-	NodeUpgradeOK describes a response with status code 200, with default header values.
+/* NodeUpgradeOK describes a response with status code 200, with default header values.
 
 Node upgrade started successfully
 */
@@ -91,8 +90,7 @@ func NewNodeUpgradeBadRequest() *NodeUpgradeBadRequest {
 	return &NodeUpgradeBadRequest{}
 }
 
-/*
-	NodeUpgradeBadRequest describes a response with status code 400, with default header values.
+/* NodeUpgradeBadRequest describes a response with status code 400, with default header values.
 
 Invalid node name supplied
 */
@@ -124,8 +122,7 @@ func NewNodeUpgradeNotFound() *NodeUpgradeNotFound {
 	return &NodeUpgradeNotFound{}
 }
 
-/*
-	NodeUpgradeNotFound describes a response with status code 404, with default header values.
+/* NodeUpgradeNotFound describes a response with status code 404, with default header values.
 
 Node not found
 */
@@ -159,8 +156,7 @@ func NewNodeUpgradeDefault(code int) *NodeUpgradeDefault {
 	}
 }
 
-/*
-	NodeUpgradeDefault describes a response with status code -1, with default header values.
+/* NodeUpgradeDefault describes a response with status code -1, with default header values.
 
 Error trying to upgrade node
 */

@@ -46,8 +46,7 @@ func NewVolumeDeleteOK() *VolumeDeleteOK {
 	return &VolumeDeleteOK{}
 }
 
-/*
-	VolumeDeleteOK describes a response with status code 200, with default header values.
+/* VolumeDeleteOK describes a response with status code 200, with default header values.
 
 A volume was deleted successfully
 */
@@ -81,8 +80,7 @@ func NewVolumeDeleteDefault(code int) *VolumeDeleteDefault {
 	}
 }
 
-/*
-	VolumeDeleteDefault describes a response with status code -1, with default header values.
+/* VolumeDeleteDefault describes a response with status code -1, with default header values.
 
 Error deleting a volume
 */

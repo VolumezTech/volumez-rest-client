@@ -34,7 +34,7 @@ type ClientService interface {
 }
 
 /*
-NodeDrain nodes drain
+  NodeDrain nodes drain
 */
 func (a *Client) NodeDrain(params *NodeDrainParams, opts ...ClientOption) (*NodeDrainOK, error) {
 	// TODO: Validate the params before sending

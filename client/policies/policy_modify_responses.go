@@ -46,8 +46,7 @@ func NewPolicyModifyOK() *PolicyModifyOK {
 	return &PolicyModifyOK{}
 }
 
-/*
-	PolicyModifyOK describes a response with status code 200, with default header values.
+/* PolicyModifyOK describes a response with status code 200, with default header values.
 
 A policy was updated successfully
 */
@@ -81,8 +80,7 @@ func NewPolicyModifyDefault(code int) *PolicyModifyDefault {
 	}
 }
 
-/*
-	PolicyModifyDefault describes a response with status code -1, with default header values.
+/* PolicyModifyDefault describes a response with status code -1, with default header values.
 
 Error updating a policy
 */

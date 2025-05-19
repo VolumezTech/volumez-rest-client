@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-AlertAcknowledge acknowledges a pending alert
+  AlertAcknowledge acknowledges a pending alert
 */
 func (a *Client) AlertAcknowledge(params *AlertAcknowledgeParams, opts ...ClientOption) (*AlertAcknowledgeOK, error) {
 	// TODO: Validate the params before sending
@@ -73,7 +73,7 @@ func (a *Client) AlertAcknowledge(params *AlertAcknowledgeParams, opts ...Client
 }
 
 /*
-AlertsList gets a list of alerts
+  AlertsList gets a list of alerts
 */
 func (a *Client) AlertsList(params *AlertsListParams, opts ...ClientOption) (*AlertsListOK, error) {
 	// TODO: Validate the params before sending

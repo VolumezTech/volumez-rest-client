@@ -52,12 +52,10 @@ func NewTenantTokenParamsWithHTTPClient(client *http.Client) *TenantTokenParams 
 	}
 }
 
-/*
-TenantTokenParams contains all the parameters to send to the API endpoint
+/* TenantTokenParams contains all the parameters to send to the API endpoint
+   for the tenant token operation.
 
-	for the tenant token operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type TenantTokenParams struct {
 

@@ -52,12 +52,10 @@ func NewTenanthostAccessCredentialsParamsWithHTTPClient(client *http.Client) *Te
 	}
 }
 
-/*
-TenanthostAccessCredentialsParams contains all the parameters to send to the API endpoint
+/* TenanthostAccessCredentialsParams contains all the parameters to send to the API endpoint
+   for the tenanthost access credentials operation.
 
-	for the tenanthost access credentials operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type TenanthostAccessCredentialsParams struct {
 

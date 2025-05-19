@@ -58,8 +58,7 @@ func NewVolumeCreateOK() *VolumeCreateOK {
 	return &VolumeCreateOK{}
 }
 
-/*
-	VolumeCreateOK describes a response with status code 200, with default header values.
+/* VolumeCreateOK describes a response with status code 200, with default header values.
 
 Volume has been created successfully
 */
@@ -91,8 +90,7 @@ func NewVolumeCreateAccepted() *VolumeCreateAccepted {
 	return &VolumeCreateAccepted{}
 }
 
-/*
-	VolumeCreateAccepted describes a response with status code 202, with default header values.
+/* VolumeCreateAccepted describes a response with status code 202, with default header values.
 
 202 response
 */
@@ -124,8 +122,7 @@ func NewVolumeCreateConflict() *VolumeCreateConflict {
 	return &VolumeCreateConflict{}
 }
 
-/*
-	VolumeCreateConflict describes a response with status code 409, with default header values.
+/* VolumeCreateConflict describes a response with status code 409, with default header values.
 
 409 response
 */
@@ -159,8 +156,7 @@ func NewVolumeCreateDefault(code int) *VolumeCreateDefault {
 	}
 }
 
-/*
-	VolumeCreateDefault describes a response with status code -1, with default header values.
+/* VolumeCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new volume
 */

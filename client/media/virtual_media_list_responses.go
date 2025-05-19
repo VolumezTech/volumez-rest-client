@@ -46,8 +46,7 @@ func NewVirtualMediaListOK() *VirtualMediaListOK {
 	return &VirtualMediaListOK{}
 }
 
-/*
-	VirtualMediaListOK describes a response with status code 200, with default header values.
+/* VirtualMediaListOK describes a response with status code 200, with default header values.
 
 List of media
 */
@@ -79,8 +78,7 @@ func NewVirtualMediaListDefault(code int) *VirtualMediaListDefault {
 	}
 }
 
-/*
-	VirtualMediaListDefault describes a response with status code -1, with default header values.
+/* VirtualMediaListDefault describes a response with status code -1, with default header values.
 
 Error getting a list of media
 */

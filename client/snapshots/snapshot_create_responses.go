@@ -46,8 +46,7 @@ func NewSnapshotCreateOK() *SnapshotCreateOK {
 	return &SnapshotCreateOK{}
 }
 
-/*
-	SnapshotCreateOK describes a response with status code 200, with default header values.
+/* SnapshotCreateOK describes a response with status code 200, with default header values.
 
 New snapshot was created successfully
 */
@@ -81,8 +80,7 @@ func NewSnapshotCreateDefault(code int) *SnapshotCreateDefault {
 	}
 }
 
-/*
-	SnapshotCreateDefault describes a response with status code -1, with default header values.
+/* SnapshotCreateDefault describes a response with status code -1, with default header values.
 
 Error creating new snapshot
 */

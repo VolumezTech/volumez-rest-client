@@ -52,12 +52,10 @@ func NewMediaListParamsWithHTTPClient(client *http.Client) *MediaListParams {
 	}
 }
 
-/*
-MediaListParams contains all the parameters to send to the API endpoint
+/* MediaListParams contains all the parameters to send to the API endpoint
+   for the media list operation.
 
-	for the media list operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type MediaListParams struct {
 

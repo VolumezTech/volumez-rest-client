@@ -52,12 +52,10 @@ func NewTenantIDgetParamsWithHTTPClient(client *http.Client) *TenantIDgetParams 
 	}
 }
 
-/*
-TenantIDgetParams contains all the parameters to send to the API endpoint
+/* TenantIDgetParams contains all the parameters to send to the API endpoint
+   for the tenant i dget operation.
 
-	for the tenant i dget operation.
-
-	Typically these are written to a http.Request.
+   Typically these are written to a http.Request.
 */
 type TenantIDgetParams struct {
 

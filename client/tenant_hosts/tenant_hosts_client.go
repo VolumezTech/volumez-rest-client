@@ -36,7 +36,7 @@ type ClientService interface {
 }
 
 /*
-Tenanthostdelete deletes a tenant host
+  Tenanthostdelete deletes a tenant host
 */
 func (a *Client) Tenanthostdelete(params *TenanthostdeleteParams, opts ...ClientOption) (*TenanthostdeleteOK, error) {
 	// TODO: Validate the params before sending
