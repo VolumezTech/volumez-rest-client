@@ -4210,7 +4210,7 @@ Name | Type | Description  | Notes
 
 ## GetTenantHost
 
-> GetTenantHostResponse GetTenantHost(ctx).Tenanthosttoken(tenanthosttoken).Execute()
+> GetTenantHostResponse GetTenantHost(ctx).Tenanthosttoken(tenanthosttoken).Tenantaccesstoken(tenantaccesstoken).Execute()
 
 
 
@@ -4228,10 +4228,11 @@ import (
 
 func main() {
 	tenanthosttoken := "tenanthosttoken_example" // string | 
+	tenantaccesstoken := "tenantaccesstoken_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultAPI.GetTenantHost(context.Background()).Tenanthosttoken(tenanthosttoken).Execute()
+	resp, r, err := apiClient.DefaultAPI.GetTenantHost(context.Background()).Tenanthosttoken(tenanthosttoken).Tenantaccesstoken(tenantaccesstoken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.GetTenantHost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -4253,6 +4254,7 @@ Other parameters are passed through a pointer to a apiGetTenantHostRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenanthosttoken** | **string** |  | 
+ **tenantaccesstoken** | **string** |  | 
 
 ### Return type
 

@@ -16259,6 +16259,13 @@ paths:
         schema:
           type: string
         style: simple
+      - explode: false
+        in: header
+        name: tenantaccesstoken
+        required: true
+        schema:
+          type: string
+        style: simple
       responses:
         "500":
           content:

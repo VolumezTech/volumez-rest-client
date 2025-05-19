@@ -8924,13 +8924,19 @@ func (a *DefaultAPIService) GetTenantAccessTokenExecute(r ApiGetTenantAccessToke
 }
 
 type ApiGetTenantHostRequest struct {
-	ctx             context.Context
-	ApiService      *DefaultAPIService
-	tenanthosttoken *string
+	ctx               context.Context
+	ApiService        *DefaultAPIService
+	tenanthosttoken   *string
+	tenantaccesstoken *string
 }
 
 func (r ApiGetTenantHostRequest) Tenanthosttoken(tenanthosttoken string) ApiGetTenantHostRequest {
 	r.tenanthosttoken = &tenanthosttoken
+	return r
+}
+
+func (r ApiGetTenantHostRequest) Tenantaccesstoken(tenantaccesstoken string) ApiGetTenantHostRequest {
+	r.tenantaccesstoken = &tenantaccesstoken
 	return r
 }
 
@@ -8975,6 +8981,9 @@ func (a *DefaultAPIService) GetTenantHostExecute(r ApiGetTenantHostRequest) (*Ge
 	if r.tenanthosttoken == nil {
 		return localVarReturnValue, nil, reportError("tenanthosttoken is required and must be specified")
 	}
+	if r.tenantaccesstoken == nil {
+		return localVarReturnValue, nil, reportError("tenantaccesstoken is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8994,6 +9003,7 @@ func (a *DefaultAPIService) GetTenantHostExecute(r ApiGetTenantHostRequest) (*Ge
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	parameterAddToHeaderOrQuery(localVarHeaderParams, "tenanthosttoken", r.tenanthosttoken, "simple", "")
+	parameterAddToHeaderOrQuery(localVarHeaderParams, "tenantaccesstoken", r.tenantaccesstoken, "simple", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
