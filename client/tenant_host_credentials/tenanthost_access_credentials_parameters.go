@@ -62,6 +62,9 @@ type TenanthostAccessCredentialsParams struct {
 	// Refreshtoken.
 	Refreshtoken string
 
+	// Tenantaccesstoken.
+	Tenantaccesstoken *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -126,6 +129,17 @@ func (o *TenanthostAccessCredentialsParams) SetRefreshtoken(refreshtoken string)
 	o.Refreshtoken = refreshtoken
 }
 
+// WithTenantaccesstoken adds the tenantaccesstoken to the tenanthost access credentials params
+func (o *TenanthostAccessCredentialsParams) WithTenantaccesstoken(tenantaccesstoken *string) *TenanthostAccessCredentialsParams {
+	o.SetTenantaccesstoken(tenantaccesstoken)
+	return o
+}
+
+// SetTenantaccesstoken adds the tenantaccesstoken to the tenanthost access credentials params
+func (o *TenanthostAccessCredentialsParams) SetTenantaccesstoken(tenantaccesstoken *string) {
+	o.Tenantaccesstoken = tenantaccesstoken
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *TenanthostAccessCredentialsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -137,6 +151,14 @@ func (o *TenanthostAccessCredentialsParams) WriteToRequest(r runtime.ClientReque
 	// header param refreshtoken
 	if err := r.SetHeaderParam("refreshtoken", o.Refreshtoken); err != nil {
 		return err
+	}
+
+	if o.Tenantaccesstoken != nil {
+
+		// header param tenantaccesstoken
+		if err := r.SetHeaderParam("tenantaccesstoken", *o.Tenantaccesstoken); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {
