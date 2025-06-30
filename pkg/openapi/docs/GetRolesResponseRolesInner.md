@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CloudProvider** | [**CloudProvider**](CloudProvider.md) |  | 
-**AwsRole** | Pointer to [**NullableAWSRoleItem**](AWSRoleItem.md) |  | [optional] 
-**AzureRole** | Pointer to [**NullableAzureRoleItem**](AzureRoleItem.md) |  | [optional] 
+**AwsRole** | Pointer to [**AWSRoleItem**](AWSRoleItem.md) |  | [optional] 
+**AzureRole** | Pointer to [**AzureRoleItem**](AzureRoleItem.md) |  | [optional] 
 
 ## Methods
 
@@ -72,16 +72,6 @@ SetAwsRole sets AwsRole field to given value.
 
 HasAwsRole returns a boolean if a field has been set.
 
-### SetAwsRoleNil
-
-`func (o *GetRolesResponseRolesInner) SetAwsRoleNil(b bool)`
-
- SetAwsRoleNil sets the value for AwsRole to be an explicit nil
-
-### UnsetAwsRole
-`func (o *GetRolesResponseRolesInner) UnsetAwsRole()`
-
-UnsetAwsRole ensures that no value is present for AwsRole, not even an explicit nil
 ### GetAzureRole
 
 `func (o *GetRolesResponseRolesInner) GetAzureRole() AzureRoleItem`
@@ -107,16 +97,6 @@ SetAzureRole sets AzureRole field to given value.
 
 HasAzureRole returns a boolean if a field has been set.
 
-### SetAzureRoleNil
-
-`func (o *GetRolesResponseRolesInner) SetAzureRoleNil(b bool)`
-
- SetAzureRoleNil sets the value for AzureRole to be an explicit nil
-
-### UnsetAzureRole
-`func (o *GetRolesResponseRolesInner) UnsetAzureRole()`
-
-UnsetAzureRole ensures that no value is present for AzureRole, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

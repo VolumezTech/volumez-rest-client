@@ -38,6 +38,7 @@ Method | HTTP request | Description
 [**NetworksOptions**](DefaultAPI.md#NetworksOptions) | **Options** /networks | 
 [**NodesNodeDescribeOptions**](DefaultAPI.md#NodesNodeDescribeOptions) | **Options** /nodes/{node}/describe | 
 [**NodesNodeDrainOptions**](DefaultAPI.md#NodesNodeDrainOptions) | **Options** /nodes/{node}/drain | 
+[**NodesNodeHwOptions**](DefaultAPI.md#NodesNodeHwOptions) | **Options** /nodes/{node}/hw | 
 [**NodesNodeOptions**](DefaultAPI.md#NodesNodeOptions) | **Options** /nodes/{node} | 
 [**NodesOptions**](DefaultAPI.md#NodesOptions) | **Options** /nodes | 
 [**NodesTagsNodeOptions**](DefaultAPI.md#NodesTagsNodeOptions) | **Options** /nodes/tags/{node} | 
@@ -2059,6 +2060,63 @@ This endpoint does not need any parameter.
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiNodesNodeDrainOptionsRequest struct via the builder pattern
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## NodesNodeHwOptions
+
+> NodesNodeHwOptions(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "bitbucket.org/volumez/volumez-rest-client"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.NodesNodeHwOptions(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.NodesNodeHwOptions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiNodesNodeHwOptionsRequest struct via the builder pattern
 
 
 ### Return type

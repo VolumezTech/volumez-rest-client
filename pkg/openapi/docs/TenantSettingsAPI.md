@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetTenantSettings**](TenantSettingsAPI.md#GetTenantSettings) | **Get** /tenant-settings | Get tenant settings
 [**ModifyTenantSettings**](TenantSettingsAPI.md#ModifyTenantSettings) | **Put** /tenant-settings | Modify tenant settings
-[**ResetTenantSettings**](TenantSettingsAPI.md#ResetTenantSettings) | **Post** /tenant-settings/reset | Reset tenant settings
+[**ResetTenantSettings**](TenantSettingsAPI.md#ResetTenantSettings) | **Patch** /tenant-settings/reset | Reset tenant settings
 
 
 
@@ -160,7 +160,7 @@ import (
 
 func main() {
 	authorization := "authorization_example" // string |  (optional)
-	resetTenantSettingsRequest := *openapiclient.NewResetTenantSettingsRequest(*openapiclient.NewResetTenantSettingsRequestSettingsToReset()) // ResetTenantSettingsRequest |  (optional)
+	resetTenantSettingsRequest := *openapiclient.NewResetTenantSettingsRequest(*openapiclient.NewModifyTenantSettingsRequestSettingsToModify()) // ResetTenantSettingsRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

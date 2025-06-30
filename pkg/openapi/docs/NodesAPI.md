@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**NodeDescribe**](NodesAPI.md#NodeDescribe) | **Get** /nodes/{node}/describe | Node describe
 [**NodeDrain**](NodesAPI.md#NodeDrain) | **Post** /nodes/{node}/drain | Node drain
 [**NodeGet**](NodesAPI.md#NodeGet) | **Get** /nodes/{node} | Get the properties of a node
+[**NodeHwScan**](NodesAPI.md#NodeHwScan) | **Post** /nodes/{node}/hw | Node hardware scan
 [**NodeSetTags**](NodesAPI.md#NodeSetTags) | **Patch** /nodes/tags/{node} | Set the tags of a node
 [**NodeUpgrade**](NodesAPI.md#NodeUpgrade) | **Post** /nodes/upgrade/{node} | performing node version upgrade
 [**NodesList**](NodesAPI.md#NodesList) | **Get** /nodes | Get a list of nodes
@@ -285,6 +286,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Node**](Node.md)
+
+### Authorization
+
+[storage.io-authorizer](../README.md#storage.io-authorizer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## NodeHwScan
+
+> SuccessJobResponse NodeHwScan(ctx, node).Properties(properties).Authorization(authorization).Execute()
+
+Node hardware scan
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "bitbucket.org/volumez/volumez-rest-client"
+)
+
+func main() {
+	node := "node_example" // string | 
+	properties := []string{"Inner_example"} // []string |  (optional)
+	authorization := "authorization_example" // string |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NodesAPI.NodeHwScan(context.Background(), node).Properties(properties).Authorization(authorization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.NodeHwScan``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `NodeHwScan`: SuccessJobResponse
+	fmt.Fprintf(os.Stdout, "Response from `NodesAPI.NodeHwScan`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**node** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiNodeHwScanRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **properties** | **[]string** |  | 
+ **authorization** | **string** |  | 
+
+### Return type
+
+[**SuccessJobResponse**](SuccessJobResponse.md)
 
 ### Authorization
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Roles** | [**[]GetRolesResponseRolesInner**](GetRolesResponseRolesInner.md) |  | 
 **RoleId** | Pointer to **string** |  | [optional] 
-**RoleName** | Pointer to **NullableString** |  | [optional] 
+**RoleName** | Pointer to **string** |  | [optional] 
 **Policies** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -98,16 +98,6 @@ SetRoleName sets RoleName field to given value.
 
 HasRoleName returns a boolean if a field has been set.
 
-### SetRoleNameNil
-
-`func (o *GetRolesResponse) SetRoleNameNil(b bool)`
-
- SetRoleNameNil sets the value for RoleName to be an explicit nil
-
-### UnsetRoleName
-`func (o *GetRolesResponse) UnsetRoleName()`
-
-UnsetRoleName ensures that no value is present for RoleName, not even an explicit nil
 ### GetPolicies
 
 `func (o *GetRolesResponse) GetPolicies() []string`
@@ -133,16 +123,6 @@ SetPolicies sets Policies field to given value.
 
 HasPolicies returns a boolean if a field has been set.
 
-### SetPoliciesNil
-
-`func (o *GetRolesResponse) SetPoliciesNil(b bool)`
-
- SetPoliciesNil sets the value for Policies to be an explicit nil
-
-### UnsetPolicies
-`func (o *GetRolesResponse) UnsetPolicies()`
-
-UnsetPolicies ensures that no value is present for Policies, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -79,12 +79,7 @@ docs/GetTenantHostResponse.md
 docs/GetTenantIDResponse.md
 docs/GetTenantRefreshTokenRequest.md
 docs/GetTenantSettingsResponse.md
-docs/GetTenantSettingsResponseDeclarative.md
-docs/GetTenantSettingsResponsePricing.md
-docs/GetTenantSettingsResponseThrottle.md
-docs/GetTenantSettingsResponseThrottleApplication.md
-docs/GetTenantSettingsResponseThrottleAttachment.md
-docs/GetTenantSettingsResponseThrottleMedia.md
+docs/GetTenantSettingsResponseSupport.md
 docs/GetTenantUserResponse.md
 docs/GetVMMetadataResponse.md
 docs/GetVmRegionZonesResponse.md
@@ -119,7 +114,6 @@ docs/RegularResponse.md
 docs/RepairCmds.md
 docs/RequestChangePassword.md
 docs/ResetTenantSettingsRequest.md
-docs/ResetTenantSettingsRequestSettingsToReset.md
 docs/SignInRequest.md
 docs/SignInResponse.md
 docs/SignOutRequest.md
@@ -192,12 +186,7 @@ model_get_tenant_host_response.go
 model_get_tenant_id_response.go
 model_get_tenant_refresh_token_request.go
 model_get_tenant_settings_response.go
-model_get_tenant_settings_response_declarative.go
-model_get_tenant_settings_response_pricing.go
-model_get_tenant_settings_response_throttle.go
-model_get_tenant_settings_response_throttle_application.go
-model_get_tenant_settings_response_throttle_attachment.go
-model_get_tenant_settings_response_throttle_media.go
+model_get_tenant_settings_response_support.go
 model_get_tenant_user_response.go
 model_get_vm_metadata_response.go
 model_get_vm_region_zones_response.go
@@ -226,7 +215,6 @@ model_regular_response.go
 model_repair_cmds.go
 model_request_change_password.go
 model_reset_tenant_settings_request.go
-model_reset_tenant_settings_request_settings_to_reset.go
 model_sign_in_request.go
 model_sign_in_response.go
 model_sign_out_request.go

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** |  | [optional] 
-**Settings** | Pointer to [**NullableCreateInfraPlanRequestPolicySettings**](CreateInfraPlanRequestPolicySettings.md) |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Settings** | Pointer to [**CreateInfraPlanRequestPolicySettings**](CreateInfraPlanRequestPolicySettings.md) |  | [optional] 
 
 ## Methods
 
@@ -51,16 +51,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### SetNameNil
-
-`func (o *CreateInfraPlanRequestPolicy) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CreateInfraPlanRequestPolicy) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetSettings
 
 `func (o *CreateInfraPlanRequestPolicy) GetSettings() CreateInfraPlanRequestPolicySettings`
@@ -86,16 +76,6 @@ SetSettings sets Settings field to given value.
 
 HasSettings returns a boolean if a field has been set.
 
-### SetSettingsNil
-
-`func (o *CreateInfraPlanRequestPolicy) SetSettingsNil(b bool)`
-
- SetSettingsNil sets the value for Settings to be an explicit nil
-
-### UnsetSettings
-`func (o *CreateInfraPlanRequestPolicy) UnsetSettings()`
-
-UnsetSettings ensures that no value is present for Settings, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

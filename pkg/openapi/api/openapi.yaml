@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.1.1
 info:
   description: Volumez orchestrator API
   title: Volumez API
-  version: 1.0.0 - f3a04f74
+  version: 1.0.0 - 9cdeb26f
   x-squire-version: 1.52.0
 servers:
 - url: https://api.dev.volumez.com
@@ -114,7 +114,7 @@ paths:
       - Volumes
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes
+        uri: http://10.0.10.6:8000/volumes
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -311,7 +311,7 @@ paths:
       - Volumes
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes
+        uri: http://10.0.10.6:8000/volumes
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -494,7 +494,7 @@ paths:
       - volumes
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/plan
+        uri: http://10.0.10.6:8000/volumes/plan
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -669,7 +669,7 @@ paths:
       - Snapshots
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/snapshot
+        uri: http://10.0.10.6:8000/volumes/snapshot
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -752,7 +752,7 @@ paths:
       - Snapshots
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/snapshot/{snapshot_group_name}"
+        uri: "http://10.0.10.6:8000/volumes/snapshot/{snapshot_group_name}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -878,8 +878,8 @@ paths:
         required: false
         schema:
           default: false
-          nullable: false
           type: boolean
+          nullable: false
         style: form
       - explode: false
         in: header
@@ -944,7 +944,7 @@ paths:
       - Volumes
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}"
+        uri: "http://10.0.10.6:8000/volumes/{volume}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -1025,7 +1025,7 @@ paths:
       - Volumes
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}"
+        uri: "http://10.0.10.6:8000/volumes/{volume}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -1213,7 +1213,7 @@ paths:
       - Volumes
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}"
+        uri: "http://10.0.10.6:8000/volumes/{volume}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -1295,7 +1295,7 @@ paths:
       - Volumes
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/describe"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/describe"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -1562,7 +1562,7 @@ paths:
       - Volumes
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/recover"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/recover"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -1645,7 +1645,7 @@ paths:
       - Snapshots
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -1825,7 +1825,7 @@ paths:
       - Snapshots
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -1858,8 +1858,8 @@ paths:
         required: false
         schema:
           default: false
-          nullable: false
           type: boolean
+          nullable: false
         style: form
       - explode: false
         in: header
@@ -1924,7 +1924,7 @@ paths:
       - Snapshots
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots/{snapshot}"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots/{snapshot}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -2013,7 +2013,7 @@ paths:
       - Snapshots
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots/{snapshot}"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots/{snapshot}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -2201,7 +2201,7 @@ paths:
       - Snapshots
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots/{snapshot}"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots/{snapshot}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -2384,7 +2384,7 @@ paths:
       - Snapshots
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots/{snapshot}/rollback"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots/{snapshot}/rollback"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -2475,14 +2475,14 @@ paths:
       - Associations
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/associations
+        uri: http://10.0.10.6:8000/associations
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
-          integration.request.querystring.startfrom: method.request.querystring.startfrom
           integration.request.querystring.count: method.request.querystring.count
+          integration.request.querystring.startfrom: method.request.querystring.startfrom
     options:
       responses:
         "200":
@@ -2649,7 +2649,7 @@ paths:
       - Associations
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/associations
+        uri: http://10.0.10.6:8000/associations
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -2730,7 +2730,7 @@ paths:
       - Associations
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/associations/{association}"
+        uri: "http://10.0.10.6:8000/associations/{association}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -2918,7 +2918,7 @@ paths:
       - Associations
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/associations/{association}"
+        uri: "http://10.0.10.6:8000/associations/{association}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -3009,14 +3009,14 @@ paths:
       - Exports
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/exports/
+        uri: http://10.0.10.6:8000/exports/
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
-          integration.request.querystring.startfrom: method.request.querystring.startfrom
           integration.request.querystring.count: method.request.querystring.count
+          integration.request.querystring.startfrom: method.request.querystring.startfrom
     options:
       responses:
         "200":
@@ -3183,7 +3183,7 @@ paths:
       - Exports
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/exports/
+        uri: http://10.0.10.6:8000/exports/
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -3208,8 +3208,8 @@ paths:
         required: false
         schema:
           default: false
-          nullable: false
           type: boolean
+          nullable: false
         style: form
       - explode: false
         in: header
@@ -3274,7 +3274,7 @@ paths:
       - Exports
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/exports/{export}"
+        uri: "http://10.0.10.6:8000/exports/{export}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -3454,7 +3454,7 @@ paths:
       - Exports
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/exports/{export}"
+        uri: "http://10.0.10.6:8000/exports/{export}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -3653,7 +3653,7 @@ paths:
       - AutoProvisionVolumes
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/autoprovisionvolumes
+        uri: http://10.0.10.6:8000/autoprovisionvolumes
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -3736,7 +3736,7 @@ paths:
       - Snapshots
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/snapshots
+        uri: http://10.0.10.6:8000/snapshots
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -3905,7 +3905,7 @@ paths:
       - Attachments
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/attachments
+        uri: http://10.0.10.6:8000/attachments
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -4080,7 +4080,7 @@ paths:
       - Attachments
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/attachments"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/attachments"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -4263,7 +4263,7 @@ paths:
       - Attachments
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots/{snapshot}/attachments"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots/{snapshot}/attachments"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -4451,7 +4451,7 @@ paths:
       - Attachments
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots/{snapshot}/attachments"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots/{snapshot}/attachments"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -4492,8 +4492,8 @@ paths:
         required: false
         schema:
           default: false
-          nullable: false
           type: boolean
+          nullable: false
         style: form
       - explode: false
         in: header
@@ -4558,7 +4558,7 @@ paths:
       - Attachments
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots/{snapshot}/attachments/{node}"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots/{snapshot}/attachments/{node}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -4655,7 +4655,7 @@ paths:
       - Attachments
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots/{snapshot}/attachments/{node}"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots/{snapshot}/attachments/{node}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -4851,7 +4851,7 @@ paths:
       - Attachments
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/volumes/{volume}/snapshots/{snapshot}/attachments/{node}"
+        uri: "http://10.0.10.6:8000/volumes/{volume}/snapshots/{snapshot}/attachments/{node}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -4930,7 +4930,7 @@ paths:
       - Nodes
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/nodes
+        uri: http://10.0.10.6:8000/nodes
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -5204,7 +5204,7 @@ paths:
       - Nodes
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/nodes/tags/{node}"
+        uri: "http://10.0.10.6:8000/nodes/tags/{node}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -5231,8 +5231,8 @@ paths:
         required: false
         schema:
           default: false
-          nullable: false
           type: boolean
+          nullable: false
         style: form
       - allowEmptyValue: false
         explode: true
@@ -5241,8 +5241,8 @@ paths:
         required: false
         schema:
           default: false
-          nullable: false
           type: boolean
+          nullable: false
         style: form
       - explode: false
         in: header
@@ -5307,15 +5307,15 @@ paths:
       - Nodes
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/nodes/{node}"
+        uri: "http://10.0.10.6:8000/nodes/{node}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.node: method.request.path.node
-          integration.request.querystring.delayDelete: method.request.querystring.delayDelete
           integration.request.querystring.force: method.request.querystring.force
+          integration.request.querystring.delayDelete: method.request.querystring.delayDelete
     get:
       operationId: NodeGet
       parameters:
@@ -5390,7 +5390,7 @@ paths:
       - Nodes
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/nodes/{node}"
+        uri: "http://10.0.10.6:8000/nodes/{node}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -5490,6 +5490,190 @@ paths:
           application/json: "{\"statusCode\": 200}"
         passthroughBehavior: when_no_match
         type: mock
+  /nodes/{node}/hw:
+    options:
+      responses:
+        "200":
+          content: {}
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 500 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 400 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 404 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 202 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: 409 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST,PATCH,DELETE'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: when_no_match
+        type: mock
+    post:
+      operationId: NodeHwScan
+      parameters:
+      - explode: false
+        in: path
+        name: node
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: query
+        name: properties
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessJobResponse'
+          description: Node HW scan job was created successfully
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error draining node
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error draining node
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error draining node
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - storage.io-authorizer: []
+      summary: Node hardware scan
+      tags:
+      - Nodes
+      x-amazon-apigateway-integration:
+        httpMethod: post
+        uri: "http://10.0.10.6:8000/nodes/{node}/hw"
+        passthroughBehavior: when_no_match
+        type: http_proxy
+        timeoutInMillis: 29000
+        requestParameters:
+          integration.request.header.X-Request-ID: context.requestId
+          integration.request.path.node: method.request.path.node
+          integration.request.querystring.properties: method.request.querystring.properties
   /nodes/{node}/drain:
     options:
       responses:
@@ -5665,7 +5849,7 @@ paths:
       - Nodes
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/nodes/{node}/drain"
+        uri: "http://10.0.10.6:8000/nodes/{node}/drain"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -5747,7 +5931,7 @@ paths:
       - Nodes
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/nodes/{node}/describe"
+        uri: "http://10.0.10.6:8000/nodes/{node}/describe"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -6022,7 +6206,7 @@ paths:
       - Nodes
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/nodes/upgrade/{node}"
+        uri: "http://10.0.10.6:8000/nodes/upgrade/{node}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -6099,7 +6283,7 @@ paths:
       - Policies
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/policies
+        uri: http://10.0.10.6:8000/policies
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -6271,7 +6455,7 @@ paths:
       - Policies
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/policies
+        uri: http://10.0.10.6:8000/policies
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -6352,7 +6536,7 @@ paths:
       - Policies
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/policies/{policy}"
+        uri: "http://10.0.10.6:8000/policies/{policy}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -6432,7 +6616,7 @@ paths:
       - Policies
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/policies/{policy}"
+        uri: "http://10.0.10.6:8000/policies/{policy}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -6612,7 +6796,7 @@ paths:
       - Policies
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/policies/{policy}"
+        uri: "http://10.0.10.6:8000/policies/{policy}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -6696,7 +6880,7 @@ paths:
       - Policies
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/policies/{policy}/volumes"
+        uri: "http://10.0.10.6:8000/policies/{policy}/volumes"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -6891,7 +7075,7 @@ paths:
       - Policies
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/policies/{policy}/size/{size}/zone/{zone}"
+        uri: "http://10.0.10.6:8000/policies/{policy}/size/{size}/zone/{zone}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -7063,7 +7247,7 @@ paths:
       - Networks
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/networks
+        uri: http://10.0.10.6:8000/networks
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -7235,7 +7419,7 @@ paths:
       - Networks
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/networks
+        uri: http://10.0.10.6:8000/networks
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -7316,7 +7500,7 @@ paths:
       - Networks
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/networks/{network}"
+        uri: "http://10.0.10.6:8000/networks/{network}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -7396,7 +7580,7 @@ paths:
       - Networks
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/networks/{network}"
+        uri: "http://10.0.10.6:8000/networks/{network}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -7576,7 +7760,7 @@ paths:
       - Networks
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/networks/{network}"
+        uri: "http://10.0.10.6:8000/networks/{network}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -7674,7 +7858,7 @@ paths:
       - Jobs
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/jobs
+        uri: http://10.0.10.6:8000/jobs
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -7850,7 +8034,7 @@ paths:
       - Jobs
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/jobs/{job}"
+        uri: "http://10.0.10.6:8000/jobs/{job}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -7937,7 +8121,7 @@ paths:
       - Jobs
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/jobs/{job}"
+        uri: "http://10.0.10.6:8000/jobs/{job}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -8107,7 +8291,7 @@ paths:
       - Media
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/media
+        uri: http://10.0.10.6:8000/media
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -8396,16 +8580,16 @@ paths:
       - Media
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/media/{media}/assign"
+        uri: "http://10.0.10.6:8000/media/{media}/assign"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
           integration.request.path.media: method.request.path.media
+          integration.request.querystring.block_size: method.request.querystring.block_size
           integration.request.querystring.reprofile: method.request.querystring.reprofile
           integration.request.querystring.capacity_group: method.request.querystring.capacity_group
-          integration.request.querystring.block_size: method.request.querystring.block_size
   /media/{media}/unassign:
     options:
       responses:
@@ -8573,7 +8757,7 @@ paths:
       - Media
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/media/{media}/unassign"
+        uri: "http://10.0.10.6:8000/media/{media}/unassign"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -8754,7 +8938,7 @@ paths:
       - Media
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/media/{media}/profile"
+        uri: "http://10.0.10.6:8000/media/{media}/profile"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -8929,7 +9113,7 @@ paths:
       - Media
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/media/{media}/drain"
+        uri: "http://10.0.10.6:8000/media/{media}/drain"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -9019,14 +9203,14 @@ paths:
       - Media
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/virtualmedia
+        uri: http://10.0.10.6:8000/virtualmedia
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
-          integration.request.querystring.startfrom: method.request.querystring.startfrom
           integration.request.querystring.count: method.request.querystring.count
+          integration.request.querystring.startfrom: method.request.querystring.startfrom
     options:
       responses:
         "200":
@@ -9193,7 +9377,7 @@ paths:
       - Media
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/virtualmedia
+        uri: http://10.0.10.6:8000/virtualmedia
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -9274,7 +9458,7 @@ paths:
       - Media
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/virtualmedia/{media}"
+        uri: "http://10.0.10.6:8000/virtualmedia/{media}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -9451,7 +9635,7 @@ paths:
       - Connectivities
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/connectivities
+        uri: http://10.0.10.6:8000/connectivities
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -9623,7 +9807,7 @@ paths:
       - Connectivities
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/connectivities
+        uri: http://10.0.10.6:8000/connectivities
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -9704,7 +9888,7 @@ paths:
       - Connectivities
       x-amazon-apigateway-integration:
         httpMethod: delete
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/connectivities/{connectivity}"
+        uri: "http://10.0.10.6:8000/connectivities/{connectivity}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -9784,7 +9968,7 @@ paths:
       - Connectivities
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/connectivities/{connectivity}"
+        uri: "http://10.0.10.6:8000/connectivities/{connectivity}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -9964,7 +10148,7 @@ paths:
       - Connectivities
       x-amazon-apigateway-integration:
         httpMethod: patch
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/connectivities/{connectivity}"
+        uri: "http://10.0.10.6:8000/connectivities/{connectivity}"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -10041,7 +10225,7 @@ paths:
       - CapacityGroups
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/capacitygroups
+        uri: http://10.0.10.6:8000/capacitygroups
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -10207,7 +10391,7 @@ paths:
       - Version
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/version
+        uri: http://10.0.10.6:8000/version
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -10382,7 +10566,7 @@ paths:
       - Alerts
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/alerts
+        uri: http://10.0.10.6:8000/alerts
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -10649,7 +10833,7 @@ paths:
       - Alerts
       x-amazon-apigateway-integration:
         httpMethod: post
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/alerts/{alert}/acknowledge"
+        uri: "http://10.0.10.6:8000/alerts/{alert}/acknowledge"
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -10724,7 +10908,7 @@ paths:
       - System
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/system/features
+        uri: http://10.0.10.6:8000/system/features
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -10890,7 +11074,7 @@ paths:
       - System
       x-amazon-apigateway-integration:
         httpMethod: get
-        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/system/machineinfo
+        uri: http://10.0.10.6:8000/system/machineinfo
         passthroughBehavior: when_no_match
         type: http_proxy
         timeoutInMillis: 29000
@@ -11031,7 +11215,7 @@ paths:
         style: simple
       x-amazon-apigateway-integration:
         httpMethod: ANY
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/{proxy}"
+        uri: "http://10.0.10.6:8000/{proxy}"
         responses:
           default:
             statusCode: "200"
@@ -11076,7 +11260,7 @@ paths:
       responses: {}
       x-amazon-apigateway-integration:
         httpMethod: ANY
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/{proxy}"
+        uri: "http://10.0.10.6:8000/{proxy}"
         responses:
           default:
             statusCode: "200"
@@ -11155,7 +11339,7 @@ paths:
       - storage.io-authorizer: []
       x-amazon-apigateway-integration:
         httpMethod: GET
-        uri: "http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/log/{tenantid}/{logfile}"
+        uri: "http://10.0.10.6:8000/log/{tenantid}/{logfile}"
         responses:
           "200":
             statusCode: "200"
@@ -13651,9 +13835,9 @@ paths:
         timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
-          integration.request.querystring.client_id: method.request.querystring.client_id
-          integration.request.querystring.user_name: method.request.querystring.user_name
           integration.request.querystring.confirmation_code: method.request.querystring.confirmation_code
+          integration.request.querystring.user_name: method.request.querystring.user_name
+          integration.request.querystring.client_id: method.request.querystring.client_id
     options:
       responses:
         "200":
@@ -16148,7 +16332,7 @@ paths:
           application/json: "{\"statusCode\": 200}"
         passthroughBehavior: when_no_match
         type: mock
-    post:
+    patch:
       operationId: resetTenantSettings
       parameters:
       - explode: false
@@ -16188,7 +16372,7 @@ paths:
       tags:
       - tenant-settings
       x-amazon-apigateway-integration:
-        httpMethod: POST
+        httpMethod: PATCH
         uri: http://None:None/tenant-settings/reset
         passthroughBehavior: when_no_match
         type: http_proxy
@@ -16769,7 +16953,6 @@ components:
       - region
       - subnets
       - volume
-      type: object
     AutoProvisionInfraPlan:
       example:
         instanceCount: 1
@@ -16804,7 +16987,6 @@ components:
           minimum: 1
           title: Number of instance to provision
           type: integer
-      type: object
     Volume:
       example:
         replicationvolumegroupname: replicationvolumegroupname
@@ -16929,7 +17111,6 @@ components:
       - policy
       - size
       - type
-      type: object
     Node:
       example:
         cloudprovider: cloudprovider
@@ -17024,14 +17205,12 @@ components:
       required:
       - name
       - os
-      type: object
     NodeVersion:
       example:
         version: version
       properties:
         version:
           type: string
-      type: object
     NodeDescribeResponse:
       example:
         volumesMap:
@@ -17066,28 +17245,27 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/Volume'
           description: Map of volume IDs to volume objects
-          type: object
-      type: object
     RefreshToken:
       example:
         token: token
       properties:
         token:
           type: string
-      type: object
     GetTenantRefreshTokenRequest:
       example:
         hostname: hostname
         accesstoken: accesstoken
+        tenantid: tenantid
       properties:
         accesstoken:
           type: string
         hostname:
           type: string
+        tenantid:
+          type: string
       required:
       - accesstoken
       - hostname
-      type: object
     Policy:
       example:
         capacityoptimization: capacity
@@ -17302,7 +17480,6 @@ components:
       required:
       - capacityoptimization
       - name
-      type: object
     VolumeGroup:
       example:
         cachemediasize: 1
@@ -17431,7 +17608,6 @@ components:
           items:
             $ref: '#/components/schemas/Attachment'
           type: array
-      type: object
     SignInResponse:
       example:
         IdToken: IdToken
@@ -17466,7 +17642,6 @@ components:
       - IdToken
       - RefreshToken
       - TokenType
-      type: object
     ErrorResponse:
       example:
         message: message
@@ -17475,14 +17650,12 @@ components:
           type: string
           x-omitempty: false
           x-isnullable: false
-      type: object
     RegularResponse:
       example:
         Message: Message
       properties:
         Message:
           type: string
-      type: object
     VolumePlanOutput:
       example:
         Plans:
@@ -17725,7 +17898,6 @@ components:
           items:
             $ref: '#/components/schemas/Plan'
           type: array
-      type: object
     SuccessJobResponse:
       example:
         Message: Message
@@ -17738,7 +17910,6 @@ components:
           type: string
         ObjectID:
           type: string
-      type: object
     ErrorJobResponse:
       example:
         Message: Message
@@ -17754,7 +17925,6 @@ components:
           type: string
         JobID:
           type: string
-      type: object
     ChangePasswordRequestLoggedIn:
       example:
         oldPassword: oldPassword
@@ -17779,14 +17949,12 @@ components:
           type: string
           x-omitempty: false
           x-isnullable: false
-      type: object
     CapacityGroup:
       example:
         name: name
       properties:
         name:
           type: string
-      type: object
     VersionResponse:
       example:
         componentName: componentName
@@ -17796,7 +17964,6 @@ components:
           type: string
         componentName:
           type: string
-      type: object
     SignUpResponse:
       example:
         message: message
@@ -17810,7 +17977,6 @@ components:
           x-isnullable: false
       required:
       - message
-      type: object
     TenantTokenResponse:
       example:
         TokenType: TokenType
@@ -17827,7 +17993,6 @@ components:
       - AccessToken
       - ExpiresIn
       - TokenType
-      type: object
     RefreshTokenResponse:
       example:
         IdToken: IdToken
@@ -17846,7 +18011,6 @@ components:
           type: string
         TokenType:
           type: string
-      type: object
     TenantHostDeleteResponse:
       example:
         Message: Message
@@ -17859,7 +18023,6 @@ components:
           type: string
       required:
       - StatusCode
-      type: object
     Network:
       example:
         zone: zone
@@ -17894,11 +18057,9 @@ components:
       - ipstart
       - name
       - type
-      type: object
     Tags:
       additionalProperties:
         type: string
-      type: object
     Job:
       example:
         args: "{}"
@@ -17942,7 +18103,6 @@ components:
           items:
             type: string
           type: array
-      type: object
     Snapshot:
       example:
         snapshotid: snapshotid
@@ -18016,7 +18176,6 @@ components:
       required:
       - consistency
       - name
-      type: object
     Attachment:
       example:
         node: node
@@ -18069,7 +18228,6 @@ components:
           type: integer
       required:
       - node
-      type: object
     Media:
       example:
         bus: bus
@@ -18206,12 +18364,10 @@ components:
           items:
             type: string
           type: array
-      type: object
     MediaModify:
       properties:
         offlinetime:
           type: string
-      type: object
     MediaProfile:
       example:
         bandwidthwrite: 5
@@ -18245,7 +18401,6 @@ components:
           type: integer
         freebandwidthwrite:
           type: integer
-      type: object
     VirtualMediaCreate:
       example:
         flavor: stripped
@@ -18260,7 +18415,6 @@ components:
           - raid1
           - split
           type: string
-      type: object
     VirtualMedia:
       example:
         flavor: stripped
@@ -18320,7 +18474,6 @@ components:
           items:
             type: string
           type: array
-      type: object
     Plan:
       example:
         volumegroup:
@@ -18444,7 +18597,6 @@ components:
           $ref: '#/components/schemas/VolumeGroup'
       required:
       - volumegroup
-      type: object
     Connectivity:
       example:
         mediaprotocol: mediaprotocol
@@ -18483,7 +18635,6 @@ components:
       - systemtypes2
       - zones1
       - zones2
-      type: object
     RepairCmds:
       properties:
         cmds:
@@ -18499,7 +18650,6 @@ components:
       required:
       - checksum
       - cmds
-      type: object
     Alert:
       example:
         severity: Info
@@ -18582,7 +18732,6 @@ components:
           readOnly: true
           title: Alert Details (according to alert type)
           type: string
-      type: object
     GetTenantIDResponse:
       example:
         TenantID: TenantID
@@ -18597,7 +18746,6 @@ components:
           type: string
       required:
       - StatusCode
-      type: object
     GetTenantHostResponse:
       example:
         TenantHost: TenantHost
@@ -18616,7 +18764,6 @@ components:
           type: string
       required:
       - StatusCode
-      type: object
     AssociationCreate:
       example:
         volume: volume
@@ -18641,7 +18788,6 @@ components:
         selector:
           minLength: 1
           type: string
-      type: object
     AssociationModify:
       example:
         name: name
@@ -18658,7 +18804,6 @@ components:
         selector:
           minLength: 1
           type: string
-      type: object
     Association:
       example:
         snapshotid: snapshotid
@@ -18698,7 +18843,6 @@ components:
         status:
           readOnly: true
           type: string
-      type: object
     ExportCreate:
       example:
         protocol: protocol
@@ -18743,7 +18887,6 @@ components:
             $ref: '#/components/schemas/ExportCreate_nodes_inner'
           minItems: 1
           type: array
-      type: object
     ExportModify:
       example:
         nodes:
@@ -18765,7 +18908,6 @@ components:
             $ref: '#/components/schemas/ExportCreate_nodes_inner'
           minItems: 1
           type: array
-      type: object
     Export:
       example:
         volumename: volumename
@@ -18830,7 +18972,6 @@ components:
           items:
             $ref: '#/components/schemas/StoragePort'
           type: array
-      type: object
     Authentication:
       example:
         method: method
@@ -18843,7 +18984,6 @@ components:
           type: string
         chap:
           $ref: '#/components/schemas/Authentication_chap'
-      type: object
     StoragePort:
       example:
         address: address
@@ -18855,7 +18995,6 @@ components:
         port:
           title: Port
           type: string
-      type: object
     MachineInfo:
       example:
         instanceid: instanceid
@@ -18888,7 +19027,6 @@ components:
           items:
             type: string
           type: array
-      type: object
     CloudProviderType:
       enum:
       - aws
@@ -18961,18 +19099,17 @@ components:
           $ref: '#/components/schemas/CreateAzureRoleRequest'
         RoleId:
           format: uuid
+          type: string
           nullable: false
-          type: string
         RoleName:
-          nullable: true
           type: string
+          nullable: true
         Policies:
           items:
             type: string
-          nullable: true
           type: array
           x-omitempty: true
-      type: object
+          nullable: true
     UpdateAwsRoleRequest:
       example:
         externalId: externalId
@@ -18986,7 +19123,6 @@ components:
           type: string
           x-omitempty: true
           x-isnullable: true
-      type: object
     UpdateAzureRoleRequest:
       example:
         activeDirectoryId: activeDirectoryId
@@ -19005,7 +19141,6 @@ components:
           x-isnullable: true
         secret:
           $ref: '#/components/schemas/AzureSecret'
-      type: object
     UpdateRoleRequest:
       example:
         azureRole:
@@ -19025,7 +19160,6 @@ components:
           $ref: '#/components/schemas/UpdateAwsRoleRequest'
         azureRole:
           $ref: '#/components/schemas/UpdateAzureRoleRequest'
-      type: object
     EmptyResponse:
       type: object
       x-isnullable: false
@@ -19067,20 +19201,19 @@ components:
           type: array
         RoleId:
           format: uuid
+          type: string
           nullable: false
-          type: string
         RoleName:
-          nullable: true
           type: string
+          nullable: true
         Policies:
           items:
             type: string
-          nullable: true
           type: array
           x-omitempty: true
+          nullable: true
       required:
       - roles
-      type: object
     CloudProvider:
       example:
         accountID: accountID
@@ -19095,14 +19228,12 @@ components:
       required:
       - accountID
       - type
-      type: object
     CloudProviderAccountId:
       type: string
     AWSRoleItem:
       example:
         externalId: externalId
         arn: arn
-      nullable: true
       properties:
         arn:
           type: string
@@ -19114,15 +19245,14 @@ components:
           x-isnullable: false
       required:
       - arn
-      type: object
       x-omitempty: true
       x-isnullable: true
+      nullable: true
     AzureRoleItem:
       example:
         activeDirectoryId: activeDirectoryId
         secretId: secretId
         applicationId: applicationId
-      nullable: true
       properties:
         activeDirectoryId:
           type: string
@@ -19140,9 +19270,9 @@ components:
       - activeDirectoryId
       - applicationId
       - secretId
-      type: object
       x-omitempty: true
       x-isnullable: true
+      nullable: true
     AvailableVPCItem:
       example:
         subnetId: subnetId
@@ -19168,12 +19298,10 @@ components:
       - id
       - name
       - subnetId
-      type: object
     GetVMVPCsResponse:
       additionalProperties:
         items:
           $ref: '#/components/schemas/AvailableVPCItem'
-        type: array
       example:
       - Zone1:
         - id: VpcId1
@@ -19183,12 +19311,10 @@ components:
         Zone2:
           id: VpcId3
           subnetId: VpcSubnetId3
-      type: object
     VMRegionZones:
       additionalProperties:
         items:
           type: string
-        type: array
       example:
       - Region1:
         - Zone1
@@ -19197,11 +19323,9 @@ components:
         Region2:
         - Zone4
         - Zone5
-      type: object
     AzureVMRegionZones:
       additionalProperties:
         $ref: '#/components/schemas/AzureVMRegion'
-      type: object
     AzureVMRegion:
       example:
         regionDisplayName: regionDisplayName
@@ -19217,7 +19341,6 @@ components:
           items:
             type: string
           type: array
-      type: object
     GetVmRegionZonesResponse:
       example:
         aws:
@@ -19239,7 +19362,6 @@ components:
           additionalProperties:
             items:
               type: string
-            type: array
           example:
           - Region1:
             - Zone1
@@ -19248,12 +19370,9 @@ components:
             Region2:
             - Zone4
             - Zone5
-          type: object
         azure:
           additionalProperties:
             $ref: '#/components/schemas/AzureVMRegion'
-          type: object
-      type: object
     AzureSecret:
       example:
         id: id
@@ -19267,7 +19386,6 @@ components:
           type: string
           x-omitempty: false
           x-isnullable: false
-      type: object
     GetVMMetadataResponse:
       example:
         vpc:
@@ -19280,7 +19398,6 @@ components:
       properties:
         vpc:
           $ref: '#/components/schemas/AvailableVPCItem'
-      type: object
     OSType:
       enum:
       - ubuntu
@@ -19310,7 +19427,6 @@ components:
       - storageType
       - volumeBasePrice
       - volumeTotalPrice
-      type: object
     CreateInfraPlanRequest:
       example:
         accountId: accountId
@@ -19389,7 +19505,6 @@ components:
       - cloudProvider
       - policy
       - size
-      type: object
     CreateInfraPlanResponse:
       example:
         mediaIOPSRead: 5
@@ -19500,7 +19615,6 @@ components:
       - totalPrice
       - volumezPrice
       - zones
-      type: object
     ProviderPricingInfoRequest:
       example:
         size: 6
@@ -19529,7 +19643,6 @@ components:
       - cloudProvider
       - iops
       - size
-      type: object
     ProviderPricingInfoResponse:
       example:
         totalPriceList:
@@ -19546,7 +19659,6 @@ components:
           type: array
       required:
       - totalPriceList
-      type: object
     SignUpRequest:
       example:
         password: password
@@ -19587,7 +19699,6 @@ components:
       - email
       - name
       - password
-      type: object
     SignInRequest:
       example:
         password: password
@@ -19606,7 +19717,6 @@ components:
       required:
       - email
       - password
-      type: object
     SignOutRequest:
       example:
         AccessToken: AccessToken
@@ -19618,7 +19728,6 @@ components:
           x-isnullable: false
       required:
       - AccessToken
-      type: object
     RequestChangePassword:
       example:
         email: email
@@ -19627,7 +19736,6 @@ components:
           type: string
           x-omitempty: false
           x-isnullable: false
-      type: object
     ChangePasswordApproveRequest:
       example:
         password: password
@@ -19646,7 +19754,6 @@ components:
           type: string
           x-omitempty: false
           x-isnullable: false
-      type: object
     CreateAddTenantUserRequest:
       example:
         password: password
@@ -19681,7 +19788,6 @@ components:
       - name
       - password
       - tenantId
-      type: object
     GetTenantUserResponse:
       example:
         TenantID: TenantID
@@ -19710,7 +19816,6 @@ components:
           type: string
           x-omitempty: false
           x-isnullable: false
-      type: object
     AddUserRequest:
       example:
         password: password
@@ -19745,7 +19850,6 @@ components:
       - invitedUserToken
       - name
       - password
-      type: object
     TenantUser:
       example:
         Email: Email
@@ -19787,7 +19891,6 @@ components:
       - Enabled
       - Name
       - UserName
-      type: object
     InviteUserResponse:
       example:
         Status: Status
@@ -19808,7 +19911,6 @@ components:
       - InviteeMail
       - Message
       - Status
-      type: object
     GetAzureSSOMappingResponse:
       example:
         SecurityGroupID: SecurityGroupID
@@ -19829,66 +19931,31 @@ components:
       - SecurityGroupID
     GetTenantSettingsResponse:
       example:
-        throttle:
-          selectedScheme: selectedScheme
-          application:
-            percentForSnapshots: 14
-          attachment:
-            enableSliceThrottling: true
-            enableMultipathThrottling: true
-            enableRaidThrottling: true
-            minReservedForTop: 5
-            defaultSnapshotResources: 5
-            enableCagThrottling: true
-          media:
-            allowThrottleTargetSlices: true
-        declarative:
-          faultDomainCount: 3
-        pricing:
-          priceUnit: 0.8008281904610115
+        support:
+          allowCollectLogs: true
       properties:
-        pricing:
-          $ref: '#/components/schemas/GetTenantSettingsResponse_pricing'
-        declarative:
-          $ref: '#/components/schemas/GetTenantSettingsResponse_declarative'
-        throttle:
-          $ref: '#/components/schemas/GetTenantSettingsResponse_throttle'
-      type: object
+        support:
+          $ref: '#/components/schemas/GetTenantSettingsResponse_support'
     ModifyTenantSettingsRequest:
       example:
         settingsToModify:
-          throttle:
-            selectedScheme: selectedScheme
-            application:
-              percentForSnapshots: 14
-            attachment:
-              enableSliceThrottling: true
-              enableMultipathThrottling: true
-              enableRaidThrottling: true
-              minReservedForTop: 5
-              defaultSnapshotResources: 5
-              enableCagThrottling: true
-            media:
-              allowThrottleTargetSlices: true
-          declarative:
-            faultDomainCount: 3
+          support:
+            allowCollectLogs: true
       properties:
         settingsToModify:
           $ref: '#/components/schemas/ModifyTenantSettingsRequest_settingsToModify'
-      type: object
     ModifyTenantSettingsResponse:
       $ref: '#/components/schemas/EmptyResponse'
     ResetTenantSettingsRequest:
       example:
         settingsToReset:
-          throttle: true
-          declarative: true
+          support:
+            allowCollectLogs: true
       properties:
         settingsToReset:
-          $ref: '#/components/schemas/ResetTenantSettingsRequest_settingsToReset'
+          $ref: '#/components/schemas/ModifyTenantSettingsRequest_settingsToModify'
       required:
       - settingsToReset
-      type: object
     ResetTenantSettingsResponse:
       $ref: '#/components/schemas/EmptyResponse'
     BatchVolumesPlan_request_Volumes_inner:
@@ -19909,7 +19976,6 @@ components:
           type: string
       required:
       - Size
-      type: object
       x-go-name: VolumePlanInput
     BatchVolumesPlan_request:
       properties:
@@ -19936,7 +20002,6 @@ components:
           x-omitempty: true
           x-go-name: Policy
           x-isnullable: false
-      type: object
     ConsistencyGroupSnapshotCreate_request:
       properties:
         name:
@@ -19961,7 +20026,6 @@ components:
           type: array
           x-omitempty: false
           x-isnullable: false
-      type: object
     ExportCreate_nodes_inner:
       example:
         node: node
@@ -19973,7 +20037,6 @@ components:
         role:
           title: role
           type: string
-      type: object
     Authentication_chap:
       example:
         password: password
@@ -19985,7 +20048,6 @@ components:
         password:
           title: password
           type: string
-      type: object
     GetRolesResponse_roles_inner:
       example:
         azureRole:
@@ -20007,7 +20069,6 @@ components:
           $ref: '#/components/schemas/AzureRoleItem'
       required:
       - cloudProvider
-      type: object
     CreateInfraPlanRequest_policy_settings:
       example:
         bandwidthWrite: 0
@@ -20036,7 +20097,6 @@ components:
         snapshotHour: 1
         replicationBandwidth: 1
         bandwidthRead: 0
-      nullable: true
       properties:
         iopsWrite:
           description: "Enter the maximum write IOPS that a volume is expected to\
@@ -20216,9 +20276,9 @@ components:
           type: integer
         snapshotMinute:
           type: integer
-      type: object
       x-omitempty: true
       x-isnullable: true
+      nullable: true
     CreateInfraPlanRequest_policy:
       example:
         settings:
@@ -20251,156 +20311,27 @@ components:
         name: name
       properties:
         name:
-          nullable: true
           type: string
           x-omitempty: true
           x-isnullable: true
+          nullable: true
         settings:
           $ref: '#/components/schemas/CreateInfraPlanRequest_policy_settings'
-      type: object
-    GetTenantSettingsResponse_pricing:
+    GetTenantSettingsResponse_support:
       example:
-        priceUnit: 0.8008281904610115
-      nullable: true
+        allowCollectLogs: true
       properties:
-        priceUnit:
-          format: double
-          nullable: true
-          type: number
-      type: object
-      x-omitempty: true
-      x-isnullable: true
-    GetTenantSettingsResponse_declarative:
-      example:
-        faultDomainCount: 3
-      nullable: true
-      properties:
-        faultDomainCount:
-          format: int32
-          maximum: 5
-          minimum: 1
-          nullable: true
-          type: integer
-      type: object
-      x-omitempty: true
-      x-isnullable: true
-    GetTenantSettingsResponse_throttle_application:
-      example:
-        percentForSnapshots: 14
-      nullable: true
-      properties:
-        percentForSnapshots:
-          format: int32
-          maximum: 100
-          minimum: 0
-          nullable: true
-          type: integer
-      type: object
-    GetTenantSettingsResponse_throttle_media:
-      example:
-        allowThrottleTargetSlices: true
-      nullable: true
-      properties:
-        allowThrottleTargetSlices:
-          nullable: true
+        allowCollectLogs:
           type: boolean
-      type: object
-    GetTenantSettingsResponse_throttle_attachment:
-      example:
-        enableSliceThrottling: true
-        enableMultipathThrottling: true
-        enableRaidThrottling: true
-        minReservedForTop: 5
-        defaultSnapshotResources: 5
-        enableCagThrottling: true
+          nullable: true
       nullable: true
-      properties:
-        defaultSnapshotResources:
-          format: int32
-          nullable: true
-          type: integer
-        minReservedForTop:
-          format: int32
-          nullable: true
-          type: integer
-        enableCagThrottling:
-          nullable: true
-          type: boolean
-        enableRaidThrottling:
-          nullable: true
-          type: boolean
-        enableSliceThrottling:
-          nullable: true
-          type: boolean
-        enableMultipathThrottling:
-          nullable: true
-          type: boolean
-      type: object
-    GetTenantSettingsResponse_throttle:
-      example:
-        selectedScheme: selectedScheme
-        application:
-          percentForSnapshots: 14
-        attachment:
-          enableSliceThrottling: true
-          enableMultipathThrottling: true
-          enableRaidThrottling: true
-          minReservedForTop: 5
-          defaultSnapshotResources: 5
-          enableCagThrottling: true
-        media:
-          allowThrottleTargetSlices: true
-      nullable: true
-      properties:
-        selectedScheme:
-          nullable: true
-          type: string
-        application:
-          $ref: '#/components/schemas/GetTenantSettingsResponse_throttle_application'
-        media:
-          $ref: '#/components/schemas/GetTenantSettingsResponse_throttle_media'
-        attachment:
-          $ref: '#/components/schemas/GetTenantSettingsResponse_throttle_attachment'
-      type: object
-      x-omitempty: true
-      x-isnullable: true
     ModifyTenantSettingsRequest_settingsToModify:
       example:
-        throttle:
-          selectedScheme: selectedScheme
-          application:
-            percentForSnapshots: 14
-          attachment:
-            enableSliceThrottling: true
-            enableMultipathThrottling: true
-            enableRaidThrottling: true
-            minReservedForTop: 5
-            defaultSnapshotResources: 5
-            enableCagThrottling: true
-          media:
-            allowThrottleTargetSlices: true
-        declarative:
-          faultDomainCount: 3
+        support:
+          allowCollectLogs: true
       properties:
-        declarative:
-          $ref: '#/components/schemas/GetTenantSettingsResponse_declarative'
-        throttle:
-          $ref: '#/components/schemas/GetTenantSettingsResponse_throttle'
-      type: object
-    ResetTenantSettingsRequest_settingsToReset:
-      example:
-        throttle: true
-        declarative: true
-      properties:
-        declarative:
-          type: boolean
-          x-omitempty: true
-          x-isnullable: true
-        throttle:
-          type: boolean
-          x-omitempty: true
-          x-isnullable: true
-      type: object
+        support:
+          $ref: '#/components/schemas/GetTenantSettingsResponse_support'
   securitySchemes:
     storage.io-authorizer:
       in: header

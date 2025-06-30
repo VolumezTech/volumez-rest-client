@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **AwsRole** | Pointer to [**CreateAwsRoleRequest**](CreateAwsRoleRequest.md) |  | [optional] 
 **AzureRole** | Pointer to [**CreateAzureRoleRequest**](CreateAzureRoleRequest.md) |  | [optional] 
 **RoleId** | Pointer to **string** |  | [optional] 
-**RoleName** | Pointer to **NullableString** |  | [optional] 
+**RoleName** | Pointer to **string** |  | [optional] 
 **Policies** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -155,16 +155,6 @@ SetRoleName sets RoleName field to given value.
 
 HasRoleName returns a boolean if a field has been set.
 
-### SetRoleNameNil
-
-`func (o *CreateRoleRequest) SetRoleNameNil(b bool)`
-
- SetRoleNameNil sets the value for RoleName to be an explicit nil
-
-### UnsetRoleName
-`func (o *CreateRoleRequest) UnsetRoleName()`
-
-UnsetRoleName ensures that no value is present for RoleName, not even an explicit nil
 ### GetPolicies
 
 `func (o *CreateRoleRequest) GetPolicies() []string`
@@ -190,16 +180,6 @@ SetPolicies sets Policies field to given value.
 
 HasPolicies returns a boolean if a field has been set.
 
-### SetPoliciesNil
-
-`func (o *CreateRoleRequest) SetPoliciesNil(b bool)`
-
- SetPoliciesNil sets the value for Policies to be an explicit nil
-
-### UnsetPolicies
-`func (o *CreateRoleRequest) UnsetPolicies()`
-
-UnsetPolicies ensures that no value is present for Policies, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
