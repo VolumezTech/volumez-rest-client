@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Accesstoken** | **string** |  | 
 **Hostname** | **string** |  | 
+**Tenantid** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetHostname sets Hostname field to given value.
 
+
+### GetTenantid
+
+`func (o *GetTenantRefreshTokenRequest) GetTenantid() string`
+
+GetTenantid returns the Tenantid field if non-nil, zero value otherwise.
+
+### GetTenantidOk
+
+`func (o *GetTenantRefreshTokenRequest) GetTenantidOk() (*string, bool)`
+
+GetTenantidOk returns a tuple with the Tenantid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTenantid
+
+`func (o *GetTenantRefreshTokenRequest) SetTenantid(v string)`
+
+SetTenantid sets Tenantid field to given value.
+
+### HasTenantid
+
+`func (o *GetTenantRefreshTokenRequest) HasTenantid() bool`
+
+HasTenantid returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Declarative** | Pointer to [**NullableGetTenantSettingsResponseDeclarative**](GetTenantSettingsResponseDeclarative.md) |  | [optional] 
-**Throttle** | Pointer to [**NullableGetTenantSettingsResponseThrottle**](GetTenantSettingsResponseThrottle.md) |  | [optional] 
+**Support** | Pointer to [**NullableGetTenantSettingsResponseSupport**](GetTenantSettingsResponseSupport.md) |  | [optional] 
 
 ## Methods
 
@@ -26,76 +25,41 @@ NewModifyTenantSettingsRequestSettingsToModifyWithDefaults instantiates a new Mo
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDeclarative
+### GetSupport
 
-`func (o *ModifyTenantSettingsRequestSettingsToModify) GetDeclarative() GetTenantSettingsResponseDeclarative`
+`func (o *ModifyTenantSettingsRequestSettingsToModify) GetSupport() GetTenantSettingsResponseSupport`
 
-GetDeclarative returns the Declarative field if non-nil, zero value otherwise.
+GetSupport returns the Support field if non-nil, zero value otherwise.
 
-### GetDeclarativeOk
+### GetSupportOk
 
-`func (o *ModifyTenantSettingsRequestSettingsToModify) GetDeclarativeOk() (*GetTenantSettingsResponseDeclarative, bool)`
+`func (o *ModifyTenantSettingsRequestSettingsToModify) GetSupportOk() (*GetTenantSettingsResponseSupport, bool)`
 
-GetDeclarativeOk returns a tuple with the Declarative field if it's non-nil, zero value otherwise
+GetSupportOk returns a tuple with the Support field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeclarative
+### SetSupport
 
-`func (o *ModifyTenantSettingsRequestSettingsToModify) SetDeclarative(v GetTenantSettingsResponseDeclarative)`
+`func (o *ModifyTenantSettingsRequestSettingsToModify) SetSupport(v GetTenantSettingsResponseSupport)`
 
-SetDeclarative sets Declarative field to given value.
+SetSupport sets Support field to given value.
 
-### HasDeclarative
+### HasSupport
 
-`func (o *ModifyTenantSettingsRequestSettingsToModify) HasDeclarative() bool`
+`func (o *ModifyTenantSettingsRequestSettingsToModify) HasSupport() bool`
 
-HasDeclarative returns a boolean if a field has been set.
+HasSupport returns a boolean if a field has been set.
 
-### SetDeclarativeNil
+### SetSupportNil
 
-`func (o *ModifyTenantSettingsRequestSettingsToModify) SetDeclarativeNil(b bool)`
+`func (o *ModifyTenantSettingsRequestSettingsToModify) SetSupportNil(b bool)`
 
- SetDeclarativeNil sets the value for Declarative to be an explicit nil
+ SetSupportNil sets the value for Support to be an explicit nil
 
-### UnsetDeclarative
-`func (o *ModifyTenantSettingsRequestSettingsToModify) UnsetDeclarative()`
+### UnsetSupport
+`func (o *ModifyTenantSettingsRequestSettingsToModify) UnsetSupport()`
 
-UnsetDeclarative ensures that no value is present for Declarative, not even an explicit nil
-### GetThrottle
-
-`func (o *ModifyTenantSettingsRequestSettingsToModify) GetThrottle() GetTenantSettingsResponseThrottle`
-
-GetThrottle returns the Throttle field if non-nil, zero value otherwise.
-
-### GetThrottleOk
-
-`func (o *ModifyTenantSettingsRequestSettingsToModify) GetThrottleOk() (*GetTenantSettingsResponseThrottle, bool)`
-
-GetThrottleOk returns a tuple with the Throttle field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetThrottle
-
-`func (o *ModifyTenantSettingsRequestSettingsToModify) SetThrottle(v GetTenantSettingsResponseThrottle)`
-
-SetThrottle sets Throttle field to given value.
-
-### HasThrottle
-
-`func (o *ModifyTenantSettingsRequestSettingsToModify) HasThrottle() bool`
-
-HasThrottle returns a boolean if a field has been set.
-
-### SetThrottleNil
-
-`func (o *ModifyTenantSettingsRequestSettingsToModify) SetThrottleNil(b bool)`
-
- SetThrottleNil sets the value for Throttle to be an explicit nil
-
-### UnsetThrottle
-`func (o *ModifyTenantSettingsRequestSettingsToModify) UnsetThrottle()`
-
-UnsetThrottle ensures that no value is present for Throttle, not even an explicit nil
+UnsetSupport ensures that no value is present for Support, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
