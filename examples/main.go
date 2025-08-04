@@ -11,6 +11,7 @@ import (
 func main() {
 	// Create a new client configuration
 	config := openapi.NewConfiguration()
+	config.Host = "https://api.volumez.com"
 
 	// Create the client
 	client := openapi.NewAPIClient(config)
@@ -19,7 +20,7 @@ func main() {
 	ctx := context.Background()
 
 	// List volumes
-	volumes, _, err := client.DefaultAPI.VolumesList(ctx).Authorization("CLIENT_ID_TOKEN").Execute()
+	volumes, _, err := client.VolumesAPI.VolumesList(ctx).Authorization("CLIENT_ID_TOKEN").Execute()
 	if err != nil {
 		log.Fatalf("Error listing volumes: %v", err)
 	}
