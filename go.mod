@@ -1,6 +1,3 @@
-module bitbucket.org/volumez/volumez-openapi-client
+module github.com/VolumezTech/volumez-rest-client
 
 go 1.18
-
-require (
-)
