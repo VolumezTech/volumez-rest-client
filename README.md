@@ -94,5 +94,4 @@ This client is generated from the Volumez OpenAPI specification and is subject t
 ### Prerequisites
 
 - Go 1.18 or later
-- Make
 - [Squire](https://github.com/your-org/squire) (for OpenAPI client generation)
