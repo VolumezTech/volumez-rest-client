@@ -78,6 +78,8 @@ type APIClient struct {
 
 	PoliciesAPI *PoliciesAPIService
 
+	ProvisionServiceAPI *ProvisionServiceAPIService
+
 	SnapshotsAPI *SnapshotsAPIService
 
 	SystemAPI *SystemAPIService
@@ -124,6 +126,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NetworksAPI = (*NetworksAPIService)(&c.common)
 	c.NodesAPI = (*NodesAPIService)(&c.common)
 	c.PoliciesAPI = (*PoliciesAPIService)(&c.common)
+	c.ProvisionServiceAPI = (*ProvisionServiceAPIService)(&c.common)
 	c.SnapshotsAPI = (*SnapshotsAPIService)(&c.common)
 	c.SystemAPI = (*SystemAPIService)(&c.common)
 	c.TenantCloudResourcesAPI = (*TenantCloudResourcesAPIService)(&c.common)

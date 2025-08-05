@@ -237,6 +237,7 @@ Class | Method | HTTP request | Description
 *PoliciesAPI* | [**PolicyGetVolumes**](docs/PoliciesAPI.md#policygetvolumes) | **Get** /policies/{policy}/volumes | Get the properties of a policy
 *PoliciesAPI* | [**PolicyModify**](docs/PoliciesAPI.md#policymodify) | **Patch** /policies/{policy} | Modify a policy
 *PoliciesAPI* | [**PolicyPlan**](docs/PoliciesAPI.md#policyplan) | **Get** /policies/{policy}/size/{size}/zone/{zone} | Show policy volume create plan
+*ProvisionServiceAPI* | [**Provision**](docs/ProvisionServiceAPI.md#provision) | **Post** /provision | Volumez connector provisioning
 *SnapshotsAPI* | [**ConsistencyGroupGet**](docs/SnapshotsAPI.md#consistencygroupget) | **Get** /volumes/snapshot/{snapshot_group_name} | List of snapshots group
 *SnapshotsAPI* | [**ConsistencyGroupSnapshotCreate**](docs/SnapshotsAPI.md#consistencygroupsnapshotcreate) | **Post** /volumes/snapshot | Create a new snapshot for given consistency group
 *SnapshotsAPI* | [**SnapshotCreate**](docs/SnapshotsAPI.md#snapshotcreate) | **Post** /volumes/{volume}/snapshots | Create a new snapshot
@@ -300,6 +301,7 @@ Class | Method | HTTP request | Description
 
  - [AWSRoleItem](docs/AWSRoleItem.md)
  - [AddUserRequest](docs/AddUserRequest.md)
+ - [AdditionalParam](docs/AdditionalParam.md)
  - [Alert](docs/Alert.md)
  - [Association](docs/Association.md)
  - [AssociationCreate](docs/AssociationCreate.md)
@@ -365,6 +367,8 @@ Class | Method | HTTP request | Description
  - [ProviderPriceItem](docs/ProviderPriceItem.md)
  - [ProviderPricingInfoRequest](docs/ProviderPricingInfoRequest.md)
  - [ProviderPricingInfoResponse](docs/ProviderPricingInfoResponse.md)
+ - [ProvisionRequest](docs/ProvisionRequest.md)
+ - [ProvisionResponse](docs/ProvisionResponse.md)
  - [PutAzureSSOMappingRequest](docs/PutAzureSSOMappingRequest.md)
  - [RefreshToken](docs/RefreshToken.md)
  - [RefreshTokenResponse](docs/RefreshTokenResponse.md)
@@ -385,6 +389,7 @@ Class | Method | HTTP request | Description
  - [UpdateAwsRoleRequest](docs/UpdateAwsRoleRequest.md)
  - [UpdateAzureRoleRequest](docs/UpdateAzureRoleRequest.md)
  - [UpdateRoleRequest](docs/UpdateRoleRequest.md)
+ - [Version](docs/Version.md)
  - [VersionResponse](docs/VersionResponse.md)
  - [VirtualMedia](docs/VirtualMedia.md)
  - [VirtualMediaCreate](docs/VirtualMediaCreate.md)

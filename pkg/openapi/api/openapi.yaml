@@ -37,6 +37,8 @@ tags:
   name: Alerts
 - description: ""
   name: Exports
+- description: ""
+  name: provision
 paths:
   /volumes:
     get:
@@ -13453,6 +13455,50 @@ paths:
         timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
+  /provision:
+    post:
+      operationId: Provision
+      parameters:
+      - explode: false
+        in: header
+        name: authorization
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProvisionRequest"
+        description: A provisioning object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProvisionResponse"
+          description: provisioning ok
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: provisioning failed
+      security:
+      - storage.io-authorizer: []
+      summary: Volumez connector provisioning
+      tags:
+      - provision-service
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/provision
+        passthroughBehavior: when_no_match
+        type: http_proxy
+        timeoutInMillis: 29000
+        requestParameters:
+          integration.request.header.X-Request-ID: context.requestId
   /signup:
     options:
       responses:
@@ -21077,6 +21123,81 @@ components:
       properties:
         support:
           $ref: "#/components/schemas/GetTenantSettingsResponse_support"
+      type: object
+    ProvisionRequest:
+      example:
+        boot_time: boot_time
+        hostname: hostname
+        os: os
+        Version:
+          Major: 0
+          PreRelease: PreRelease
+          Minor: 6
+          Component: Component
+          Patch: 1
+        cloud_provider: cloud_provider
+        machine_info:
+          instanceid: instanceid
+          imageid: imageid
+          zone: zone
+          controladdress: controladdress
+          instancetype: instancetype
+          pk:
+          - pk
+          - pk
+          env: env
+          sha: sha
+        tenantHostToken: tenantHostToken
+      properties:
+        Version:
+          $ref: "#/components/schemas/Version"
+        os:
+          type: string
+        tenantHostToken:
+          type: string
+        hostname:
+          type: string
+        cloud_provider:
+          type: string
+        machine_info:
+          $ref: "#/components/schemas/MachineInfo"
+        boot_time:
+          type: string
+      type: object
+    ProvisionResponse:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+          x-omitempty: false
+          x-isnullable: false
+      type: object
+    AdditionalParam:
+      properties:
+        Key:
+          type: string
+        Value:
+          type: string
+      type: object
+    Version:
+      example:
+        Major: 0
+        PreRelease: PreRelease
+        Minor: 6
+        Component: Component
+        Patch: 1
+      properties:
+        Component:
+          type: string
+        Major:
+          type: integer
+        Minor:
+          type: integer
+        Patch:
+          type: integer
+        PreRelease:
+          type: string
       type: object
   securitySchemes:
     storage.io-authorizer:

@@ -15,6 +15,7 @@ api_media.go
 api_networks.go
 api_nodes.go
 api_policies.go
+api_provision_service.go
 api_snapshots.go
 api_system.go
 api_tenant_cloud_resources.go
@@ -27,6 +28,7 @@ client.go
 configuration.go
 docs/AWSRoleItem.md
 docs/AddUserRequest.md
+docs/AdditionalParam.md
 docs/Alert.md
 docs/AlertsAPI.md
 docs/Association.md
@@ -107,6 +109,9 @@ docs/Policy.md
 docs/ProviderPriceItem.md
 docs/ProviderPricingInfoRequest.md
 docs/ProviderPricingInfoResponse.md
+docs/ProvisionRequest.md
+docs/ProvisionResponse.md
+docs/ProvisionServiceAPI.md
 docs/PutAzureSSOMappingRequest.md
 docs/RefreshToken.md
 docs/RefreshTokenResponse.md
@@ -132,6 +137,7 @@ docs/UpdateAwsRoleRequest.md
 docs/UpdateAzureRoleRequest.md
 docs/UpdateRoleRequest.md
 docs/UserAPI.md
+docs/Version.md
 docs/VersionAPI.md
 docs/VersionResponse.md
 docs/VirtualMedia.md
@@ -141,6 +147,7 @@ docs/VolumeGroup.md
 docs/VolumePlanOutput.md
 docs/VolumesAPI.md
 model_add_user_request.go
+model_additional_param.go
 model_alert.go
 model_association.go
 model_association_create.go
@@ -207,6 +214,8 @@ model_policy.go
 model_provider_price_item.go
 model_provider_pricing_info_request.go
 model_provider_pricing_info_response.go
+model_provision_request.go
+model_provision_response.go
 model_put_azure_sso_mapping_request.go
 model_refresh_token.go
 model_refresh_token_response.go
@@ -227,6 +236,7 @@ model_tenant_user.go
 model_update_aws_role_request.go
 model_update_azure_role_request.go
 model_update_role_request.go
+model_version.go
 model_version_response.go
 model_virtual_media.go
 model_virtual_media_create.go
