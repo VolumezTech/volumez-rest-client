@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Version** | Pointer to [**Version**](Version.md) |  | [optional] 
 **Os** | Pointer to **string** |  | [optional] 
-**TenantHostToken** | Pointer to **string** |  | [optional] 
+**Tenanthosttoken** | Pointer to **string** |  | [optional] 
 **Hostname** | Pointer to **string** |  | [optional] 
-**CloudProvider** | Pointer to **string** |  | [optional] 
-**MachineInfo** | Pointer to [**MachineInfo**](MachineInfo.md) |  | [optional] 
-**BootTime** | Pointer to **string** |  | [optional] 
+**Cloudprovider** | Pointer to **string** |  | [optional] 
+**Machineinfo** | Pointer to [**MachineInfo**](MachineInfo.md) |  | [optional] 
+**Boottime** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -81,30 +81,30 @@ SetOs sets Os field to given value.
 
 HasOs returns a boolean if a field has been set.
 
-### GetTenantHostToken
+### GetTenanthosttoken
 
-`func (o *ProvisionRequest) GetTenantHostToken() string`
+`func (o *ProvisionRequest) GetTenanthosttoken() string`
 
-GetTenantHostToken returns the TenantHostToken field if non-nil, zero value otherwise.
+GetTenanthosttoken returns the Tenanthosttoken field if non-nil, zero value otherwise.
 
-### GetTenantHostTokenOk
+### GetTenanthosttokenOk
 
-`func (o *ProvisionRequest) GetTenantHostTokenOk() (*string, bool)`
+`func (o *ProvisionRequest) GetTenanthosttokenOk() (*string, bool)`
 
-GetTenantHostTokenOk returns a tuple with the TenantHostToken field if it's non-nil, zero value otherwise
+GetTenanthosttokenOk returns a tuple with the Tenanthosttoken field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTenantHostToken
+### SetTenanthosttoken
 
-`func (o *ProvisionRequest) SetTenantHostToken(v string)`
+`func (o *ProvisionRequest) SetTenanthosttoken(v string)`
 
-SetTenantHostToken sets TenantHostToken field to given value.
+SetTenanthosttoken sets Tenanthosttoken field to given value.
 
-### HasTenantHostToken
+### HasTenanthosttoken
 
-`func (o *ProvisionRequest) HasTenantHostToken() bool`
+`func (o *ProvisionRequest) HasTenanthosttoken() bool`
 
-HasTenantHostToken returns a boolean if a field has been set.
+HasTenanthosttoken returns a boolean if a field has been set.
 
 ### GetHostname
 
@@ -131,80 +131,80 @@ SetHostname sets Hostname field to given value.
 
 HasHostname returns a boolean if a field has been set.
 
-### GetCloudProvider
+### GetCloudprovider
 
-`func (o *ProvisionRequest) GetCloudProvider() string`
+`func (o *ProvisionRequest) GetCloudprovider() string`
 
-GetCloudProvider returns the CloudProvider field if non-nil, zero value otherwise.
+GetCloudprovider returns the Cloudprovider field if non-nil, zero value otherwise.
 
-### GetCloudProviderOk
+### GetCloudproviderOk
 
-`func (o *ProvisionRequest) GetCloudProviderOk() (*string, bool)`
+`func (o *ProvisionRequest) GetCloudproviderOk() (*string, bool)`
 
-GetCloudProviderOk returns a tuple with the CloudProvider field if it's non-nil, zero value otherwise
+GetCloudproviderOk returns a tuple with the Cloudprovider field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCloudProvider
+### SetCloudprovider
 
-`func (o *ProvisionRequest) SetCloudProvider(v string)`
+`func (o *ProvisionRequest) SetCloudprovider(v string)`
 
-SetCloudProvider sets CloudProvider field to given value.
+SetCloudprovider sets Cloudprovider field to given value.
 
-### HasCloudProvider
+### HasCloudprovider
 
-`func (o *ProvisionRequest) HasCloudProvider() bool`
+`func (o *ProvisionRequest) HasCloudprovider() bool`
 
-HasCloudProvider returns a boolean if a field has been set.
+HasCloudprovider returns a boolean if a field has been set.
 
-### GetMachineInfo
+### GetMachineinfo
 
-`func (o *ProvisionRequest) GetMachineInfo() MachineInfo`
+`func (o *ProvisionRequest) GetMachineinfo() MachineInfo`
 
-GetMachineInfo returns the MachineInfo field if non-nil, zero value otherwise.
+GetMachineinfo returns the Machineinfo field if non-nil, zero value otherwise.
 
-### GetMachineInfoOk
+### GetMachineinfoOk
 
-`func (o *ProvisionRequest) GetMachineInfoOk() (*MachineInfo, bool)`
+`func (o *ProvisionRequest) GetMachineinfoOk() (*MachineInfo, bool)`
 
-GetMachineInfoOk returns a tuple with the MachineInfo field if it's non-nil, zero value otherwise
+GetMachineinfoOk returns a tuple with the Machineinfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMachineInfo
+### SetMachineinfo
 
-`func (o *ProvisionRequest) SetMachineInfo(v MachineInfo)`
+`func (o *ProvisionRequest) SetMachineinfo(v MachineInfo)`
 
-SetMachineInfo sets MachineInfo field to given value.
+SetMachineinfo sets Machineinfo field to given value.
 
-### HasMachineInfo
+### HasMachineinfo
 
-`func (o *ProvisionRequest) HasMachineInfo() bool`
+`func (o *ProvisionRequest) HasMachineinfo() bool`
 
-HasMachineInfo returns a boolean if a field has been set.
+HasMachineinfo returns a boolean if a field has been set.
 
-### GetBootTime
+### GetBoottime
 
-`func (o *ProvisionRequest) GetBootTime() string`
+`func (o *ProvisionRequest) GetBoottime() string`
 
-GetBootTime returns the BootTime field if non-nil, zero value otherwise.
+GetBoottime returns the Boottime field if non-nil, zero value otherwise.
 
-### GetBootTimeOk
+### GetBoottimeOk
 
-`func (o *ProvisionRequest) GetBootTimeOk() (*string, bool)`
+`func (o *ProvisionRequest) GetBoottimeOk() (*string, bool)`
 
-GetBootTimeOk returns a tuple with the BootTime field if it's non-nil, zero value otherwise
+GetBoottimeOk returns a tuple with the Boottime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBootTime
+### SetBoottime
 
-`func (o *ProvisionRequest) SetBootTime(v string)`
+`func (o *ProvisionRequest) SetBoottime(v string)`
 
-SetBootTime sets BootTime field to given value.
+SetBoottime sets Boottime field to given value.
 
-### HasBootTime
+### HasBoottime
 
-`func (o *ProvisionRequest) HasBootTime() bool`
+`func (o *ProvisionRequest) HasBoottime() bool`
 
-HasBootTime returns a boolean if a field has been set.
+HasBoottime returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## Provision
 
-> ProvisionResponse Provision(ctx).ProvisionRequest(provisionRequest).Authorization(authorization).Execute()
+> ProvisionResponse Provision(ctx).ProvisionRequest(provisionRequest).Execute()
 
 Volumez connector provisioning
 
@@ -27,12 +27,11 @@ import (
 )
 
 func main() {
-	provisionRequest := *openapiclient.NewProvisionRequest() // ProvisionRequest | A provisioning object
-	authorization := "authorization_example" // string |  (optional)
+	provisionRequest := *openapiclient.NewProvisionRequest() // ProvisionRequest | A provisioning object (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProvisionServiceAPI.Provision(context.Background()).ProvisionRequest(provisionRequest).Authorization(authorization).Execute()
+	resp, r, err := apiClient.ProvisionServiceAPI.Provision(context.Background()).ProvisionRequest(provisionRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProvisionServiceAPI.Provision``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,7 +53,6 @@ Other parameters are passed through a pointer to a apiProvisionRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **provisionRequest** | [**ProvisionRequest**](ProvisionRequest.md) | A provisioning object | 
- **authorization** | **string** |  | 
 
 ### Return type
 

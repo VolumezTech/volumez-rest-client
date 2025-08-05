@@ -19,13 +19,13 @@ var _ MappedNullable = &ProvisionRequest{}
 
 // ProvisionRequest struct for ProvisionRequest
 type ProvisionRequest struct {
-	Version         *Version     `json:"Version,omitempty"`
+	Version         *Version     `json:"version,omitempty"`
 	Os              *string      `json:"os,omitempty"`
-	TenantHostToken *string      `json:"tenantHostToken,omitempty"`
+	Tenanthosttoken *string      `json:"tenanthosttoken,omitempty"`
 	Hostname        *string      `json:"hostname,omitempty"`
-	CloudProvider   *string      `json:"cloud_provider,omitempty"`
-	MachineInfo     *MachineInfo `json:"machine_info,omitempty"`
-	BootTime        *string      `json:"boot_time,omitempty"`
+	Cloudprovider   *string      `json:"cloudprovider,omitempty"`
+	Machineinfo     *MachineInfo `json:"machineinfo,omitempty"`
+	Boottime        *string      `json:"boottime,omitempty"`
 }
 
 // NewProvisionRequest instantiates a new ProvisionRequest object
@@ -109,36 +109,36 @@ func (o *ProvisionRequest) SetOs(v string) {
 	o.Os = &v
 }
 
-// GetTenantHostToken returns the TenantHostToken field value if set, zero value otherwise.
-func (o *ProvisionRequest) GetTenantHostToken() string {
-	if o == nil || IsNil(o.TenantHostToken) {
+// GetTenanthosttoken returns the Tenanthosttoken field value if set, zero value otherwise.
+func (o *ProvisionRequest) GetTenanthosttoken() string {
+	if o == nil || IsNil(o.Tenanthosttoken) {
 		var ret string
 		return ret
 	}
-	return *o.TenantHostToken
+	return *o.Tenanthosttoken
 }
 
-// GetTenantHostTokenOk returns a tuple with the TenantHostToken field value if set, nil otherwise
+// GetTenanthosttokenOk returns a tuple with the Tenanthosttoken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProvisionRequest) GetTenantHostTokenOk() (*string, bool) {
-	if o == nil || IsNil(o.TenantHostToken) {
+func (o *ProvisionRequest) GetTenanthosttokenOk() (*string, bool) {
+	if o == nil || IsNil(o.Tenanthosttoken) {
 		return nil, false
 	}
-	return o.TenantHostToken, true
+	return o.Tenanthosttoken, true
 }
 
-// HasTenantHostToken returns a boolean if a field has been set.
-func (o *ProvisionRequest) HasTenantHostToken() bool {
-	if o != nil && !IsNil(o.TenantHostToken) {
+// HasTenanthosttoken returns a boolean if a field has been set.
+func (o *ProvisionRequest) HasTenanthosttoken() bool {
+	if o != nil && !IsNil(o.Tenanthosttoken) {
 		return true
 	}
 
 	return false
 }
 
-// SetTenantHostToken gets a reference to the given string and assigns it to the TenantHostToken field.
-func (o *ProvisionRequest) SetTenantHostToken(v string) {
-	o.TenantHostToken = &v
+// SetTenanthosttoken gets a reference to the given string and assigns it to the Tenanthosttoken field.
+func (o *ProvisionRequest) SetTenanthosttoken(v string) {
+	o.Tenanthosttoken = &v
 }
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
@@ -173,100 +173,100 @@ func (o *ProvisionRequest) SetHostname(v string) {
 	o.Hostname = &v
 }
 
-// GetCloudProvider returns the CloudProvider field value if set, zero value otherwise.
-func (o *ProvisionRequest) GetCloudProvider() string {
-	if o == nil || IsNil(o.CloudProvider) {
+// GetCloudprovider returns the Cloudprovider field value if set, zero value otherwise.
+func (o *ProvisionRequest) GetCloudprovider() string {
+	if o == nil || IsNil(o.Cloudprovider) {
 		var ret string
 		return ret
 	}
-	return *o.CloudProvider
+	return *o.Cloudprovider
 }
 
-// GetCloudProviderOk returns a tuple with the CloudProvider field value if set, nil otherwise
+// GetCloudproviderOk returns a tuple with the Cloudprovider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProvisionRequest) GetCloudProviderOk() (*string, bool) {
-	if o == nil || IsNil(o.CloudProvider) {
+func (o *ProvisionRequest) GetCloudproviderOk() (*string, bool) {
+	if o == nil || IsNil(o.Cloudprovider) {
 		return nil, false
 	}
-	return o.CloudProvider, true
+	return o.Cloudprovider, true
 }
 
-// HasCloudProvider returns a boolean if a field has been set.
-func (o *ProvisionRequest) HasCloudProvider() bool {
-	if o != nil && !IsNil(o.CloudProvider) {
+// HasCloudprovider returns a boolean if a field has been set.
+func (o *ProvisionRequest) HasCloudprovider() bool {
+	if o != nil && !IsNil(o.Cloudprovider) {
 		return true
 	}
 
 	return false
 }
 
-// SetCloudProvider gets a reference to the given string and assigns it to the CloudProvider field.
-func (o *ProvisionRequest) SetCloudProvider(v string) {
-	o.CloudProvider = &v
+// SetCloudprovider gets a reference to the given string and assigns it to the Cloudprovider field.
+func (o *ProvisionRequest) SetCloudprovider(v string) {
+	o.Cloudprovider = &v
 }
 
-// GetMachineInfo returns the MachineInfo field value if set, zero value otherwise.
-func (o *ProvisionRequest) GetMachineInfo() MachineInfo {
-	if o == nil || IsNil(o.MachineInfo) {
+// GetMachineinfo returns the Machineinfo field value if set, zero value otherwise.
+func (o *ProvisionRequest) GetMachineinfo() MachineInfo {
+	if o == nil || IsNil(o.Machineinfo) {
 		var ret MachineInfo
 		return ret
 	}
-	return *o.MachineInfo
+	return *o.Machineinfo
 }
 
-// GetMachineInfoOk returns a tuple with the MachineInfo field value if set, nil otherwise
+// GetMachineinfoOk returns a tuple with the Machineinfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProvisionRequest) GetMachineInfoOk() (*MachineInfo, bool) {
-	if o == nil || IsNil(o.MachineInfo) {
+func (o *ProvisionRequest) GetMachineinfoOk() (*MachineInfo, bool) {
+	if o == nil || IsNil(o.Machineinfo) {
 		return nil, false
 	}
-	return o.MachineInfo, true
+	return o.Machineinfo, true
 }
 
-// HasMachineInfo returns a boolean if a field has been set.
-func (o *ProvisionRequest) HasMachineInfo() bool {
-	if o != nil && !IsNil(o.MachineInfo) {
+// HasMachineinfo returns a boolean if a field has been set.
+func (o *ProvisionRequest) HasMachineinfo() bool {
+	if o != nil && !IsNil(o.Machineinfo) {
 		return true
 	}
 
 	return false
 }
 
-// SetMachineInfo gets a reference to the given MachineInfo and assigns it to the MachineInfo field.
-func (o *ProvisionRequest) SetMachineInfo(v MachineInfo) {
-	o.MachineInfo = &v
+// SetMachineinfo gets a reference to the given MachineInfo and assigns it to the Machineinfo field.
+func (o *ProvisionRequest) SetMachineinfo(v MachineInfo) {
+	o.Machineinfo = &v
 }
 
-// GetBootTime returns the BootTime field value if set, zero value otherwise.
-func (o *ProvisionRequest) GetBootTime() string {
-	if o == nil || IsNil(o.BootTime) {
+// GetBoottime returns the Boottime field value if set, zero value otherwise.
+func (o *ProvisionRequest) GetBoottime() string {
+	if o == nil || IsNil(o.Boottime) {
 		var ret string
 		return ret
 	}
-	return *o.BootTime
+	return *o.Boottime
 }
 
-// GetBootTimeOk returns a tuple with the BootTime field value if set, nil otherwise
+// GetBoottimeOk returns a tuple with the Boottime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProvisionRequest) GetBootTimeOk() (*string, bool) {
-	if o == nil || IsNil(o.BootTime) {
+func (o *ProvisionRequest) GetBoottimeOk() (*string, bool) {
+	if o == nil || IsNil(o.Boottime) {
 		return nil, false
 	}
-	return o.BootTime, true
+	return o.Boottime, true
 }
 
-// HasBootTime returns a boolean if a field has been set.
-func (o *ProvisionRequest) HasBootTime() bool {
-	if o != nil && !IsNil(o.BootTime) {
+// HasBoottime returns a boolean if a field has been set.
+func (o *ProvisionRequest) HasBoottime() bool {
+	if o != nil && !IsNil(o.Boottime) {
 		return true
 	}
 
 	return false
 }
 
-// SetBootTime gets a reference to the given string and assigns it to the BootTime field.
-func (o *ProvisionRequest) SetBootTime(v string) {
-	o.BootTime = &v
+// SetBoottime gets a reference to the given string and assigns it to the Boottime field.
+func (o *ProvisionRequest) SetBoottime(v string) {
+	o.Boottime = &v
 }
 
 func (o ProvisionRequest) MarshalJSON() ([]byte, error) {
@@ -280,25 +280,25 @@ func (o ProvisionRequest) MarshalJSON() ([]byte, error) {
 func (o ProvisionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Version) {
-		toSerialize["Version"] = o.Version
+		toSerialize["version"] = o.Version
 	}
 	if !IsNil(o.Os) {
 		toSerialize["os"] = o.Os
 	}
-	if !IsNil(o.TenantHostToken) {
-		toSerialize["tenantHostToken"] = o.TenantHostToken
+	if !IsNil(o.Tenanthosttoken) {
+		toSerialize["tenanthosttoken"] = o.Tenanthosttoken
 	}
 	if !IsNil(o.Hostname) {
 		toSerialize["hostname"] = o.Hostname
 	}
-	if !IsNil(o.CloudProvider) {
-		toSerialize["cloud_provider"] = o.CloudProvider
+	if !IsNil(o.Cloudprovider) {
+		toSerialize["cloudprovider"] = o.Cloudprovider
 	}
-	if !IsNil(o.MachineInfo) {
-		toSerialize["machine_info"] = o.MachineInfo
+	if !IsNil(o.Machineinfo) {
+		toSerialize["machineinfo"] = o.Machineinfo
 	}
-	if !IsNil(o.BootTime) {
-		toSerialize["boot_time"] = o.BootTime
+	if !IsNil(o.Boottime) {
+		toSerialize["boottime"] = o.Boottime
 	}
 	return toSerialize, nil
 }

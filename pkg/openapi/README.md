@@ -148,6 +148,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**PoliciesPolicyOptions**](docs/DefaultAPI.md#policiespolicyoptions) | **Options** /policies/{policy} | 
 *DefaultAPI* | [**PoliciesPolicySizeSizeZoneZoneOptions**](docs/DefaultAPI.md#policiespolicysizesizezonezoneoptions) | **Options** /policies/{policy}/size/{size}/zone/{zone} | 
 *DefaultAPI* | [**PoliciesPolicyVolumesOptions**](docs/DefaultAPI.md#policiespolicyvolumesoptions) | **Options** /policies/{policy}/volumes | 
+*DefaultAPI* | [**ProvisionOptions**](docs/DefaultAPI.md#provisionoptions) | **Options** /provision | 
 *DefaultAPI* | [**RoleUserIdRoleIdOptions**](docs/DefaultAPI.md#roleuseridroleidoptions) | **Options** /role/{userId}/{roleId} | 
 *DefaultAPI* | [**RolesOptions**](docs/DefaultAPI.md#rolesoptions) | **Options** /roles | 
 *DefaultAPI* | [**RolesTenantIdUserIdOptions**](docs/DefaultAPI.md#rolestenantiduseridoptions) | **Options** /roles/{tenantId}/{userId} | 

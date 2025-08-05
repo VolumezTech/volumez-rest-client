@@ -13550,6 +13550,14 @@ paths:
         type: mock
     post:
       operationId: Provision
+      # parameters:
+      # - explode: false
+      #   in: header
+      #   name: authorization
+      #   required: false
+      #   schema:
+      #     type: string
+      #   style: simple
       requestBody:
         content:
           application/json:
@@ -19834,15 +19842,15 @@ components:
         faultdomain: fault_domain
         architecture: architecture
         ipaddresses:
-        - 192.168.1.1
-        - 10.0.0.1
+          - "192.168.1.1"
+          - "10.0.0.1"
         publicdns: public.dns.example.com
-        cluster: my-cluster
+        cluster: "my-cluster"
         additional:
-        - key: key1
-          value: value1
-        - key: key2
-          value: value2
+          - key: "key1"
+            value: "value1"
+          - key: "key2"
+            value: "value2"
       properties:
         instanceid:
           type: string
@@ -19865,17 +19873,17 @@ components:
         architecture:
           type: string
         ipaddresses:
+          type: array
           items:
             type: string
-          type: array
         publicdns:
           type: string
         cluster:
           type: string
         additional:
+          type: array
           items:
             $ref: "#/components/schemas/AdditionalParam"
-          type: array
       type: object
     CloudProviderType:
       enum:
@@ -21278,13 +21286,14 @@ components:
           x-isnullable: false
       type: object
     AdditionalParam:
+      type: object
       properties:
         key:
           type: string
         value:
           type: string
-      type: object
     Version:
+      type: object
       example:
         major: 0
         prerelease: pre-release
@@ -21302,7 +21311,6 @@ components:
           type: integer
         prerelease:
           type: string
-      type: object
   securitySchemes:
     storage.io-authorizer:
       in: header

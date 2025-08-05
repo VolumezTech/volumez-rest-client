@@ -19,11 +19,11 @@ var _ MappedNullable = &Version{}
 
 // Version struct for Version
 type Version struct {
-	Component  *string `json:"Component,omitempty"`
-	Major      *int32  `json:"Major,omitempty"`
-	Minor      *int32  `json:"Minor,omitempty"`
-	Patch      *int32  `json:"Patch,omitempty"`
-	PreRelease *string `json:"PreRelease,omitempty"`
+	Component  *string `json:"component,omitempty"`
+	Major      *int32  `json:"major,omitempty"`
+	Minor      *int32  `json:"minor,omitempty"`
+	Patch      *int32  `json:"patch,omitempty"`
+	Prerelease *string `json:"prerelease,omitempty"`
 }
 
 // NewVersion instantiates a new Version object
@@ -171,36 +171,36 @@ func (o *Version) SetPatch(v int32) {
 	o.Patch = &v
 }
 
-// GetPreRelease returns the PreRelease field value if set, zero value otherwise.
-func (o *Version) GetPreRelease() string {
-	if o == nil || IsNil(o.PreRelease) {
+// GetPrerelease returns the Prerelease field value if set, zero value otherwise.
+func (o *Version) GetPrerelease() string {
+	if o == nil || IsNil(o.Prerelease) {
 		var ret string
 		return ret
 	}
-	return *o.PreRelease
+	return *o.Prerelease
 }
 
-// GetPreReleaseOk returns a tuple with the PreRelease field value if set, nil otherwise
+// GetPrereleaseOk returns a tuple with the Prerelease field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Version) GetPreReleaseOk() (*string, bool) {
-	if o == nil || IsNil(o.PreRelease) {
+func (o *Version) GetPrereleaseOk() (*string, bool) {
+	if o == nil || IsNil(o.Prerelease) {
 		return nil, false
 	}
-	return o.PreRelease, true
+	return o.Prerelease, true
 }
 
-// HasPreRelease returns a boolean if a field has been set.
-func (o *Version) HasPreRelease() bool {
-	if o != nil && !IsNil(o.PreRelease) {
+// HasPrerelease returns a boolean if a field has been set.
+func (o *Version) HasPrerelease() bool {
+	if o != nil && !IsNil(o.Prerelease) {
 		return true
 	}
 
 	return false
 }
 
-// SetPreRelease gets a reference to the given string and assigns it to the PreRelease field.
-func (o *Version) SetPreRelease(v string) {
-	o.PreRelease = &v
+// SetPrerelease gets a reference to the given string and assigns it to the Prerelease field.
+func (o *Version) SetPrerelease(v string) {
+	o.Prerelease = &v
 }
 
 func (o Version) MarshalJSON() ([]byte, error) {
@@ -214,19 +214,19 @@ func (o Version) MarshalJSON() ([]byte, error) {
 func (o Version) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Component) {
-		toSerialize["Component"] = o.Component
+		toSerialize["component"] = o.Component
 	}
 	if !IsNil(o.Major) {
-		toSerialize["Major"] = o.Major
+		toSerialize["major"] = o.Major
 	}
 	if !IsNil(o.Minor) {
-		toSerialize["Minor"] = o.Minor
+		toSerialize["minor"] = o.Minor
 	}
 	if !IsNil(o.Patch) {
-		toSerialize["Patch"] = o.Patch
+		toSerialize["patch"] = o.Patch
 	}
-	if !IsNil(o.PreRelease) {
-		toSerialize["PreRelease"] = o.PreRelease
+	if !IsNil(o.Prerelease) {
+		toSerialize["prerelease"] = o.Prerelease
 	}
 	return toSerialize, nil
 }

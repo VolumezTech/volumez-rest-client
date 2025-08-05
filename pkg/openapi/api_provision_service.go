@@ -25,17 +25,11 @@ type ApiProvisionRequest struct {
 	ctx              context.Context
 	ApiService       *ProvisionServiceAPIService
 	provisionRequest *ProvisionRequest
-	authorization    *string
 }
 
 // A provisioning object
 func (r ApiProvisionRequest) ProvisionRequest(provisionRequest ProvisionRequest) ApiProvisionRequest {
 	r.provisionRequest = &provisionRequest
-	return r
-}
-
-func (r ApiProvisionRequest) Authorization(authorization string) ApiProvisionRequest {
-	r.authorization = &authorization
 	return r
 }
 
@@ -77,9 +71,6 @@ func (a *ProvisionServiceAPIService) ProvisionExecute(r ApiProvisionRequest) (*P
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.provisionRequest == nil {
-		return localVarReturnValue, nil, reportError("provisionRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -97,9 +88,6 @@ func (a *ProvisionServiceAPIService) ProvisionExecute(r ApiProvisionRequest) (*P
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.authorization != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "authorization", r.authorization, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.provisionRequest
