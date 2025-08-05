@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Major** | Pointer to **int32** |  | [optional] 
 **Minor** | Pointer to **int32** |  | [optional] 
 **Patch** | Pointer to **int32** |  | [optional] 
-**PreRelease** | Pointer to **string** |  | [optional] 
+**Prerelease** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -129,30 +129,30 @@ SetPatch sets Patch field to given value.
 
 HasPatch returns a boolean if a field has been set.
 
-### GetPreRelease
+### GetPrerelease
 
-`func (o *Version) GetPreRelease() string`
+`func (o *Version) GetPrerelease() string`
 
-GetPreRelease returns the PreRelease field if non-nil, zero value otherwise.
+GetPrerelease returns the Prerelease field if non-nil, zero value otherwise.
 
-### GetPreReleaseOk
+### GetPrereleaseOk
 
-`func (o *Version) GetPreReleaseOk() (*string, bool)`
+`func (o *Version) GetPrereleaseOk() (*string, bool)`
 
-GetPreReleaseOk returns a tuple with the PreRelease field if it's non-nil, zero value otherwise
+GetPrereleaseOk returns a tuple with the Prerelease field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPreRelease
+### SetPrerelease
 
-`func (o *Version) SetPreRelease(v string)`
+`func (o *Version) SetPrerelease(v string)`
 
-SetPreRelease sets PreRelease field to given value.
+SetPrerelease sets Prerelease field to given value.
 
-### HasPreRelease
+### HasPrerelease
 
-`func (o *Version) HasPreRelease() bool`
+`func (o *Version) HasPrerelease() bool`
 
-HasPreRelease returns a boolean if a field has been set.
+HasPrerelease returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

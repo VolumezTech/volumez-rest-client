@@ -19,14 +19,20 @@ var _ MappedNullable = &MachineInfo{}
 
 // MachineInfo struct for MachineInfo
 type MachineInfo struct {
-	Instanceid     *string  `json:"instanceid,omitempty"`
-	Instancetype   *string  `json:"instancetype,omitempty"`
-	Controladdress *string  `json:"controladdress,omitempty"`
-	Imageid        *string  `json:"imageid,omitempty"`
-	Zone           *string  `json:"zone,omitempty"`
-	Sha            *string  `json:"sha,omitempty"`
-	Env            *string  `json:"env,omitempty"`
-	Pk             []string `json:"pk,omitempty"`
+	Instanceid             *string           `json:"instanceid,omitempty"`
+	Machinename            *string           `json:"machinename,omitempty"`
+	Accountid              *string           `json:"accountid,omitempty"`
+	Region                 *string           `json:"region,omitempty"`
+	Zone                   *string           `json:"zone,omitempty"`
+	Resourcenamespace      *string           `json:"resourcenamespace,omitempty"`
+	PhysicalproximityGroup *string           `json:"physicalproximity_group,omitempty"`
+	Resiliencydomain       *string           `json:"resiliencydomain,omitempty"`
+	Faultdomain            *string           `json:"faultdomain,omitempty"`
+	Architecture           *string           `json:"architecture,omitempty"`
+	Ipaddresses            []string          `json:"ipaddresses,omitempty"`
+	Publicdns              *string           `json:"publicdns,omitempty"`
+	Cluster                *string           `json:"cluster,omitempty"`
+	Additional             []AdditionalParam `json:"additional,omitempty"`
 }
 
 // NewMachineInfo instantiates a new MachineInfo object
@@ -78,100 +84,100 @@ func (o *MachineInfo) SetInstanceid(v string) {
 	o.Instanceid = &v
 }
 
-// GetInstancetype returns the Instancetype field value if set, zero value otherwise.
-func (o *MachineInfo) GetInstancetype() string {
-	if o == nil || IsNil(o.Instancetype) {
+// GetMachinename returns the Machinename field value if set, zero value otherwise.
+func (o *MachineInfo) GetMachinename() string {
+	if o == nil || IsNil(o.Machinename) {
 		var ret string
 		return ret
 	}
-	return *o.Instancetype
+	return *o.Machinename
 }
 
-// GetInstancetypeOk returns a tuple with the Instancetype field value if set, nil otherwise
+// GetMachinenameOk returns a tuple with the Machinename field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineInfo) GetInstancetypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Instancetype) {
+func (o *MachineInfo) GetMachinenameOk() (*string, bool) {
+	if o == nil || IsNil(o.Machinename) {
 		return nil, false
 	}
-	return o.Instancetype, true
+	return o.Machinename, true
 }
 
-// HasInstancetype returns a boolean if a field has been set.
-func (o *MachineInfo) HasInstancetype() bool {
-	if o != nil && !IsNil(o.Instancetype) {
+// HasMachinename returns a boolean if a field has been set.
+func (o *MachineInfo) HasMachinename() bool {
+	if o != nil && !IsNil(o.Machinename) {
 		return true
 	}
 
 	return false
 }
 
-// SetInstancetype gets a reference to the given string and assigns it to the Instancetype field.
-func (o *MachineInfo) SetInstancetype(v string) {
-	o.Instancetype = &v
+// SetMachinename gets a reference to the given string and assigns it to the Machinename field.
+func (o *MachineInfo) SetMachinename(v string) {
+	o.Machinename = &v
 }
 
-// GetControladdress returns the Controladdress field value if set, zero value otherwise.
-func (o *MachineInfo) GetControladdress() string {
-	if o == nil || IsNil(o.Controladdress) {
+// GetAccountid returns the Accountid field value if set, zero value otherwise.
+func (o *MachineInfo) GetAccountid() string {
+	if o == nil || IsNil(o.Accountid) {
 		var ret string
 		return ret
 	}
-	return *o.Controladdress
+	return *o.Accountid
 }
 
-// GetControladdressOk returns a tuple with the Controladdress field value if set, nil otherwise
+// GetAccountidOk returns a tuple with the Accountid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineInfo) GetControladdressOk() (*string, bool) {
-	if o == nil || IsNil(o.Controladdress) {
+func (o *MachineInfo) GetAccountidOk() (*string, bool) {
+	if o == nil || IsNil(o.Accountid) {
 		return nil, false
 	}
-	return o.Controladdress, true
+	return o.Accountid, true
 }
 
-// HasControladdress returns a boolean if a field has been set.
-func (o *MachineInfo) HasControladdress() bool {
-	if o != nil && !IsNil(o.Controladdress) {
+// HasAccountid returns a boolean if a field has been set.
+func (o *MachineInfo) HasAccountid() bool {
+	if o != nil && !IsNil(o.Accountid) {
 		return true
 	}
 
 	return false
 }
 
-// SetControladdress gets a reference to the given string and assigns it to the Controladdress field.
-func (o *MachineInfo) SetControladdress(v string) {
-	o.Controladdress = &v
+// SetAccountid gets a reference to the given string and assigns it to the Accountid field.
+func (o *MachineInfo) SetAccountid(v string) {
+	o.Accountid = &v
 }
 
-// GetImageid returns the Imageid field value if set, zero value otherwise.
-func (o *MachineInfo) GetImageid() string {
-	if o == nil || IsNil(o.Imageid) {
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *MachineInfo) GetRegion() string {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
-	return *o.Imageid
+	return *o.Region
 }
 
-// GetImageidOk returns a tuple with the Imageid field value if set, nil otherwise
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineInfo) GetImageidOk() (*string, bool) {
-	if o == nil || IsNil(o.Imageid) {
+func (o *MachineInfo) GetRegionOk() (*string, bool) {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
-	return o.Imageid, true
+	return o.Region, true
 }
 
-// HasImageid returns a boolean if a field has been set.
-func (o *MachineInfo) HasImageid() bool {
-	if o != nil && !IsNil(o.Imageid) {
+// HasRegion returns a boolean if a field has been set.
+func (o *MachineInfo) HasRegion() bool {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
 	return false
 }
 
-// SetImageid gets a reference to the given string and assigns it to the Imageid field.
-func (o *MachineInfo) SetImageid(v string) {
-	o.Imageid = &v
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *MachineInfo) SetRegion(v string) {
+	o.Region = &v
 }
 
 // GetZone returns the Zone field value if set, zero value otherwise.
@@ -206,100 +212,292 @@ func (o *MachineInfo) SetZone(v string) {
 	o.Zone = &v
 }
 
-// GetSha returns the Sha field value if set, zero value otherwise.
-func (o *MachineInfo) GetSha() string {
-	if o == nil || IsNil(o.Sha) {
+// GetResourcenamespace returns the Resourcenamespace field value if set, zero value otherwise.
+func (o *MachineInfo) GetResourcenamespace() string {
+	if o == nil || IsNil(o.Resourcenamespace) {
 		var ret string
 		return ret
 	}
-	return *o.Sha
+	return *o.Resourcenamespace
 }
 
-// GetShaOk returns a tuple with the Sha field value if set, nil otherwise
+// GetResourcenamespaceOk returns a tuple with the Resourcenamespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineInfo) GetShaOk() (*string, bool) {
-	if o == nil || IsNil(o.Sha) {
+func (o *MachineInfo) GetResourcenamespaceOk() (*string, bool) {
+	if o == nil || IsNil(o.Resourcenamespace) {
 		return nil, false
 	}
-	return o.Sha, true
+	return o.Resourcenamespace, true
 }
 
-// HasSha returns a boolean if a field has been set.
-func (o *MachineInfo) HasSha() bool {
-	if o != nil && !IsNil(o.Sha) {
+// HasResourcenamespace returns a boolean if a field has been set.
+func (o *MachineInfo) HasResourcenamespace() bool {
+	if o != nil && !IsNil(o.Resourcenamespace) {
 		return true
 	}
 
 	return false
 }
 
-// SetSha gets a reference to the given string and assigns it to the Sha field.
-func (o *MachineInfo) SetSha(v string) {
-	o.Sha = &v
+// SetResourcenamespace gets a reference to the given string and assigns it to the Resourcenamespace field.
+func (o *MachineInfo) SetResourcenamespace(v string) {
+	o.Resourcenamespace = &v
 }
 
-// GetEnv returns the Env field value if set, zero value otherwise.
-func (o *MachineInfo) GetEnv() string {
-	if o == nil || IsNil(o.Env) {
+// GetPhysicalproximityGroup returns the PhysicalproximityGroup field value if set, zero value otherwise.
+func (o *MachineInfo) GetPhysicalproximityGroup() string {
+	if o == nil || IsNil(o.PhysicalproximityGroup) {
 		var ret string
 		return ret
 	}
-	return *o.Env
+	return *o.PhysicalproximityGroup
 }
 
-// GetEnvOk returns a tuple with the Env field value if set, nil otherwise
+// GetPhysicalproximityGroupOk returns a tuple with the PhysicalproximityGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineInfo) GetEnvOk() (*string, bool) {
-	if o == nil || IsNil(o.Env) {
+func (o *MachineInfo) GetPhysicalproximityGroupOk() (*string, bool) {
+	if o == nil || IsNil(o.PhysicalproximityGroup) {
 		return nil, false
 	}
-	return o.Env, true
+	return o.PhysicalproximityGroup, true
 }
 
-// HasEnv returns a boolean if a field has been set.
-func (o *MachineInfo) HasEnv() bool {
-	if o != nil && !IsNil(o.Env) {
+// HasPhysicalproximityGroup returns a boolean if a field has been set.
+func (o *MachineInfo) HasPhysicalproximityGroup() bool {
+	if o != nil && !IsNil(o.PhysicalproximityGroup) {
 		return true
 	}
 
 	return false
 }
 
-// SetEnv gets a reference to the given string and assigns it to the Env field.
-func (o *MachineInfo) SetEnv(v string) {
-	o.Env = &v
+// SetPhysicalproximityGroup gets a reference to the given string and assigns it to the PhysicalproximityGroup field.
+func (o *MachineInfo) SetPhysicalproximityGroup(v string) {
+	o.PhysicalproximityGroup = &v
 }
 
-// GetPk returns the Pk field value if set, zero value otherwise.
-func (o *MachineInfo) GetPk() []string {
-	if o == nil || IsNil(o.Pk) {
+// GetResiliencydomain returns the Resiliencydomain field value if set, zero value otherwise.
+func (o *MachineInfo) GetResiliencydomain() string {
+	if o == nil || IsNil(o.Resiliencydomain) {
+		var ret string
+		return ret
+	}
+	return *o.Resiliencydomain
+}
+
+// GetResiliencydomainOk returns a tuple with the Resiliencydomain field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineInfo) GetResiliencydomainOk() (*string, bool) {
+	if o == nil || IsNil(o.Resiliencydomain) {
+		return nil, false
+	}
+	return o.Resiliencydomain, true
+}
+
+// HasResiliencydomain returns a boolean if a field has been set.
+func (o *MachineInfo) HasResiliencydomain() bool {
+	if o != nil && !IsNil(o.Resiliencydomain) {
+		return true
+	}
+
+	return false
+}
+
+// SetResiliencydomain gets a reference to the given string and assigns it to the Resiliencydomain field.
+func (o *MachineInfo) SetResiliencydomain(v string) {
+	o.Resiliencydomain = &v
+}
+
+// GetFaultdomain returns the Faultdomain field value if set, zero value otherwise.
+func (o *MachineInfo) GetFaultdomain() string {
+	if o == nil || IsNil(o.Faultdomain) {
+		var ret string
+		return ret
+	}
+	return *o.Faultdomain
+}
+
+// GetFaultdomainOk returns a tuple with the Faultdomain field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineInfo) GetFaultdomainOk() (*string, bool) {
+	if o == nil || IsNil(o.Faultdomain) {
+		return nil, false
+	}
+	return o.Faultdomain, true
+}
+
+// HasFaultdomain returns a boolean if a field has been set.
+func (o *MachineInfo) HasFaultdomain() bool {
+	if o != nil && !IsNil(o.Faultdomain) {
+		return true
+	}
+
+	return false
+}
+
+// SetFaultdomain gets a reference to the given string and assigns it to the Faultdomain field.
+func (o *MachineInfo) SetFaultdomain(v string) {
+	o.Faultdomain = &v
+}
+
+// GetArchitecture returns the Architecture field value if set, zero value otherwise.
+func (o *MachineInfo) GetArchitecture() string {
+	if o == nil || IsNil(o.Architecture) {
+		var ret string
+		return ret
+	}
+	return *o.Architecture
+}
+
+// GetArchitectureOk returns a tuple with the Architecture field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineInfo) GetArchitectureOk() (*string, bool) {
+	if o == nil || IsNil(o.Architecture) {
+		return nil, false
+	}
+	return o.Architecture, true
+}
+
+// HasArchitecture returns a boolean if a field has been set.
+func (o *MachineInfo) HasArchitecture() bool {
+	if o != nil && !IsNil(o.Architecture) {
+		return true
+	}
+
+	return false
+}
+
+// SetArchitecture gets a reference to the given string and assigns it to the Architecture field.
+func (o *MachineInfo) SetArchitecture(v string) {
+	o.Architecture = &v
+}
+
+// GetIpaddresses returns the Ipaddresses field value if set, zero value otherwise.
+func (o *MachineInfo) GetIpaddresses() []string {
+	if o == nil || IsNil(o.Ipaddresses) {
 		var ret []string
 		return ret
 	}
-	return o.Pk
+	return o.Ipaddresses
 }
 
-// GetPkOk returns a tuple with the Pk field value if set, nil otherwise
+// GetIpaddressesOk returns a tuple with the Ipaddresses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MachineInfo) GetPkOk() ([]string, bool) {
-	if o == nil || IsNil(o.Pk) {
+func (o *MachineInfo) GetIpaddressesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Ipaddresses) {
 		return nil, false
 	}
-	return o.Pk, true
+	return o.Ipaddresses, true
 }
 
-// HasPk returns a boolean if a field has been set.
-func (o *MachineInfo) HasPk() bool {
-	if o != nil && !IsNil(o.Pk) {
+// HasIpaddresses returns a boolean if a field has been set.
+func (o *MachineInfo) HasIpaddresses() bool {
+	if o != nil && !IsNil(o.Ipaddresses) {
 		return true
 	}
 
 	return false
 }
 
-// SetPk gets a reference to the given []string and assigns it to the Pk field.
-func (o *MachineInfo) SetPk(v []string) {
-	o.Pk = v
+// SetIpaddresses gets a reference to the given []string and assigns it to the Ipaddresses field.
+func (o *MachineInfo) SetIpaddresses(v []string) {
+	o.Ipaddresses = v
+}
+
+// GetPublicdns returns the Publicdns field value if set, zero value otherwise.
+func (o *MachineInfo) GetPublicdns() string {
+	if o == nil || IsNil(o.Publicdns) {
+		var ret string
+		return ret
+	}
+	return *o.Publicdns
+}
+
+// GetPublicdnsOk returns a tuple with the Publicdns field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineInfo) GetPublicdnsOk() (*string, bool) {
+	if o == nil || IsNil(o.Publicdns) {
+		return nil, false
+	}
+	return o.Publicdns, true
+}
+
+// HasPublicdns returns a boolean if a field has been set.
+func (o *MachineInfo) HasPublicdns() bool {
+	if o != nil && !IsNil(o.Publicdns) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicdns gets a reference to the given string and assigns it to the Publicdns field.
+func (o *MachineInfo) SetPublicdns(v string) {
+	o.Publicdns = &v
+}
+
+// GetCluster returns the Cluster field value if set, zero value otherwise.
+func (o *MachineInfo) GetCluster() string {
+	if o == nil || IsNil(o.Cluster) {
+		var ret string
+		return ret
+	}
+	return *o.Cluster
+}
+
+// GetClusterOk returns a tuple with the Cluster field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineInfo) GetClusterOk() (*string, bool) {
+	if o == nil || IsNil(o.Cluster) {
+		return nil, false
+	}
+	return o.Cluster, true
+}
+
+// HasCluster returns a boolean if a field has been set.
+func (o *MachineInfo) HasCluster() bool {
+	if o != nil && !IsNil(o.Cluster) {
+		return true
+	}
+
+	return false
+}
+
+// SetCluster gets a reference to the given string and assigns it to the Cluster field.
+func (o *MachineInfo) SetCluster(v string) {
+	o.Cluster = &v
+}
+
+// GetAdditional returns the Additional field value if set, zero value otherwise.
+func (o *MachineInfo) GetAdditional() []AdditionalParam {
+	if o == nil || IsNil(o.Additional) {
+		var ret []AdditionalParam
+		return ret
+	}
+	return o.Additional
+}
+
+// GetAdditionalOk returns a tuple with the Additional field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MachineInfo) GetAdditionalOk() ([]AdditionalParam, bool) {
+	if o == nil || IsNil(o.Additional) {
+		return nil, false
+	}
+	return o.Additional, true
+}
+
+// HasAdditional returns a boolean if a field has been set.
+func (o *MachineInfo) HasAdditional() bool {
+	if o != nil && !IsNil(o.Additional) {
+		return true
+	}
+
+	return false
+}
+
+// SetAdditional gets a reference to the given []AdditionalParam and assigns it to the Additional field.
+func (o *MachineInfo) SetAdditional(v []AdditionalParam) {
+	o.Additional = v
 }
 
 func (o MachineInfo) MarshalJSON() ([]byte, error) {
@@ -315,26 +513,44 @@ func (o MachineInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Instanceid) {
 		toSerialize["instanceid"] = o.Instanceid
 	}
-	if !IsNil(o.Instancetype) {
-		toSerialize["instancetype"] = o.Instancetype
+	if !IsNil(o.Machinename) {
+		toSerialize["machinename"] = o.Machinename
 	}
-	if !IsNil(o.Controladdress) {
-		toSerialize["controladdress"] = o.Controladdress
+	if !IsNil(o.Accountid) {
+		toSerialize["accountid"] = o.Accountid
 	}
-	if !IsNil(o.Imageid) {
-		toSerialize["imageid"] = o.Imageid
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
 	}
 	if !IsNil(o.Zone) {
 		toSerialize["zone"] = o.Zone
 	}
-	if !IsNil(o.Sha) {
-		toSerialize["sha"] = o.Sha
+	if !IsNil(o.Resourcenamespace) {
+		toSerialize["resourcenamespace"] = o.Resourcenamespace
 	}
-	if !IsNil(o.Env) {
-		toSerialize["env"] = o.Env
+	if !IsNil(o.PhysicalproximityGroup) {
+		toSerialize["physicalproximity_group"] = o.PhysicalproximityGroup
 	}
-	if !IsNil(o.Pk) {
-		toSerialize["pk"] = o.Pk
+	if !IsNil(o.Resiliencydomain) {
+		toSerialize["resiliencydomain"] = o.Resiliencydomain
+	}
+	if !IsNil(o.Faultdomain) {
+		toSerialize["faultdomain"] = o.Faultdomain
+	}
+	if !IsNil(o.Architecture) {
+		toSerialize["architecture"] = o.Architecture
+	}
+	if !IsNil(o.Ipaddresses) {
+		toSerialize["ipaddresses"] = o.Ipaddresses
+	}
+	if !IsNil(o.Publicdns) {
+		toSerialize["publicdns"] = o.Publicdns
+	}
+	if !IsNil(o.Cluster) {
+		toSerialize["cluster"] = o.Cluster
+	}
+	if !IsNil(o.Additional) {
+		toSerialize["additional"] = o.Additional
 	}
 	return toSerialize, nil
 }

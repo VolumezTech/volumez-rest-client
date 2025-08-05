@@ -5,13 +5,19 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Instanceid** | Pointer to **string** |  | [optional] 
-**Instancetype** | Pointer to **string** |  | [optional] 
-**Controladdress** | Pointer to **string** |  | [optional] 
-**Imageid** | Pointer to **string** |  | [optional] 
+**Machinename** | Pointer to **string** |  | [optional] 
+**Accountid** | Pointer to **string** |  | [optional] 
+**Region** | Pointer to **string** |  | [optional] 
 **Zone** | Pointer to **string** |  | [optional] 
-**Sha** | Pointer to **string** |  | [optional] 
-**Env** | Pointer to **string** |  | [optional] 
-**Pk** | Pointer to **[]string** |  | [optional] 
+**Resourcenamespace** | Pointer to **string** |  | [optional] 
+**PhysicalproximityGroup** | Pointer to **string** |  | [optional] 
+**Resiliencydomain** | Pointer to **string** |  | [optional] 
+**Faultdomain** | Pointer to **string** |  | [optional] 
+**Architecture** | Pointer to **string** |  | [optional] 
+**Ipaddresses** | Pointer to **[]string** |  | [optional] 
+**Publicdns** | Pointer to **string** |  | [optional] 
+**Cluster** | Pointer to **string** |  | [optional] 
+**Additional** | Pointer to [**[]AdditionalParam**](AdditionalParam.md) |  | [optional] 
 
 ## Methods
 
@@ -57,80 +63,80 @@ SetInstanceid sets Instanceid field to given value.
 
 HasInstanceid returns a boolean if a field has been set.
 
-### GetInstancetype
+### GetMachinename
 
-`func (o *MachineInfo) GetInstancetype() string`
+`func (o *MachineInfo) GetMachinename() string`
 
-GetInstancetype returns the Instancetype field if non-nil, zero value otherwise.
+GetMachinename returns the Machinename field if non-nil, zero value otherwise.
 
-### GetInstancetypeOk
+### GetMachinenameOk
 
-`func (o *MachineInfo) GetInstancetypeOk() (*string, bool)`
+`func (o *MachineInfo) GetMachinenameOk() (*string, bool)`
 
-GetInstancetypeOk returns a tuple with the Instancetype field if it's non-nil, zero value otherwise
+GetMachinenameOk returns a tuple with the Machinename field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInstancetype
+### SetMachinename
 
-`func (o *MachineInfo) SetInstancetype(v string)`
+`func (o *MachineInfo) SetMachinename(v string)`
 
-SetInstancetype sets Instancetype field to given value.
+SetMachinename sets Machinename field to given value.
 
-### HasInstancetype
+### HasMachinename
 
-`func (o *MachineInfo) HasInstancetype() bool`
+`func (o *MachineInfo) HasMachinename() bool`
 
-HasInstancetype returns a boolean if a field has been set.
+HasMachinename returns a boolean if a field has been set.
 
-### GetControladdress
+### GetAccountid
 
-`func (o *MachineInfo) GetControladdress() string`
+`func (o *MachineInfo) GetAccountid() string`
 
-GetControladdress returns the Controladdress field if non-nil, zero value otherwise.
+GetAccountid returns the Accountid field if non-nil, zero value otherwise.
 
-### GetControladdressOk
+### GetAccountidOk
 
-`func (o *MachineInfo) GetControladdressOk() (*string, bool)`
+`func (o *MachineInfo) GetAccountidOk() (*string, bool)`
 
-GetControladdressOk returns a tuple with the Controladdress field if it's non-nil, zero value otherwise
+GetAccountidOk returns a tuple with the Accountid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetControladdress
+### SetAccountid
 
-`func (o *MachineInfo) SetControladdress(v string)`
+`func (o *MachineInfo) SetAccountid(v string)`
 
-SetControladdress sets Controladdress field to given value.
+SetAccountid sets Accountid field to given value.
 
-### HasControladdress
+### HasAccountid
 
-`func (o *MachineInfo) HasControladdress() bool`
+`func (o *MachineInfo) HasAccountid() bool`
 
-HasControladdress returns a boolean if a field has been set.
+HasAccountid returns a boolean if a field has been set.
 
-### GetImageid
+### GetRegion
 
-`func (o *MachineInfo) GetImageid() string`
+`func (o *MachineInfo) GetRegion() string`
 
-GetImageid returns the Imageid field if non-nil, zero value otherwise.
+GetRegion returns the Region field if non-nil, zero value otherwise.
 
-### GetImageidOk
+### GetRegionOk
 
-`func (o *MachineInfo) GetImageidOk() (*string, bool)`
+`func (o *MachineInfo) GetRegionOk() (*string, bool)`
 
-GetImageidOk returns a tuple with the Imageid field if it's non-nil, zero value otherwise
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetImageid
+### SetRegion
 
-`func (o *MachineInfo) SetImageid(v string)`
+`func (o *MachineInfo) SetRegion(v string)`
 
-SetImageid sets Imageid field to given value.
+SetRegion sets Region field to given value.
 
-### HasImageid
+### HasRegion
 
-`func (o *MachineInfo) HasImageid() bool`
+`func (o *MachineInfo) HasRegion() bool`
 
-HasImageid returns a boolean if a field has been set.
+HasRegion returns a boolean if a field has been set.
 
 ### GetZone
 
@@ -157,80 +163,230 @@ SetZone sets Zone field to given value.
 
 HasZone returns a boolean if a field has been set.
 
-### GetSha
+### GetResourcenamespace
 
-`func (o *MachineInfo) GetSha() string`
+`func (o *MachineInfo) GetResourcenamespace() string`
 
-GetSha returns the Sha field if non-nil, zero value otherwise.
+GetResourcenamespace returns the Resourcenamespace field if non-nil, zero value otherwise.
 
-### GetShaOk
+### GetResourcenamespaceOk
 
-`func (o *MachineInfo) GetShaOk() (*string, bool)`
+`func (o *MachineInfo) GetResourcenamespaceOk() (*string, bool)`
 
-GetShaOk returns a tuple with the Sha field if it's non-nil, zero value otherwise
+GetResourcenamespaceOk returns a tuple with the Resourcenamespace field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSha
+### SetResourcenamespace
 
-`func (o *MachineInfo) SetSha(v string)`
+`func (o *MachineInfo) SetResourcenamespace(v string)`
 
-SetSha sets Sha field to given value.
+SetResourcenamespace sets Resourcenamespace field to given value.
 
-### HasSha
+### HasResourcenamespace
 
-`func (o *MachineInfo) HasSha() bool`
+`func (o *MachineInfo) HasResourcenamespace() bool`
 
-HasSha returns a boolean if a field has been set.
+HasResourcenamespace returns a boolean if a field has been set.
 
-### GetEnv
+### GetPhysicalproximityGroup
 
-`func (o *MachineInfo) GetEnv() string`
+`func (o *MachineInfo) GetPhysicalproximityGroup() string`
 
-GetEnv returns the Env field if non-nil, zero value otherwise.
+GetPhysicalproximityGroup returns the PhysicalproximityGroup field if non-nil, zero value otherwise.
 
-### GetEnvOk
+### GetPhysicalproximityGroupOk
 
-`func (o *MachineInfo) GetEnvOk() (*string, bool)`
+`func (o *MachineInfo) GetPhysicalproximityGroupOk() (*string, bool)`
 
-GetEnvOk returns a tuple with the Env field if it's non-nil, zero value otherwise
+GetPhysicalproximityGroupOk returns a tuple with the PhysicalproximityGroup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnv
+### SetPhysicalproximityGroup
 
-`func (o *MachineInfo) SetEnv(v string)`
+`func (o *MachineInfo) SetPhysicalproximityGroup(v string)`
 
-SetEnv sets Env field to given value.
+SetPhysicalproximityGroup sets PhysicalproximityGroup field to given value.
 
-### HasEnv
+### HasPhysicalproximityGroup
 
-`func (o *MachineInfo) HasEnv() bool`
+`func (o *MachineInfo) HasPhysicalproximityGroup() bool`
 
-HasEnv returns a boolean if a field has been set.
+HasPhysicalproximityGroup returns a boolean if a field has been set.
 
-### GetPk
+### GetResiliencydomain
 
-`func (o *MachineInfo) GetPk() []string`
+`func (o *MachineInfo) GetResiliencydomain() string`
 
-GetPk returns the Pk field if non-nil, zero value otherwise.
+GetResiliencydomain returns the Resiliencydomain field if non-nil, zero value otherwise.
 
-### GetPkOk
+### GetResiliencydomainOk
 
-`func (o *MachineInfo) GetPkOk() (*[]string, bool)`
+`func (o *MachineInfo) GetResiliencydomainOk() (*string, bool)`
 
-GetPkOk returns a tuple with the Pk field if it's non-nil, zero value otherwise
+GetResiliencydomainOk returns a tuple with the Resiliencydomain field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPk
+### SetResiliencydomain
 
-`func (o *MachineInfo) SetPk(v []string)`
+`func (o *MachineInfo) SetResiliencydomain(v string)`
 
-SetPk sets Pk field to given value.
+SetResiliencydomain sets Resiliencydomain field to given value.
 
-### HasPk
+### HasResiliencydomain
 
-`func (o *MachineInfo) HasPk() bool`
+`func (o *MachineInfo) HasResiliencydomain() bool`
 
-HasPk returns a boolean if a field has been set.
+HasResiliencydomain returns a boolean if a field has been set.
+
+### GetFaultdomain
+
+`func (o *MachineInfo) GetFaultdomain() string`
+
+GetFaultdomain returns the Faultdomain field if non-nil, zero value otherwise.
+
+### GetFaultdomainOk
+
+`func (o *MachineInfo) GetFaultdomainOk() (*string, bool)`
+
+GetFaultdomainOk returns a tuple with the Faultdomain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFaultdomain
+
+`func (o *MachineInfo) SetFaultdomain(v string)`
+
+SetFaultdomain sets Faultdomain field to given value.
+
+### HasFaultdomain
+
+`func (o *MachineInfo) HasFaultdomain() bool`
+
+HasFaultdomain returns a boolean if a field has been set.
+
+### GetArchitecture
+
+`func (o *MachineInfo) GetArchitecture() string`
+
+GetArchitecture returns the Architecture field if non-nil, zero value otherwise.
+
+### GetArchitectureOk
+
+`func (o *MachineInfo) GetArchitectureOk() (*string, bool)`
+
+GetArchitectureOk returns a tuple with the Architecture field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArchitecture
+
+`func (o *MachineInfo) SetArchitecture(v string)`
+
+SetArchitecture sets Architecture field to given value.
+
+### HasArchitecture
+
+`func (o *MachineInfo) HasArchitecture() bool`
+
+HasArchitecture returns a boolean if a field has been set.
+
+### GetIpaddresses
+
+`func (o *MachineInfo) GetIpaddresses() []string`
+
+GetIpaddresses returns the Ipaddresses field if non-nil, zero value otherwise.
+
+### GetIpaddressesOk
+
+`func (o *MachineInfo) GetIpaddressesOk() (*[]string, bool)`
+
+GetIpaddressesOk returns a tuple with the Ipaddresses field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIpaddresses
+
+`func (o *MachineInfo) SetIpaddresses(v []string)`
+
+SetIpaddresses sets Ipaddresses field to given value.
+
+### HasIpaddresses
+
+`func (o *MachineInfo) HasIpaddresses() bool`
+
+HasIpaddresses returns a boolean if a field has been set.
+
+### GetPublicdns
+
+`func (o *MachineInfo) GetPublicdns() string`
+
+GetPublicdns returns the Publicdns field if non-nil, zero value otherwise.
+
+### GetPublicdnsOk
+
+`func (o *MachineInfo) GetPublicdnsOk() (*string, bool)`
+
+GetPublicdnsOk returns a tuple with the Publicdns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublicdns
+
+`func (o *MachineInfo) SetPublicdns(v string)`
+
+SetPublicdns sets Publicdns field to given value.
+
+### HasPublicdns
+
+`func (o *MachineInfo) HasPublicdns() bool`
+
+HasPublicdns returns a boolean if a field has been set.
+
+### GetCluster
+
+`func (o *MachineInfo) GetCluster() string`
+
+GetCluster returns the Cluster field if non-nil, zero value otherwise.
+
+### GetClusterOk
+
+`func (o *MachineInfo) GetClusterOk() (*string, bool)`
+
+GetClusterOk returns a tuple with the Cluster field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCluster
+
+`func (o *MachineInfo) SetCluster(v string)`
+
+SetCluster sets Cluster field to given value.
+
+### HasCluster
+
+`func (o *MachineInfo) HasCluster() bool`
+
+HasCluster returns a boolean if a field has been set.
+
+### GetAdditional
+
+`func (o *MachineInfo) GetAdditional() []AdditionalParam`
+
+GetAdditional returns the Additional field if non-nil, zero value otherwise.
+
+### GetAdditionalOk
+
+`func (o *MachineInfo) GetAdditionalOk() (*[]AdditionalParam, bool)`
+
+GetAdditionalOk returns a tuple with the Additional field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditional
+
+`func (o *MachineInfo) SetAdditional(v []AdditionalParam)`
+
+SetAdditional sets Additional field to given value.
+
+### HasAdditional
+
+`func (o *MachineInfo) HasAdditional() bool`
+
+HasAdditional returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

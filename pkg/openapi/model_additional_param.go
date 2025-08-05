@@ -19,8 +19,8 @@ var _ MappedNullable = &AdditionalParam{}
 
 // AdditionalParam struct for AdditionalParam
 type AdditionalParam struct {
-	Key   *string `json:"Key,omitempty"`
-	Value *string `json:"Value,omitempty"`
+	Key   *string `json:"key,omitempty"`
+	Value *string `json:"value,omitempty"`
 }
 
 // NewAdditionalParam instantiates a new AdditionalParam object
@@ -115,10 +115,10 @@ func (o AdditionalParam) MarshalJSON() ([]byte, error) {
 func (o AdditionalParam) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Key) {
-		toSerialize["Key"] = o.Key
+		toSerialize["key"] = o.Key
 	}
 	if !IsNil(o.Value) {
-		toSerialize["Value"] = o.Value
+		toSerialize["value"] = o.Value
 	}
 	return toSerialize, nil
 }

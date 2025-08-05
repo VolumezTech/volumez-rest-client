@@ -19739,35 +19739,58 @@ components:
       type: object
     MachineInfo:
       example:
-        instanceid: instanceid
-        imageid: imageid
+        instanceid: instance_id
+        machinename: machine_name
+        accountid: account_id
+        region: region
         zone: zone
-        controladdress: controladdress
-        instancetype: instancetype
-        pk:
-        - pk
-        - pk
-        env: env
-        sha: sha
+        resourcenamespace: resource_namespace
+        physicalproximitygroup: physical_proximity_group
+        resiliencydomain: resiliency_domain
+        faultdomain: fault_domain
+        architecture: architecture
+        ipaddresses:
+        - 192.168.1.1
+        - 10.0.0.1
+        publicdns: public.dns.example.com
+        cluster: my-cluster
+        additional:
+        - key: key1
+          value: value1
+        - key: key2
+          value: value2
       properties:
         instanceid:
           type: string
-        instancetype:
-          title: instance type
+        machinename:
           type: string
-        controladdress:
+        accountid:
           type: string
-        imageid:
+        region:
           type: string
         zone:
           type: string
-        sha:
+        resourcenamespace:
           type: string
-        env:
+        physicalproximity_group:
           type: string
-        pk:
+        resiliencydomain:
+          type: string
+        faultdomain:
+          type: string
+        architecture:
+          type: string
+        ipaddresses:
           items:
             type: string
+          type: array
+        publicdns:
+          type: string
+        cluster:
+          type: string
+        additional:
+          items:
+            $ref: "#/components/schemas/AdditionalParam"
           type: array
       type: object
     CloudProviderType:
@@ -21129,37 +21152,34 @@ components:
         boot_time: boot_time
         hostname: hostname
         os: os
-        Version:
-          Major: 0
-          PreRelease: PreRelease
-          Minor: 6
-          Component: Component
-          Patch: 1
+        version:
+          major: 0
+          pre_release: PreRelease
+          minor: 6
+          component: Component
+          patch: 1
         cloud_provider: cloud_provider
         machine_info:
           instanceid: instanceid
-          imageid: imageid
-          zone: zone
-          controladdress: controladdress
-          instancetype: instancetype
-          pk:
-          - pk
-          - pk
-          env: env
-          sha: sha
-        tenantHostToken: tenantHostToken
+          machinename: machinename
+          accountid: accountid
+          resourcenamespace: resource namespace
+          physicalproximitygroup: physical proximity group
+          resiliencydomain: resiliency domain
+          faultdomain: fault domain
+        tenant_host_token: tenantHostToken
       properties:
-        Version:
+        version:
           $ref: "#/components/schemas/Version"
         os:
           type: string
-        tenantHostToken:
+        tenanthosttoken:
           type: string
         hostname:
           type: string
-        cloud_provider:
+        cloudprovider:
           type: string
-        machine_info:
+        machineinfo:
           $ref: "#/components/schemas/MachineInfo"
         boot_time:
           type: string
@@ -21175,28 +21195,28 @@ components:
       type: object
     AdditionalParam:
       properties:
-        Key:
+        key:
           type: string
-        Value:
+        value:
           type: string
       type: object
     Version:
       example:
-        Major: 0
-        PreRelease: PreRelease
-        Minor: 6
-        Component: Component
-        Patch: 1
+        major: 0
+        prerelease: pre-release
+        minor: 6
+        component: component
+        patch: 1
       properties:
-        Component:
+        component:
           type: string
-        Major:
+        major:
           type: integer
-        Minor:
+        minor:
           type: integer
-        Patch:
+        patch:
           type: integer
-        PreRelease:
+        prerelease:
           type: string
       type: object
   securitySchemes:
