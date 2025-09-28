@@ -37,6 +37,8 @@ tags:
   name: Alerts
 - description: ""
   name: Exports
+- description: ""
+  name: provision
 paths:
   /volumes:
     get:
@@ -13453,6 +13455,134 @@ paths:
         timeoutInMillis: 29000
         requestParameters:
           integration.request.header.X-Request-ID: context.requestId
+  /provision:
+    options:
+      responses:
+        "200":
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Methods:
+              explode: false
+              schema:
+                type: string
+              style: simple
+            Access-Control-Allow-Headers:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: 500 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: 400 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: 404 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: 202 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: 409 response
+          headers:
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                type: string
+              style: simple
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST,PATCH,DELETE'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: '''*'''
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: when_no_match
+        type: mock
+    post:
+      operationId: Provision
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProvisionRequest"
+        description: A provisioning object
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProvisionResponse"
+          description: provisioning ok
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: provisioning failed
+      security:
+      - storage.io-authorizer: []
+      summary: Volumez connector provisioning
+      tags:
+      - provision-service
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: http://vlz-main-nlb-18ba9f518fe57637.elb.us-east-1.amazonaws.com:8991:8000/provision
+        passthroughBehavior: when_no_match
+        type: http_proxy
+        timeoutInMillis: 29000
+        requestParameters:
+          integration.request.header.X-Request-ID: context.requestId
   /signup:
     options:
       responses:
@@ -19693,35 +19823,58 @@ components:
       type: object
     MachineInfo:
       example:
-        instanceid: instanceid
-        imageid: imageid
+        instanceid: instance_id
+        machinename: machine_name
+        accountid: account_id
+        region: region
         zone: zone
-        controladdress: controladdress
-        instancetype: instancetype
-        pk:
-        - pk
-        - pk
-        env: env
-        sha: sha
+        resourcenamespace: resource_namespace
+        physicalproximitygroup: physical_proximity_group
+        resiliencydomain: resiliency_domain
+        faultdomain: fault_domain
+        architecture: architecture
+        ipaddresses:
+        - 192.168.1.1
+        - 10.0.0.1
+        publicdns: public.dns.example.com
+        cluster: my-cluster
+        additional:
+        - key: key1
+          value: value1
+        - key: key2
+          value: value2
       properties:
         instanceid:
           type: string
-        instancetype:
-          title: instance type
+        machinename:
           type: string
-        controladdress:
+        accountid:
           type: string
-        imageid:
+        region:
           type: string
         zone:
           type: string
-        sha:
+        resourcenamespace:
           type: string
-        env:
+        physicalproximity_group:
           type: string
-        pk:
+        resiliencydomain:
+          type: string
+        faultdomain:
+          type: string
+        architecture:
+          type: string
+        ipaddresses:
           items:
             type: string
+          type: array
+        publicdns:
+          type: string
+        cluster:
+          type: string
+        additional:
+          items:
+            $ref: "#/components/schemas/AdditionalParam"
           type: array
       type: object
     CloudProviderType:
@@ -21077,6 +21230,78 @@ components:
       properties:
         support:
           $ref: "#/components/schemas/GetTenantSettingsResponse_support"
+      type: object
+    ProvisionRequest:
+      example:
+        boottime: bootTime
+        hostname: hostName
+        os: os
+        version:
+          major: 0
+          prerelease: preRelease
+          minor: 6
+          component: Component
+          patch: 1
+        cloudprovider: cloudProvider
+        machine_info:
+          instanceid: instanceid
+          machinename: machinename
+          accountid: accountid
+          resourcenamespace: resourceNamespace
+          physicalproximitygroup: physical proximity group
+          resiliencydomain: resiliencyDomain
+          faultdomain: faultDomain
+        tenanthosttoken: tenantHostToken
+      properties:
+        version:
+          $ref: "#/components/schemas/Version"
+        os:
+          type: string
+        tenanthosttoken:
+          type: string
+        hostname:
+          type: string
+        cloudprovider:
+          type: string
+        machineinfo:
+          $ref: "#/components/schemas/MachineInfo"
+        boottime:
+          type: string
+      type: object
+    ProvisionResponse:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+          x-omitempty: false
+          x-isnullable: false
+      type: object
+    AdditionalParam:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      type: object
+    Version:
+      example:
+        major: 0
+        prerelease: pre-release
+        minor: 6
+        component: component
+        patch: 1
+      properties:
+        component:
+          type: string
+        major:
+          type: unsignedInteger
+        minor:
+          type: unsignedInteger
+        patch:
+          type: unsignedInteger
+        prerelease:
+          type: string
       type: object
   securitySchemes:
     storage.io-authorizer:

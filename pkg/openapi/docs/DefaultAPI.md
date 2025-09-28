@@ -50,6 +50,7 @@ Method | HTTP request | Description
 [**PoliciesPolicyOptions**](DefaultAPI.md#PoliciesPolicyOptions) | **Options** /policies/{policy} | 
 [**PoliciesPolicySizeSizeZoneZoneOptions**](DefaultAPI.md#PoliciesPolicySizeSizeZoneZoneOptions) | **Options** /policies/{policy}/size/{size}/zone/{zone} | 
 [**PoliciesPolicyVolumesOptions**](DefaultAPI.md#PoliciesPolicyVolumesOptions) | **Options** /policies/{policy}/volumes | 
+[**ProvisionOptions**](DefaultAPI.md#ProvisionOptions) | **Options** /provision | 
 [**RoleUserIdRoleIdOptions**](DefaultAPI.md#RoleUserIdRoleIdOptions) | **Options** /role/{userId}/{roleId} | 
 [**RolesOptions**](DefaultAPI.md#RolesOptions) | **Options** /roles | 
 [**RolesTenantIdUserIdOptions**](DefaultAPI.md#RolesTenantIdUserIdOptions) | **Options** /roles/{tenantId}/{userId} | 
@@ -2756,6 +2757,63 @@ This endpoint does not need any parameter.
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiPoliciesPolicyVolumesOptionsRequest struct via the builder pattern
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ProvisionOptions
+
+> ProvisionOptions(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "bitbucket.org/volumez/volumez-openapi-client"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.ProvisionOptions(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ProvisionOptions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiProvisionOptionsRequest struct via the builder pattern
 
 
 ### Return type
