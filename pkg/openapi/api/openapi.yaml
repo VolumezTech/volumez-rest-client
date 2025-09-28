@@ -21295,11 +21295,11 @@ components:
         component:
           type: string
         major:
-          type: unsignedInteger
+          type: integer
         minor:
-          type: unsignedInteger
+          type: integer
         patch:
-          type: unsignedInteger
+          type: integer
         prerelease:
           type: string
       type: object
