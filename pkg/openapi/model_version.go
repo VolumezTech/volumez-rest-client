@@ -19,11 +19,11 @@ var _ MappedNullable = &Version{}
 
 // Version struct for Version
 type Version struct {
-	Component  *string `json:"component,omitempty"`
-	Major      *int32  `json:"major,omitempty"`
-	Minor      *int32  `json:"minor,omitempty"`
-	Patch      *int32  `json:"patch,omitempty"`
-	Prerelease *string `json:"prerelease,omitempty"`
+	Component  *string          `json:"component,omitempty"`
+	Major      *UnsignedInteger `json:"major,omitempty"`
+	Minor      *UnsignedInteger `json:"minor,omitempty"`
+	Patch      *UnsignedInteger `json:"patch,omitempty"`
+	Prerelease *string          `json:"prerelease,omitempty"`
 }
 
 // NewVersion instantiates a new Version object
@@ -76,9 +76,9 @@ func (o *Version) SetComponent(v string) {
 }
 
 // GetMajor returns the Major field value if set, zero value otherwise.
-func (o *Version) GetMajor() int32 {
+func (o *Version) GetMajor() UnsignedInteger {
 	if o == nil || IsNil(o.Major) {
-		var ret int32
+		var ret UnsignedInteger
 		return ret
 	}
 	return *o.Major
@@ -86,7 +86,7 @@ func (o *Version) GetMajor() int32 {
 
 // GetMajorOk returns a tuple with the Major field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Version) GetMajorOk() (*int32, bool) {
+func (o *Version) GetMajorOk() (*UnsignedInteger, bool) {
 	if o == nil || IsNil(o.Major) {
 		return nil, false
 	}
@@ -102,15 +102,15 @@ func (o *Version) HasMajor() bool {
 	return false
 }
 
-// SetMajor gets a reference to the given int32 and assigns it to the Major field.
-func (o *Version) SetMajor(v int32) {
+// SetMajor gets a reference to the given UnsignedInteger and assigns it to the Major field.
+func (o *Version) SetMajor(v UnsignedInteger) {
 	o.Major = &v
 }
 
 // GetMinor returns the Minor field value if set, zero value otherwise.
-func (o *Version) GetMinor() int32 {
+func (o *Version) GetMinor() UnsignedInteger {
 	if o == nil || IsNil(o.Minor) {
-		var ret int32
+		var ret UnsignedInteger
 		return ret
 	}
 	return *o.Minor
@@ -118,7 +118,7 @@ func (o *Version) GetMinor() int32 {
 
 // GetMinorOk returns a tuple with the Minor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Version) GetMinorOk() (*int32, bool) {
+func (o *Version) GetMinorOk() (*UnsignedInteger, bool) {
 	if o == nil || IsNil(o.Minor) {
 		return nil, false
 	}
@@ -134,15 +134,15 @@ func (o *Version) HasMinor() bool {
 	return false
 }
 
-// SetMinor gets a reference to the given int32 and assigns it to the Minor field.
-func (o *Version) SetMinor(v int32) {
+// SetMinor gets a reference to the given UnsignedInteger and assigns it to the Minor field.
+func (o *Version) SetMinor(v UnsignedInteger) {
 	o.Minor = &v
 }
 
 // GetPatch returns the Patch field value if set, zero value otherwise.
-func (o *Version) GetPatch() int32 {
+func (o *Version) GetPatch() UnsignedInteger {
 	if o == nil || IsNil(o.Patch) {
-		var ret int32
+		var ret UnsignedInteger
 		return ret
 	}
 	return *o.Patch
@@ -150,7 +150,7 @@ func (o *Version) GetPatch() int32 {
 
 // GetPatchOk returns a tuple with the Patch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Version) GetPatchOk() (*int32, bool) {
+func (o *Version) GetPatchOk() (*UnsignedInteger, bool) {
 	if o == nil || IsNil(o.Patch) {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *Version) HasPatch() bool {
 	return false
 }
 
-// SetPatch gets a reference to the given int32 and assigns it to the Patch field.
-func (o *Version) SetPatch(v int32) {
+// SetPatch gets a reference to the given UnsignedInteger and assigns it to the Patch field.
+func (o *Version) SetPatch(v UnsignedInteger) {
 	o.Patch = &v
 }
 

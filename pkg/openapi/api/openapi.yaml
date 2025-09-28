@@ -21233,24 +21233,24 @@ components:
       type: object
     ProvisionRequest:
       example:
-        boottime: boot_time
-        hostname: hostname
+        boottime: bootTime
+        hostname: hostName
         os: os
         version:
           major: 0
-          prerelease: PreRelease
+          prerelease: preRelease
           minor: 6
           component: Component
           patch: 1
-        cloudprovider: cloud_provider
+        cloudprovider: cloudProvider
         machine_info:
           instanceid: instanceid
           machinename: machinename
           accountid: accountid
-          resourcenamespace: resource namespace
+          resourcenamespace: resourceNamespace
           physicalproximitygroup: physical proximity group
-          resiliencydomain: resiliency domain
-          faultdomain: fault domain
+          resiliencydomain: resiliencyDomain
+          faultdomain: faultDomain
         tenanthosttoken: tenantHostToken
       properties:
         version:
@@ -21295,11 +21295,11 @@ components:
         component:
           type: string
         major:
-          type: integer
+          type: unsignedInteger
         minor:
-          type: integer
+          type: unsignedInteger
         patch:
-          type: integer
+          type: unsignedInteger
         prerelease:
           type: string
       type: object
